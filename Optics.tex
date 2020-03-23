@@ -7,31 +7,388 @@
 \institute{Zhejiang University}
 \date{\today}
 \version{1.00}
+\bioinfo{自定义}{信息}
 
 \extrainfo{God said, "Let there be light", and there was light.}
 
 \logo{logo.png}
 \cover{cover.jpg}
 
+% 修改目录深度
+\setcounter{tocdepth}{2}
+
+%*********************
+\definecolor{tcolor}{RGB}{255,127,  0} % default: 0,124,53
+\definecolor{lcolor}{RGB}{255,178,102} % default: 153,255,153
+\definecolor{pcolor}{RGB}{191,239,255} % default: 216,255,216
+
+\newcommand{\elegantpar}[2]{%
+	\textcolor{tcolor}{$\bm\langle{}\!{}$#1${}\!{}\bm\rangle$}%
+	\begin{tikzpicture}[remember picture, baseline=-0.75ex]%
+	\node[coordinate] (inText) {};%
+	\end{tikzpicture}%
+	\marginpar{%
+		\renewcommand{\baselinestretch}{1.0}%
+		\begin{tikzpicture}[remember picture]%
+		\draw node[fill= pcolor, rounded corners,text width=\marginparwidth] (inNote){\footnotesize#2};%
+		\end{tikzpicture}%
+	}%
+	\begin{tikzpicture}[remember picture, overlay]%
+	\draw[draw = lcolor, thick]
+	([yshift=-0.55em] inText)
+	-| ([xshift=-0.55em] inNote.west)
+	-| (inNote.west);%
+	\end{tikzpicture}%
+}
+%*********************
+
 \begin{document}
 	
 \maketitle
+\frontmatter
 \tableofcontents
-	
-% \thispagestyle{empty}
-	
 \mainmatter
-\hypersetup{pageanchor=true}
 	
 \chapter*{序言}
 \addcontentsline{toc}{chapter}{序言}
 \markboth{序言}{}
-欢迎阅读本书，本书进行书写时参考的资料主要为天津大学郁道银等编著的《工程光学（第四版）》以及浙江大学李晓彤等编著的《几何光学·像差·光学设计（第三版）》。本书使用\LaTeX 进行写作，模板采用的是Elegant\LaTeX 系列模板中的\href{https://github.com/ElegantLaTeX/ElegantBook}{ElegantBook}。以下为我的联系方式：
+欢迎阅读本书，本书进行书写时参考的资料主要为郁道银等编著的《工程光学（第四版）》以及李晓彤等编著的《几何光学·像差·光学设计（第三版）》。本书使用\LaTeX 进行写作，模板采用的是Elegant\LaTeX 系列模板中的\href{https://github.com/ElegantLaTeX/ElegantBook}{ElegantBook}。以下为我的联系方式：
 \begin{itemize}
 	\item 个人网站：\href{https://guanqr.com/}{https://guanqr.com/}
 	\item GitHub 网址：\href{https://github.com/guanqr/}{https://github.com/guanqr/}
 	\item E-mail：\email{guanqirui@zju.edu.cn}
 \end{itemize}
+
+\chapter{平面与平面系统}
+
+\begin{introduction}
+	\item 平行平板（第\ref{sect:parallel-plate}节）
+	\item 常见的反射棱镜（第\ref{sect:reflecting-prism}节）
+	\item 最小偏折角（式(\ref{eq:minimum-deviation-angle})）
+	\item 阿贝常数与色散（第\ref{sect:optical-material}节）
+\end{introduction}
+
+折射球面物像公式为
+
+\begin{equation}
+\frac{n'}{l'}-\frac{n}{l}=\frac{n'-n}{r}
+\label{eq:spherical-refraction}
+\end{equation}
+
+\section{平面镜成像}
+平面镜即平面反射镜，由式(\ref{eq:spherical-refraction})，在平面镜成像中，有
+
+\begin{equation}
+l'=-l,\quad\beta=1
+\end{equation}
+物与像分别位于镜面的两侧，且到镜面的距离相等，平面镜成正立，与物同等大小的像。平面镜对食物成虚像，对虚物成实像。
+
+为了避免成像产生镜像，光学仪器中需要采用偶数个镜面。如图\ref{fig:one-mirror}所示，当入射光线方向不变而转动平面镜时，反射光线的方向将发生改变，平面镜转过$\alpha$角度时，反射光线将转过$2\alpha$角。如图\ref{fig:two-mirror}所示，光线经双平面镜两个面相继反射一次后的出射光线$\beta$与两个面的夹角$\alpha$之间存在关系
+
+\begin{equation}
+\beta=2(I_1+I_2)=2\alpha
+\end{equation}
+即出射光线与入射光线的夹角是双镜夹角$\alpha$的$2$倍。
+
+\begin{figure}[htbp]
+	\begin{minipage}[t]{0.48\textwidth}
+		\centering
+		\includegraphics[width=0.8\textwidth]{one-mirror.png}
+		\caption{单平面镜对光的变换}
+		\label{fig:one-mirror}
+	\end{minipage}
+	\qquad
+	\begin{minipage}[t]{0.45\textwidth}
+		\centering
+		\includegraphics[width=0.8\textwidth]{two-mirror.png}
+		\caption{双平面镜对光的变换}
+		\label{fig:two-mirror}
+	\end{minipage}
+\end{figure}
+
+\section{平行平板}
+\label{sect:parallel-plate}
+
+\begin{definition}{平行平板}{parallel-plate}
+	由两个相互平行的折射平面构成的光学器件称为平行平板
+\end{definition}
+
+逐面应用折射球面物像公式(\ref{eq:spherical-refraction})，考虑到$r_1=r_2=\infty$，可得
+\begin{equation}
+l'=nl,\quad l_2=nl-d,\quad l'=l-\frac{d}{n}
+\end{equation}
+\begin{equation}
+\beta=\beta_1\beta_2=1
+\end{equation}
+式中$n$和$d$为平行平板的折射率和厚度。
+\begin{property}
+如图\ref{fig:parallel-plate-1}所示，平行平板总对物成同等大小的正立像，物与像总在平板同侧，两者虚实不一致。不论物距为何值，像相对于物的位置总不改变
+\end{property}
+
+像相对于物的距离为
+\begin{equation}
+\Delta l'=-l+d-(-l')=d\bigg(1-\frac{1}{n}\bigg)
+\end{equation}
+$\Delta l'$恒为正值，所以平行平板所成像总是由物沿光线前进方向沿轴移动$d(1-1/n)$得到，和物的位置、虚实无关。
+
+\begin{figure}[htbp]
+	\begin{minipage}[t]{0.48\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{parallel-plate-1.png}
+		\caption{平行平板成像(1)}
+		\label{fig:parallel-plate-1}
+	\end{minipage}
+	\qquad
+	\begin{minipage}[t]{0.45\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{parallel-plate-2.png}
+		\caption{平行平板成像(2)}
+		\label{fig:parallel-plate-2}
+	\end{minipage}
+\end{figure}
+
+图\ref{fig:parallel-plate-2}为非近轴光线经平行平板的折射。产生的位移量为
+\begin{equation}
+\Delta T'=DE\cdot\sin(I_1-I'_1)=\frac{d}{\cos{I'_1}}\sin(I_1-I'_1)
+\end{equation}
+可化简为
+\begin{equation}
+\Delta T'=d\sin I_1\bigg(1-\frac{\cos I_1}{\sqrt{n^2-\sin^2 I_1}}\bigg)
+\end{equation}
+沿轴方向位移量为
+\begin{equation}
+\Delta L'=\frac{\Delta T'}{\sin I_1}=d\bigg(1-\frac{\cos I_1}{\sqrt{n^2-\sin^2 I_1}}\bigg)
+\end{equation}
+或
+\begin{equation}
+\Delta L'=d\bigg(1-\frac{\tan I'_1}{\tan I_1}\bigg)
+\end{equation}
+在近轴区，侧向位移量为
+\begin{equation}
+\Delta t'=d\bigg(1-\frac{1}{n}\bigg)i_1
+\end{equation}
+
+\begin{note}
+	平行平板不可能以宽光束对物点成完善像，但细光束成像是完善的。近轴区光线的侧向位移量$\Delta t$与入射角$i_1$成线性关系。
+\end{note}
+
+\section{反射棱镜}
+\label{sect:reflecting-prism}
+
+\begin{definition}{反射棱镜}{reflecting-prism}
+	由一个或多个反射工作平面磨制在同一块玻璃上的光学零件称为反射棱镜。
+\end{definition}
+
+\begin{property}
+	奇数次反射成镜像，偶数次反射像不变。
+\end{property}
+
+反射棱镜的结构常数为$K$，棱镜通光直径为$D$，棱镜中光轴长度为$d$，有
+\begin{equation}
+K=\frac{d}{D}
+\end{equation}
+
+\subsection{简单棱镜}
+
+\begin{enumerate}
+	\item 一次反射棱镜：具有一个反射面，与单个平面镜对应，使物体成镜像。
+	\begin{enumerate}
+		\item 等腰直角棱镜
+		\item 达夫棱镜（如图\ref{fig:dove-prism}所示）
+		\begin{figure}[htbp]
+			\centering
+			\includegraphics[width=0.6\textwidth]{dove-prism.pdf}
+			\caption{达夫棱镜}
+			\label{fig:dove-prism}
+		\end{figure}
+	\end{enumerate}
+	\item 二次反射棱镜：有两个反射面，相当于一个双面镜。夹角为$\alpha$的二次反射棱镜使光轴转过$2\alpha$角。
+	\begin{enumerate}
+		\item 五角棱镜
+		\item 半五角棱镜
+		\item 二次反射直角棱镜
+		\item $30^{\circ}$直角棱镜
+		\item 斜方棱镜
+	\end{enumerate}
+	\item 三次反射棱镜：施密特棱镜，出射光轴相对于入射光轴改变了$45^{\circ}$方向。
+\end{enumerate}
+
+\subsection{屋脊棱镜}
+
+\begin{definition}{屋脊棱镜}{roof-prism}
+	将普通棱镜的一个反射面用两个互成直角的反射面替代的棱镜即为屋脊棱镜。两直角面的交线为棱线，平行于原反射面，且在主截面上。奇数次反射棱镜，用屋脊面代替其中一个反射面后，就成为了偶数次反射的屋脊棱镜。
+\end{definition}
+
+常见的屋脊棱镜有：屋脊直角棱镜、屋脊半五角棱镜、脊棱五角屋镜、屋脊施密特棱镜。
+
+\subsection{角锥棱镜}
+角锥棱镜具有三个互成直角的反射面，出射光线方向为入射光线的反方向。
+
+\subsection{棱镜组合}
+
+\begin{figure}[htbp]
+	\begin{minipage}[t]{0.45\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{double-porro-prism.pdf}
+		\caption{普罗棱镜}
+		\label{fig:double-porro-prism}
+	\end{minipage}
+	\qquad
+	\begin{minipage}[t]{0.45\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{schmidt-pechan-prism.pdf}
+		\caption{别汉棱镜}
+		\label{fig:schmidt-pechan-prism}
+	\end{minipage}
+\end{figure}
+
+普罗棱镜（双普罗棱镜）：如图\ref{fig:double-porro-prism}，由两块相同的等腰直角棱镜组成。
+
+别汉棱镜（施密特-别汉棱镜组）：如图\ref{fig:schmidt-pechan-prism}，由一块半五角棱镜和一块屋脊施密特棱镜、或一块屋脊半五角棱镜和一块施密特棱镜组成。特点为出射光轴的方向与入射光轴相同，可以让影像做$180^{\circ}$的旋转。
+
+\section{折射棱镜}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.4\textwidth]{refracting-prism.png}
+	\caption{折射棱镜}
+	\label{fig:refracting-prism}
+\end{figure}
+
+图\ref{fig:refracting-prism}画出了主截面内光线经过棱镜两个折射面折射后的情况。光线偏角为$\delta$，其正负规定为：由入射光线从锐角方向转到出射光线，顺时针为正，反之为负。对两个折射面写出折射定律：
+\begin{equation}
+\begin{cases}
+\sin I_1=n\sin I'_1\\
+\sin I'_2=n\sin I_2
+\end{cases}
+\end{equation}
+由图\ref{fig:refracting-prism}可得
+\begin{equation}
+\alpha=I'_1-I_2,\quad\delta=\delta_1+\delta_2=T_1-I'_1+I_2-I'_2
+\end{equation}
+从而
+\begin{equation}
+\alpha+\delta=I_1-I'_2
+\end{equation}
+综合上述公式得到
+\begin{equation}
+\sin\bigg(\frac{\alpha+\delta}{2}\bigg)=n\sin\frac{\alpha}{2}\cdot\frac{\cos\frac{I'_1+I_2}{2}}{\cos\frac{I_1+I'_2}{2}}
+\end{equation}
+当$\alpha$和$n$一定时，$\delta$仅随$I_1$而变。最小偏角与$\alpha$和$n$的关系为
+\begin{equation}
+\sin\bigg(\frac{\alpha+\delta_{\mathrm{min}}}{2}\bigg)=n\sin\frac{\alpha}{2}
+\label{eq:minimum-deviation-angle}
+\end{equation}
+
+如果折射角很小，偏角公式分为两种情况：
+\begin{enumerate}
+	\item 光线入射角有一定大小，$I'_1=I_2$，$I_1=I'_2$，有
+	\begin{equation}
+	\delta=\alpha\bigg(\frac{n\cos I'_1}{\cos I_1}\bigg)
+	\end{equation}
+	\item 当光线垂直入射或入射角很小，有
+	\begin{equation}
+	\delta=\alpha(n-1)
+	\end{equation}
+\end{enumerate}
+
+折射角很小的棱镜称为光楔。当双光楔绕光轴相对旋转，即一个光楔逆时针旋转$\varphi$角，另一个光楔顺时针旋转$\varphi$角，总偏角为$2\varphi$，有
+\begin{equation}
+\delta=2(n-1)\alpha\cos\frac{\varphi}{2}
+\end{equation}
+
+\section{光的色散}
+以太阳光谱中的夫琅禾费谱线作为特征，单色谱线来表征光学介质的折射率，这些谱线的符号、颜色、波长以及产生谱线的元素如表\ref{tab:spectral-line}所示。
+
+\begin{table}[htbp]
+	\centering
+	\caption{各单色谱线的符号、颜色、波长以及产生谱线的元素}
+	\small{
+	\begin{tabular}{c|c|c|c|c|c|c}
+		\hline
+		符号&$A'$\quad$r$\quad$C$&$D$\quad$d$&$e$&$F$\quad$g$&$G'$&$h$\\
+		\hline
+		颜色&红&黄&绿&青&蓝&紫\\
+		\hline
+		$\lambda$(nm)&$768.2$\quad$706.5$\quad$656.3$&$589.3$\quad$587.6$&$546.1$&$486.1$\quad$435.8$&$434.0$&$404.7$\\
+		\hline
+		元素&K\quad He\quad H&Na\quad He&Hg&H\quad Hg&H&Hg\\
+		\hline
+	\end{tabular}
+	}
+	\label{tab:spectral-line}
+\end{table}
+
+\section{光学材料}
+\label{sect:optical-material}
+光学玻璃可分为冕牌和火石两大类。冕牌玻璃低折射率低色散，火石玻璃高折射率高色散。
+
+阿贝常数$v_D$：
+\begin{equation}
+v_D=\frac{n_D-1}{n_F-n_C}
+\end{equation}
+
+\begin{property}
+	阿贝常数越大，色散越低，反之，色散越大。
+\end{property}
+
+\begin{problem}
+	\footnote{以下四道例题均来自浙江大学光电学院网络课程平台。}某棱镜的结构常数为$3.414$，要求通光口径为$10$mm，求光轴在棱镜中的长度。
+	\begin{itemize}
+		\item [(a)] $3.414$mm
+		\item [(b)] $34.14$mm
+		\item [(c)] $341.4$mm
+		\item [(d)] $2.929$mm
+		\item [(e)] $29.29$mm
+		\item [(f)] $292.9$mm
+	\end{itemize}
+\end{problem}
+
+\begin{solution}
+	选择(b)。
+\end{solution}
+
+\begin{problem}
+	以下棱镜或棱镜组中哪些是成镜像的？
+	\begin{itemize}
+		\item [(a)] 别汉棱镜组
+		\item [(b)] 施密特棱镜
+		\item [(c)] 屋脊施密特棱镜
+		\item [(d)] 一次反射等腰直角棱镜与达夫棱镜的组合
+		\item [(e)] 屋脊五角棱镜
+	\end{itemize}
+\end{problem}
+
+\begin{solution}
+	选择(b)和(e)。
+\end{solution}
+
+\begin{problem}
+	某种光学玻璃d光的折射率为$1.51637$，$C$光的折射率为$1.51389$，阿贝常数为$64.1$，求$F$光的折射率。
+	\begin{itemize}
+		\item [(a)] $1.52196$
+		\item [(b)] $1.50583$
+	\end{itemize}
+\end{problem}
+
+\begin{solution}
+	选择(a)。
+\end{solution}
+
+\begin{problem}
+	以下光学系统中，可以成镜像的是：
+	\begin{itemize}
+		\item [(a)] 平面镜
+		\item [(b)] 别汉棱镜组
+		\item [(c)] 施密特棱镜
+		\item [(d)] 普罗型棱镜组
+		\item [(e)] 屋脊五角棱镜
+	\end{itemize}
+\end{problem}
+
+\begin{solution}
+	选择(a)、(c)和(e)。
+\end{solution}
 
 \chapter{理想光学系统}
 
@@ -48,8 +405,8 @@
 
 \section{理想光学系统与共线成像理论}
 
-\begin{definition}{物像共轭关系}{int}\label{def:conjugate}
-	在理想光学系统中，任何一个物点发出的光线在系统的作用下所有的出射光线仍然相交于一点。由光路的可逆性和折射、反射定律中光线方向的确定性，可得出每一个物点对应于唯一一个像点。通常将这种物像对应关系叫做“共轭”。
+\begin{definition}{物像共轭关系}{conjugate}
+	在理想光学系统中，任何一个物点发出的光线在系统的作用下所有的出射光线仍然相交于一点。由光路的可逆性和折射、反射定律中光线方向的确定性，可得出每一个物点对应于唯一一个像点。通常将这种物像对应关系叫做共轭。
 \end{definition}
 
 如果光学系统的物空间和像空间都是均匀透明介质，则入射光线和出射光线均为直线，根据光线的直线传播定律，由符合点对应点的物像空间关系可以推论出直线成像为直线、平面成像为平面的性质。这种点对应点、直线对应直线、平面对应平面的成像变换称为共线成像。
@@ -64,8 +421,8 @@
 \end{property}
 
 \section{理想光学系统的基点与基面}
-\subsection{无限远的轴上物点对应的像点$F'$}
-\label{infty-object}
+\subsection{无限远轴上物点对应的像点}
+\label{subsect:infty-object}
 
 \begin{enumerate}	
 	\item 无限远轴上物点发出的光线：
@@ -77,13 +434,13 @@
 	式中，$U$为孔径角，$L$为物方截距。当$L$趋于无穷大时，物点$A$向无限远处左移，$U$趋于$0$，即无穷远轴上物点发出的光线都与光轴平行。
 	\item 像方焦点、焦平面；像方主点、主平面：
 	
-	如图\ref{perfect-optical-system}所示，平行于光轴的入射光线$AE_1$通过理想光学系统后，出射光线$G'F'$交光轴于$F'$。$F'$为无限远轴上物点的像点，称为像方焦点。过$F'$作垂直于光轴的平面，称为像方焦平面。像方焦平面与无限远处垂直于光轴的物平面共轭。
+	如图\ref{fig:perfect-optical-system}所示，平行于光轴的入射光线$AE_1$通过理想光学系统后，出射光线$G'F'$交光轴于$F'$。$F'$为无限远轴上物点的像点，称为像方焦点。过$F'$作垂直于光轴的平面，称为像方焦平面。像方焦平面与无限远处垂直于光轴的物平面共轭。
 	
 	\begin{figure}[htbp]
 		\centering
 		\includegraphics[width=0.6\textwidth]{perfect-optical-system.png}
 		\caption{理想光学系统}
-		\label{perfect-optical-system}
+		\label{fig:perfect-optical-system}
 	\end{figure}
 	
 	入射光线$AE_1$的延长线与出射光线$G'F'$的反向延长线交于一点$Q'$，过$Q'$作垂直于光轴的平面交光轴于$H'$点，则$H'$点为像方主点，$Q'H'$平面为像方主平面，从主点$H'$搭配焦点$F'$之间的距离为像方焦距$f'$。有
@@ -96,13 +453,13 @@
 	进入光学系统的光线总是相互平行的，且与光轴有一定夹角$\omega$。这一束光线经过系统后，一定交于像方焦平面的某一点，这一点为无限远轴外物点的共轭像点。	
 \end{enumerate}
 
-\subsection{无限远轴上像点对应的物点$F$}
-相关概念同第\ref{infty-object}节内容。物方焦平面上任意一点发出的光线，通过理想光学系统后亦是一组相互平行的光线。
-\subsection{物方主平面与像方主平面间的关系，理想光学系统的基点和基面}
+\subsection{无限远轴上像点对应的物点}
+相关概念同第\ref{subsect:infty-object}节内容。物方焦平面上任意一点发出的光线，通过理想光学系统后亦是一组相互平行的光线。
+\subsection{物方主平面与像方主平面}
 \label{subsect:base-point}
-如图\ref{perfect-optical-system}所示，两条入射光线$AE_1$和$FP$都经过$Q$，相应地出射光线都经过$Q'$，$Q$和$Q'$为共轭点，因此物方主平面和像方主平面是一对共轭面，垂轴放大率为$+1$。
+如图\ref{fig:perfect-optical-system}所示，两条入射光线$AE_1$和$FP$都经过$Q$，相应地出射光线都经过$Q'$，$Q$和$Q'$为共轭点，因此物方主平面和像方主平面是一对共轭面，垂轴放大率为$+1$。
 
-\begin{definition}{基点和基面}{int}
+\begin{definition}{基点和基面}{base-point}
 	一对主点和主平面，一对焦点和焦平面，称为共轴理想光学系统的基点和基面。
 \end{definition}
 
@@ -112,39 +469,39 @@
 	\centering
 	\includegraphics[width=0.7\textwidth]{newton-and-gauss.png}
 	\caption{理想光学系统}
-	\label{newton-and-gauss}
+	\label{fig:newton-and-gauss}
 \end{figure}
 
-如图\ref{newton-and-gauss}所示，由相似三角形可导出
+如图\ref{fig:newton-and-gauss}所示，由相似三角形可导出
 \begin{equation}
 xx'=ff'
-\label{newton-eq-1}
+\label{eq:newton-eq-1}
 \end{equation}
 \begin{equation}
 \beta=\frac{y'}{y}=-\frac{x'}{f'}=-\frac{f}{x}
-\label{newton-eq-2}
+\label{eq:newton-eq-2}
 \end{equation}
-式(\ref{newton-eq-1})为牛顿公式，以焦点为原点。式(\ref{newton-eq-2})为牛顿公式的垂轴放大率公式。
+式(\ref{eq:newton-eq-1})为牛顿公式，以焦点为原点。式(\ref{eq:newton-eq-2})为牛顿公式的垂轴放大率公式。
 
 \subsection{高斯公式}
-如图\ref{newton-and-gauss}所示，焦物距、焦像距和物距、像距之间有如下关系：
+如图\ref{fig:newton-and-gauss}所示，焦物距、焦像距和物距、像距之间有如下关系：
 \begin{equation}
 \begin{cases}
 x=l-f\\
 x'=l'-f'
 \end{cases}
 \end{equation}
-将其带入牛顿公式(\ref{newton-eq-1})，两边同时除以$ll'$可得
+将其带入牛顿公式(\ref{eq:newton-eq-1})，两边同时除以$ll'$可得
 \begin{equation}
 \frac{f'}{l'}+\frac{f}{l}=1
-\label{gauss-eq-1}
+\label{eq:gauss-eq-1}
 \end{equation}
-式(\ref{gauss-eq-1})为高斯公式，以主点为原点。其相应的垂轴放大率公式为
+式(\ref{eq:gauss-eq-1})为高斯公式，以主点为原点。其相应的垂轴放大率公式为
 \begin{equation}
 \beta=\frac{y'}{y}=-\frac{f}{f'}\frac{l'}{l}
-\label{gauss-eq-2}
+\label{eq:gauss-eq-2}
 \end{equation}
-当物方介质和像方介质相同时，有$f'=-f$，则式(\ref{gauss-eq-1})和式(\ref{gauss-eq-2})可以写成
+当物方介质和像方介质相同时，有$f'=-f$，则式(\ref{eq:gauss-eq-1})和式(\ref{eq:gauss-eq-2})可以写成
 \begin{equation}
 \frac{1}{l'}-\frac{1}{l}=\frac{1}{f'}
 \end{equation}
@@ -164,11 +521,11 @@ x'=l'-f'
 理想光学系统的拉赫公式为
 \begin{equation}
 ny\tan U=n'y'\tan U'
-\label{lah-eq}
+\label{eq:lah-eq}
 \end{equation}
 
 \section{理想光学系统的放大率}
-前面已经给出垂轴放大率的公式(\ref{newton-eq-2})和(\ref{gauss-eq-2})，下面给出轴向放大率和角放大率。
+前面已经给出垂轴放大率的公式(\ref{eq:newton-eq-2})和(\ref{eq:gauss-eq-2})，下面给出轴向放大率和角放大率。
 \subsection{轴向放大率}
 物平面沿光轴移动$\mathrm{d} x$或$\mathrm{d} l$时，像平面移动$\mathrm{d} x'$或$\mathrm{d} l'$，轴向放大率为
 \begin{equation}
@@ -178,7 +535,7 @@ ny\tan U=n'y'\tan U'
 \begin{equation}
 \alpha=-\frac{x'}{x}
 \end{equation}
-将式(\ref{newton-eq-2})带入得
+将式(\ref{eq:newton-eq-2})带入得
 \begin{equation}
 \alpha=-\beta^2\frac{f'}{f}=\frac{n'}{n}\beta^2
 \end{equation}
@@ -188,7 +545,7 @@ ny\tan U=n'y'\tan U'
 \begin{equation}
 \gamma=\frac{\tan U'}{\tan U}
 \end{equation}
-根据理想光学系统拉赫公式(\ref{lah-eq})得
+根据理想光学系统拉赫公式(\ref{eq:lah-eq})得
 \begin{equation}
 \gamma=\frac{n}{n'}\frac{1}{\beta}
 \end{equation}
@@ -198,7 +555,7 @@ ny\tan U=n'y'\tan U'
 \end{equation}
 \subsection{光学系统中的节点}
 \label{subsect:node}
-\begin{definition}{节点}{int}
+\begin{definition}{节点}{node}
 	光学系统中角放大率等于$+1^{\times}$的一对共轭点为节点。
 \end{definition}
 
@@ -207,7 +564,7 @@ ny\tan U=n'y'\tan U'
 \end{property}
 
 \begin{problem}
-	正透镜对虚物成像时：
+	\footnote{以下三道例题均来自浙江大学光电学院《应用光学》课程课件。}正透镜对虚物成像时：
 	\begin{itemize}
 		\item [(a)] 只能成实像
 		\item [(b)] 只能成虚像
@@ -249,7 +606,7 @@ ny\tan U=n'y'\tan U'
 \end{solution}
 
 \section{理想光学系统的图解求像}
-\elegantpar{画光路图}{图解求像是考试中必考的题目，而且所占分值很多，这一类的题需要多练，如果熟练掌握的话，完全是送分题，否则就是送命题}的依据：
+\elegantpar{画光路图}{图解求像是考试中必考的题目。在大二学习这部分内容的时候，期中考试因为作图题扣了很多分。这一类的题需要多练，如果熟练掌握的话，完全是送分题，否则就是送命题。}的依据：
 \begin{enumerate}
 	\item 平行于光轴的光线经理想光学系统后必通过像方焦点；
 	\item 过物方焦点的光线经理想光学系统后必为平行于光轴的光线；
@@ -277,10 +634,10 @@ ny\tan U=n'y'\tan U'
 	\centering
 	\includegraphics[width=1\textwidth]{combination-of-optical-systems.png}
 	\caption{两个光组的组合}
-	\label{combination-of-optical-systems}
+	\label{fig:combination-of-optical-systems}
 \end{figure}
 
-图\ref{combination-of-optical-systems}给出了由两个光组组成的等效系统在两个空间的焦点和主点。按牛顿公式，物焦距$x=-\Delta$，其焦像距$x'_F$为
+图\ref{fig:combination-of-optical-systems}给出了由两个光组组成的等效系统在两个空间的焦点和主点。按牛顿公式，物焦距$x=-\Delta$，其焦像距$x'_F$为
 \begin{equation}
 x'_F=-\frac{f_2f'_2}{\Delta}
 \end{equation}
@@ -306,22 +663,22 @@ f'=-f=\frac{f'_1f'_2}{f'_1+f'_2-d}
 \end{equation}
 表示成光焦度形式为
 \begin{equation}
-\phi=\phi_1+\phi_2-d\phi_1\phi_2
+\varphi=\varphi_1+\varphi_2-d\varphi_1\varphi_2
 \end{equation}
 
-\begin{definition}{折合距离与光焦度}{int}\label{def:focal-power}
+\begin{definition}{折合距离与光焦度}{focal-power}
 	一线段的长度除以该线段所在介质的折射率做得的值称为该线段的折合距离。折合焦距的倒数称之为光学系统的光焦度，以$\Phi$表示，即
 	\begin{equation}
 	\Phi=\frac{n'}{f'}=-\frac{n}{f}
 	\end{equation}
-	如果光学系统位于空气中，其光焦度用$\phi$表示，即
+	如果光学系统位于空气中，其光焦度用$\varphi$表示，即
 	\begin{equation}
-	\phi=\frac{1}{f'}=-\frac{1}{f}
+	\varphi=\frac{1}{f'}=-\frac{1}{f}
 	\end{equation}
 	光焦度的单位是折光度或屈光度。正光焦度的光学系统对光束起会聚作用；负光焦度的光学系统对光束起发散作用。
 \end{definition}
 
-根据图\ref{combination-of-optical-systems}，还可得到如下关系：
+根据图\ref{fig:combination-of-optical-systems}，还可得到如下关系：
 \begin{equation}
 \begin{cases}
 l'_F=f'_2+x'_F,\quad l_F=f_1+x_F\\
@@ -337,7 +694,7 @@ l'_H=l'_F-f',\quad l_H=l_F-f
 
 \section{望远镜系统}
 
-\begin{definition}{望远镜系统}{int}
+\begin{definition}{望远镜系统}{telescope}
 	使入射的平行光束仍保持平行地出射的光学系统称为望远镜系统。望远镜系统的焦距无穷大，焦点和主点位于无穷远。
 \end{definition}
 
@@ -345,10 +702,10 @@ l'_H=l'_F-f',\quad l_H=l_F-f
 	\centering
 	\includegraphics[width=0.7\textwidth]{telescope-system.png}
 	\caption{望远镜系统}
-	\label{telescope-system}
+	\label{fig:telescope-system}
 \end{figure}
 
-如图\ref{telescope-system}所示，根据牛顿公式，并考虑过渡公式$\Delta=0$，可导出
+如图\ref{fig:telescope-system}所示，根据牛顿公式，并考虑过渡公式$\Delta=0$，可导出
 \begin{equation}
 x'_2=\frac{f_2f'_2}{f_1f'_1}x_1
 \end{equation}
@@ -379,7 +736,7 @@ x'_2=\alpha x_1
 由此可见，望远镜系统的各种放大率，仅由组成该系统的两个光组的焦距决定。
 
 供眼睛观察用的光学系统为目视光学系统，目视光学系统中最重要的参数为视觉放大率。
-\begin{definition}{望远镜系统的视觉放大率}{int}\label{def:visual-magnification}
+\begin{definition}{望远镜系统的视觉放大率}{visual-magnification}
 	望远镜系统的视觉放大率是远处物体经系统所成的像对眼睛张角$W'$的正切与该物体直接对眼睛张角$W$的正切之比，用$\Gamma$表示。望远镜系统的视觉放大率等于该系统的角放大率，即
 	\begin{equation}
 	\Gamma=\frac{\tan W'}{\tan W}=\gamma=-\frac{f'_1}{f'_2}=\frac{1}{\beta}
@@ -395,14 +752,14 @@ f'=\Gamma f'_2
 \section{透镜}
 \subsection{薄透镜}
 
-\begin{definition}{薄透镜}{int}
+\begin{definition}{薄透镜}{thin-lens}
 	透镜的厚度与球面半径相比很小，略去厚度不会引起成像结果的实质性变化，却能对初始阶段的分析和计算带来方便，导出简单的公式。这时认为透镜的厚度为零，称薄透镜。
 \end{definition}
 
 薄透镜的物像位置公式：
 \begin{equation}
 \frac{1}{l'}-\frac{1}{l}=(n-1)\bigg(\frac{1}{r_1}-\frac{1}{r_2}\bigg)
-\label{thin-lens}
+\label{eq:thin-lens}
 \end{equation}
 焦距为
 \begin{equation}
@@ -410,11 +767,11 @@ f'=\frac{1}{(n-1)\bigg(\frac{1}{r_1}-\frac{1}{r_2}\bigg)}
 \end{equation}
 并有$f=-f'$。其光焦度为
 \begin{equation}
-\phi=\frac{1}{f'}=(n-1)\bigg(\frac{1}{r_1}-\frac{1}{r_2}\bigg)
+\varphi=\frac{1}{f'}=(n-1)\bigg(\frac{1}{r_1}-\frac{1}{r_2}\bigg)
 \end{equation}
-则式(\ref{thin-lens})可以写成
+则式(\ref{eq:thin-lens})可以写成
 \begin{equation}
-\frac{1}{l'}-\frac{1}{l}=\frac{1}{f'}=\phi
+\frac{1}{l'}-\frac{1}{l}=\frac{1}{f'}=\varphi
 \end{equation}
 
 由此可知，凸透镜焦距为正，光焦度为正，对光束起会聚作用，像方焦点是对入射平行光束会聚而成的实焦点。凹透镜焦距为负，光焦度为负，对光束起发散作用，像方焦点为虚焦点。因此称凸透镜为正透镜或会聚透镜，凹透镜为负透镜或发散透镜。
@@ -443,5 +800,61 @@ f'=\frac{1}{(n-1)\bigg(\frac{1}{r_1}-\frac{1}{r_2}\bigg)}
 	\item 平凹透镜：$f'$恒为负，其值与透镜厚度无关，两主面上的一个相切于球面的顶点，另一个位于透镜内部。
 	\item 弯月形凸透镜：$f'$恒为正，若凸面朝向物方，则物方主面在凸面之前，像方主面在凹面之前，二者都在透镜外。
 \end{enumerate}
+
+\begin{problem}
+	\footnote{以下四道例题均来自浙江大学光电学院网络课程平台。}一个$f'=80$mm的薄透镜当物体位于其前何处时，正好能在透镜前$250$mm处成像？
+	\begin{itemize}
+		\item [(a)] 位于其前$60.6$mm
+		\item [(b)] 位于其前$117.6$mm
+		\item [(c)] 位于其后$60.6$mm
+		\item [(d)] 位于其后$117.6$mm
+	\end{itemize}
+\end{problem}
+
+\begin{solution}
+	选择(a)。
+\end{solution}
+
+\begin{problem}
+	以下光学系统中，对实物一定成虚像的是：
+	\begin{itemize}
+		\item [(a)] 反射球面
+		\item [(b)] 平行平板
+		\item [(c)] 负薄透镜
+		\item [(d)] 正薄透镜
+	\end{itemize}
+\end{problem}
+
+\begin{solution}
+	选择(b)和(c)。
+\end{solution}
+
+\begin{problem}
+	一折射球面，其像方焦距和物方焦距分别为$144$mm和$-120$mm，物方介质为$n=4/3$的水，求球面的曲率半径$r$和像方介质折射率$n'$。
+	\begin{itemize}
+		\item [(a)] $r=24$mm，$n'=1.6$
+		\item [(b)] $r=-24$mm，$n'=1.6$
+		\item [(c)] $r=24$mm，$n'=1.11$
+		\item [(d)] $r=-24$mm，$n'=1.11$
+	\end{itemize}
+\end{problem}
+
+\begin{solution}
+	选择(a)。
+\end{solution}
+
+\begin{problem}
+	物方、像方介质相同的光学系统对物成像，当$\alpha<1$时，有：
+	\begin{itemize}
+		\item [(a)] 物像同向移动，像移动的速度比物快
+		\item [(b)] 物像同向移动，像移动的速度比物慢
+		\item [(c)] 成放大像
+		\item [(d)] 成缩小像
+	\end{itemize}
+\end{problem}
+
+\begin{solution}
+	选择(b)和(d)。
+\end{solution}
 	
 \end{document}
