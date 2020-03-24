@@ -1,6 +1,6 @@
-\documentclass[cn,11pt]{elegantbook}
+\documentclass[cn,11pt,chinesefont=founder,math=newtx]{elegantbook}
 
-\title{光学工程基础复习}
+\title{几何光学\&物理光学}
 \subtitle{专业课程知识点总结}
 
 \author{Keiyui Kwan}
@@ -18,9 +18,29 @@
 \setcounter{tocdepth}{2}
 
 %*********************
+\usetikzlibrary{quotes,angles}
+
+\usepackage{tasks} %选择题宏包，tasks环境
+% texlive 2019
+
+\settasks{                     %设置
+	counter-format=tsk[A],     %编号
+	label-format={\bfseries},  %加粗
+}
+
+% 选择题示例 
+%\begin{tasks}(4)
+%	\task 
+%	\task 
+%	\task 
+%	\task 
+%\end{tasks}
+
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+
 \definecolor{tcolor}{RGB}{255,127,  0} % default: 0,124,53
 \definecolor{lcolor}{RGB}{255,178,102} % default: 153,255,153
-\definecolor{pcolor}{RGB}{191,239,255} % default: 216,255,216
+\definecolor{pcolor}{RGB}{224,250,255} % default: 216,255,216
 
 \newcommand{\elegantpar}[2]{%
 	\textcolor{tcolor}{$\bm\langle{}\!{}$#1${}\!{}\bm\rangle$}%
@@ -46,18 +66,349 @@
 	
 \maketitle
 \frontmatter
-\tableofcontents
-\mainmatter
 	
-\chapter*{序言}
-\addcontentsline{toc}{chapter}{序言}
-\markboth{序言}{}
-欢迎阅读本书，本书进行书写时参考的资料主要为郁道银等编著的《工程光学（第四版）》以及李晓彤等编著的《几何光学·像差·光学设计（第三版）》。本书使用\LaTeX 进行写作，模板采用的是Elegant\LaTeX 系列模板中的\href{https://github.com/ElegantLaTeX/ElegantBook}{ElegantBook}。以下为我的联系方式：
+\chapter*{前言}
+\markboth{Introduction}{前言}
+欢迎阅读本书。本书写作的初衷是为了个人复习巩固光学基础知识，方便查阅各种基本概念。本书进行书写时参考的资料主要为本科课程教材：郁道银等编著的《工程光学（第四版）》和李晓彤等编著的《几何光学·像差·光学设计（第三版）》。书中的插图来自教材、互联网或是我自己绘制的。本书使用\LaTeX 进行写作，模板采用的是Elegant\LaTeX 系列模板中的\href{https://github.com/ElegantLaTeX/ElegantBook}{ElegantBook}。本书字体采用了可免费商用的方正字体。
+
+以下为我的联系方式：
 \begin{itemize}
 	\item 个人网站：\href{https://guanqr.com/}{https://guanqr.com/}
 	\item GitHub 网址：\href{https://github.com/guanqr/}{https://github.com/guanqr/}
 	\item E-mail：\email{guanqirui@zju.edu.cn}
 \end{itemize}
+
+\tableofcontents
+\mainmatter
+
+\part{几何光学}
+
+\chapter{几何光学基本概念与定律}
+
+\begin{introduction}
+	\item 可见光波长（表\ref{tab:visible-light}）
+	\item 四个基本定律（第\ref{subsect:basic-law}节）
+	\item 全反射（定义\ref{def:total-internal-reflection}）
+	\item 费马原理（定义\ref{def:fermats-principle}）
+\end{introduction}
+
+\section{基本定律和原理}
+
+\subsection{光波与光线}
+光波波长的范围大致为$1$mm至$10$nm，其中可见光波段为$380$nm至$760$nm之间,不同颜色对应的波段参考范围如表\ref{tab:visible-light}所示。光波在真空中的传播速度为$c\approx 2.9979\times 10^8$m/s。
+
+\begin{table}[htbp]
+	\caption{可见光不同颜色对应的波段参考范围\label{tab:visible-light}}
+	\centering
+	\begin{tabular}{cccccccc}
+		\toprule
+		&\color{red}{红}&\color{orange}{橙}&\color{yellow}{黄}&\color{green}{绿}&\color{cyan}{青}&\color{blue}{蓝}&\color{violet}{紫}\\
+		\midrule
+		$\lambda$(nm)&\tabincell{c}{$760\sim$\\$622$}&\tabincell{c}{$622\sim$\\$597$}&\tabincell{c}{$597\sim$\\$577$}&\tabincell{c}{$577\sim$\\$492$}&\tabincell{c}{$492\sim$\\$450$}&\tabincell{c}{$450\sim$\\$435$}&\tabincell{c}{$435\sim$\\$380$}\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection{基本定律}
+\label{subsect:basic-law}
+光线传播遵循以下四个基本定律：
+\begin{enumerate}
+	\item 直线传播定律：在各向同性的均匀介质中，光在两点之间沿直线传播，即在这种介质中，光线都是直线。
+	\item 独立传播定律：以不同途径传播的光同时在空间某点通过时，彼此互不影响，各路光独立传播，在各光路相遇处，其光强度是简单地相加，总是增强的。
+	\item 反射定律：反射光线与入射光线和法线在同一平面内，入射光线和反射光线分别位于法线的两侧，与法线的夹角相同，即
+	\begin{equation}
+	I''=-I
+	\end{equation}
+	\item 折射定律：折射光线与入射光线和法线在同一平面内，折射角与入射角的正弦之比与入射角的大小无关，仅由两介质的性质决定。即有
+	\begin{equation}
+	n'\sin I'=n\sin I
+	\end{equation}
+\end{enumerate}
+
+\begin{note}
+	光的直线传播定律和独立传播定律只有在不考虑光的波动性质时才是正确的。反射定律可以认为是折射定律在$n'=-n$时的特殊情况。
+\end{note}
+
+\begin{definition}{全反射}{total-internal-reflection}
+	如图\ref{fig:total-internal-reflection}所示，当光线由光密介质向光疏介质传播时，因$n'<n$，则折射角$I'$小于入射角$I$，折射光线远离法线。逐渐增大入射角$I$至某一个值，折射角$I'$达到$90^{\circ}$，折射光线沿界面掠出。若入射角继续增大，则无出射光线存在，全部返回原介质内，达到全反射。其中，临界角$I_m$有
+	\begin{equation}
+	\sin I_m=\frac{n'}{n}
+	\end{equation}
+\end{definition}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.6\textwidth]{total-internal-reflection.pdf}
+	\caption{全反射示意图}
+	\label{fig:total-internal-reflection}
+\end{figure}
+
+折射定律和反射定律可用矢量形式进行计算。
+
+\subsection{费马原理}
+
+\begin{definition}{费马原理}{fermats-principle}
+	光从一点到另一点是沿光程为极值的路径传播的。即光沿光程为极小、极大或常量的路径传播，又称为极端光路定律。
+\end{definition}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.3\textwidth]{fermats-principle.pdf}
+	\caption{费马定理演示}
+	\label{fig:fermats-principle}
+\end{figure}
+
+如图\ref{fig:fermats-principle}所示，光从空气射入水中，从$A$点到$B$点，途径$P$点，其光路$APB$为光传播时间最短的路径。 
+
+\section{完善成像}
+完善成像条件：物点与像点之间任意两条的光路光程相等。\\
+
+\begin{problem}
+	若水面下$200$mm处有一发光点，水的折射率为$4/3$，求在水面上能看到被该发光点照亮的范围有多大？
+	\begin{tasks}(4)
+		\task $453.56$mm
+		\task $226.79$mm
+		\task $352.77$mm
+		\task $176.38$mm
+	\end{tasks}
+\end{problem}
+
+\begin{solution}
+	选择\textbf{A}。
+\end{solution}
+
+\chapter{球面和球面系统}
+
+\begin{introduction}
+	\item 符号规则（第\ref{sect:symbol-rules}节）
+	\item 近轴光线光路（第\ref{sect:paraxial-ray}节）
+	\item 三种放大率（第\ref{sect:three-magnification}节）
+\end{introduction}
+
+\section{概念与符号规则}
+\label{sect:symbol-rules}
+图\ref{fig:spherical-system}所示的是光线经球面折射的光路。对于单个球面，凡过球心的直线就是其光轴，光轴与球面的交点称为顶点。$L$为物方截距，$U$为物方倾斜角；。$L'$为像方截距，$U'$为像方倾斜角。
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture} 
+	\coordinate [label=below left:$A$] (A) at (-4,0);
+	\coordinate [label=below right:$A'$] (B) at (3.8,0);
+	\coordinate [label=below:$C$] (C) at (0.8,0);
+	\coordinate [label=below left:$O$] (D) at (-1.3,0);
+	\coordinate [label=above:$E$] (E) at (-1,1.2);
+	\coordinate (F) at (-9/5,26/15);
+	\draw[-] (-5,0) -- (5,0); 
+	\draw[red,-latex] (A) -- (E);
+	\draw[red,-latex] (E) -- (B); 
+	\draw[-] (C) -- (F); 
+	\draw[line width=0.8pt] (D) arc (180:220:2.5);
+	\draw[line width=0.8pt] (D) arc (180:140:2.5);
+	\pic["$-U$", draw=orange, -latex, angle eccentricity=1.6, angle radius=0.8cm]
+	{angle=D--A--E};%\alpha的位置由eccentricity决定。
+	\pic["$U'$", draw=orange, latex-, angle eccentricity=1.2, angle radius=1.5cm]
+	{angle=E--B--D};
+	\pic["$\varphi$", draw=orange, -, angle eccentricity=1.3, angle radius=0.5cm]
+	{angle=E--C--D};
+	\pic["$I'$", draw=orange, latex-, angle eccentricity=1.6, angle radius=0.8cm]
+	{angle=C--E--B};
+	\pic["$I$", draw=orange, latex-, angle eccentricity=1.6, angle radius=0.5cm]
+	{angle=F--E--A};
+	\draw[blue,latex-latex] (E) -- ($(A)!(E)!(C)$)node[black,midway,xshift=0.2cm]{$h$};
+	\coordinate [label=below:$n$] (m) at (-2,-1);
+	\coordinate [label=below:$n'$] (n) at (0,-1);
+	\coordinate [label=below:$r$] (r) at (-0.5,-0.1);
+	\draw (-4,-2) -- ($(A)!(-4,-2)!(C)$);
+	\draw (-1.3,-2) -- ($(A)!(-1.3,-2)!(C)$);
+	\draw (3.8,-2) -- ($(A)!(3.8,-2)!(C)$);
+	\draw[blue,latex-latex](-4,-1.8) -- (-1.3,-1.8) node[black,below,midway](line){$-L$};
+	\draw[blue,latex-latex](3.8,-1.8) -- (-1.3,-1.8) node[black,below,midway](line){$L'$};
+	\end{tikzpicture}
+	\caption{光线经球面折射的光路}
+	\label{fig:spherical-system}
+\end{figure}
+
+符号规则：
+\begin{enumerate}
+	\item 沿轴线段：如$L$、$L'$和$r$，以界面顶点为原点，如果由原点到光线与光轴的交点和到球心的方向与光线传播方向相同，其值为正，反之为负。光线传播方向规定自左向右。
+	\item 垂轴线段：如$h$，在光轴之上为正，之下为负。
+	\item 光线与光轴的夹角$U$和$U'$：以光轴为始边，从锐角方向转到光线，顺时针为正，逆时针为负。
+	\item 光线与法线的夹角$I$、$I'$和$I''$：以光线为始边，从锐角方向转到法线，顺时针为正，逆时针为负。
+	\item 表面间隔$d$：有前一面的顶点到后一面的顶点，其方向与光线方向相同者为正，反之为负，在纯折射系统中，$d$恒为正。
+\end{enumerate}
+
+\section{轴上物点经单个折射球面成像}
+\label{sect:paraxial-ray}
+由图\ref{fig:spherical-system}可得
+\begin{equation}
+\varphi=U+I=U'+I'
+\end{equation}
+结合折射定律，可导出
+\begin{equation}
+\sin I=\frac{L-r}{r}\sin U
+\end{equation}
+\begin{equation}
+\sin I'=\frac{n}{n'}\sin I
+\end{equation}
+\begin{equation}
+U'=U+I-I'
+\end{equation}
+\begin{equation}
+L'=r+r\frac{\sin I'}{\sin U'}
+\end{equation}
+如果入射光线与光轴的夹角很小，则称之为近轴光线。近轴光线的有关量用小写字母表示，则有
+\begin{equation}
+i=\frac{l-r}{r}u
+\end{equation}
+\begin{equation}
+i'=\frac{n}{n'}i
+\end{equation}
+\begin{equation}
+u'=u+i-i'
+\end{equation}
+\begin{equation}
+l'=r+r\frac{i'}{u'}
+\end{equation}
+近轴光线所成的像称为高斯像，讨论近轴区成像性质和规律的光学称为高斯光学。
+
+在以上公式中消去$i$和$i'$，并引入对近轴光线成立的简单关系
+\begin{equation}
+h=lu=l'u'
+\end{equation}
+可得
+\begin{equation}
+n'\bigg(\frac{1}{r}-\frac{1}{l'}\bigg)=n\bigg(\frac{1}{r}-\frac{1}{l}\bigg)=Q
+\end{equation}
+\begin{equation}
+\frac{n'}{l'}-\frac{n}{l}=\frac{n'-n}{r}
+\label{eq:spherical-system}
+\end{equation}
+\begin{equation}
+n'u'-nu=\frac{n'-n}{r}h
+\end{equation}
+
+以上三式为同一公式的三种不同表示形式。$Q$为阿贝不变量。当物点位置一定时，一个球面的物空间和像空间的$Q$值相等。由式(\ref{eq:spherical-system})可见，对于给定物距$l$的物点，像的位置仅与$(n'-n)/r$有关，称之为折射球面的光焦度$\varphi$，有
+\begin{equation}
+\varphi=\frac{n'-n}{r}
+\end{equation}
+将$l=-\infty$和$l'=\infty$带入式(\ref{eq:spherical-system})，可得
+\begin{equation}
+f'=\frac{n'}{n'-n}r
+\end{equation}
+\begin{equation}
+f=-\frac{n}{n'-n}r
+\end{equation}
+根据以上三式，折射球面的光焦度和焦距之间有如下关系：
+\begin{equation}
+\varphi=\frac{n'}{f'}=-\frac{n}{f}
+\end{equation}
+\begin{equation}
+\frac{f'}{n'}=-\frac{f}{n}
+\end{equation}
+\begin{equation}
+f'+f=r
+\end{equation}
+
+\section{物平面细光束经折射球面成像}
+\label{sect:three-magnification}
+由图\ref{fig:imaging-magnification}可得，横向放大率为
+\begin{equation}
+\beta=\frac{y'}{y}=\frac{l'-r}{l-r}=\frac{nl'}{n'l}
+\end{equation}
+轴向放大率为
+\begin{equation}
+\alpha=\frac{\mathrm{d}l'}{\mathrm{d}l}=\frac{nl'^2}{n'l^2}=\frac{n'}{n}\beta^2
+\end{equation}
+角放大率为
+\begin{equation}
+\gamma=\frac{u'}{u}=\frac{l}{l'}=\frac{n}{n'}\frac{1}{\beta}
+\end{equation}
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture} 
+	\coordinate [label=below left:$A$] (A) at (-4,0);
+	\coordinate [label=below right:$A'$] (B) at (3.8,0);
+	\coordinate [label=below:$C$] (C) at (0.8,0);
+	\coordinate [label=below left:$O$] (D) at (-1.3,0);
+	\coordinate [label=above:$E$] (E) at (-1,1.2);
+	\coordinate [label=left:$B$] (G) at (-4,1.2);
+	\coordinate [label=right:$B'$] (H) at (3.8,-0.75);
+	\draw[-] (-5,0) -- (5,0); 
+	\draw[red,-latex] (A) -- (E);
+	\draw[red,-latex] (E) -- (B); 	
+	\draw[red,-latex] (G) -- (H);
+	\draw[line width=0.8pt] (D) arc (180:220:2.5);
+	\draw[line width=0.8pt] (D) arc (180:140:2.5);
+	\pic["$-u$", draw=orange, -latex, angle eccentricity=1.6, angle radius=0.8cm]
+	{angle=D--A--E};
+	\pic["$u'$", draw=orange, latex-, angle eccentricity=1.2, angle radius=1.5cm]
+	{angle=E--B--D};
+	\draw[blue,latex-latex] (E) -- ($(A)!(E)!(C)$)node[black,midway,xshift=0.2cm]{$h$};
+	\coordinate [label=below:$n$] (m) at (-2,-1);
+	\coordinate [label=below:$n'$] (n) at (0,-1);
+	\coordinate [label=below:$r$] (r) at (-0.5,-0.1);
+	\draw (-4,-2) -- ($(A)!(-4,-2)!(C)$);
+	\draw (-1.3,-2) -- ($(A)!(-1.3,-2)!(C)$);
+	\draw (3.8,-2) -- ($(A)!(3.8,-2)!(C)$);
+	\draw[blue,latex-latex](-4,-1.8) -- (-1.3,-1.8) node[black,below,midway](line){$-l$};
+	\draw[blue,latex-latex](3.8,-1.8) -- (-1.3,-1.8) node[black,below,midway](line){$l'$};
+	\draw[violet,-latex,line width=1.2pt](A) -- (G) node[black,right,midway](line){$y$};
+	\draw[violet,-latex,line width=1.2pt](B) -- (H) node[black,left,midway](line){$-y'$};
+	\end{tikzpicture}
+	\caption{垂轴小物体$AB$球面成像的情况}
+	\label{fig:imaging-magnification}
+\end{figure}
+
+
+\begin{property}
+	以上三种放大率表征了折射球面的成像特性：
+	\begin{enumerate}
+		\item $\beta<0$时，$y'$与$y$、$l'$与$l$异号，成倒像，物与像位于球面两侧，虚实相同。$\beta>0$时，$y'$与$y$、$l'$与$l$同号，成正像，物像在球面同侧，虚实不一。当平面物成像时，像必相似于物体。
+		\item $\alpha$恒为正值，即$\mathrm{d}l'$和$\mathrm{d}l$同号。当物沿某一方向移动，像总沿同一方向移动。不能对立体物给出相似的立体像。
+		\item 以上三种放大率之间存在关系
+		\begin{equation}
+		\alpha\gamma=\beta
+		\end{equation}
+	\end{enumerate}
+\end{property}
+
+拉赫公式：
+\begin{equation}
+nyu=n'y'u'=J
+\end{equation}
+其中，$J$为拉赫不变量。
+
+\section{反射球面}
+反射球面是折射定律在$n'=-n$的特殊情况。即有
+\begin{equation}
+\frac{1}{l'}+\frac{1}{l}=\frac{2}{r}
+\end{equation}
+\begin{equation}
+f'=f=\frac{r}{2}
+\end{equation}
+\begin{equation}
+\begin{cases}
+\beta=\frac{y'}{y}=-\frac{l'}{l}\\
+\alpha=\frac{\mathrm{d}l'}{\mathrm{d}l}=-\beta^2\\
+\gamma=\frac{u'}{u}=-\frac{1}{\beta}\\
+\alpha\gamma=\beta
+\end{cases}
+\end{equation}\\
+
+\begin{problem}
+	一折射球面，其像方焦距和物方焦距分别为$144$mm和$-120$mm，物方介质为$n=4/3$的水，求球面的曲率半径$r$和像方介质折射率$n'$。
+	\begin{tasks}(2)
+		\task $r=24$mm，$n'=1.6$
+		\task $r=-24$mm，$n'=1.6$
+		\task $r=24$mm，$n'=1.11$
+		\task $r=-24$mm，$n'=1.11$
+	\end{tasks}
+\end{problem}
+
+\begin{solution}
+	选择\textbf{A}。
+\end{solution}
 
 \chapter{平面与平面系统}
 
@@ -197,7 +548,7 @@ K=\frac{d}{D}
 		\item 达夫棱镜（如图\ref{fig:dove-prism}所示）
 		\begin{figure}[htbp]
 			\centering
-			\includegraphics[width=0.6\textwidth]{dove-prism.pdf}
+			\includegraphics[width=0.5\textwidth]{dove-prism.pdf}
 			\caption{达夫棱镜}
 			\label{fig:dove-prism}
 		\end{figure}
@@ -329,65 +680,65 @@ v_D=\frac{n_D-1}{n_F-n_C}
 \end{equation}
 
 \begin{property}
-	阿贝常数越大，色散越低，反之，色散越大。
+	阿贝常数越大，色散越低，反之，色散越大。\\
 \end{property}
 
 \begin{problem}
-	\footnote{以下四道例题均来自浙江大学光电学院网络课程平台。}某棱镜的结构常数为$3.414$，要求通光口径为$10$mm，求光轴在棱镜中的长度。
-	\begin{itemize}
-		\item [(a)] $3.414$mm
-		\item [(b)] $34.14$mm
-		\item [(c)] $341.4$mm
-		\item [(d)] $2.929$mm
-		\item [(e)] $29.29$mm
-		\item [(f)] $292.9$mm
-	\end{itemize}
+	某棱镜的结构常数为$3.414$，要求通光口径为$10$mm，求光轴在棱镜中的长度。
+	\begin{tasks}(3)
+		\task $3.414$mm
+		\task $34.14$mm
+		\task $341.4$mm
+		\task $2.929$mm
+		\task $29.29$mm
+		\task $292.9$mm
+	\end{tasks}
 \end{problem}
 
 \begin{solution}
-	选择(b)。
+	选择\textbf{B}。\\
 \end{solution}
 
 \begin{problem}
 	以下棱镜或棱镜组中哪些是成镜像的？
-	\begin{itemize}
-		\item [(a)] 别汉棱镜组
-		\item [(b)] 施密特棱镜
-		\item [(c)] 屋脊施密特棱镜
-		\item [(d)] 一次反射等腰直角棱镜与达夫棱镜的组合
-		\item [(e)] 屋脊五角棱镜
-	\end{itemize}
+	\begin{tasks}(1)
+		\task 别汉棱镜组
+		\task 施密特棱镜
+		\task 屋脊施密特棱镜
+		\task 屋脊五角棱镜
+		\task 一次反射等腰直角棱镜与达夫棱镜的组合
+	\end{tasks}
 \end{problem}
 
 \begin{solution}
-	选择(b)和(e)。
+	选择\textbf{B}和\textbf{D}。\\
 \end{solution}
 
 \begin{problem}
 	某种光学玻璃d光的折射率为$1.51637$，$C$光的折射率为$1.51389$，阿贝常数为$64.1$，求$F$光的折射率。
-	\begin{itemize}
-		\item [(a)] $1.52196$
-		\item [(b)] $1.50583$
-	\end{itemize}
+	\begin{tasks}(2)
+		\task $1.52196$
+		\task $1.50583$
+	\end{tasks}
 \end{problem}
 
 \begin{solution}
-	选择(a)。
+	选择\textbf{A}。\\
 \end{solution}
 
 \begin{problem}
 	以下光学系统中，可以成镜像的是：
-	\begin{itemize}
-		\item [(a)] 平面镜
-		\item [(b)] 别汉棱镜组
-		\item [(c)] 施密特棱镜
-		\item [(d)] 普罗型棱镜组
-		\item [(e)] 屋脊五角棱镜
-	\end{itemize}
+	\begin{tasks}(3)
+		\task 平面镜
+		\task 别汉棱镜组
+		\task 施密特棱镜
+		\task 普罗型棱镜组
+		\task 屋脊五角棱镜
+	\end{tasks}
 \end{problem}
 
 \begin{solution}
-	选择(a)、(c)和(e)。
+	选择\textbf{A}、\textbf{C}和\textbf{E}。
 \end{solution}
 
 \chapter{理想光学系统}
@@ -486,10 +837,7 @@ xx'=ff'
 \subsection{高斯公式}
 如图\ref{fig:newton-and-gauss}所示，焦物距、焦像距和物距、像距之间有如下关系：
 \begin{equation}
-\begin{cases}
-x=l-f\\
-x'=l'-f'
-\end{cases}
+x=l-f,\quad x'=l'-f'
 \end{equation}
 将其带入牛顿公式(\ref{eq:newton-eq-1})，两边同时除以$ll'$可得
 \begin{equation}
@@ -560,49 +908,49 @@ ny\tan U=n'y'\tan U'
 \end{definition}
 
 \begin{property}
-	光线通过节点方向不发生改变。
+	光线通过节点方向不发生改变。\\
 \end{property}
 
 \begin{problem}
-	\footnote{以下三道例题均来自浙江大学光电学院《应用光学》课程课件。}正透镜对虚物成像时：
-	\begin{itemize}
-		\item [(a)] 只能成实像
-		\item [(b)] 只能成虚像
-		\item [(c)] 只能成缩小像
-		\item [(d)] 只能成放大像
-	\end{itemize}
+	正透镜对虚物成像时：
+	\begin{tasks}(4)
+		\task 只能成实像
+		\task 只能成虚像
+		\task 只能成缩小像
+		\task 只能成放大像
+	\end{tasks}
 \end{problem}
 
 \begin{solution}
-	选择(a)和(c)。
+	选择\textbf{A}和\textbf{C}。\\
 \end{solution}
 
 \begin{problem}
 	光学系统的节点是：
-	\begin{itemize}
-		\item [(a)] 垂轴放大率为$1$的共轭点
-		\item [(b)] 角放大率为$1$的共轭点
-		\item [(c)] 物方发出过物方节点的光必经过像方节点
-		\item [(d)] 物方发出过像方节点的光必经过物方节点
-	\end{itemize}
+	\begin{tasks}(1)
+		\task 垂轴放大率为$1$的共轭点
+		\task 角放大率为$1$的共轭点
+		\task 物方发出过物方节点的光必经过像方节点
+		\task 物方发出过像方节点的光必经过物方节点
+	\end{tasks}
 \end{problem}
 
 \begin{solution}
-	选择(b)和(c)。
+	选择\textbf{B}和\textbf{C}。\\
 \end{solution}
 
 \begin{problem}
 	某物方、像方介质相同的折射光学系统对物成像时有$-1<\beta<0$，则当物体向透镜移动时有：
-	\begin{itemize}
-		\item [(a)] 像向透镜移动
-		\item [(b)] 像远离透镜移动
-		\item [(c)] 像移动速度比物快
-		\item [(d)] 像移动速度比物慢
-	\end{itemize}
+	\begin{tasks}(2)
+		\task 像向透镜移动
+		\task 像远离透镜移动
+		\task 像移动速度比物快
+		\task 像移动速度比物慢
+	\end{tasks}
 \end{problem}
 
 \begin{solution}
-	选择(b)和(d)。
+	选择\textbf{B}和\textbf{D}。
 \end{solution}
 
 \section{理想光学系统的图解求像}
@@ -763,7 +1111,7 @@ f'=\Gamma f'_2
 \end{equation}
 焦距为
 \begin{equation}
-f'=\frac{1}{(n-1)\bigg(\frac{1}{r_1}-\frac{1}{r_2}\bigg)}
+f'=\frac{1}{(n-1)\big(\frac{1}{r_1}-\frac{1}{r_2}\big)}
 \end{equation}
 并有$f=-f'$。其光焦度为
 \begin{equation}
@@ -798,63 +1146,49 @@ f'=\frac{1}{(n-1)\bigg(\frac{1}{r_1}-\frac{1}{r_2}\bigg)}
 	\item 双凹透镜：$f'$恒为负，发散透镜，两主面位于透镜内部。
 	\item 平凸透镜：$f'$恒为正，其值与透镜厚度无关，两主面上的一个相切于球面的顶点，另一个位于透镜内部。
 	\item 平凹透镜：$f'$恒为负，其值与透镜厚度无关，两主面上的一个相切于球面的顶点，另一个位于透镜内部。
-	\item 弯月形凸透镜：$f'$恒为正，若凸面朝向物方，则物方主面在凸面之前，像方主面在凹面之前，二者都在透镜外。
+	\item 弯月形凸透镜：$f'$恒为正，若凸面朝向物方，则物方主面在凸面之前，像方主面在凹面之前，二者都在透镜外。\\
 \end{enumerate}
 
 \begin{problem}
-	\footnote{以下四道例题均来自浙江大学光电学院网络课程平台。}一个$f'=80$mm的薄透镜当物体位于其前何处时，正好能在透镜前$250$mm处成像？
-	\begin{itemize}
-		\item [(a)] 位于其前$60.6$mm
-		\item [(b)] 位于其前$117.6$mm
-		\item [(c)] 位于其后$60.6$mm
-		\item [(d)] 位于其后$117.6$mm
-	\end{itemize}
+	一个$f'=80$mm的薄透镜当物体位于其前何处时，正好能在透镜前$250$mm处成像？
+	\begin{tasks}(2)
+		\task 位于其前$60.6$mm
+		\task 位于其前$117.6$mm
+		\task 位于其后$60.6$mm
+		\task 位于其后$117.6$mm
+	\end{tasks}
 \end{problem}
 
 \begin{solution}
-	选择(a)。
+	选择\textbf{A}。\\
 \end{solution}
 
 \begin{problem}
 	以下光学系统中，对实物一定成虚像的是：
-	\begin{itemize}
-		\item [(a)] 反射球面
-		\item [(b)] 平行平板
-		\item [(c)] 负薄透镜
-		\item [(d)] 正薄透镜
-	\end{itemize}
+	\begin{tasks}(4)
+		\task 反射球面
+		\task 平行平板
+		\task 负薄透镜
+		\task 正薄透镜
+	\end{tasks}
 \end{problem}
 
 \begin{solution}
-	选择(b)和(c)。
-\end{solution}
-
-\begin{problem}
-	一折射球面，其像方焦距和物方焦距分别为$144$mm和$-120$mm，物方介质为$n=4/3$的水，求球面的曲率半径$r$和像方介质折射率$n'$。
-	\begin{itemize}
-		\item [(a)] $r=24$mm，$n'=1.6$
-		\item [(b)] $r=-24$mm，$n'=1.6$
-		\item [(c)] $r=24$mm，$n'=1.11$
-		\item [(d)] $r=-24$mm，$n'=1.11$
-	\end{itemize}
-\end{problem}
-
-\begin{solution}
-	选择(a)。
+	选择\textbf{B}和\textbf{C}。\\
 \end{solution}
 
 \begin{problem}
 	物方、像方介质相同的光学系统对物成像，当$\alpha<1$时，有：
-	\begin{itemize}
-		\item [(a)] 物像同向移动，像移动的速度比物快
-		\item [(b)] 物像同向移动，像移动的速度比物慢
-		\item [(c)] 成放大像
-		\item [(d)] 成缩小像
-	\end{itemize}
+	\begin{tasks}(2)
+		\task 物像同向移动，像移动的速度比物快
+		\task 物像同向移动，像移动的速度比物慢
+		\task 成放大像
+		\task 成缩小像
+	\end{tasks}
 \end{problem}
 
 \begin{solution}
-	选择(b)和(d)。
+	选择\textbf{B}和\textbf{D}。
 \end{solution}
 	
 \end{document}
