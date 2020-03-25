@@ -89,7 +89,7 @@
 	\item 可见光波长（表\ref{tab:visible-light}）
 	\item 四个基本定律（第\ref{subsect:basic-law}节）
 	\item 全反射（定义\ref{def:total-internal-reflection}）
-	\item 费马原理（定义\ref{def:fermats-principle}）
+	\item 费马原理（命题\ref{pro:fermats-principle}）
 \end{introduction}
 
 \section{基本定律和原理}
@@ -147,9 +147,9 @@
 
 \subsection{费马原理}
 
-\begin{definition}{费马原理}{fermats-principle}
+\begin{proposition}{费马原理}{fermats-principle}
 	光从一点到另一点是沿光程为极值的路径传播的。即光沿光程为极小、极大或常量的路径传播，又称为极端光路定律。
-\end{definition}
+\end{proposition}
 
 \begin{figure}[htbp]
 	\centering
@@ -281,17 +281,17 @@ n'\bigg(\frac{1}{r}-\frac{1}{l'}\bigg)=n\bigg(\frac{1}{r}-\frac{1}{l}\bigg)=Q
 \end{equation}
 \begin{equation}
 \frac{n'}{l'}-\frac{n}{l}=\frac{n'-n}{r}
-\label{eq:spherical-system}
+\label{eq:spherical-refraction}
 \end{equation}
 \begin{equation}
 n'u'-nu=\frac{n'-n}{r}h
 \end{equation}
 
-以上三式为同一公式的三种不同表示形式。$Q$为阿贝不变量。当物点位置一定时，一个球面的物空间和像空间的$Q$值相等。由式(\ref{eq:spherical-system})可见，对于给定物距$l$的物点，像的位置仅与$(n'-n)/r$有关，称之为折射球面的光焦度$\varphi$，有
+以上三式为同一公式的三种不同表示形式。$Q$为阿贝不变量。当物点位置一定时，一个球面的物空间和像空间的$Q$值相等。由式(\ref{eq:spherical-refraction})可见，对于给定物距$l$的物点，像的位置仅与$(n'-n)/r$有关，称之为折射球面的光焦度$\varphi$，有
 \begin{equation}
 \varphi=\frac{n'-n}{r}
 \end{equation}
-将$l=-\infty$和$l'=\infty$带入式(\ref{eq:spherical-system})，可得
+将$l=-\infty$和$l'=\infty$带入式(\ref{eq:spherical-refraction})，可得
 \begin{equation}
 f'=\frac{n'}{n'-n}r
 \end{equation}
@@ -418,13 +418,6 @@ f'=f=\frac{r}{2}
 	\item 最小偏折角（式(\ref{eq:minimum-deviation-angle})）
 	\item 阿贝常数与色散（第\ref{sect:optical-material}节）
 \end{introduction}
-
-折射球面物像公式为
-
-\begin{equation}
-\frac{n'}{l'}-\frac{n}{l}=\frac{n'-n}{r}
-\label{eq:spherical-refraction}
-\end{equation}
 
 \section{平面镜成像}
 平面镜即平面反射镜，由式(\ref{eq:spherical-refraction})，在平面镜成像中，有
@@ -601,7 +594,40 @@ K=\frac{d}{D}
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.4\textwidth]{refracting-prism.png}
+	\begin{tikzpicture} 
+	\coordinate (A) at (-2,0);
+	\coordinate (B) at (0,3.464);
+	\coordinate (C) at (2,0);
+	\coordinate (D) at (1,1.732);
+	\coordinate (E) at (0,1.155);
+	\coordinate (F) at (2,2.309);
+	\coordinate (G) at (-1.5,0.866);
+	\coordinate (H) at (3,3.464);
+	\coordinate (I) at (-3,0);
+	\coordinate (J) at (-3,1.732);
+	\coordinate (K) at (-0.5,0.289);
+	\coordinate (L) at (0,1.732);
+	\coordinate (M) at (3,1.732);
+	\draw[-] (A) -- (B) -- (C) -- (A);
+	\draw[-] (E) -- (F);
+	\draw[-,dashed] (H) -- (G);
+	\draw[-latex,red] (I) -- (G);
+	\draw[-latex,red] (G) -- (D);
+	\draw[-] (J) -- (K);
+	\draw[-,dashed] (L) -- (D);
+	\draw[-latex,red] (D) -- (M);
+	\pic["$\alpha$", draw=blue, -, angle eccentricity=1.5, angle radius=0.5cm] {angle=A--B--C};
+	\pic[draw=blue, -, angle radius=0.8cm] {angle=D--G--H};
+	\pic["$\delta_2$", draw=blue, -, angle eccentricity=1.6, angle radius=0.5cm] {angle=L--D--G};
+	\pic["$\delta$", draw=blue, latex-, angle eccentricity=1.1, angle radius=2.5cm] {angle=M--L--H};
+	\pic["$I_1$", draw=blue, -, angle eccentricity=1.6, angle radius=0.3cm] {angle=J--G--I};
+	\pic["$I'_1$", draw=blue, -, angle eccentricity=1.6, angle radius=0.3cm] {angle=K--G--D};
+	\pic[draw=blue, -, angle radius=0.9cm] {angle=G--D--E};
+	\pic["$-I'_2$", draw=blue, -, angle eccentricity=1.6, angle radius=0.5cm] {angle=M--D--F};
+	\coordinate [label=above:$\delta_1$](delta-1) at (-1,1.1);
+	\coordinate [label=below:$-I_2$](i-2) at (0.4,1.4);
+	\coordinate [label=above:$n$](n) at (0,0.2);
+	\end{tikzpicture}
 	\caption{折射棱镜}
 	\label{fig:refracting-prism}
 \end{figure}
@@ -649,13 +675,19 @@ K=\frac{d}{D}
 \end{equation}
 
 \section{光的色散}
-以太阳光谱中的夫琅禾费谱线作为特征，单色谱线来表征光学介质的折射率，这些谱线的符号、颜色、波长以及产生谱线的元素如表\ref{tab:spectral-line}所示。
+以太阳光谱中的夫琅禾费谱线（如图\ref{fig:fraunhofer-lines}）作为特征，单色谱线来表征光学介质的折射率，这些谱线的符号、颜色、波长以及产生谱线的元素如表\ref{tab:spectral-line}所示。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=1\textwidth]{fraunhofer-lines.pdf}
+	\caption{可见光范围内的太阳光谱与夫琅禾费谱线}
+	\label{fig:fraunhofer-lines}
+\end{figure}
 
 \begin{table}[htbp]
 	\centering
 	\caption{各单色谱线的符号、颜色、波长以及产生谱线的元素}
-	\small{
-	\begin{tabular}{c|c|c|c|c|c|c}
+	\begin{tabular}{|c|c|c|c|c|c|c|}
 		\hline
 		符号&$A'$\quad$r$\quad$C$&$D$\quad$d$&$e$&$F$\quad$g$&$G'$&$h$\\
 		\hline
@@ -666,7 +698,6 @@ K=\frac{d}{D}
 		元素&K\quad He\quad H&Na\quad He&Hg&H\quad Hg&H&Hg\\
 		\hline
 	\end{tabular}
-	}
 	\label{tab:spectral-line}
 \end{table}
 
@@ -786,10 +817,46 @@ v_D=\frac{n_D-1}{n_F-n_C}
 	\item 像方焦点、焦平面；像方主点、主平面：
 	
 	如图\ref{fig:perfect-optical-system}所示，平行于光轴的入射光线$AE_1$通过理想光学系统后，出射光线$G'F'$交光轴于$F'$。$F'$为无限远轴上物点的像点，称为像方焦点。过$F'$作垂直于光轴的平面，称为像方焦平面。像方焦平面与无限远处垂直于光轴的物平面共轭。
-	
+
 	\begin{figure}[htbp]
 		\centering
-		\includegraphics[width=0.6\textwidth]{perfect-optical-system.png}
+		\begin{tikzpicture} 
+		\coordinate [label=above left:$O_1$] (A) at (-1,0);
+		\coordinate [label=above right:$O_k$] (B) at (1,0);
+		\coordinate [label=left:$A$] (C) at (-5,1.3);
+		\coordinate [label=right:$A'$] (D) at (5,1.3);
+		\coordinate [label=above:$Q'$] (E) at (-0.4,1.6);
+		\coordinate [label=above:$Q$] (F) at (0.4,1.6);
+		\coordinate [label=above:$F$] (G) at (-4,0);
+		\coordinate [label=above:$F'$] (H) at (4,0);
+		\coordinate [label=above left:$H'$] (I) at (-0.4,0);
+		\coordinate [label=above right:$H$] (J) at (0.4,0);
+		\coordinate (K) at (-0.4,1.3);
+		\coordinate (L) at (0.4,1.3);
+		\coordinate [label=above left:$E_1$] (M) at (-0.8,1.3);
+		\coordinate [label=above right:$E_k$] (N) at (0.8,1.3);
+		\coordinate [label=above left:$P$] (O) at (-0.8,0.8);
+		\coordinate [label=above right:$G'$] (P) at (0.8,0.8);
+		\draw[-] (-5,0) -- (5,0);
+		\draw[-] (-5,1.3) -- (5,1.3);
+		\draw[-] (-4,0) -- (-4,-1);
+		\draw[-] (4,0) -- (4,-1.4);
+		\draw[-latex] (C) -- (-3,1.3);
+		\draw[-latex] (D) -- (3,1.3);
+		\draw[-] (-0.4,1.8) -- (-0.4,-1.8);
+		\draw[-] (0.4,1.8) -- (0.4,-1.8);
+		\draw[latex-] (-4,0) -- (0.4,1.3);
+		\draw[latex-] (4,0) -- (-0.4,1.3);
+		\draw[line width=0.8pt] (A) arc (180:200:5);
+		\draw[line width=0.8pt] (A) arc (180:160:5);
+		\draw[line width=0.8pt] (B) arc (180:200:-5);
+		\draw[line width=0.8pt] (B) arc (180:160:-5);
+		\pic["$-u_1$", draw=blue, -, angle eccentricity=1.6, angle radius=0.8cm] {angle=A--G--L};
+		\pic["$u'_k$", draw=blue, -, angle eccentricity=1.6, angle radius=0.8cm] {angle=K--H--B};
+		\draw[blue,latex-latex](-4,-0.8) -- (0.4,-0.8) node[black,below,midway](line){$-f$};
+		\draw[blue,latex-latex](4,-1.2) -- (-0.4,-1.2) node[black,below,midway](line){$f'$};
+		\draw[blue,latex-latex] (-4.5,1.3) -- ($(A)!(-4.5,1.3)!(B)$)node[black,midway,xshift=0.2cm]{$h_1$};
+		\end{tikzpicture}
 		\caption{理想光学系统}
 		\label{fig:perfect-optical-system}
 	\end{figure}
@@ -954,7 +1021,7 @@ ny\tan U=n'y'\tan U'
 \end{solution}
 
 \section{理想光学系统的图解求像}
-\elegantpar{画光路图}{图解求像是考试中必考的题目。在大二学习这部分内容的时候，期中考试因为作图题扣了很多分。这一类的题需要多练，如果熟练掌握的话，完全是送分题，否则就是送命题。}的依据：
+画光路图的依据：
 \begin{enumerate}
 	\item 平行于光轴的光线经理想光学系统后必通过像方焦点；
 	\item 过物方焦点的光线经理想光学系统后必为平行于光轴的光线；
@@ -968,12 +1035,31 @@ ny\tan U=n'y'\tan U'
 	已知二光组基点，由物求像或由像求物。
 	\begin{figure}[htbp]
 		\centering
-		\includegraphics[width=0.8\textwidth]{draw-beam-path.pdf}
+		\begin{tikzpicture} 
+		\draw[-] (-6.5,0) -- (6,0); 
+		\draw[<->,line width=1.2pt] (-1.5,2.5) -- (-1.5,-2.5); 
+		\draw[>-<,line width=1.2pt] (0,1.6) -- (0,-1.6); 
+		\draw[-,violet] (-3,2) -- (-3,-2);
+		\draw[-,violet] (0.3,2) -- (0.3,-2);
+		\draw[-latex,red] (0,1) -- (5,0);
+		\draw[-,dashed,blue] (0,1) -- (-3,1.6);
+		\draw[-,dashed,red] (0,1) -- (0.3,0.84);
+		\draw[-,blue] (0,0) -- (-3,1.6);
+		\draw[latex-,red] (0,1) -- (-1.5,1.8);
+		\draw[-,blue] (0.3,0.84) -- (-1.5,0.84);
+		\draw[-,blue] (-3.84,0) -- (-1.5,0.84);
+		\draw[-latex,red] (-6,0) -- (-1.5,1.8);
+		\coordinate [label=below:$A_1$] (A) at (-6,0);
+		\coordinate [label=below:$F_1$] (B) at (-3.84,0);
+		\coordinate [label=below right:$F'_2$] (C) at (-3,0);
+		\coordinate [label=below right:$F'_1$] (D) at (0.3,0);
+		\coordinate [label=below:$A'_2$] (E) at (5,0);
+		\end{tikzpicture}
 	\end{figure}
 \end{exercise}
 
 \begin{note}
-	在这一类绘制光路图的题中，需要注意过第二个透镜光轴处的辅助线与过第一个透镜到其焦面$F_1$的光线平行，这一条线要交于第二个透镜的焦面$F_2$处，经过该交点与光线和第二个透镜的交点的线即为出射光线。
+	在这一类绘制光路图的题中，需要注意过第二个透镜光轴处的辅助线与过第一个透镜到其焦面$F_1$的光线平行，这一条线要交于第二个透镜的焦面$F_2$处，经过该交点与光线和第二个透镜的交点的线即为出射光线。图解求像是考试中必考的题目。在大二学习这部分内容的时候，期中考试因为作图题扣了很多分。这一类的题需要多练，如果熟练掌握的话，完全是送分题，否则就是送命题。
 \end{note}
 
 \section{理想光学系统的组合}
@@ -1140,7 +1226,13 @@ f'=\frac{1}{(n-1)\big(\frac{1}{r_1}-\frac{1}{r_2}\big)}
 \end{property}
 
 \subsection{厚透镜}
-对于几种常见的厚透镜的讨论：
+对于几种常见的厚透镜（如图\ref{fig:lenses}）的讨论：
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\textwidth]{lenses.pdf}
+	\caption{六种常见的厚透镜}
+	\label{fig:lenses}
+\end{figure}
 \begin{enumerate}
 	\item 双凸透镜：保持两面的半径不变，随着厚度$d$的不同，其焦距可正可负。当$d<|n(r_2-r_2)/(n-1)|=M$时，$f'$为正，光线会聚，两个主面总位于透镜内部；当$d=M$时，$f'=\infty$；当$d>M$时，$f'$为负，主面在透镜外。
 	\item 双凹透镜：$f'$恒为负，发散透镜，两主面位于透镜内部。
