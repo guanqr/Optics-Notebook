@@ -1,13 +1,13 @@
 \documentclass[cn,11pt,chinesefont=founder,math=newtx]{elegantbook}
 
-\title{几何光学\&物理光学}
+\title{光学基础理论}
 \subtitle{专业课程知识点总结}
 
 \author{Keiyui Kwan}
 \institute{Zhejiang University}
 \date{\today}
 \version{1.00}
-\bioinfo{自定义}{信息}
+%\bioinfo{自定义}{信息}
 
 \extrainfo{God said, "Let there be light", and there was light.}
 
@@ -161,7 +161,7 @@
 如图\ref{fig:fermats-principle}所示，光从空气射入水中，从$A$点到$B$点，途径$P$点，其光路$APB$为光传播时间最短的路径。 
 
 \section{完善成像}
-完善成像条件：物点与像点之间任意两条的光路光程相等。\\
+完善成像条件：物点与像点之间任意两条的光路光程相等。
 
 \begin{problem}
 	若水面下$200$mm处有一发光点，水的折射率为$4/3$，求在水面上能看到被该发光点照亮的范围有多大？
@@ -394,7 +394,7 @@ f'=f=\frac{r}{2}
 \gamma=\frac{u'}{u}=-\frac{1}{\beta}\\
 \alpha\gamma=\beta
 \end{cases}
-\end{equation}\\
+\end{equation}
 
 \begin{problem}
 	一折射球面，其像方焦距和物方焦距分别为$144$mm和$-120$mm，物方介质为$n=4/3$的水，求球面的曲率半径$r$和像方介质折射率$n'$。
@@ -435,16 +435,16 @@ l'=-l,\quad\beta=1
 即出射光线与入射光线的夹角是双镜夹角$\alpha$的$2$倍。
 
 \begin{figure}[htbp]
-	\begin{minipage}[t]{0.48\textwidth}
+	\begin{minipage}[t]{0.45\textwidth}
 		\centering
-		\includegraphics[width=0.8\textwidth]{one-mirror.png}
+		\includegraphics[width=0.8\textwidth]{one-mirror.pdf}
 		\caption{单平面镜对光的变换}
 		\label{fig:one-mirror}
 	\end{minipage}
 	\qquad
 	\begin{minipage}[t]{0.45\textwidth}
 		\centering
-		\includegraphics[width=0.8\textwidth]{two-mirror.png}
+		\includegraphics[width=0.8\textwidth]{two-mirror.pdf}
 		\caption{双平面镜对光的变换}
 		\label{fig:two-mirror}
 	\end{minipage}
@@ -452,10 +452,6 @@ l'=-l,\quad\beta=1
 
 \section{平行平板}
 \label{sect:parallel-plate}
-
-\begin{definition}{平行平板}{parallel-plate}
-	由两个相互平行的折射平面构成的光学器件称为平行平板
-\end{definition}
 
 逐面应用折射球面物像公式(\ref{eq:spherical-refraction})，考虑到$r_1=r_2=\infty$，可得
 \begin{equation}
@@ -465,6 +461,11 @@ l'=nl,\quad l_2=nl-d,\quad l'=l-\frac{d}{n}
 \beta=\beta_1\beta_2=1
 \end{equation}
 式中$n$和$d$为平行平板的折射率和厚度。
+
+\begin{definition}{平行平板}{parallel-plate}
+	由两个相互平行的折射平面构成的光学器件称为平行平板
+\end{definition}
+
 \begin{property}
 如图\ref{fig:parallel-plate-1}所示，平行平板总对物成同等大小的正立像，物与像总在平板同侧，两者虚实不一致。不论物距为何值，像相对于物的位置总不改变
 \end{property}
@@ -703,15 +704,13 @@ K=\frac{d}{D}
 
 \section{光学材料}
 \label{sect:optical-material}
-光学玻璃可分为冕牌和火石两大类。冕牌玻璃低折射率低色散，火石玻璃高折射率高色散。
-
-阿贝常数$v_D$：
+光学玻璃可分为冕牌和火石两大类。冕牌玻璃低折射率低色散，火石玻璃高折射率高色散。阿贝常数$v_D$：
 \begin{equation}
 v_D=\frac{n_D-1}{n_F-n_C}
 \end{equation}
 
 \begin{property}
-	阿贝常数越大，色散越低，反之，色散越大。\\
+	阿贝常数越大，色散越低，反之，色散越大。
 \end{property}
 
 \begin{problem}
@@ -727,7 +726,7 @@ v_D=\frac{n_D-1}{n_F-n_C}
 \end{problem}
 
 \begin{solution}
-	选择\textbf{B}。\\
+	选择\textbf{B}。
 \end{solution}
 
 \begin{problem}
@@ -742,7 +741,7 @@ v_D=\frac{n_D-1}{n_F-n_C}
 \end{problem}
 
 \begin{solution}
-	选择\textbf{B}和\textbf{D}。\\
+	选择\textbf{B}和\textbf{D}。
 \end{solution}
 
 \begin{problem}
@@ -754,7 +753,7 @@ v_D=\frac{n_D-1}{n_F-n_C}
 \end{problem}
 
 \begin{solution}
-	选择\textbf{A}。\\
+	选择\textbf{A}。
 \end{solution}
 
 \begin{problem}
@@ -777,7 +776,7 @@ v_D=\frac{n_D-1}{n_F-n_C}
 \begin{introduction}
 	\item 物像共轭关系（定义\ref{def:conjugate}）
 	\item 基点和基面（第\ref{subsect:base-point}节）
-	\item 光学系统的节点（第\ref{subsect:node}节）
+	\item 光学系统的节点（第\ref{subsect:nodal-points}节）
 	\item 光学系统的组合（第\ref{sect:combination-of-optical-systems}节）
 	\item 光焦度（定义\ref{def:focal-power}）
 	\item 视觉放大率（定义\ref{def:visual-magnification}）
@@ -875,18 +874,71 @@ v_D=\frac{n_D-1}{n_F-n_C}
 相关概念同第\ref{subsect:infty-object}节内容。物方焦平面上任意一点发出的光线，通过理想光学系统后亦是一组相互平行的光线。
 \subsection{物方主平面与像方主平面}
 \label{subsect:base-point}
-如图\ref{fig:perfect-optical-system}所示，两条入射光线$AE_1$和$FP$都经过$Q$，相应地出射光线都经过$Q'$，$Q$和$Q'$为共轭点，因此物方主平面和像方主平面是一对共轭面，垂轴放大率为$+1$。
+如图\ref{fig:perfect-optical-system}所示，两条入射光线$AE_1$和$FP$都经过$Q$，相应地出射光线都经过$Q'$，$Q$和$Q'$为共轭点，因此物方主平面和像方主平面是一对共轭面，垂轴放大率为$+1$。不同形状透镜的主平面位置如图\ref{fig:lens-shapes}所示。
 
 \begin{definition}{基点和基面}{base-point}
 	一对主点和主平面，一对焦点和焦平面，称为共轴理想光学系统的基点和基面。
 \end{definition}
 
-\section{理想光学系统的物像关系}
-\subsection{牛顿公式}
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.7\textwidth]{newton-and-gauss.png}
-	\caption{理想光学系统}
+	\includegraphics[width=0.8\textwidth]{lens-shapes.pdf}
+	\caption{不同形状透镜的主平面}
+	\label{fig:lens-shapes}
+\end{figure}
+
+\section{理想光学系统的物像关系}
+\subsection{牛顿公式}
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture} 
+	\coordinate [label=above left:$Q$] (A) at (-0.4,1.2);
+	\coordinate [label=above right:$Q'$] (B) at (0.4,1.2);
+	\coordinate [label=above left:$A$] (C) at (-4,0);
+	\coordinate [label=above right:$A'$] (D) at (4,0);
+	\coordinate [label=above left:$H$] (E) at (-0.4,0);
+	\coordinate [label=above right:$H'$] (F) at (0.4,0);
+	\coordinate [label=left:$B$] (G) at (-4,1.2);
+	\coordinate [label=right:$B'$] (H) at (4,-1.6);
+	\coordinate [label=above left:$R$] (I) at (-0.4,-1.2);
+	\coordinate [label=above right:$R'$] (J) at (0.4,-1.2);
+	\coordinate [label=below right:$R_1$] (K) at (-0.4,-1.6);
+	\coordinate [label=above:$F$] (L) at (-2.455,0);
+	\coordinate [label=above:$F'$] (M) at (1.95,0);
+	\coordinate [label=right:$y$] (N) at (-4,0.6);
+	\coordinate [label=right:$-y'$] (O) at (4,-0.8);
+	\coordinate (L) at (0.4,-1.6);
+	\draw[-] (-5,0) -- (5,0);
+	\draw[-] (-0.4,1.6) -- (-0.4,-2.5);
+	\draw[-] (0.4,1.6) -- (0.4,-2.5);
+	\draw[-] (C) -- (A);
+	\draw[-] (D) -- (B);
+	\draw[-,dashed] (A) -- (B);
+	\draw[-,dashed] (I) -- (J);
+	\draw[-,dashed] (K) -- (L);
+	\draw[-] (G) -- (A);
+	\draw[-] (B) -- (H);
+	\draw[-] (C) -- (I);
+	\draw[-] (J) -- (D);
+	\draw[-] (G) -- (K);
+	\draw[-] (L) -- (H);
+	\draw[-] (-4,0) -- (-4,-2.5);
+	\draw[-] (4,-1.6) -- (4,-2.5);
+	\draw[-] (-2.455,0) -- (-2.45,-2);
+	\draw[-] (1.95,0) -- (1.95,-2);
+	\draw[-latex,red,line width=1.2pt] (C) -- (G);
+	\draw[-latex,red,line width=1.2pt] (D) -- (H);
+	\draw[blue,latex-latex](-4,-1.8) -- (-2.455,-1.8) node[black,below,midway](line){$-x$};
+	\draw[blue,latex-latex](-0.4,-1.8) -- (-2.455,-1.8) node[black,below,midway](line){$-f$};
+	\draw[blue,latex-latex](4,-1.8) -- (1.95,-1.8) node[black,below,midway](line){$x'$};
+	\draw[blue,latex-latex](0.4,-1.8) -- (1.95,-1.8) node[black,below,midway](line){$f'$};
+	\draw[blue,latex-latex](-4,-2.3) -- (-0.4,-2.3) node[black,below,midway](line){$-l$};
+	\draw[blue,latex-latex](4,-2.3) -- (0.4,-2.3) node[black,below,midway](line){$l'$};
+	\pic["$-u$", draw=blue, -, angle eccentricity=1.4, angle radius=0.6cm] {angle=D--C--A};
+	\pic["$u'$", draw=blue, -, angle eccentricity=1.4, angle radius=0.6cm] {angle=B--D--C};
+	\end{tikzpicture}
+	\caption{物像位置}
 	\label{fig:newton-and-gauss}
 \end{figure}
 
@@ -969,13 +1021,20 @@ ny\tan U=n'y'\tan U'
 \alpha\gamma=\beta
 \end{equation}
 \subsection{光学系统中的节点}
-\label{subsect:node}
-\begin{definition}{节点}{node}
-	光学系统中角放大率等于$+1^{\times}$的一对共轭点为节点。
+\label{subsect:nodal-points}
+\begin{definition}{节点}{nodal-points}
+	光学系统中角放大率等于$+1^{\times}$的一对共轭点为节点。厚透镜的节点位置如图\ref{fig:nodal-points}所示
 \end{definition}
 
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.35\textwidth]{nodal-points.pdf}
+	\caption{厚透镜的节点}
+	\label{fig:nodal-points}
+\end{figure}
+
 \begin{property}
-	光线通过节点方向不发生改变。\\
+	光线通过节点方向不发生改变。
 \end{property}
 
 \begin{problem}
@@ -989,7 +1048,7 @@ ny\tan U=n'y'\tan U'
 \end{problem}
 
 \begin{solution}
-	选择\textbf{A}和\textbf{C}。\\
+	选择\textbf{A}和\textbf{C}。
 \end{solution}
 
 \begin{problem}
@@ -1003,7 +1062,7 @@ ny\tan U=n'y'\tan U'
 \end{problem}
 
 \begin{solution}
-	选择\textbf{B}和\textbf{C}。\\
+	选择\textbf{B}和\textbf{C}。
 \end{solution}
 
 \begin{problem}
@@ -1238,7 +1297,7 @@ f'=\frac{1}{(n-1)\big(\frac{1}{r_1}-\frac{1}{r_2}\big)}
 	\item 双凹透镜：$f'$恒为负，发散透镜，两主面位于透镜内部。
 	\item 平凸透镜：$f'$恒为正，其值与透镜厚度无关，两主面上的一个相切于球面的顶点，另一个位于透镜内部。
 	\item 平凹透镜：$f'$恒为负，其值与透镜厚度无关，两主面上的一个相切于球面的顶点，另一个位于透镜内部。
-	\item 弯月形凸透镜：$f'$恒为正，若凸面朝向物方，则物方主面在凸面之前，像方主面在凹面之前，二者都在透镜外。\\
+	\item 弯月形凸透镜：$f'$恒为正，若凸面朝向物方，则物方主面在凸面之前，像方主面在凹面之前，二者都在透镜外。
 \end{enumerate}
 
 \begin{problem}
@@ -1252,7 +1311,7 @@ f'=\frac{1}{(n-1)\big(\frac{1}{r_1}-\frac{1}{r_2}\big)}
 \end{problem}
 
 \begin{solution}
-	选择\textbf{A}。\\
+	选择\textbf{A}。
 \end{solution}
 
 \begin{problem}
@@ -1266,7 +1325,7 @@ f'=\frac{1}{(n-1)\big(\frac{1}{r_1}-\frac{1}{r_2}\big)}
 \end{problem}
 
 \begin{solution}
-	选择\textbf{B}和\textbf{C}。\\
+	选择\textbf{B}和\textbf{C}。
 \end{solution}
 
 \begin{problem}
@@ -1282,5 +1341,164 @@ f'=\frac{1}{(n-1)\big(\frac{1}{r_1}-\frac{1}{r_2}\big)}
 \begin{solution}
 	选择\textbf{B}和\textbf{D}。
 \end{solution}
-	
+
+\chapter{光学系统中光束的限制}
+
+\begin{introduction}
+	\item 孔径光阑（第\ref{subsect:aperture-stop}节）
+	\item 视场光阑（第\ref{subsect:field-stop}节）
+	\item 渐晕光阑（第\ref{subsect:vignetting-stop}节）
+	\item 景深（第\ref{sect:depth-of-field}节）
+\end{introduction}
+
+\section{光阑}
+\subsection{孔径光阑}
+\label{subsect:aperture-stop}
+\begin{definition}{孔径光阑}{aperture-stop}
+在一个光学系统的若干通光孔中，有一个光孔起着限制成像光束（孔径角）的作用。这个光孔就是系统的孔径光阑。严格地说，限制轴上物点孔径角$u$的大小，限制轴上物点成像光束宽度、并有选择轴外物点成像光束位置作用的光阑叫做孔径光阑。
+\end{definition}
+
+孔径光阑可以安放在透镜前、透镜上、透镜后，三个位置对\textbf{轴上物点}光束宽度的限制作用是一样的。对于\textbf{轴外物点}参与成像的光束，孔阑位置不同，轴外物点参与成像的光束位置也不同。孔阑位于透镜上时，为使所有轴上物点和轴外物点发出的光束均参与成像所需的透镜口径是最小的。
+
+光瞳是孔径光阑的像。孔径光阑经孔阑前面光学系统所成的像为入射光瞳，经孔阑后面光学系统所成的像为出射光瞳。
+
+孔径光阑、入瞳、出瞳三者互为物像关系。孔阑在系统最前方，系统的入瞳与孔阑重合，孔阑本身就是入瞳；孔阑安放在透镜上，若透镜可当薄透镜处理，则孔阑本身是系统的入瞳和出瞳；孔阑在系统的最后方，系统的出瞳与孔阑重合，孔阑本身为出瞳。
+
+\subsection{视场光阑}
+\label{subsect:field-stop}
+实际光学系统中，物面上发出并进入系统参与成像的光束宽度是有限的，能够清晰成像的物面大小也是有限的。把能够清晰成像的物面范围称为光学系统的物方视场。相应的像面范围为像方视场。
+
+\begin{definition}{视场光阑}{field-stop}
+	在物面或像面上安放一个光阑，光阑的大小限定了物面或者像面的大小，即光学系统的成像范围。这个限定成像范围的光阑为视场光阑。
+\end{definition}
+
+视场光阑经其前面的光学系统所成的像称为入射窗，经其后面的光学系统所成的像称为出射窗。如果视场光阑安放在物平面上，则入射窗就是视场光阑，出射窗与像平面重合。入射窗、视场光阑、出射窗三者互为物像关系。
+
+\subsection{渐晕光阑}
+\label{subsect:vignetting-stop}
+\begin{definition}{渐晕光阑}{vignetting-stop}
+轴外点和轴上点需要通光全部成像光束的透镜口径大小不一样，轴外点光束部分光被透镜边缘阻挡而不能参与成像，导致轴外点成像光束宽度较轴上点成像光束宽度小，因此像平面边缘比像面中心暗，这种现象就是渐晕，透镜的边缘起拦光作用，为渐晕光阑。
+\end{definition}
+
+光孔离孔阑越远，越容易引起渐晕。一般以渐晕系数描述光束渐晕的程度。面渐晕系数是轴外点成像光束在入（出)瞳面上的截面积与入（出）瞳面积之比，线度之比为线渐晕系数。
+
+\begin{note}当一个光学系统无视场光阑时：
+	\begin{enumerate}
+		\item 将所有光孔投射到第一个光孔的物空间，对入瞳中心张角最小的那个光孔像所共轭的光孔称为渐晕光阑。
+		\item 将所有光孔投射到最后一个光孔的像空间，对出瞳中心张角最小的那个光孔像所共轭的光孔称为渐晕光阑。
+		\item 当孔径光阑无限小时，渐晕光阑直接限制了成像范围，因此过去也称其为视场光阑，称其像为入射窗、出射窗。
+		\item 当一个光学系统有视场光阑时，也可能有渐晕光阑，此时渐晕光阑起拦光作用。
+	\end{enumerate}
+\end{note}
+
+\begin{remark}
+	所有系统都有孔径光阑，视场光阑和渐晕光阑二者至少有其一。
+\end{remark}
+
+\begin{problem}
+	是否所有光学系统都要无渐晕？
+\end{problem}
+
+\begin{solution}
+	当孔径和视场都较大时，无渐晕，既不必要也不可能。因为远离孔阑的透镜直径不能做得太大，且适当拦掉偏离理想成像状态较远的像差较大的轴外光束有利于改善像质。故常有适当渐晕，一般允许$50\%$，必要时$30\%$。
+\end{solution}
+
+\begin{problem}
+	渐晕光阑是否只有一个？
+\end{problem}
+
+\begin{solution}
+	孔阑在光学系统内部时，可能有两个渐晕光阑，一个拦上光线，一个拦下光线。特别是全对称系统，必有两个渐晕光阑。
+\end{solution}
+
+\section{景深}
+\label{sect:depth-of-field}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=1\textwidth]{space-image.png}
+	\caption{光学系统的空间像}
+	\label{fig:space-image}
+\end{figure}
+
+如图\ref{fig:space-image}所示，$B_1$、$B_2$、$B_3$、$B_4$为空间的任意点，$P$为入射光瞳的中心，$P'$为出射光瞳中心，$A'B'$为像平面，称为景像平面。在物空间与景象平面共轭的平面$AB$为对准平面。按理想光学系统的特性，物空间的一个平面，在像空间只有一个平面与之相共轭，在上述景象平面上的空间像，除对准平面上的点能成像外，其他空间点在景象平面上为弥散斑。
+
+如图\ref{fig:depth-of-field}所示，空间点$B_1$、$B_2$位于景象平面的共轭面以外，所成像为弥散斑，在景象平面上的弥散斑大小与入射光瞳大小、空间点距对准平面的距离有关，如果弥散斑足够小，小于人眼极限分辨角，则人眼认为其为清晰像。能在像平面上获得清晰像的空间深度称为景深。
+
+能在景象平面上成清晰像的最远平面为远景，最近平面为近景。根据三角形相似关系，当已知入瞳直径$2\alpha$以及远景平面、近景平面和对准平面到入瞳的距离$p_1$、$p_2$、$p$时，即可求出远景和近景平面上物点的成像光束在对准平面上的截面大小$Z_1$、$Z_2$。此二截面被系统成像于景象平面上，称为弥散斑，小到一定程度可认为是清晰的像，所以对其有相同的限制。可解得远景和近景平面到入瞳的距离分别为
+\begin{equation}
+p_1=\frac{2ap}{2a-Z},\quad p_2=\frac{2ap}{2a+Z}
+\end{equation}
+由于$Z=Z'/\beta$，并将放大率$\beta$近似地写成$\beta=f'/p$，得
+\begin{equation}
+p_1=\frac{2apf'}{2af'-pZ'},\quad p_2=\frac{2apf'}{2af'+pZ'}
+\end{equation}
+由此，远景和近景到对准平面的距离分别为
+\begin{equation}
+\Delta_1=p1-p=\frac{p^2Z'}{2af'-pZ'},\quad \Delta_2=p-p_2=\frac{p^2Z'}{2af'+pZ'}
+\end{equation}
+$\Delta_1$和$\Delta_2$分别为远景深度和近景深度，二者之和为总的成像空间深度，即景深
+\begin{equation}
+\Delta=\Delta_1+\Delta_2=\frac{4af'p^2Z'}{4a^2f'^2-p^2Z'^2}
+\end{equation}
+当景象平面弥散斑大小规定后，景深与系统的入射直径、焦距和对准平面的距离有关。入瞳直径越大，焦距越大，景深越小；拍摄距离越大，景深越大；远景深度$\Delta_1$总要比近景深度$\Delta_2$大。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=1\textwidth]{depth-of-field.png}
+	\caption{景深示意图}
+	\label{fig:depth-of-field}
+\end{figure}
+
+\section{远心光学系统}
+远心光学系统的孔阑设于焦平面上，其中，物方远心光路的孔阑与$F'$重合，入瞳位于物方无穷远，物方主光线平行于光轴；像方远心光路的孔阑与$F$重合，出瞳位于像方无穷远，像方主光线平行于光轴。
+
+\begin{problem}
+	已知照相物镜的焦距为$50$mm，相对孔径$D/f'=1/4$，入瞳到出瞳的放大率为$\beta_p=1.2$，求出瞳的直径。 
+	\begin{tasks}(3)
+		\task $12.5$mm
+		\task $200$mm
+		\task $15$mm
+		\task $240$mm
+		\task $10.43$mm
+		\task $166.67$mm
+	\end{tasks}
+\end{problem}
+
+\begin{solution}
+	选择\textbf{C}。
+\end{solution}
+
+\begin{problem}
+	要得到远近都清楚的照片，应选用： 
+	\begin{tasks}(2)
+		\task 大孔径短焦距
+		\task 小孔径长焦距
+		\task 小孔径短焦距
+		\task 长对准距离长焦距
+	\end{tasks}
+\end{problem}
+
+\begin{solution}
+	选择\textbf{C}。
+\end{solution}
+
+
+\appendix
+\chapter{几何光学问题探讨}
+\begin{enumerate}[itemsep=1.5ex]
+	\item \question{空气中两光组组合的光焦度公式，如果物方像方或两光组之间的介质不是空气，公式是否会变化，怎么变化，为什么？}
+	\item \question{关于符号规则，为什么要定符号规则，如果不定怎样推导公式，如果要编程序是否方便，$L$是负的标注时为什么写$-L$，怎样考虑符号规则与矢量运算的关系？}
+	\item \question{拉赫不变量是$nyu=n'y'u'$，如果物或者像在无穷远，如何计算？}
+	\item \question{无穷远物通过透镜成像放大率为$0$，是否只是一个点？画图说明问题。}
+	\item \question{反射棱镜为什么可以展开成平板？（与平面镜成像特征、光程联系考虑）}
+	\item \question{光学系统中孔径光阑、视场光阑、渐晕光阑怎样判断，如果不定义这些光阑，在设计时是否会碰到什么问题，如果两系统分别有孔径光阑和视场光阑，这两系统组合是否会出现光过不去的现象，为什么，怎样避免？如果要求通过系统$1$的光必通过系统$2$，应该满足什么条件？}
+	\item \question{开普勒望远镜系统，物方视场增大到一定程度就看不到像了，为什么在物镜和目镜之间加个透镜又能看到像了？这个透镜应该加在何处？}
+	\item \question{了解厚透镜的主面位置特征在设计上有什么意义？}
+	\item \question{理想光学系统图解时的常用辅助光线，如何理解“任何已知的一对共轭光线都可以作为辅助光线”？}
+	\item \question{当物镜焦距大于目镜焦距时，望远镜成放大像还是缩小像？眼睛看到的是放大像还是缩小像？为什么？折射光亮度和入射光亮度的关系公式中有折射率因子，如果光束垂直于界面入射，公式中还必须乘以折射率因子吗？为什么？}
+	\item \question{成像光可以看成光线路径上任何一点发出的。如果看成孔阑发出的，视阑起什么作用？}
+	\item \question{几何光学忽略了光的衍射，实际上光通过每个光孔都会衍射。如果只考虑1个光孔的衍射并要求足够精确，应该是哪个？}
+	\item \question{“远心光学系统”中的“心”是指什么？}
+\end{enumerate} 
+
 \end{document}
