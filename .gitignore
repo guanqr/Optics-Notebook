@@ -5,3 +5,9 @@
 Optics.pdf
 *.gz
 *.toc
+*.bbl
+*.blg
+*.idx
+*.ilg
+*.ind
+*.bib

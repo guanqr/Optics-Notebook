@@ -1,7 +1,7 @@
-\documentclass[cn,11pt,chinesefont=founder,math=newtx]{elegantbook}
+\documentclass[cn,10pt,chinesefont=founder,math=newtx,cite=super]{elegantbook}
 
 \title{光学基础理论}
-\subtitle{专业课程知识点总结}
+\subtitle{专业课知识点总结}
 
 \author{Keiyui Kwan}
 \institute{Zhejiang University}
@@ -19,14 +19,11 @@
 
 %*********************
 \usetikzlibrary{quotes,angles}
+\usetikzlibrary{patterns}
 
 \usepackage{tasks} %选择题宏包，tasks环境
 % texlive 2019
 
-\settasks{                     %设置
-	counter-format=tsk[A],     %编号
-	label-format={\bfseries},  %加粗
-}
 
 % 选择题示例 
 %\begin{tasks}(4)
@@ -69,14 +66,7 @@
 	
 \chapter*{前言}
 \markboth{Introduction}{前言}
-欢迎阅读本书。本书写作的初衷是为了个人复习巩固光学基础知识，方便查阅各种基本概念。本书进行书写时参考的资料主要为本科课程教材：郁道银等编著的《工程光学（第四版）》和李晓彤等编著的《几何光学·像差·光学设计（第三版）》。书中的插图来自教材、互联网或是我自己绘制的。本书使用\LaTeX 进行写作，模板采用的是Elegant\LaTeX 系列模板中的\href{https://github.com/ElegantLaTeX/ElegantBook}{ElegantBook}。本书字体采用了可免费商用的方正字体。
-
-以下为我的联系方式：
-\begin{itemize}
-	\item 个人网站：\href{https://guanqr.com/}{https://guanqr.com/}
-	\item GitHub 网址：\href{https://github.com/guanqr/}{https://github.com/guanqr/}
-	\item E-mail：\email{guanqirui@zju.edu.cn}
-\end{itemize}
+欢迎您阅读本书。在2019年末，我顺利完成了本科光电专业必修理论知识的学习。为了方便查阅光学方面的各种基本概念，复习巩固光学基础知识，我便开始计划写下本书。本书进行书写时参考的资料主要为国内光电专业通用的课程教材：郁道银等编著的《工程光学（第四版）》和李晓彤等编著的《几何光学·像差·光学设计（第三版）》。我将本书看作是一本工具书，我对这本工具书的要求是，文字内容源于教材但要凝练，读者能够方便查阅相关概念，配图要精美，排版要美观。文字内容方面，因为本书的面向对象是光电专业的读者，因此对于一些简单的光学概念本书不再进行原理分析，本书重点突出了一些我认为需要重点掌握和易错的知识点。为了方便查阅，本书对光学概念分章节进行汇总，并设有目录，文中的图表、公式都设有标签可以进行跳转。配图方面，本书尽可能多地使用矢量图，这些矢量图来自维基百科和我自己的绘制。但因为我的时间有限，仍有较多图片使用了教材中的截图。对于本书的排版，我采用了\LaTeX 进行写作，模板采用的是Elegant\LaTeX 系列模板中的 \href{https://github.com/ElegantLaTeX/ElegantBook}{ElegantBook}。本书字体采用了可免费商用的方正字体。
 
 \tableofcontents
 \mainmatter
@@ -86,25 +76,26 @@
 \chapter{几何光学基本概念与定律}
 
 \begin{introduction}
-	\item 可见光波长（表\ref{tab:visible-light}）
-	\item 四个基本定律（第\ref{subsect:basic-law}节）
-	\item 全反射（定义\ref{def:total-internal-reflection}）
-	\item 费马原理（命题\ref{pro:fermats-principle}）
+	\item 可见光波长（表 \ref{tab:visible-light}）
+	\item 四个基本定律（第 \ref{subsect:basic-law} 节）
+	\item 全反射（定义 \ref{def:total-internal-reflection}）
+	\item 费马原理（命题 \ref{pro:fermats-principle}）
 \end{introduction}
 
 \section{基本定律和原理}
 
 \subsection{光波与光线}
-光波波长的范围大致为$1$mm至$10$nm，其中可见光波段为$380$nm至$760$nm之间,不同颜色对应的波段参考范围如表\ref{tab:visible-light}所示。光波在真空中的传播速度为$c\approx 2.9979\times 10^8$m/s。
+光波波长的范围大致为$1$mm至$10$nm，其中可见光波段为$380$nm至$780$nm之间,不同颜色对应的波段参考范围如\tabref{tab:visible-light} 所示。光波在真空中的传播速度为$c\approx 2.9979\times 10^8$m/s。
 
 \begin{table}[htbp]
+	\small
 	\caption{可见光不同颜色对应的波段参考范围\label{tab:visible-light}}
 	\centering
 	\begin{tabular}{cccccccc}
 		\toprule
 		&\color{red}{红}&\color{orange}{橙}&\color{yellow}{黄}&\color{green}{绿}&\color{cyan}{青}&\color{blue}{蓝}&\color{violet}{紫}\\
 		\midrule
-		$\lambda$(nm)&\tabincell{c}{$760\sim$\\$622$}&\tabincell{c}{$622\sim$\\$597$}&\tabincell{c}{$597\sim$\\$577$}&\tabincell{c}{$577\sim$\\$492$}&\tabincell{c}{$492\sim$\\$450$}&\tabincell{c}{$450\sim$\\$435$}&\tabincell{c}{$435\sim$\\$380$}\\
+		$\lambda$(nm)&\tabincell{c}{$780\sim$\\$620$}&\tabincell{c}{$620\sim$\\$590$}&\tabincell{c}{$590\sim$\\$570$}&\tabincell{c}{$570\sim$\\$495$}&\tabincell{c}{$495\sim$\\$476$}&\tabincell{c}{$476\sim$\\$450$}&\tabincell{c}{$450\sim$\\$380$}\\
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -130,38 +121,11 @@
 \end{note}
 
 \begin{definition}{全反射}{total-internal-reflection}
-	如图\ref{fig:total-internal-reflection}所示，当光线由光密介质向光疏介质传播时，因$n'<n$，则折射角$I'$小于入射角$I$，折射光线远离法线。逐渐增大入射角$I$至某一个值，折射角$I'$达到$90^{\circ}$，折射光线沿界面掠出。若入射角继续增大，则无出射光线存在，全部返回原介质内，达到全反射。其中，临界角$I_m$有
+	如\figref{fig:total-internal-reflection} 所示，当光线由光密介质向光疏介质传播时，因$n'<n$，则折射角$I'$小于入射角$I$，折射光线远离法线。逐渐增大入射角$I$至某一个值，折射角$I'$达到$90^{\circ}$，折射光线沿界面掠出。若入射角继续增大，则无出射光线存在，全部返回原介质内，达到全反射。其中，临界角$I_m$有
 	\begin{equation}
 	\sin I_m=\frac{n'}{n}
 	\end{equation}
 \end{definition}
-
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.6\textwidth]{total-internal-reflection.pdf}
-	\caption{全反射示意图}
-	\label{fig:total-internal-reflection}
-\end{figure}
-
-折射定律和反射定律可用矢量形式进行计算。
-
-\subsection{费马原理}
-
-\begin{proposition}{费马原理}{fermats-principle}
-	光从一点到另一点是沿光程为极值的路径传播的。即光沿光程为极小、极大或常量的路径传播，又称为极端光路定律。
-\end{proposition}
-
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.3\textwidth]{fermats-principle.pdf}
-	\caption{费马定理演示}
-	\label{fig:fermats-principle}
-\end{figure}
-
-如图\ref{fig:fermats-principle}所示，光从空气射入水中，从$A$点到$B$点，途径$P$点，其光路$APB$为光传播时间最短的路径。 
-
-\section{完善成像}
-完善成像条件：物点与像点之间任意两条的光路光程相等。
 
 \begin{problem}
 	若水面下$200$mm处有一发光点，水的折射率为$4/3$，求在水面上能看到被该发光点照亮的范围有多大？
@@ -172,22 +136,53 @@
 		\task $176.38$mm
 	\end{tasks}
 \end{problem}
-
 \begin{solution}
-	选择\textbf{A}。
+	选择a。
 \end{solution}
+
+\begin{remark}
+折射定律和反射定律可用矢量形式进行计算。
+\end{remark}
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.6\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{total-internal-reflection.pdf}
+		\caption{全反射示意图}
+		\label{fig:total-internal-reflection}
+	\end{minipage}
+	\qquad
+	\begin{minipage}[t]{0.3\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{fermats-principle.pdf}
+		\caption{费马定理演示}
+		\label{fig:fermats-principle}
+	\end{minipage}
+\end{figure}
+
+\subsection{费马原理}
+
+\begin{proposition}{费马原理}{fermats-principle}
+	光从一点到另一点是沿光程为极值的路径传播的。即光沿光程为极小、极大或常量的路径传播，又称为极端光路定律。
+\end{proposition}
+
+如\figref{fig:fermats-principle} 所示，光从空气射入水中，从$A$点到$B$点，途径$P$点，其光路$APB$为光传播时间最短的路径。 
+
+\section{完善成像}
+完善成像条件：物点与像点之间任意两条的光路光程相等。
 
 \chapter{球面和球面系统}
 
 \begin{introduction}
-	\item 符号规则（第\ref{sect:symbol-rules}节）
-	\item 近轴光线光路（第\ref{sect:paraxial-ray}节）
-	\item 三种放大率（第\ref{sect:three-magnification}节）
+	\item 符号规则（第 \ref{sect:symbol-rules} 节）
+	\item 近轴光线光路（第 \ref{sect:paraxial-ray} 节）
+	\item 三种放大率（第 \ref{sect:three-magnification} 节）
 \end{introduction}
 
 \section{概念与符号规则}
 \label{sect:symbol-rules}
-图\ref{fig:spherical-system}所示的是光线经球面折射的光路。对于单个球面，凡过球心的直线就是其光轴，光轴与球面的交点称为顶点。$L$为物方截距，$U$为物方倾斜角；。$L'$为像方截距，$U'$为像方倾斜角。
+\figref{fig:spherical-system} 所示的是光线经球面折射的光路。对于单个球面，凡过球心的直线就是其光轴，光轴与球面的交点称为顶点。$L$为物方截距，$U$为物方倾斜角；。$L'$为像方截距，$U'$为像方倾斜角。
 
 \begin{figure}[htbp]
 	\centering
@@ -239,7 +234,7 @@
 
 \section{轴上物点经单个折射球面成像}
 \label{sect:paraxial-ray}
-由图\ref{fig:spherical-system}可得
+由\figref{fig:spherical-system} 可得
 \begin{equation}
 \varphi=U+I=U'+I'
 \end{equation}
@@ -269,7 +264,7 @@ u'=u+i-i'
 \begin{equation}
 l'=r+r\frac{i'}{u'}
 \end{equation}
-近轴光线所成的像称为高斯像，讨论近轴区成像性质和规律的光学称为高斯光学。
+近轴光线所成的像称为高斯像，讨论近轴区成像性质和规律的光学称为高斯光学。\index{高斯光学}
 
 在以上公式中消去$i$和$i'$，并引入对近轴光线成立的简单关系
 \begin{equation}
@@ -309,9 +304,22 @@ f=-\frac{n}{n'-n}r
 f'+f=r
 \end{equation}
 
+\begin{problem}
+	一折射球面，其像方焦距和物方焦距分别为$144$mm和$-120$mm，物方介质为$n=4/3$的水，求球面的曲率半径$r$和像方介质折射率$n'$。
+	\begin{tasks}(2)
+		\task $r=24$mm，$n'=1.6$
+		\task $r=-24$mm，$n'=1.6$
+		\task $r=24$mm，$n'=1.11$
+		\task $r=-24$mm，$n'=1.11$
+	\end{tasks}
+\end{problem}
+\begin{solution}
+	选择a。
+\end{solution}
+
 \section{物平面细光束经折射球面成像}
 \label{sect:three-magnification}
-由图\ref{fig:imaging-magnification}可得，横向放大率为
+由\figref{fig:imaging-magnification} 可得，横向放大率为
 \begin{equation}
 \beta=\frac{y'}{y}=\frac{l'-r}{l-r}=\frac{nl'}{n'l}
 \end{equation}
@@ -323,6 +331,11 @@ f'+f=r
 \begin{equation}
 \gamma=\frac{u'}{u}=\frac{l}{l'}=\frac{n}{n'}\frac{1}{\beta}
 \end{equation}
+拉赫公式为
+\begin{equation}
+nyu=n'y'u'=J
+\end{equation}
+其中，$J$为拉赫不变量。
 
 \begin{figure}[htbp]
 	\centering
@@ -360,7 +373,6 @@ f'+f=r
 	\label{fig:imaging-magnification}
 \end{figure}
 
-
 \begin{property}
 	以上三种放大率表征了折射球面的成像特性：
 	\begin{enumerate}
@@ -373,12 +385,6 @@ f'+f=r
 	\end{enumerate}
 \end{property}
 
-拉赫公式：
-\begin{equation}
-nyu=n'y'u'=J
-\end{equation}
-其中，$J$为拉赫不变量。
-
 \section{反射球面}
 反射球面是折射定律在$n'=-n$的特殊情况。即有
 \begin{equation}
@@ -388,35 +394,19 @@ nyu=n'y'u'=J
 f'=f=\frac{r}{2}
 \end{equation}
 \begin{equation}
-\begin{cases}
-\beta=\frac{y'}{y}=-\frac{l'}{l}\\
-\alpha=\frac{\mathrm{d}l'}{\mathrm{d}l}=-\beta^2\\
-\gamma=\frac{u'}{u}=-\frac{1}{\beta}\\
+\beta=\frac{y'}{y}=-\frac{l'}{l},\quad
+\alpha=\frac{\mathrm{d}l'}{\mathrm{d}l}=-\beta^2,\quad
+\gamma=\frac{u'}{u}=-\frac{1}{\beta},\quad
 \alpha\gamma=\beta
-\end{cases}
 \end{equation}
-
-\begin{problem}
-	一折射球面，其像方焦距和物方焦距分别为$144$mm和$-120$mm，物方介质为$n=4/3$的水，求球面的曲率半径$r$和像方介质折射率$n'$。
-	\begin{tasks}(2)
-		\task $r=24$mm，$n'=1.6$
-		\task $r=-24$mm，$n'=1.6$
-		\task $r=24$mm，$n'=1.11$
-		\task $r=-24$mm，$n'=1.11$
-	\end{tasks}
-\end{problem}
-
-\begin{solution}
-	选择\textbf{A}。
-\end{solution}
 
 \chapter{平面与平面系统}
 
 \begin{introduction}
-	\item 平行平板（第\ref{sect:parallel-plate}节）
-	\item 常见的反射棱镜（第\ref{sect:reflecting-prism}节）
+	\item 平行平板（第 \ref{sect:parallel-plate} 节）
+	\item 常见的反射棱镜（第 \ref{sect:reflecting-prism} 节）
 	\item 最小偏折角（式(\ref{eq:minimum-deviation-angle})）
-	\item 阿贝常数与色散（第\ref{sect:optical-material}节）
+	\item 阿贝常数与色散（第 \ref{sect:optical-material} 节）
 \end{introduction}
 
 \section{平面镜成像}
@@ -427,7 +417,7 @@ l'=-l,\quad\beta=1
 \end{equation}
 物与像分别位于镜面的两侧，且到镜面的距离相等，平面镜成正立，与物同等大小的像。平面镜对食物成虚像，对虚物成实像。
 
-为了避免成像产生镜像，光学仪器中需要采用偶数个镜面。如图\ref{fig:one-mirror}所示，当入射光线方向不变而转动平面镜时，反射光线的方向将发生改变，平面镜转过$\alpha$角度时，反射光线将转过$2\alpha$角。如图\ref{fig:two-mirror}所示，光线经双平面镜两个面相继反射一次后的出射光线$\beta$与两个面的夹角$\alpha$之间存在关系
+为了避免成像产生镜像，光学仪器中需要采用偶数个镜面。如\figref{fig:one-mirror} 所示，当入射光线方向不变而转动平面镜时，反射光线的方向将发生改变，平面镜转过$\alpha$角度时，反射光线将转过$2\alpha$角。如\figref{fig:two-mirror} 所示，光线经双平面镜两个面相继反射一次后的出射光线$\beta$与两个面的夹角$\alpha$之间存在关系
 
 \begin{equation}
 \beta=2(I_1+I_2)=2\alpha
@@ -435,6 +425,7 @@ l'=-l,\quad\beta=1
 即出射光线与入射光线的夹角是双镜夹角$\alpha$的$2$倍。
 
 \begin{figure}[htbp]
+	\centering
 	\begin{minipage}[t]{0.45\textwidth}
 		\centering
 		\includegraphics[width=0.8\textwidth]{one-mirror.pdf}
@@ -467,7 +458,7 @@ l'=nl,\quad l_2=nl-d,\quad l'=l-\frac{d}{n}
 \end{definition}
 
 \begin{property}
-如图\ref{fig:parallel-plate-1}所示，平行平板总对物成同等大小的正立像，物与像总在平板同侧，两者虚实不一致。不论物距为何值，像相对于物的位置总不改变
+如\figref{fig:parallel-plate-1} 所示，平行平板总对物成同等大小的正立像，物与像总在平板同侧，两者虚实不一致。不论物距为何值，像相对于物的位置总不改变
 \end{property}
 
 像相对于物的距离为
@@ -477,6 +468,7 @@ l'=nl,\quad l_2=nl-d,\quad l'=l-\frac{d}{n}
 $\Delta l'$恒为正值，所以平行平板所成像总是由物沿光线前进方向沿轴移动$d(1-1/n)$得到，和物的位置、虚实无关。
 
 \begin{figure}[htbp]
+	\centering
 	\begin{minipage}[t]{0.48\textwidth}
 		\centering
 		\includegraphics[width=1\textwidth]{parallel-plate-1.png}
@@ -492,7 +484,7 @@ $\Delta l'$恒为正值，所以平行平板所成像总是由物沿光线前进
 	\end{minipage}
 \end{figure}
 
-图\ref{fig:parallel-plate-2}为非近轴光线经平行平板的折射。产生的位移量为
+\figref{fig:parallel-plate-2} 为非近轴光线经平行平板的折射。产生的位移量为
 \begin{equation}
 \Delta T'=DE\cdot\sin(I_1-I'_1)=\frac{d}{\cos{I'_1}}\sin(I_1-I'_1)
 \end{equation}
@@ -533,13 +525,28 @@ $\Delta l'$恒为正值，所以平行平板所成像总是由物沿光线前进
 K=\frac{d}{D}
 \end{equation}
 
+\begin{problem}
+	某棱镜的结构常数为$3.414$，要求通光口径为$10$mm，求光轴在棱镜中的长度。
+	\begin{tasks}(3)
+		\task $3.414$mm
+		\task $34.14$mm
+		\task $341.4$mm
+		\task $2.929$mm
+		\task $29.29$mm
+		\task $292.9$mm
+	\end{tasks}
+\end{problem}
+\begin{solution}
+	选择b。
+\end{solution}
+
 \subsection{简单棱镜}
 
 \begin{enumerate}
 	\item 一次反射棱镜：具有一个反射面，与单个平面镜对应，使物体成镜像。
 	\begin{enumerate}
 		\item 等腰直角棱镜
-		\item 达夫棱镜（如图\ref{fig:dove-prism}所示）
+		\item 达夫棱镜（如\figref{fig:dove-prism} 所示）
 		\begin{figure}[htbp]
 			\centering
 			\includegraphics[width=0.5\textwidth]{dove-prism.pdf}
@@ -572,6 +579,7 @@ K=\frac{d}{D}
 \subsection{棱镜组合}
 
 \begin{figure}[htbp]
+	\centering
 	\begin{minipage}[t]{0.45\textwidth}
 		\centering
 		\includegraphics[width=1\textwidth]{double-porro-prism.pdf}
@@ -587,9 +595,37 @@ K=\frac{d}{D}
 	\end{minipage}
 \end{figure}
 
-普罗棱镜（双普罗棱镜）：如图\ref{fig:double-porro-prism}，由两块相同的等腰直角棱镜组成。
+普罗棱镜（双普罗棱镜）：如\figref{fig:double-porro-prism}，由两块相同的等腰直角棱镜组成。
 
-别汉棱镜（施密特-别汉棱镜组）：如图\ref{fig:schmidt-pechan-prism}，由一块半五角棱镜和一块屋脊施密特棱镜、或一块屋脊半五角棱镜和一块施密特棱镜组成。特点为出射光轴的方向与入射光轴相同，可以让影像做$180^{\circ}$的旋转。
+别汉棱镜（施密特-别汉棱镜组）：如\figref{fig:schmidt-pechan-prism}，由一块半五角棱镜和一块屋脊施密特棱镜、或一块屋脊半五角棱镜和一块施密特棱镜组成。特点为出射光轴的方向与入射光轴相同，可以让影像做$180^{\circ}$的旋转。
+
+\begin{problem}
+	以下棱镜或棱镜组中哪些是成镜像的？
+	\begin{tasks}(3)
+		\task 别汉棱镜组
+		\task 施密特棱镜
+		\task 屋脊施密特棱镜
+		\task 屋脊五角棱镜
+		\task* 一次反射等腰直角棱镜与达夫棱镜的组合
+	\end{tasks}
+\end{problem}
+\begin{solution}
+	选择b和d。
+\end{solution}
+
+\begin{problem}
+	以下光学系统中，可以成镜像的是：
+	\begin{tasks}(3)
+		\task 平面镜
+		\task 别汉棱镜组
+		\task 施密特棱镜
+		\task 普罗型棱镜组
+		\task 屋脊五角棱镜
+	\end{tasks}
+\end{problem}
+\begin{solution}
+	选择a、c和e。
+\end{solution}
 
 \section{折射棱镜}
 
@@ -633,14 +669,12 @@ K=\frac{d}{D}
 	\label{fig:refracting-prism}
 \end{figure}
 
-图\ref{fig:refracting-prism}画出了主截面内光线经过棱镜两个折射面折射后的情况。光线偏角为$\delta$，其正负规定为：由入射光线从锐角方向转到出射光线，顺时针为正，反之为负。对两个折射面写出折射定律：
+\figref{fig:refracting-prism} 画出了主截面内光线经过棱镜两个折射面折射后的情况。光线偏角为$\delta$，其正负规定为：由入射光线从锐角方向转到出射光线，顺时针为正，反之为负。对两个折射面写出折射定律：
 \begin{equation}
-\begin{cases}
-\sin I_1=n\sin I'_1\\
+\sin I_1=n\sin I'_1,\quad
 \sin I'_2=n\sin I_2
-\end{cases}
 \end{equation}
-由图\ref{fig:refracting-prism}可得
+由\figref{fig:refracting-prism} 可得
 \begin{equation}
 \alpha=I'_1-I_2,\quad\delta=\delta_1+\delta_2=T_1-I'_1+I_2-I'_2
 \end{equation}
@@ -676,27 +710,21 @@ K=\frac{d}{D}
 \end{equation}
 
 \section{光的色散}
-以太阳光谱中的夫琅禾费谱线（如图\ref{fig:fraunhofer-lines}）作为特征，单色谱线来表征光学介质的折射率，这些谱线的符号、颜色、波长以及产生谱线的元素如表\ref{tab:spectral-line}所示。
-
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=1\textwidth]{fraunhofer-lines.pdf}
-	\caption{可见光范围内的太阳光谱与夫琅禾费谱线}
-	\label{fig:fraunhofer-lines}
-\end{figure}
+以太阳光谱中的夫琅禾费谱线作为特征，单色谱线来表征光学介质的折射率，这些谱线的符号、颜色、波长以及产生谱线的元素如\tabref{tab:spectral-line} 所示。
 
 \begin{table}[htbp]
+	\small
 	\centering
 	\caption{各单色谱线的符号、颜色、波长以及产生谱线的元素}
-	\begin{tabular}{|c|c|c|c|c|c|c|}
+	\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c}
 		\hline
-		符号&$A'$\quad$r$\quad$C$&$D$\quad$d$&$e$&$F$\quad$g$&$G'$&$h$\\
+		符号&$A'$&$b$&$C$&$D$&$d$&$e$&$F$&$g$&$G'$&$h$\\
 		\hline
-		颜色&红&黄&绿&青&蓝&紫\\
+		颜色&\multicolumn{3}{c|}{红}&\multicolumn{2}{c|}{黄}&绿&\multicolumn{2}{c|}{青}&蓝&紫\\
 		\hline
-		$\lambda$(nm)&$768.2$\quad$706.5$\quad$656.3$&$589.3$\quad$587.6$&$546.1$&$486.1$\quad$435.8$&$434.0$&$404.7$\\
+		$\lambda$(nm)&$768.2$&$706.5$&$656.3$&$589.3$&$587.6$&$546.1$&$486.1$&$435.8$&$434.0$&$404.7$\\
 		\hline
-		元素&K\quad He\quad H&Na\quad He&Hg&H\quad Hg&H&Hg\\
+		元素&K&He&H&Na&He&Hg&H&Hg&H&Hg\\
 		\hline
 	\end{tabular}
 	\label{tab:spectral-line}
@@ -714,37 +742,6 @@ v_D=\frac{n_D-1}{n_F-n_C}
 \end{property}
 
 \begin{problem}
-	某棱镜的结构常数为$3.414$，要求通光口径为$10$mm，求光轴在棱镜中的长度。
-	\begin{tasks}(3)
-		\task $3.414$mm
-		\task $34.14$mm
-		\task $341.4$mm
-		\task $2.929$mm
-		\task $29.29$mm
-		\task $292.9$mm
-	\end{tasks}
-\end{problem}
-
-\begin{solution}
-	选择\textbf{B}。
-\end{solution}
-
-\begin{problem}
-	以下棱镜或棱镜组中哪些是成镜像的？
-	\begin{tasks}(1)
-		\task 别汉棱镜组
-		\task 施密特棱镜
-		\task 屋脊施密特棱镜
-		\task 屋脊五角棱镜
-		\task 一次反射等腰直角棱镜与达夫棱镜的组合
-	\end{tasks}
-\end{problem}
-
-\begin{solution}
-	选择\textbf{B}和\textbf{D}。
-\end{solution}
-
-\begin{problem}
 	某种光学玻璃d光的折射率为$1.51637$，$C$光的折射率为$1.51389$，阿贝常数为$64.1$，求$F$光的折射率。
 	\begin{tasks}(2)
 		\task $1.52196$
@@ -753,33 +750,18 @@ v_D=\frac{n_D-1}{n_F-n_C}
 \end{problem}
 
 \begin{solution}
-	选择\textbf{A}。
-\end{solution}
-
-\begin{problem}
-	以下光学系统中，可以成镜像的是：
-	\begin{tasks}(3)
-		\task 平面镜
-		\task 别汉棱镜组
-		\task 施密特棱镜
-		\task 普罗型棱镜组
-		\task 屋脊五角棱镜
-	\end{tasks}
-\end{problem}
-
-\begin{solution}
-	选择\textbf{A}、\textbf{C}和\textbf{E}。
+	选择a。
 \end{solution}
 
 \chapter{理想光学系统}
 
 \begin{introduction}
-	\item 物像共轭关系（定义\ref{def:conjugate}）
-	\item 基点和基面（第\ref{subsect:base-point}节）
-	\item 光学系统的节点（第\ref{subsect:nodal-points}节）
-	\item 光学系统的组合（第\ref{sect:combination-of-optical-systems}节）
-	\item 光焦度（定义\ref{def:focal-power}）
-	\item 视觉放大率（定义\ref{def:visual-magnification}）
+	\item 物像共轭关系（定义 \ref{def:conjugate}）
+	\item 基点和基面（第 \ref{subsect:base-point} 节）
+	\item 光学系统的节点（第 \ref{subsect:nodal-points} 节）
+	\item 光学系统的组合（第 \ref{sect:combination-of-optical-systems} 节）
+	\item 光焦度（定义 \ref{def:focal-power}）
+	\item 视觉放大率（定义 \ref{def:visual-magnification}）
 \end{introduction}
 
 将光学系统在近轴区完善成像的理论推广到任意大的空间，以任意宽的光束都成完善像的光学系统称为理想光学系统。共轴理想光学系统又称为高斯光学。
@@ -815,7 +797,7 @@ v_D=\frac{n_D-1}{n_F-n_C}
 	式中，$U$为孔径角，$L$为物方截距。当$L$趋于无穷大时，物点$A$向无限远处左移，$U$趋于$0$，即无穷远轴上物点发出的光线都与光轴平行。
 	\item 像方焦点、焦平面；像方主点、主平面：
 	
-	如图\ref{fig:perfect-optical-system}所示，平行于光轴的入射光线$AE_1$通过理想光学系统后，出射光线$G'F'$交光轴于$F'$。$F'$为无限远轴上物点的像点，称为像方焦点。过$F'$作垂直于光轴的平面，称为像方焦平面。像方焦平面与无限远处垂直于光轴的物平面共轭。
+	如\figref{fig:perfect-optical-system} 所示，平行于光轴的入射光线$AE_1$通过理想光学系统后，出射光线$G'F'$交光轴于$F'$。$F'$为无限远轴上物点的像点，称为像方焦点。过$F'$作垂直于光轴的平面，称为像方焦平面。像方焦平面与无限远处垂直于光轴的物平面共轭。
 
 	\begin{figure}[htbp]
 		\centering
@@ -871,10 +853,10 @@ v_D=\frac{n_D-1}{n_F-n_C}
 \end{enumerate}
 
 \subsection{无限远轴上像点对应的物点}
-相关概念同第\ref{subsect:infty-object}节内容。物方焦平面上任意一点发出的光线，通过理想光学系统后亦是一组相互平行的光线。
+相关概念同第 \ref{subsect:infty-object} 节内容。物方焦平面上任意一点发出的光线，通过理想光学系统后亦是一组相互平行的光线。
 \subsection{物方主平面与像方主平面}
 \label{subsect:base-point}
-如图\ref{fig:perfect-optical-system}所示，两条入射光线$AE_1$和$FP$都经过$Q$，相应地出射光线都经过$Q'$，$Q$和$Q'$为共轭点，因此物方主平面和像方主平面是一对共轭面，垂轴放大率为$+1$。不同形状透镜的主平面位置如图\ref{fig:lens-shapes}所示。
+如\figref{fig:perfect-optical-system} 所示，两条入射光线$AE_1$和$FP$都经过$Q$，相应地出射光线都经过$Q'$，$Q$和$Q'$为共轭点，因此物方主平面和像方主平面是一对共轭面，垂轴放大率为$+1$。不同形状透镜的主平面位置如\figref{fig:lens-shapes} 所示。对于此类厚透镜的主面位置分析见第 \ref{subsect:thick-lenses} 节。
 
 \begin{definition}{基点和基面}{base-point}
 	一对主点和主平面，一对焦点和焦平面，称为共轴理想光学系统的基点和基面。
@@ -882,7 +864,7 @@ v_D=\frac{n_D-1}{n_F-n_C}
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.8\textwidth]{lens-shapes.pdf}
+	\includegraphics[width=0.6\textwidth]{lens-shapes.pdf}
 	\caption{不同形状透镜的主平面}
 	\label{fig:lens-shapes}
 \end{figure}
@@ -942,7 +924,7 @@ v_D=\frac{n_D-1}{n_F-n_C}
 	\label{fig:newton-and-gauss}
 \end{figure}
 
-如图\ref{fig:newton-and-gauss}所示，由相似三角形可导出
+如\figref{fig:newton-and-gauss} 所示，由相似三角形可导出
 \begin{equation}
 xx'=ff'
 \label{eq:newton-eq-1}
@@ -954,7 +936,7 @@ xx'=ff'
 式(\ref{eq:newton-eq-1})为牛顿公式，以焦点为原点。式(\ref{eq:newton-eq-2})为牛顿公式的垂轴放大率公式。
 
 \subsection{高斯公式}
-如图\ref{fig:newton-and-gauss}所示，焦物距、焦像距和物距、像距之间有如下关系：
+如\figref{fig:newton-and-gauss} 所示，焦物距、焦像距和物距、像距之间有如下关系：
 \begin{equation}
 x=l-f,\quad x'=l'-f'
 \end{equation}
@@ -1020,18 +1002,46 @@ ny\tan U=n'y'\tan U'
 \begin{equation}
 \alpha\gamma=\beta
 \end{equation}
+
+\begin{problem}
+	物方、像方介质相同的光学系统对物成像，当$\alpha<1$时，有：
+	\begin{tasks}(2)
+		\task 物像同向移动，像移动的速度比物快
+		\task 物像同向移动，像移动的速度比物慢
+		\task 成放大像
+		\task 成缩小像
+	\end{tasks}
+\end{problem}
+\begin{solution}
+	选择b和d。
+\end{solution}
+
+\begin{problem}
+	某物方、像方介质相同的折射光学系统对物成像时有$-1<\beta<0$，则当物体向透镜移动时有：
+	\begin{tasks}(2)
+		\task 像向透镜移动
+		\task 像远离透镜移动
+		\task 像移动速度比物快
+		\task 像移动速度比物慢
+	\end{tasks}
+\end{problem}
+\begin{solution}
+	选择b和d。
+\end{solution}
+
+\begin{problem}
+	无穷远物通过透镜成像放大率为$0$，是否只是一个点？
+\end{problem}
+\begin{solution}
+	并非如此，放大率为$0$只是物在无穷远时公式的计算结果，但实际上并不是一个点。反过来思考：位于焦平面上的物体，成像在无穷远。
+\end{solution}
+
 \subsection{光学系统中的节点}
 \label{subsect:nodal-points}
-\begin{definition}{节点}{nodal-points}
-	光学系统中角放大率等于$+1^{\times}$的一对共轭点为节点。厚透镜的节点位置如图\ref{fig:nodal-points}所示
-\end{definition}
 
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.35\textwidth]{nodal-points.pdf}
-	\caption{厚透镜的节点}
-	\label{fig:nodal-points}
-\end{figure}
+\begin{definition}{节点}{nodal-points}
+	光学系统中角放大率等于$+1^{\times}$的一对共轭点为节点。厚透镜的节点位置如\figref{fig:nodal-points} 所示
+\end{definition}
 
 \begin{property}
 	光线通过节点方向不发生改变。
@@ -1048,53 +1058,35 @@ ny\tan U=n'y'\tan U'
 \end{problem}
 
 \begin{solution}
-	选择\textbf{A}和\textbf{C}。
+	选择a和c。
 \end{solution}
 
 \begin{problem}
 	光学系统的节点是：
-	\begin{tasks}(1)
+	\begin{tasks}(2)
 		\task 垂轴放大率为$1$的共轭点
 		\task 角放大率为$1$的共轭点
-		\task 物方发出过物方节点的光必经过像方节点
-		\task 物方发出过像方节点的光必经过物方节点
+		\task* 物方发出过物方节点的光必经过像方节点
+		\task* 物方发出过像方节点的光必经过物方节点
 	\end{tasks}
 \end{problem}
 
 \begin{solution}
-	选择\textbf{B}和\textbf{C}。
+	选择b和c。
 \end{solution}
 
-\begin{problem}
-	某物方、像方介质相同的折射光学系统对物成像时有$-1<\beta<0$，则当物体向透镜移动时有：
-	\begin{tasks}(2)
-		\task 像向透镜移动
-		\task 像远离透镜移动
-		\task 像移动速度比物快
-		\task 像移动速度比物慢
-	\end{tasks}
-\end{problem}
-
-\begin{solution}
-	选择\textbf{B}和\textbf{D}。
-\end{solution}
-
-\section{理想光学系统的图解求像}
-画光路图的依据：
-\begin{enumerate}
-	\item 平行于光轴的光线经理想光学系统后必通过像方焦点；
-	\item 过物方焦点的光线经理想光学系统后必为平行于光轴的光线；
-	\item 过节点的光线方向不变；
-	\item 任意方向的一束平行光经理想光学系统后必交于像方焦平面上一点；
-	\item 过物方焦平面上一点的光线经理想光学系统后必为一束平行光；
-	\item 主面交点光线高度相同。
-\end{enumerate}
-
-\begin{exercise}\label{draw-beam-path-1}
-	已知二光组基点，由物求像或由像求物。
-	\begin{figure}[htbp]
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.3\textwidth}
 		\centering
-		\begin{tikzpicture} 
+		\includegraphics[width=0.9\textwidth]{nodal-points.pdf}
+		\caption{厚透镜的节点}
+		\label{fig:nodal-points}
+	\end{minipage}
+	\quad
+	\begin{minipage}[t]{0.6\textwidth}
+		\centering
+		\begin{tikzpicture} [scale=0.7] 
 		\draw[-] (-6.5,0) -- (6,0); 
 		\draw[<->,line width=1.2pt] (-1.5,2.5) -- (-1.5,-2.5); 
 		\draw[>-<,line width=1.2pt] (0,1.6) -- (0,-1.6); 
@@ -1114,7 +1106,24 @@ ny\tan U=n'y'\tan U'
 		\coordinate [label=below right:$F'_1$] (D) at (0.3,0);
 		\coordinate [label=below:$A'_2$] (E) at (5,0);
 		\end{tikzpicture}
-	\end{figure}
+		\caption{图解求像}
+		\label{fig:draw-beam-path}
+	\end{minipage}
+\end{figure}
+
+\section{理想光学系统的图解求像}
+画光路图的依据：
+\begin{enumerate}
+	\item 平行于光轴的光线经理想光学系统后必通过像方焦点；
+	\item 过物方焦点的光线经理想光学系统后必为平行于光轴的光线；
+	\item 过节点的光线方向不变；
+	\item 任意方向的一束平行光经理想光学系统后必交于像方焦平面上一点；
+	\item 过物方焦平面上一点的光线经理想光学系统后必为一束平行光；
+	\item 主面交点光线高度相同。
+\end{enumerate}
+
+\begin{exercise}
+	如\figref{fig:draw-beam-path} 所示，已知二光组基点，由物求像或由像求物。
 \end{exercise}
 
 \begin{note}
@@ -1130,7 +1139,7 @@ ny\tan U=n'y'\tan U'
 	\label{fig:combination-of-optical-systems}
 \end{figure}
 
-图\ref{fig:combination-of-optical-systems}给出了由两个光组组成的等效系统在两个空间的焦点和主点。按牛顿公式，物焦距$x=-\Delta$，其焦像距$x'_F$为
+\figref{fig:combination-of-optical-systems} 给出了由两个光组组成的等效系统在两个空间的焦点和主点。按牛顿公式，物焦距$x=-\Delta$，其焦像距$x'_F$为
 \begin{equation}
 x'_F=-\frac{f_2f'_2}{\Delta}
 \end{equation}
@@ -1138,7 +1147,7 @@ x'_F=-\frac{f_2f'_2}{\Delta}
 \begin{equation}
 x_F=\frac{f_1f'_1}{\Delta}
 \end{equation}
-根据相似三角形$\triangle Q'H'F'\sim\triangle N'_2H'_2F'_2$和$\triangle Q'_1H'_1F'_1\sim\triangle E_2F_2F'_1$，可导出
+根据相似三角形$\triangle Q'H'F'$与$\triangle N'_2H'_2F'_2$、$\triangle Q'_1H'_1F'_1$与$\triangle E_2F_2F'_1$，可导出
 \begin{equation}
 f'=-\frac{f'_1f'_2}{\Delta}
 \end{equation}
@@ -1171,7 +1180,7 @@ f'=-f=\frac{f'_1f'_2}{f'_1+f'_2-d}
 	光焦度的单位是折光度或屈光度。正光焦度的光学系统对光束起会聚作用；负光焦度的光学系统对光束起发散作用。
 \end{definition}
 
-根据图\ref{fig:combination-of-optical-systems}，还可得到如下关系：
+根据\figref{fig:combination-of-optical-systems}，还可得到如下关系：
 \begin{equation}
 \begin{cases}
 l'_F=f'_2+x'_F,\quad l_F=f_1+x_F\\
@@ -1184,6 +1193,36 @@ l'_H=l'_F-f',\quad l_H=l_F-f
 \begin{equation}
 \beta=\frac{f_1f_2}{f_1f'_1-x_1\Delta}
 \end{equation}
+
+\begin{problem}
+	空气中两光组组合的光焦度公式，如果物方像方或两光组之间的介质不是空气，公式是否会变化，怎么变化，为什么？
+\end{problem}
+\begin{solution}
+	设物方介质折射率为$n_1$，两光组之间折射率为$n_2$，像方折射率为$n_3$。有
+	\begin{equation}
+	\Delta=d-f'_1+f_2
+	\end{equation}
+	\begin{equation}
+	f'=\frac{-f'_1f'_2}{\Delta}
+	\end{equation}
+	由
+	\begin{equation}
+	\frac{f'_2}{n_3}=-\frac{f_2}{n_2}
+	\end{equation}
+	得到
+	\begin{equation}
+	f'=\frac{f'_1f'_2}{f'_1+\frac{n_2}{n_3}f'_2-d}
+	\end{equation}
+	又有
+	\begin{equation}
+	\varphi=\frac{n_3}{f'}\quad\varphi_1=\frac{n_2}{f'_1}\quad\varphi_2=\frac{n_3}{f'_2}
+	\end{equation}
+	所以，光焦度的表达式为
+	\begin{equation}
+	\varphi=\varphi_2+\varphi_2-\frac{d\varphi_1\varphi_2}{n_2}
+	\end{equation}
+	由此可知，光焦度与物方像方介质无关，与两光组之间的介质有关。
+\end{solution}
 
 \section{望远镜系统}
 
@@ -1198,7 +1237,7 @@ l'_H=l'_F-f',\quad l_H=l_F-f
 	\label{fig:telescope-system}
 \end{figure}
 
-如图\ref{fig:telescope-system}所示，根据牛顿公式，并考虑过渡公式$\Delta=0$，可导出
+如\figref{fig:telescope-system} 所示，根据牛顿公式，并考虑过渡公式$\Delta=0$，可导出
 \begin{equation}
 x'_2=\frac{f_2f'_2}{f_1f'_1}x_1
 \end{equation}
@@ -1242,6 +1281,20 @@ x'_2=\alpha x_1
 f'=\Gamma f'_2
 \end{equation}
 
+\begin{problem}
+	开普勒望远镜系统，物方视场增大到一定程度就看不到像了，为什么在物镜和目镜之间加个透镜又能看到像了？这个透镜应该加在何处？
+\end{problem}
+\begin{solution}
+	物方视场增大到一定程度后，折射角仍然过大，光线被拦，所以无法成像。在中间加个透镜，光束会聚，使原本被拦的光线通过，因此可以重新看到像。该透镜为场镜，加在中间的实像面上。
+\end{solution}
+
+\begin{problem}
+	当物镜焦距大于目镜焦距时，望远镜成放大像还是缩小像？眼睛看到的是放大像还是缩小像？为什么？
+\end{problem}
+\begin{solution}
+	由$\beta=-f'_2/f'_1$可知，$|\beta|<1$，望远镜成缩小像，而$\gamma=1/\beta$，$|\gamma|>1$，视觉放大率大于$1$，眼睛看到的是放大像。
+\end{solution}
+
 \section{透镜}
 \subsection{薄透镜}
 
@@ -1284,22 +1337,6 @@ f'=\frac{1}{(n-1)\big(\frac{1}{r_1}-\frac{1}{r_2}\big)}
 \end{enumerate}
 \end{property}
 
-\subsection{厚透镜}
-对于几种常见的厚透镜（如图\ref{fig:lenses}）的讨论：
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.8\textwidth]{lenses.pdf}
-	\caption{六种常见的厚透镜}
-	\label{fig:lenses}
-\end{figure}
-\begin{enumerate}
-	\item 双凸透镜：保持两面的半径不变，随着厚度$d$的不同，其焦距可正可负。当$d<|n(r_2-r_2)/(n-1)|=M$时，$f'$为正，光线会聚，两个主面总位于透镜内部；当$d=M$时，$f'=\infty$；当$d>M$时，$f'$为负，主面在透镜外。
-	\item 双凹透镜：$f'$恒为负，发散透镜，两主面位于透镜内部。
-	\item 平凸透镜：$f'$恒为正，其值与透镜厚度无关，两主面上的一个相切于球面的顶点，另一个位于透镜内部。
-	\item 平凹透镜：$f'$恒为负，其值与透镜厚度无关，两主面上的一个相切于球面的顶点，另一个位于透镜内部。
-	\item 弯月形凸透镜：$f'$恒为正，若凸面朝向物方，则物方主面在凸面之前，像方主面在凹面之前，二者都在透镜外。
-\end{enumerate}
-
 \begin{problem}
 	一个$f'=80$mm的薄透镜当物体位于其前何处时，正好能在透镜前$250$mm处成像？
 	\begin{tasks}(2)
@@ -1309,9 +1346,8 @@ f'=\frac{1}{(n-1)\big(\frac{1}{r_1}-\frac{1}{r_2}\big)}
 		\task 位于其后$117.6$mm
 	\end{tasks}
 \end{problem}
-
 \begin{solution}
-	选择\textbf{A}。
+	选择a。
 \end{solution}
 
 \begin{problem}
@@ -1323,32 +1359,34 @@ f'=\frac{1}{(n-1)\big(\frac{1}{r_1}-\frac{1}{r_2}\big)}
 		\task 正薄透镜
 	\end{tasks}
 \end{problem}
-
 \begin{solution}
-	选择\textbf{B}和\textbf{C}。
+	选择b和c。
 \end{solution}
 
-\begin{problem}
-	物方、像方介质相同的光学系统对物成像，当$\alpha<1$时，有：
-	\begin{tasks}(2)
-		\task 物像同向移动，像移动的速度比物快
-		\task 物像同向移动，像移动的速度比物慢
-		\task 成放大像
-		\task 成缩小像
-	\end{tasks}
-\end{problem}
-
-\begin{solution}
-	选择\textbf{B}和\textbf{D}。
-\end{solution}
+\subsection{厚透镜}
+\label{subsect:thick-lenses}
+对于几种常见的厚透镜（如\figref{fig:thick-lenses}）的讨论：
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\textwidth]{thick-lenses.pdf}
+	\caption{六种常见的厚透镜}
+	\label{fig:thick-lenses}
+\end{figure}
+\begin{enumerate}
+	\item 双凸透镜：保持两面的半径不变，随着厚度$d$的不同，其焦距可正可负。当$d<|n(r_2-r_2)/(n-1)|=M$时，$f'$为正，光线会聚，两个主面总位于透镜内部；当$d=M$时，$f'=\infty$；当$d>M$时，$f'$为负，主面在透镜外。
+	\item 双凹透镜：$f'$恒为负，发散透镜，两主面位于透镜内部。
+	\item 平凸透镜：$f'$恒为正，其值与透镜厚度无关，两主面上的一个相切于球面的顶点，另一个位于透镜内部。
+	\item 平凹透镜：$f'$恒为负，其值与透镜厚度无关，两主面上的一个相切于球面的顶点，另一个位于透镜内部。
+	\item 弯月形凸透镜：$f'$恒为正，若凸面朝向物方，则物方主面在凸面之前，像方主面在凹面之前，二者都在透镜外。
+\end{enumerate}
 
 \chapter{光学系统中光束的限制}
 
 \begin{introduction}
-	\item 孔径光阑（第\ref{subsect:aperture-stop}节）
-	\item 视场光阑（第\ref{subsect:field-stop}节）
-	\item 渐晕光阑（第\ref{subsect:vignetting-stop}节）
-	\item 景深（第\ref{sect:depth-of-field}节）
+	\item 孔径光阑（第 \ref{subsect:aperture-stop} 节）
+	\item 视场光阑（第 \ref{subsect:field-stop} 节）
+	\item 渐晕光阑（第 \ref{subsect:vignetting-stop} 节）
+	\item 景深（第 \ref{sect:depth-of-field} 节）
 \end{introduction}
 
 \section{光阑}
@@ -1358,11 +1396,26 @@ f'=\frac{1}{(n-1)\big(\frac{1}{r_1}-\frac{1}{r_2}\big)}
 在一个光学系统的若干通光孔中，有一个光孔起着限制成像光束（孔径角）的作用。这个光孔就是系统的孔径光阑。严格地说，限制轴上物点孔径角$u$的大小，限制轴上物点成像光束宽度、并有选择轴外物点成像光束位置作用的光阑叫做孔径光阑。
 \end{definition}
 
-孔径光阑可以安放在透镜前、透镜上、透镜后，三个位置对\textbf{轴上物点}光束宽度的限制作用是一样的。对于\textbf{轴外物点}参与成像的光束，孔阑位置不同，轴外物点参与成像的光束位置也不同。孔阑位于透镜上时，为使所有轴上物点和轴外物点发出的光束均参与成像所需的透镜口径是最小的。
+孔径光阑可以安放在透镜前、透镜上、透镜后，三个位置对\textcolor{red}{\textbf{轴上物点}}光束宽度的限制作用是一样的。对于\textcolor{red}{\textbf{轴外物点}}参与成像的光束，孔阑位置不同，轴外物点参与成像的光束位置也不同。孔阑位于透镜上时，为使所有轴上物点和轴外物点发出的光束均参与成像所需的透镜口径是最小的。
 
 光瞳是孔径光阑的像。孔径光阑经孔阑前面光学系统所成的像为入射光瞳，经孔阑后面光学系统所成的像为出射光瞳。
 
 孔径光阑、入瞳、出瞳三者互为物像关系。孔阑在系统最前方，系统的入瞳与孔阑重合，孔阑本身就是入瞳；孔阑安放在透镜上，若透镜可当薄透镜处理，则孔阑本身是系统的入瞳和出瞳；孔阑在系统的最后方，系统的出瞳与孔阑重合，孔阑本身为出瞳。
+
+\begin{problem}
+	已知照相物镜的焦距为$50$mm，相对孔径$D/f'=1/4$，入瞳到出瞳的放大率为$\beta_p=1.2$，求出瞳的直径。 
+	\begin{tasks}(3)
+		\task $12.5$mm
+		\task $200$mm
+		\task $15$mm
+		\task $240$mm
+		\task $10.43$mm
+		\task $166.67$mm
+	\end{tasks}
+\end{problem}
+\begin{solution}
+	选择c。
+\end{solution}
 
 \subsection{视场光阑}
 \label{subsect:field-stop}
@@ -1380,7 +1433,73 @@ f'=\frac{1}{(n-1)\big(\frac{1}{r_1}-\frac{1}{r_2}\big)}
 轴外点和轴上点需要通光全部成像光束的透镜口径大小不一样，轴外点光束部分光被透镜边缘阻挡而不能参与成像，导致轴外点成像光束宽度较轴上点成像光束宽度小，因此像平面边缘比像面中心暗，这种现象就是渐晕，透镜的边缘起拦光作用，为渐晕光阑。
 \end{definition}
 
-光孔离孔阑越远，越容易引起渐晕。一般以渐晕系数描述光束渐晕的程度。面渐晕系数是轴外点成像光束在入（出)瞳面上的截面积与入（出）瞳面积之比，线度之比为线渐晕系数。
+光孔离孔阑越远，越容易引起渐晕。一般以渐晕系数描述光束渐晕的程度。面渐晕系数是轴外点成像光束在入（出）瞳面上的截面积与入（出）瞳面积之比，线度之比为线渐晕系数。
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[scale=0.9] 
+	%\coordinate [label=above left:$P$] (A) at (-1,1);
+	\coordinate [label=above right:$P_1$] (A) at (-1,1);
+	\coordinate [label=below right:$P_2$] (B) at (-1,-1);
+	\coordinate [label=below right:$P$] (C) at (-1,0);
+	\coordinate [label=above left:$M_1$] (D) at (-3,1.2);
+	\coordinate [label=above left:$M_2$] (E) at (-3,-1.2);
+	\coordinate [label=above left:$M$] (F) at (-3,0);
+	\coordinate [label=left:$A$] (G) at (-6,0);
+	\coordinate [label=left:$B_1$] (H) at (-6,-1.5);
+	\coordinate [label=left:$B_2$] (I) at (-6,-3);
+	\coordinate [label=left:$B_3$] (J) at (-6,-4.5);
+	\coordinate [label=right:$2a$] (K) at (-1,0.6);
+	\draw[-] (-6,0) -- (0,0);
+	\draw[-] (-6,2.4) -- (-6,-4.8);
+	\draw[-,blue] (-6,0) -- (A);
+	\draw[-,blue] (-6,0) -- (B);
+	\draw[-,cyan] (-6,-1.5) -- (A);
+	\draw[-,cyan] (-6,-1.5) -- (B);
+	\draw[-,violet] (-6,-3) -- (A);
+	\draw[-,violet] (-6,-3) -- (B);
+	\draw[-,violet] (-6,-3) -- (C);
+	\filldraw[violet,pattern=north east lines,pattern color=violet] (-6,-3) -- (B) -- (C) -- (-6,-3);
+	\draw[-,red] (-6,-4.5) -- (A);
+	\draw[-,red] (-6,-4.5) -- (B);
+	\filldraw[red,pattern=north west lines,pattern color=red] (-6,-4.5) -- (A) -- (B) -- (-6,-4.5);
+	\draw[-,line width=0.8pt] (-1,2) -- (A);
+	\draw[-,line width=0.8pt] (-0.9,1) -- (-1.1,1);
+	\draw[-,line width=0.8pt] (-1,-2) -- (B);
+	\draw[-,line width=0.8pt] (-0.9,-1) -- (-1.1,-1);
+	\draw[-,line width=0.8pt] (-3,2) -- (-3,1.2);
+	\draw[-,line width=0.8pt] (-3.1,1.2) -- (-2.9,1.2);
+	\draw[-,line width=0.8pt] (-3,-2) -- (-3,-1.2);
+	\draw[-,line width=0.8pt] (-3.1,-1.2) -- (-2.9,-1.2);
+	\draw[-] (-1,2.4) -- (-1,2);
+	\draw[blue,latex-latex](-3,1.5) -- (-1,1.5) node[black,above,midway](line){$-q$};
+	\draw[blue,latex-latex](-6,2.2) -- (-1,2.2) node[black,above,midway](line){$-p$};
+	\draw (1.8,1.2) circle (1.2);
+	\coordinate [label=left:$A$] (G1) at (0.8,0);
+	\filldraw [fill=blue!20] (1.8,1.2) circle (0.8);
+	\draw (5,1.2) circle (1.2);
+	\coordinate [label=left:$B_1$] (H1) at (4.2,0);
+	\filldraw [fill=cyan!20] (5,0.8) circle (0.8);
+	\filldraw [fill=violet!20] (1.8,-2.8) circle (0.8);
+	\draw (1.8,-1.6) circle (1.2);
+	\coordinate [label=left:$B_2$] (I1) at (0.8,-2.8);
+	\draw (5,-1.6) circle (1.2);
+	\coordinate [label=left:$B_3$] (J1) at (4.2,-2.8);
+	\filldraw [fill=red!20] (5,-3.6) circle (0.8);
+	\end{tikzpicture}
+	\caption{渐晕光阑在物空间的像}
+	\label{fig:vignetting-stop}
+\end{figure}
+
+\figref{fig:vignetting-stop} 所示的是渐晕光阑在物空间的像。$A$到$B_1$发出的光束都不被遮拦，无渐晕；$B_2$发出的光束主光线以下部分被遮拦，半渐晕；$B_3$发出的光束只有一条光线通过，此处为最大成像范围；$B_3$以下的光束不能成像。由相似三角形关系可得
+\begin{equation}
+\frac{2a}{B_1B_3}=\frac{-q}{-p+q}
+\end{equation}
+即
+\begin{equation}
+B_1B_3=2a\frac{q-p}{q}
+\end{equation}
+如果$B_1B_3=0$，则无渐晕，即$p=q$。渐晕光阑在物空间的像与物面重合是不产生渐晕的必要条件。
 
 \begin{note}当一个光学系统无视场光阑时：
 	\begin{enumerate}
@@ -1398,7 +1517,6 @@ f'=\frac{1}{(n-1)\big(\frac{1}{r_1}-\frac{1}{r_2}\big)}
 \begin{problem}
 	是否所有光学系统都要无渐晕？
 \end{problem}
-
 \begin{solution}
 	当孔径和视场都较大时，无渐晕，既不必要也不可能。因为远离孔阑的透镜直径不能做得太大，且适当拦掉偏离理想成像状态较远的像差较大的轴外光束有利于改善像质。故常有适当渐晕，一般允许$50\%$，必要时$30\%$。
 \end{solution}
@@ -1406,25 +1524,97 @@ f'=\frac{1}{(n-1)\big(\frac{1}{r_1}-\frac{1}{r_2}\big)}
 \begin{problem}
 	渐晕光阑是否只有一个？
 \end{problem}
-
 \begin{solution}
 	孔阑在光学系统内部时，可能有两个渐晕光阑，一个拦上光线，一个拦下光线。特别是全对称系统，必有两个渐晕光阑。
 \end{solution}
 
+\begin{problem}
+	成像光可以看成光线路径上任何一点发出的。如果看成孔阑发出的，视阑起什么作用？
+\end{problem}
+\begin{solution}
+	视阑起孔阑的作用。将孔阑看做光源，对入瞳中心张角最小的光阑是原来的视阑。
+\end{solution}
+
 \section{景深}
 \label{sect:depth-of-field}
+
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=1\textwidth]{space-image.png}
-	\caption{光学系统的空间像}
-	\label{fig:space-image}
+	\begin{tikzpicture}[scale=1] 
+	%\coordinate [label=above left:$P$] (A) at (-1,1);
+	\coordinate [label=above:$P$] (A) at (0.5,0);
+	\coordinate [label=above left:$P_1$] (A1) at (0.5,1);
+	\coordinate [label=above left:$P_2$] (A2) at (0.5,-1);
+	\coordinate [label=above:$P'$] (B) at (1.5,0);
+	\coordinate [label=above right:$P'_1$] (B1) at (1.5,1);
+	\coordinate [label=above right:$P'_2$] (B2) at (1.5,-1);
+	\coordinate [label=above left:$A$] (C) at (-4.2,0);
+	\coordinate [label=above left:$B_1$] (C1) at (-6,2.75);
+	\coordinate [label=above left:$B_2$] (C2) at (-2.98,-1.5);
+	\coordinate [label=above right:$A'$] (D) at (4,0);
+	\coordinate [label=below left:$B'_2$] (D1) at (3.42,-1);
+	\coordinate [label=above right:$B'_2$] (D2) at (5,2);
+	\coordinate [label=above:对准平面] (E) at (-4.2,3);
+	\coordinate [label=above left:入射光瞳] (F) at (0.5,2);
+	\coordinate [label=above right:出射光瞳] (G) at (1.5,2);
+	\coordinate [label=above:景像平面] (H) at (4,3);
+	\coordinate [label=above right:$Z_1$] (Z1) at (-4.2,2);
+	\coordinate [label=left:$Z_2$] (Z2) at (-4.2,-2);
+	\coordinate [label=above left:$Z'_1$] (Z1) at (4,1.2);
+	\coordinate [label=right:$Z'_2$] (Z2) at (4,-1.3);
+	\draw[-] (-6.5,0) -- (5.5,0);
+	\draw[-,line width=0.8pt] (A1) -- (0.5,2);
+	\draw[-,line width=0.8pt] (A2) -- (0.5,-2);
+	\draw[-,line width=0.8pt] (B1) -- (1.5,2);
+	\draw[-,line width=0.8pt] (B2) -- (1.5,-2);
+	\draw[-,line width=0.8pt] (-4.2,3) -- (-4.2,-3);
+	\draw[-] (-6,3) -- (-6,-4.5);
+	\draw[-] (-2.98,3) -- (-2.98,-3.5);
+	\draw[->] (C) -- (A);
+	\draw[->] (C) -- (A1);
+	\draw[->] (C) -- (A2);
+	%\draw[-latex] (-4.2,2) -- (A);
+	\draw[->,red] (C1) -- (A);
+	\draw[->,red] (C1) -- (A1);
+	\draw[->,red] (C1) -- (A2);
+	%\draw[-latex] (-6,-2.75) -- (A);
+	\draw[->,blue] (-4.2,-2) -- (A);
+	\draw[->,blue] (-4.2,-1.65) -- (A2);
+	\draw[->,blue] (-4.2,-2.35) -- (A1);
+	\draw[-,line width=0.8pt] (4,3) -- (4,-3);
+	\draw[-] (5,3) -- (5,-4.5);
+	\draw[-] (3.42,3) -- (3.42,-3.5);
+	\draw[<-] (D) -- (B1);
+	\draw[<-] (D) -- (B2);
+	\draw[<-,blue] (D2) -- (B);
+	\draw[<-,blue] (D2) -- (B1);
+	\draw[<-,blue] (D2) -- (B2);
+	\draw[<-,red] (4,-1.4) -- (B);
+	\draw[<-,red] (4,-1.7) -- (B1);
+	\draw[<-,red] (4,-1.1) -- (B2);
+	\draw[-] (0.5,1) -- (1,1);
+	\draw[-] (0.5,-1) -- (1,-1);
+	\draw[black,<->](0.75,1) -- (0.75,-1) node[black,below right,midway](line){$2a$};
+	\draw[-] (0.5,-2.5) -- (0.5,-4.5);
+	\draw[-] (1.5,-2.5) -- (1.5,-4.5);
+	\draw[-] (-4.2,-3) -- (-4.2,-4);
+	\draw[-] (4,-3) -- (4,-4);
+	\draw[black,<->](-6,-3.2) -- (-4.2,-3.2) node[black,above,midway](line){$\Delta_1$};
+	\draw[black,<->](-2.98,-3.2) -- (-4.2,-3.2) node[black,above,midway](line){$\Delta_2$};
+	\draw[black,<->](-2.98,-3.2) -- (0.5,-3.2) node[black,above,midway](line){$-p_2$};
+	\draw[black,<->](3.42,-3.2) -- (1.5,-3.2) node[black,above,midway](line){$p'_1$};
+	\draw[black,<->](-4.2,-3.7) -- (0.5,-3.7) node[black,above,midway](line){$-p$};
+	\draw[black,<->](4,-3.7) -- (1.5,-3.7) node[black,above,midway](line){$p'$};
+	\draw[black,<->](-6,-4.2) -- (0.5,-4.2) node[black,above,midway](line){$-p_1$};
+	\draw[black,<->](5,-4.2) -- (1.5,-4.2) node[black,above,midway](line){$p'_2$};
+	\end{tikzpicture}
+	\caption{景深示意图}
+	\label{fig:depth-of-field}
 \end{figure}
 
-如图\ref{fig:space-image}所示，$B_1$、$B_2$、$B_3$、$B_4$为空间的任意点，$P$为入射光瞳的中心，$P'$为出射光瞳中心，$A'B'$为像平面，称为景像平面。在物空间与景象平面共轭的平面$AB$为对准平面。按理想光学系统的特性，物空间的一个平面，在像空间只有一个平面与之相共轭，在上述景象平面上的空间像，除对准平面上的点能成像外，其他空间点在景象平面上为弥散斑。
+如\figref{fig:depth-of-field} 所示，空间点$B_1$、$B_2$位于景像平面的共轭面（对准平面）以外，所成像为弥散斑，在景像平面上的弥散斑大小与入射光瞳大小、空间点距对准平面的距离有关，如果弥散斑足够小，小于人眼极限分辨角，则人眼认为其为清晰像。能在像平面上获得清晰像的空间深度称为景深。
 
-如图\ref{fig:depth-of-field}所示，空间点$B_1$、$B_2$位于景象平面的共轭面以外，所成像为弥散斑，在景象平面上的弥散斑大小与入射光瞳大小、空间点距对准平面的距离有关，如果弥散斑足够小，小于人眼极限分辨角，则人眼认为其为清晰像。能在像平面上获得清晰像的空间深度称为景深。
-
-能在景象平面上成清晰像的最远平面为远景，最近平面为近景。根据三角形相似关系，当已知入瞳直径$2\alpha$以及远景平面、近景平面和对准平面到入瞳的距离$p_1$、$p_2$、$p$时，即可求出远景和近景平面上物点的成像光束在对准平面上的截面大小$Z_1$、$Z_2$。此二截面被系统成像于景象平面上，称为弥散斑，小到一定程度可认为是清晰的像，所以对其有相同的限制。可解得远景和近景平面到入瞳的距离分别为
+能在景像平面上成清晰像的最远平面为远景，最近平面为近景。根据三角形相似关系，当已知入瞳直径$2\alpha$以及远景平面、近景平面和对准平面到入瞳的距离$p_1$、$p_2$、$p$时，即可求出远景和近景平面上物点的成像光束在对准平面上的截面大小$Z_1$、$Z_2$。此二截面被系统成像于景象平面上，称为弥散斑，小到一定程度可认为是清晰的像，所以对其有相同的限制。可解得远景和近景平面到入瞳的距离分别为
 \begin{equation}
 p_1=\frac{2ap}{2a-Z},\quad p_2=\frac{2ap}{2a+Z}
 \end{equation}
@@ -1442,32 +1632,6 @@ $\Delta_1$和$\Delta_2$分别为远景深度和近景深度，二者之和为总
 \end{equation}
 当景象平面弥散斑大小规定后，景深与系统的入射直径、焦距和对准平面的距离有关。入瞳直径越大，焦距越大，景深越小；拍摄距离越大，景深越大；远景深度$\Delta_1$总要比近景深度$\Delta_2$大。
 
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=1\textwidth]{depth-of-field.png}
-	\caption{景深示意图}
-	\label{fig:depth-of-field}
-\end{figure}
-
-\section{远心光学系统}
-远心光学系统的孔阑设于焦平面上，其中，物方远心光路的孔阑与$F'$重合，入瞳位于物方无穷远，物方主光线平行于光轴；像方远心光路的孔阑与$F$重合，出瞳位于像方无穷远，像方主光线平行于光轴。
-
-\begin{problem}
-	已知照相物镜的焦距为$50$mm，相对孔径$D/f'=1/4$，入瞳到出瞳的放大率为$\beta_p=1.2$，求出瞳的直径。 
-	\begin{tasks}(3)
-		\task $12.5$mm
-		\task $200$mm
-		\task $15$mm
-		\task $240$mm
-		\task $10.43$mm
-		\task $166.67$mm
-	\end{tasks}
-\end{problem}
-
-\begin{solution}
-	选择\textbf{C}。
-\end{solution}
-
 \begin{problem}
 	要得到远近都清楚的照片，应选用： 
 	\begin{tasks}(2)
@@ -1477,28 +1641,27 @@ $\Delta_1$和$\Delta_2$分别为远景深度和近景深度，二者之和为总
 		\task 长对准距离长焦距
 	\end{tasks}
 \end{problem}
-
 \begin{solution}
-	选择\textbf{C}。
+	选择c。
 \end{solution}
 
+\section{远心光学系统}
+远心光学系统的孔阑设于焦平面上，其中，物方远心光路的孔阑与$F'$重合，入瞳位于物方无穷远，物方主光线平行于光轴；像方远心光路的孔阑与$F$重合，出瞳位于像方无穷远，像方主光线平行于光轴。\figref{fig:telecentric-optical-system} 所示的是一种物方远心光学系统（光从右侧入射）。
 
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.6\textwidth]{telecentric-optical-system.pdf}
+	\caption{物方远心光学系统}
+	\label{fig:telecentric-optical-system}
+\end{figure}
+
+%\bibliography{reference}
 \appendix
-\chapter{几何光学问题探讨}
+\chapter{几何光学习题解答}
 \begin{enumerate}[itemsep=1.5ex]
-	\item \question{空气中两光组组合的光焦度公式，如果物方像方或两光组之间的介质不是空气，公式是否会变化，怎么变化，为什么？}
-	\item \question{关于符号规则，为什么要定符号规则，如果不定怎样推导公式，如果要编程序是否方便，$L$是负的标注时为什么写$-L$，怎样考虑符号规则与矢量运算的关系？}
-	\item \question{拉赫不变量是$nyu=n'y'u'$，如果物或者像在无穷远，如何计算？}
-	\item \question{无穷远物通过透镜成像放大率为$0$，是否只是一个点？画图说明问题。}
-	\item \question{反射棱镜为什么可以展开成平板？（与平面镜成像特征、光程联系考虑）}
-	\item \question{光学系统中孔径光阑、视场光阑、渐晕光阑怎样判断，如果不定义这些光阑，在设计时是否会碰到什么问题，如果两系统分别有孔径光阑和视场光阑，这两系统组合是否会出现光过不去的现象，为什么，怎样避免？如果要求通过系统$1$的光必通过系统$2$，应该满足什么条件？}
-	\item \question{开普勒望远镜系统，物方视场增大到一定程度就看不到像了，为什么在物镜和目镜之间加个透镜又能看到像了？这个透镜应该加在何处？}
-	\item \question{了解厚透镜的主面位置特征在设计上有什么意义？}
-	\item \question{理想光学系统图解时的常用辅助光线，如何理解“任何已知的一对共轭光线都可以作为辅助光线”？}
-	\item \question{当物镜焦距大于目镜焦距时，望远镜成放大像还是缩小像？眼睛看到的是放大像还是缩小像？为什么？折射光亮度和入射光亮度的关系公式中有折射率因子，如果光束垂直于界面入射，公式中还必须乘以折射率因子吗？为什么？}
-	\item \question{成像光可以看成光线路径上任何一点发出的。如果看成孔阑发出的，视阑起什么作用？}
-	\item \question{几何光学忽略了光的衍射，实际上光通过每个光孔都会衍射。如果只考虑1个光孔的衍射并要求足够精确，应该是哪个？}
-	\item \question{“远心光学系统”中的“心”是指什么？}
-\end{enumerate} 
+
+	\item 备用附录
+	
+\end{enumerate}
 
 \end{document}

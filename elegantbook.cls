@@ -344,8 +344,8 @@
   \renewcommand{\bibname}{参考文献}
   \renewcommand{\appendixname}{附录~\thechapter}
   \renewcommand{\indexname}{索\hspace{2em}引}
-  \newcommand\figref[1]{\textbf{图}~\ref{#1}}
-  \newcommand\tabref[1]{\textbf{表}~\ref{#1}}
+  \newcommand\figref[1]{图~\ref{#1}}
+  \newcommand\tabref[1]{表~\ref{#1}}
   \ifdefstring{\ELEGANT@scheme}{chinese}{
     \renewcommand{\chaptername}{第~\zhnumber{\arabic{chapter}}~章}}{
     \renewcommand{\chaptername}{第~\thechapter{}~章}}
