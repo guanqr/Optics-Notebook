@@ -1,4 +1,4 @@
-\documentclass[cn,10pt,chinesefont=founder,math=newtx,cite=super]{elegantbook}
+\documentclass[cn,10pt,chinesefont=founder,math=newtx,cite=super,twoside]{elegantbook}
 
 \title{光学基础理论}
 \subtitle{专业课知识点总结}
@@ -65,8 +65,8 @@
 \frontmatter
 	
 \chapter*{前言}
-\markboth{Introduction}{前言}
-欢迎您阅读本书。在2019年末，我顺利完成了本科光电专业必修理论知识的学习。为了方便查阅光学方面的各种基本概念，复习巩固光学基础知识，我便开始计划写下本书。本书进行书写时参考的资料主要为国内光电专业通用的课程教材：郁道银等编著的《工程光学（第四版）》和李晓彤等编著的《几何光学·像差·光学设计（第三版）》。我将本书看作是一本工具书，我对这本工具书的要求是，文字内容源于教材但要凝练，读者能够方便查阅相关概念，配图要精美，排版要美观。文字内容方面，因为本书的面向对象是光电专业的读者，因此对于一些简单的光学概念本书不再进行原理分析，本书重点突出了一些我认为需要重点掌握和易错的知识点。为了方便查阅，本书对光学概念分章节进行汇总，并设有目录，文中的图表、公式都设有标签可以进行跳转。配图方面，本书尽可能多地使用矢量图，这些矢量图来自维基百科和我自己的绘制。但因为我的时间有限，仍有较多图片使用了教材中的截图。对于本书的排版，我采用了\LaTeX 进行写作，模板采用的是Elegant\LaTeX 系列模板中的 \href{https://github.com/ElegantLaTeX/ElegantBook}{ElegantBook}。本书字体采用了可免费商用的方正字体。
+\markboth{前言}{introduction}
+欢迎您阅读本书。在2019年末，我顺利完成了本科光电专业必修理论知识的学习。为了方便查阅光学方面的各种基本概念，复习巩固光学基础知识，我便开始计划写下本书。本书进行书写时参考的资料主要为国内光电专业通用的课程教材：郁道银等编著的《工程光学（第四版）》和李晓彤等编著的《几何光学·像差·光学设计（第三版）》。我将本书看作是一本工具书，我对这本工具书的要求是，文字内容源于教材但要凝练，读者能够方便查阅相关概念，配图要精美，排版要美观。文字内容方面，因为本书的面向对象是光电专业的读者，因此对于一些简单的光学概念本书不再进行原理分析，本书重点突出了一些我认为需要重点掌握和易错的知识点。为了方便查阅，本书对光学概念分章节进行汇总，并设有目录，文中的图表、公式都设有标签可以进行跳转。配图方面，本书尽可能多地使用矢量图，这些矢量图来自维基百科和我自己的绘制。但因为我的时间有限，仍有较多图片使用了教材中的截图。对于本书的排版，我采用了\LaTeX 进行写作，模板采用的是Elegant\LaTeX 系列模板中的 \href{https://github.com/ElegantLaTeX/ElegantBook}{ElegantBook}。本书为免费共享书籍，请勿用于商业用途。
 
 \tableofcontents
 \mainmatter
@@ -127,6 +127,13 @@
 	\end{equation}
 \end{definition}
 
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.6\textwidth]{total-internal-reflection.pdf}
+	\caption{全反射示意图}
+	\label{fig:total-internal-reflection}
+\end{figure}
+
 \begin{problem}
 	若水面下$200$mm处有一发光点，水的折射率为$4/3$，求在水面上能看到被该发光点照亮的范围有多大？
 	\begin{tasks}(4)
@@ -137,7 +144,65 @@
 	\end{tasks}
 \end{problem}
 \begin{solution}
-	选择a。
+	选择a。由全反射的定义可知光从水中到空气中传播是临界角为
+	\begin{equation}
+	\sin I_m=\frac{n'}{n}=\frac{1}{4/3}=0.75\notag
+	\end{equation}
+	可得$I_m=48.59^{\circ}$，$\tan I_m=1.13389$，由几何关系可得被该发光点照亮的范围是
+	\begin{equation}
+	2\times200\times1.13389=453.6(\mathrm{mm})\notag
+	\end{equation}
+\end{solution}
+
+\begin{problem}
+	已知光在真空中的传播速度为$3\times10^8\mathrm{m/s}$，求光在折射率为$1.333$的水中和$1.65$的玻璃中的传播速度。
+\end{problem}
+\begin{solution}
+	由$n=c/v$可得，光在水中的传播速度为
+	\begin{equation}
+	v_{\mathrm{water}}=\frac{c}{n_{\mathrm{water}}}=\frac{3\times10^8}{1.333}=2.25(\mathrm{m/s})\notag
+	\end{equation}
+	光在玻璃中的传播速度为
+	\begin{equation}
+	v_{\mathrm{glass}}=\frac{c}{n_{\mathrm{glass}}}=\frac{3\times10^8}{1.65}=1.818(\mathrm{m/s})\notag
+	\end{equation}
+\end{solution}
+
+\begin{problem}
+	以高度为$1.7$m的人立于离高度为$5$米的路灯$1.5$m处，求其影子的长度。
+\end{problem}
+\begin{solution}
+	根据光的直线传播定律，设其影子长为$x$，则有
+	\begin{equation}
+	\frac{1.7}{5}=\frac{x}{1.5+x}\notag
+	\end{equation}
+	可得$x=0.773$m。
+\end{solution}
+
+\begin{problem}
+	一针孔照相机对一物体于屏上形成一$60$mm高的像，若将屏拉远$50$mm，则像的高度为$70$mm。试求针孔到屏间的原始距离。
+\end{problem}
+\begin{solution}
+	根据光的直线传播定律，设针孔到屏间的原始距离为$x$，则有
+	\begin{equation}
+	\frac{70}{50+x}=\frac{60}{x}\notag
+	\end{equation}
+	可得$x=300$mm。
+\end{solution}
+
+\begin{problem}
+	有一光线以$60^{\circ}$的入射角入射于$n=\sqrt{3}$的磨光玻璃球上的任一点，其折射光线继续传播到球表面的另一点上，求在该点反射和折射的光线间夹角。
+\end{problem}
+\begin{solution}
+	根据光的反射定律
+	\begin{equation}
+	I''=-I\notag
+	\end{equation}
+	得到反射角为$I''=60^{\circ}$，由折射定律
+	\begin{equation}
+	n'\sin I'=n\sin I\notag
+	\end{equation}
+	得到折射角$I'=30^{\circ}$，由几何关系可得该点反射和折射光线的夹角为$90^{\circ}$。
 \end{solution}
 
 \begin{remark}
@@ -146,20 +211,100 @@
 
 \begin{figure}[htbp]
 	\centering
-	\begin{minipage}[t]{0.6\textwidth}
-		\centering
-		\includegraphics[width=1\textwidth]{total-internal-reflection.pdf}
-		\caption{全反射示意图}
-		\label{fig:total-internal-reflection}
-	\end{minipage}
-	\qquad
-	\begin{minipage}[t]{0.3\textwidth}
-		\centering
-		\includegraphics[width=1\textwidth]{fermats-principle.pdf}
-		\caption{费马定理演示}
-		\label{fig:fermats-principle}
-	\end{minipage}
+	\begin{tikzpicture}[scale=0.8] 
+	\coordinate (A) at (-1.3,0);
+	\coordinate [label=right:$\boldsymbol{A}_0$] (B) at (0.5,1.8);
+	\coordinate [label=right:$\boldsymbol{A}'_0$] (C) at (3,1.8);
+	\coordinate [label=right:$\boldsymbol{N}$] (D) at (4,0);
+	\coordinate (E) at (-3,0);
+	\coordinate (F) at (-3,-1.7);
+	\draw[-] (-3,0) -- (4,0); 
+	\draw[-latex] (-3,-1.7) -- (A); 
+	\draw[-latex] (A) -- (B);
+	\draw[-latex] (A) -- (3,1.8);
+	\draw[line width=0.8pt] (A) arc (180:220:2.5);
+	\draw[line width=0.8pt] (A) arc (180:140:2.5);
+	\pic["$I$", draw=black, -, angle eccentricity=1.6, angle radius=0.5cm]{angle=E--A--F};
+	\pic["$I'$", draw=black, -, angle eccentricity=1.6, angle radius=0.5cm]{angle=D--A--C};
+	\end{tikzpicture}
+	\caption{光线的矢量形式}
+	\label{fig:vector-light}
 \end{figure}
+
+如\figref{fig:vector-light} 所示，$\boldsymbol{A}_0$和$\boldsymbol{A}'_0$分别是沿入射光线和折射光线的单位矢量，$\boldsymbol{N}$是沿法线的单位矢量。法线矢量的方向是从入射介质到折射介质。按此，光的折射定律公式可写为
+\begin{equation}
+n'(\boldsymbol{A}'_0\times\boldsymbol{N})=n(\boldsymbol{A}_0\times\boldsymbol{N}')
+\end{equation}
+展开上式，并将长度为$n'$的折射光线和长度为$n$的入射光线矢量分别记为$\boldsymbol{A}'$和$\boldsymbol{A}$，得
+\begin{equation}
+\boldsymbol{A}'\times\boldsymbol{N}=\boldsymbol{A}'\times\boldsymbol{N}
+\end{equation}
+\begin{equation}
+(\boldsymbol{A}'-\boldsymbol{A})\times\boldsymbol{N}=0
+\end{equation}
+$(\boldsymbol{A}'-\boldsymbol{A})$和$\boldsymbol{N}$都不可能为零，因此，两矢量必定是互相平行的，所以上式可表示为
+\begin{equation}
+\boldsymbol{A}'-\boldsymbol{A}=P\boldsymbol{N}=0
+\end{equation}
+上式两边都与$\boldsymbol{N}$作标积，得
+\begin{equation}
+P=\boldsymbol{N}\cdot\boldsymbol{A}'-\boldsymbol{N}\cdot\boldsymbol{A}=n'\cos I'-n\cos I
+\end{equation}
+当$n'>n$时，$P>0$，$(\boldsymbol{A}'-\boldsymbol{A})$与$\boldsymbol{N}$正向平行，反之，两矢量反向平行。一般情况下，在已知两介质折射率和光线入射角求折射角时，$P$可化为
+\begin{equation}
+P=\sqrt{n'^2-n^2+n^2\cos^2 I}-n\cos I
+\end{equation}
+\begin{equation}
+\boldsymbol{A}'=\boldsymbol{A}+P\boldsymbol{N}
+\end{equation}
+上式即为矢量形式的折射定律。
+在$n'=-n$的情况下，有
+\begin{equation}
+P=n'\cos I'-n\cos I=-2n\cos I=-2(\boldsymbol{N}\cdot\boldsymbol{A})
+\end{equation}
+得到
+\begin{equation}
+\boldsymbol{A}''=\boldsymbol{A}-2\boldsymbol{N}(\boldsymbol{N}\cdot\boldsymbol{A})
+\end{equation}
+上式即为矢量形式的反射定律。
+
+\begin{problem}
+	有一光线$\boldsymbol{A}=\cos 60^{\circ}\boldsymbol{i}+\cos 30^{\circ}\boldsymbol{j}$入射于$n=1$和$n'=1.5$的平面分界面上，平面的法线为$\boldsymbol{N}=\cos 30^{\circ}\boldsymbol{i}+\cos 60^{\circ}\boldsymbol{j}$，求反射光线$\boldsymbol{A}''$和折射光线$\boldsymbol{A}'$。
+\end{problem}
+\begin{solution}
+	由
+	\begin{equation}
+	\boldsymbol{N}\cdot\boldsymbol{A}=n\cos I\notag
+	\end{equation}
+	得到
+	\begin{equation}
+	(\cos 60^{\circ}\boldsymbol{i}+\cos 30^{\circ}\boldsymbol{j})(\cos 30^{\circ}\boldsymbol{i}+\cos 60^{\circ}\boldsymbol{j})=\frac{\sqrt{3}}{2}=\cos I\notag
+	\end{equation}
+	所以有
+	\begin{equation}
+	\begin{aligned}
+	P&=\sqrt{n'^2-n^2+n^2\cos^2 I}-n\cos I\\
+	&=\sqrt{1.5^2-1+\bigg(\frac{\sqrt{3}}{2}\bigg)^2}-1\times\frac{\sqrt{3}}{2}\\
+	&=\sqrt{2}-\frac{\sqrt{3}}{2}\notag
+	\end{aligned}
+	\end{equation}
+	所以由矢量形式的折射定律得
+	\begin{equation}
+	\begin{aligned}
+	\boldsymbol{A}'&=\boldsymbol{A}+P\boldsymbol{N}\\
+	&=(\cos 60^{\circ}\boldsymbol{i}+\cos 30^{\circ}\boldsymbol{j})+\bigg(\sqrt{2}-\frac{\sqrt{3}}{2}\bigg)(\cos 30^{\circ}\boldsymbol{i}+\cos 60^{\circ}\boldsymbol{j})\\
+	&=\bigg(\frac{2\sqrt{6}-1}{4}\bigg)\boldsymbol{i}+\bigg(\frac{2\sqrt{2}+\sqrt{3}}{4}\bigg)\boldsymbol{j}\notag
+	\end{aligned}
+	\end{equation}
+	所以由矢量形式的反射定律得
+	\begin{equation}
+	\begin{aligned}
+	\boldsymbol{A}''&=\boldsymbol{A}-2\boldsymbol{N}(\boldsymbol{N}\cdot\boldsymbol{A})\\
+	&=(\cos 60^{\circ}\boldsymbol{i}+\cos 30^{\circ}\boldsymbol{j})-2(\cos 30^{\circ}\boldsymbol{i}+\cos 60^{\circ}\boldsymbol{j})[(\cos 60^{\circ}\boldsymbol{i}+\cos 30^{\circ}\boldsymbol{j})\cdot(\cos 30^{\circ}\boldsymbol{i}+\cos 60^{\circ}\boldsymbol{j})]\\
+	&=-\boldsymbol{i}\notag
+	\end{aligned}
+	\end{equation}
+\end{solution}
 
 \subsection{费马原理}
 
@@ -169,10 +314,17 @@
 
 如\figref{fig:fermats-principle} 所示，光从空气射入水中，从$A$点到$B$点，途径$P$点，其光路$APB$为光传播时间最短的路径。 
 
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.3\textwidth]{fermats-principle.pdf}
+	\caption{费马原理演示}
+	\label{fig:fermats-principle}
+\end{figure}
+
 \section{完善成像}
 完善成像条件：物点与像点之间任意两条的光路光程相等。
 
-\chapter{球面和球面系统}
+\chapter{球面与球面系统}
 
 \begin{introduction}
 	\item 符号规则（第 \ref{sect:symbol-rules} 节）
@@ -182,7 +334,7 @@
 
 \section{概念与符号规则}
 \label{sect:symbol-rules}
-\figref{fig:spherical-system} 所示的是光线经球面折射的光路。对于单个球面，凡过球心的直线就是其光轴，光轴与球面的交点称为顶点。$L$为物方截距，$U$为物方倾斜角；。$L'$为像方截距，$U'$为像方倾斜角。
+\figref{fig:spherical-system} 所示的是光线经球面折射的光路。对于单个球面，凡过球心的直线就是其光轴，包含光轴的平面为子午平面，光轴与球面的交点称为顶点。$L$为物方截距，$U$为物方倾斜角；。$L'$为像方截距，$U'$为像方倾斜角。
 
 \begin{figure}[htbp]
 	\centering
@@ -595,9 +747,10 @@ K=\frac{d}{D}
 	\end{minipage}
 \end{figure}
 
-普罗棱镜（双普罗棱镜）：如\figref{fig:double-porro-prism}，由两块相同的等腰直角棱镜组成。
-
-别汉棱镜（施密特-别汉棱镜组）：如\figref{fig:schmidt-pechan-prism}，由一块半五角棱镜和一块屋脊施密特棱镜、或一块屋脊半五角棱镜和一块施密特棱镜组成。特点为出射光轴的方向与入射光轴相同，可以让影像做$180^{\circ}$的旋转。
+\begin{enumerate}
+	\item 普罗棱镜（双普罗棱镜）：如\figref{fig:double-porro-prism}，由两块相同的等腰直角棱镜组成。
+	\item 别汉棱镜（施密特-别汉棱镜组）：如\figref{fig:schmidt-pechan-prism}，由一块半五角棱镜和一块屋脊施密特棱镜、或一块屋脊半五角棱镜和一块施密特棱镜组成。特点为出射光轴的方向与入射光轴相同，可以让影像做$180^{\circ}$的旋转。
+\end{enumerate}
 
 \begin{problem}
 	以下棱镜或棱镜组中哪些是成镜像的？
@@ -854,13 +1007,6 @@ v_D=\frac{n_D-1}{n_F-n_C}
 
 \subsection{无限远轴上像点对应的物点}
 相关概念同第 \ref{subsect:infty-object} 节内容。物方焦平面上任意一点发出的光线，通过理想光学系统后亦是一组相互平行的光线。
-\subsection{物方主平面与像方主平面}
-\label{subsect:base-point}
-如\figref{fig:perfect-optical-system} 所示，两条入射光线$AE_1$和$FP$都经过$Q$，相应地出射光线都经过$Q'$，$Q$和$Q'$为共轭点，因此物方主平面和像方主平面是一对共轭面，垂轴放大率为$+1$。不同形状透镜的主平面位置如\figref{fig:lens-shapes} 所示。对于此类厚透镜的主面位置分析见第 \ref{subsect:thick-lenses} 节。
-
-\begin{definition}{基点和基面}{base-point}
-	一对主点和主平面，一对焦点和焦平面，称为共轴理想光学系统的基点和基面。
-\end{definition}
 
 \begin{figure}[htbp]
 	\centering
@@ -868,6 +1014,14 @@ v_D=\frac{n_D-1}{n_F-n_C}
 	\caption{不同形状透镜的主平面}
 	\label{fig:lens-shapes}
 \end{figure}
+
+\subsection{物方主平面与像方主平面}
+\label{subsect:base-point}
+如\figref{fig:perfect-optical-system} 所示，两条入射光线$AE_1$和$FP$都经过$Q$，相应地出射光线都经过$Q'$，$Q$和$Q'$为共轭点，因此物方主平面和像方主平面是一对共轭面，垂轴放大率为$+1$。不同形状透镜的主平面位置如\figref{fig:lens-shapes} 所示。对于此类厚透镜的主面位置分析见第 \ref{subsect:thick-lenses} 节。
+
+\begin{definition}{基点和基面}{base-point}
+	一对主点和主平面，一对焦点和焦平面，称为共轴理想光学系统的基点和基面。
+\end{definition}
 
 \section{理想光学系统的物像关系}
 \subsection{牛顿公式}
@@ -1066,8 +1220,8 @@ ny\tan U=n'y'\tan U'
 	\begin{tasks}(2)
 		\task 垂轴放大率为$1$的共轭点
 		\task 角放大率为$1$的共轭点
-		\task* 物方发出过物方节点的光必经过像方节点
-		\task* 物方发出过像方节点的光必经过物方节点
+		\task 物方发出过物方节点的光必经过像方节点
+		\task 物方发出过像方节点的光必经过物方节点
 	\end{tasks}
 \end{problem}
 
@@ -1088,8 +1242,8 @@ ny\tan U=n'y'\tan U'
 		\centering
 		\begin{tikzpicture} [scale=0.7] 
 		\draw[-] (-6.5,0) -- (6,0); 
-		\draw[<->,line width=1.2pt] (-1.5,2.5) -- (-1.5,-2.5); 
-		\draw[>-<,line width=1.2pt] (0,1.6) -- (0,-1.6); 
+		\draw[<->,line width=0.8pt] (-1.5,2.5) -- (-1.5,-2.5); 
+		\draw[>-<,line width=0.8pt] (0,1.6) -- (0,-1.6); 
 		\draw[-,violet] (-3,2) -- (-3,-2);
 		\draw[-,violet] (0.3,2) -- (0.3,-2);
 		\draw[-latex,red] (0,1) -- (5,0);
@@ -1139,25 +1293,25 @@ ny\tan U=n'y'\tan U'
 	\label{fig:combination-of-optical-systems}
 \end{figure}
 
-\figref{fig:combination-of-optical-systems} 给出了由两个光组组成的等效系统在两个空间的焦点和主点。按牛顿公式，物焦距$x=-\Delta$，其焦像距$x'_F$为
+\figref{fig:combination-of-optical-systems} 给出了由两个光组组成的等效系统在两个空间的焦点和主点。按牛顿公式，物焦距$x=-\varDelta$，其焦像距$x'_F$为
 \begin{equation}
-x'_F=-\frac{f_2f'_2}{\Delta}
+x'_F=-\frac{f_2f'_2}{\varDelta}
 \end{equation}
 同理有
 \begin{equation}
-x_F=\frac{f_1f'_1}{\Delta}
+x_F=\frac{f_1f'_1}{\varDelta}
 \end{equation}
 根据相似三角形$\triangle Q'H'F'$与$\triangle N'_2H'_2F'_2$、$\triangle Q'_1H'_1F'_1$与$\triangle E_2F_2F'_1$，可导出
 \begin{equation}
-f'=-\frac{f'_1f'_2}{\Delta}
+f'=-\frac{f'_1f'_2}{\varDelta}
 \end{equation}
 同理有
 \begin{equation}
-f=\frac{f_1f_2}{\Delta}
+f=\frac{f_1f_2}{\varDelta}
 \end{equation}
 大多数情况下光学系统位于空气中，应有$f'_1=-f_1$，$f'_2=-f_2$和$f'=-f$。所以有
 \begin{equation}
-\Delta=d-f'_1+f_2=d-f'_1-f'_2
+\varDelta=d-f'_1+f_2=d-f'_1-f'_2
 \end{equation}
 则有
 \begin{equation}
@@ -1169,9 +1323,9 @@ f'=-f=\frac{f'_1f'_2}{f'_1+f'_2-d}
 \end{equation}
 
 \begin{definition}{折合距离与光焦度}{focal-power}
-	一线段的长度除以该线段所在介质的折射率做得的值称为该线段的折合距离。折合焦距的倒数称之为光学系统的光焦度，以$\Phi$表示，即
+	一线段的长度除以该线段所在介质的折射率做得的值称为该线段的折合距离。折合焦距的倒数称之为光学系统的光焦度，以$\varPhi$表示，即
 	\begin{equation}
-	\Phi=\frac{n'}{f'}=-\frac{n}{f}
+	\varPhi=\frac{n'}{f'}=-\frac{n}{f}
 	\end{equation}
 	如果光学系统位于空气中，其光焦度用$\varphi$表示，即
 	\begin{equation}
@@ -1191,7 +1345,7 @@ l'_H=l'_F-f',\quad l_H=l_F-f
 
 等效系统的放大率$\beta$仍可用基本公式$\beta=-f/x$计算。$f$为等效系统的焦距，$x$为物点到等效系统的物方焦点距离，得到
 \begin{equation}
-\beta=\frac{f_1f_2}{f_1f'_1-x_1\Delta}
+\beta=\frac{f_1f_2}{f_1f'_1-x_1\varDelta}
 \end{equation}
 
 \begin{problem}
@@ -1200,26 +1354,26 @@ l'_H=l'_F-f',\quad l_H=l_F-f
 \begin{solution}
 	设物方介质折射率为$n_1$，两光组之间折射率为$n_2$，像方折射率为$n_3$。有
 	\begin{equation}
-	\Delta=d-f'_1+f_2
+	\varDelta=d-f'_1+f_2\notag
 	\end{equation}
 	\begin{equation}
-	f'=\frac{-f'_1f'_2}{\Delta}
+	f'=\frac{-f'_1f'_2}{\varDelta}\notag
 	\end{equation}
 	由
 	\begin{equation}
-	\frac{f'_2}{n_3}=-\frac{f_2}{n_2}
+	\frac{f'_2}{n_3}=-\frac{f_2}{n_2}\notag
 	\end{equation}
 	得到
 	\begin{equation}
-	f'=\frac{f'_1f'_2}{f'_1+\frac{n_2}{n_3}f'_2-d}
+	f'=\frac{f'_1f'_2}{f'_1+\frac{n_2}{n_3}f'_2-d}\notag
 	\end{equation}
 	又有
 	\begin{equation}
-	\varphi=\frac{n_3}{f'}\quad\varphi_1=\frac{n_2}{f'_1}\quad\varphi_2=\frac{n_3}{f'_2}
+	\varphi=\frac{n_3}{f'}\quad\varphi_1=\frac{n_2}{f'_1}\quad\varphi_2=\frac{n_3}{f'_2}\notag
 	\end{equation}
 	所以，光焦度的表达式为
 	\begin{equation}
-	\varphi=\varphi_2+\varphi_2-\frac{d\varphi_1\varphi_2}{n_2}
+	\varphi=\varphi_2+\varphi_2-\frac{d\varphi_1\varphi_2}{n_2}\notag
 	\end{equation}
 	由此可知，光焦度与物方像方介质无关，与两光组之间的介质有关。
 \end{solution}
@@ -1269,16 +1423,16 @@ x'_2=\alpha x_1
 
 供眼睛观察用的光学系统为目视光学系统，目视光学系统中最重要的参数为视觉放大率。
 \begin{definition}{望远镜系统的视觉放大率}{visual-magnification}
-	望远镜系统的视觉放大率是远处物体经系统所成的像对眼睛张角$W'$的正切与该物体直接对眼睛张角$W$的正切之比，用$\Gamma$表示。望远镜系统的视觉放大率等于该系统的角放大率，即
+	望远镜系统的视觉放大率是远处物体经系统所成的像对眼睛张角$W'$的正切与该物体直接对眼睛张角$W$的正切之比，用$\varGamma$表示。望远镜系统的视觉放大率等于该系统的角放大率，即
 	\begin{equation}
-	\Gamma=\frac{\tan W'}{\tan W}=\gamma=-\frac{f'_1}{f'_2}=\frac{1}{\beta}
+	\varGamma=\frac{\tan W'}{\tan W}=\gamma=-\frac{f'_1}{f'_2}=\frac{1}{\beta}
 	\end{equation}
 	所以，望远镜系统的视觉放大率是物镜焦距与目镜焦距之比。
 \end{definition}
 
-一个有限焦距系统之前加角放大率为$\Gamma$的望远镜系统时，整个系统的焦距为原焦距的$\Gamma$倍，即
+一个有限焦距系统之前加角放大率为$\varGamma$的望远镜系统时，整个系统的焦距为原焦距的$\varGamma$倍，即
 \begin{equation}
-f'=\Gamma f'_2
+f'=\varGamma f'_2
 \end{equation}
 
 \begin{problem}
@@ -1404,7 +1558,7 @@ f'=\frac{1}{(n-1)\big(\frac{1}{r_1}-\frac{1}{r_2}\big)}
 
 \begin{problem}
 	已知照相物镜的焦距为$50$mm，相对孔径$D/f'=1/4$，入瞳到出瞳的放大率为$\beta_p=1.2$，求出瞳的直径。 
-	\begin{tasks}(3)
+	\begin{tasks}(6)
 		\task $12.5$mm
 		\task $200$mm
 		\task $15$mm
@@ -1599,8 +1753,8 @@ B_1B_3=2a\frac{q-p}{q}
 	\draw[-] (1.5,-2.5) -- (1.5,-4.5);
 	\draw[-] (-4.2,-3) -- (-4.2,-4);
 	\draw[-] (4,-3) -- (4,-4);
-	\draw[black,<->](-6,-3.2) -- (-4.2,-3.2) node[black,above,midway](line){$\Delta_1$};
-	\draw[black,<->](-2.98,-3.2) -- (-4.2,-3.2) node[black,above,midway](line){$\Delta_2$};
+	\draw[black,<->](-6,-3.2) -- (-4.2,-3.2) node[black,above,midway](line){$\varDelta_1$};
+	\draw[black,<->](-2.98,-3.2) -- (-4.2,-3.2) node[black,above,midway](line){$\varDelta_2$};
 	\draw[black,<->](-2.98,-3.2) -- (0.5,-3.2) node[black,above,midway](line){$-p_2$};
 	\draw[black,<->](3.42,-3.2) -- (1.5,-3.2) node[black,above,midway](line){$p'_1$};
 	\draw[black,<->](-4.2,-3.7) -- (0.5,-3.7) node[black,above,midway](line){$-p$};
@@ -1624,13 +1778,13 @@ p_1=\frac{2apf'}{2af'-pZ'},\quad p_2=\frac{2apf'}{2af'+pZ'}
 \end{equation}
 由此，远景和近景到对准平面的距离分别为
 \begin{equation}
-\Delta_1=p1-p=\frac{p^2Z'}{2af'-pZ'},\quad \Delta_2=p-p_2=\frac{p^2Z'}{2af'+pZ'}
+\varDelta_1=p1-p=\frac{p^2Z'}{2af'-pZ'},\quad \varDelta_2=p-p_2=\frac{p^2Z'}{2af'+pZ'}
 \end{equation}
-$\Delta_1$和$\Delta_2$分别为远景深度和近景深度，二者之和为总的成像空间深度，即景深
+$\varDelta_1$和$\varDelta_2$分别为远景深度和近景深度，二者之和为总的成像空间深度，即景深
 \begin{equation}
-\Delta=\Delta_1+\Delta_2=\frac{4af'p^2Z'}{4a^2f'^2-p^2Z'^2}
+\varDelta=\varDelta_1+\varDelta_2=\frac{4af'p^2Z'}{4a^2f'^2-p^2Z'^2}
 \end{equation}
-当景象平面弥散斑大小规定后，景深与系统的入射直径、焦距和对准平面的距离有关。入瞳直径越大，焦距越大，景深越小；拍摄距离越大，景深越大；远景深度$\Delta_1$总要比近景深度$\Delta_2$大。
+当景象平面弥散斑大小规定后，景深与系统的入射直径、焦距和对准平面的距离有关。入瞳直径越大，焦距越大，景深越小；拍摄距离越大，景深越大；远景深度$\varDelta_1$总要比近景深度$\varDelta_2$大。
 
 \begin{problem}
 	要得到远近都清楚的照片，应选用： 
@@ -1654,6 +1808,347 @@ $\Delta_1$和$\Delta_2$分别为远景深度和近景深度，二者之和为总
 	\caption{物方远心光学系统}
 	\label{fig:telecentric-optical-system}
 \end{figure}
+
+\chapter{光能及其计算}
+
+\begin{introduction}
+	\item 辐射能通量（定义 \ref{def:radiant-flux}）
+	\item 光通量（定义 \ref{def:luminous-flux}）
+	\item 发光强度（定义 \ref{def:luminous-intensity}）
+	\item 光照度（定义 \ref{def:illuminance}）
+	\item 光出射度（定义 \ref{def:luminous-exitance}）
+	\item 光亮度（定义 \ref{def:brightness}）
+\end{introduction}
+
+\section{辐射能通量与光通量}
+
+\begin{definition}{辐射能通量}{radiant-flux}
+	某一瞬间通过某一面积的全部辐射能与通过时间的 比值称为辐射能通量，单位为瓦，即
+	\begin{equation}
+	W=\frac{\mathrm{d}E}{\mathrm{d}t}(\mathrm{W})
+	\end{equation}
+\end{definition}
+
+设$P_\lambda$是某一波长附近单位波长间隔内所具有的功率，称辐射能通量随波长的分布函数，则在某一微小波长范围$\mathrm{d}\lambda$内所包含的辐射能通量为
+\begin{equation}
+\mathrm{d}W_{\lambda,\lambda+\mathrm{d}\lambda}=P_{\lambda}\cdot\mathrm{d}\lambda
+\end{equation}
+辐射体的总辐射能通量为
+\begin{equation}
+W=\int_{\lambda} P_{\lambda}\cdot\mathrm{d}\lambda
+\end{equation}
+人眼对于波长为$555$nm的光最为敏感，如果在单位波长内$P_{\lambda}$W的辐射能通量相当于$\varPhi_{\lambda}$流明的光通量，其比值为
+\begin{equation}
+K_{\lambda}=\frac{\varPhi_{\lambda}}{P_{\lambda}}
+\end{equation}
+可表示为$1$W单色辐射能通量所相当的流明数。$555$nm光的这一数值$K_{555}$为最大。任意其他波长的单色光的$K_{\lambda}$值与$K_{555}$之比表征了人眼对于该单色辐射的灵敏度，称为光谱光视效率或视见函数，以$V_{\lambda}$表示，即
+\begin{equation}
+V_{\lambda}=\frac{K_{\lambda}}{K_{555}}
+\end{equation}
+在极小的波长间隔内，有
+\begin{equation}
+\mathrm{d}\varPhi=V_{\lambda}P_{\lambda}\cdot\mathrm{d}\lambda
+\end{equation}
+则总光通量为
+\begin{equation}
+\varPhi=\int_{\lambda}V_{\lambda}P_{\lambda}\cdot\mathrm{d}\lambda
+\end{equation}
+此式给出的光通量单位为瓦，若将其表示成流明，应有
+\begin{equation}
+\varPhi=K_{555}\int_{\lambda}V_{\lambda}P_{\lambda}\cdot\mathrm{d}\lambda
+\end{equation}
+一个辐射体或光源发出的总光通量与总辐射能通量之比$\eta$称为光源的发光效率，即
+\begin{equation}
+\eta=\frac{\varPhi}{W}
+\end{equation}
+其表示为每瓦辐射能通量所产生的的光通量。
+
+\section{五种光学量的含义}
+
+\subsection{光通量}
+\begin{definition}{光通量}{luminous-flux}
+标度可见光对人眼的视觉刺激程度的量。单位为流明（lm）。
+\end{definition}
+上一节已详细说明其具体内容。
+
+\subsection{发光强度}
+\begin{definition}{发光强度}{luminous-intensity}
+点光源向各个方向发出光能，在某一方向上，立体角$\mathrm{d}\omega$内发出的光通量$\mathrm{d}\varPhi$与该立体角的比值为点光源在该方向上的发光强度，即
+\begin{equation}
+I=\frac{\mathrm{d}\varPhi}{\mathrm{d}\omega}
+\end{equation}
+对于均匀发光的光源，其$I=I_0$为常数，此时有
+\begin{equation}
+I_0=\frac{\varPhi}{\omega}
+\end{equation}
+发光强度的单位是坎德拉（cd）。
+\end{definition}
+点光源周围空间的总立体角为$4\pi$，所以这种点光源向四周发出的总光通量为
+\begin{equation}
+\varPhi=4\pi I_0
+\end{equation}
+对于发光强度随方向变化的光源，其在各个方向的光通量不相同，因此$\varPhi/4\pi$仅为平均发光强度。将位于原点的点光源在由$i$和$\varphi$角所决定的方向上的发光强度表示为$I(\varphi,i)$，立体角的微分表达式为
+\begin{equation}
+\mathrm{d}\omega=\sin i\cdot\mathrm{d}i\cdot\mathrm{d}\varphi
+\end{equation}
+则对$\mathrm{d}\varPhi$在整个空间积分即可求出总光通量，有
+\begin{equation}
+1\mathrm{lm}=1\mathrm{cd}\cdot\mathrm{sr}
+\end{equation}
+\begin{note}
+	实际中常常需要求出各项均匀发光的点光源在锥角为$\alpha$的锥体内发出的光通量，若锥体与$y$轴重合，且点光源位于光学系统的光轴上，则其对于入瞳张角为$2U$的光通量为
+	\begin{equation}
+	\varPhi=4\pi I_0\sin^2\frac{U}{2}
+	\end{equation}
+\end{note}
+
+\subsection{光照度}
+\begin{definition}{光照度}{illuminance}
+在某一微小面积$\mathrm{d}S$上投射的光通量$\mathrm{d}\varPhi$与该面积的比值$E$称为该面积上的光照度，即
+\begin{equation}
+E=\frac{\mathrm{d}\varPhi}{\mathrm{d}S}
+\end{equation}
+如果光通量是均匀射入受照表面的，则有
+\begin{equation}
+E=\frac{\varPhi}{S}
+\end{equation}
+光照度的单位是勒克斯（lx），有
+\begin{equation}
+1\mathrm{lx}=1\mathrm{lm/m^2}=1\mathrm{cd\cdot sr/m^2}
+\end{equation}
+\end{definition}
+\begin{note}
+	发光强度为$I$的点光源$C$照明相距$R$处的面积为$\mathrm{d}S$时，该面积对点光源所张的立体角是
+	\begin{equation}
+	\mathrm{d}\omega=\frac{\mathrm{d}S_n}{R^2}=\frac{\mathrm{d}S\cdot\cos i}{R^2}
+	\end{equation}
+	点光源在此立体角内发出的光通量为$\mathrm{d}\varPhi=I\mathrm{d}\omega$，得$\mathrm{d}S$上的光照度为
+	\begin{equation}
+	E=\frac{I\cdot\cos i}{R^2}
+	\end{equation}
+	由此可见，由点光源直接照射到某一面积所产生的的光照度与光源的发光强度成正比，与受照面积的距离平方成反比，且与照射方向有关，垂直照射时光照度最大。
+\end{note}
+
+\begin{problem}
+	一房间为$4.8\times6.4$平方米，中间安装了一个发光强度为$200$坎德拉的均匀发光灯泡，灯离地板的高度为$3$米，求房间角落地面上的照度。  
+	\begin{tasks}(5)
+		\task $6.4$勒克斯
+		\task $4.8$勒克斯
+		\task $3.6$勒克斯
+		\task $0.96$勒克斯
+		\task $2.89$勒克斯
+	\end{tasks}
+\end{problem}
+\begin{solution}
+	选择b。
+\end{solution}
+
+\subsection{光出射度}
+\begin{definition}{光出射度}{luminous-exitance}
+某一发光表面上微小面积范围内所发出的光通量与该面积之比称为该面积上的光出射度，即
+\begin{equation}
+M=\frac{\mathrm{d}\varPhi}{\mathrm{d}S}
+\end{equation}
+若为均匀发光表面，且在$2\pi$立体角内发出的光通量为$\varPhi$，则
+\begin{equation}
+M=\frac{\varPhi}{S}
+\end{equation}
+\end{definition}
+光出射度与光照度的形式相同，其差别在于光照度中的$\varPhi$是表面接收的光通量，光出射度中的$\varPhi$是从表面发出的光通量。光出射度的单位为勒克斯（lx）。二次光源的光出射度与受照后的光照度和表面的反射率有关，可表示为
+\begin{equation}
+M=\rho E
+\end{equation}
+
+\subsection{光亮度}
+\begin{definition}{光亮度}{brightness}
+	在光源表面划出一元面积$\mathrm{d}S$，在与法线$N$成$i$角的方向上，由元面积$\mathrm{d}S$和受照小面积所限定的范围内，从该元面积所发出的光通量应与立体角$\mathrm{d}\omega$和元面积在垂直于光束轴线的平面上的投影$\mathrm{d}S_n$成正比，用$L_i$表示比例系数，则称此比例系数为光源在与法线成$i$角方向上的光亮度。即
+	\begin{equation}
+	\mathrm{d}\varPhi=L_i\cos i\cdot\mathrm{d}S\cdot\mathrm{d}\omega
+	\end{equation}
+	光照度的单位为尼特（nt），有
+	\begin{equation}
+	1\mathrm{nt}=1\mathrm{cd/m^2}
+	\end{equation}
+\end{definition}
+某些光源$L$不随方向变，此时$I$随方向变，可推得
+\begin{equation}
+I_i=I_N\cos i
+\end{equation}
+这种光源称为余弦辐射体。
+
+光源的光亮度与光出射度之间有一定关系。设光源为余弦辐射体，则光源在$2\pi$立体角范围内发出的总光通量为
+\begin{equation}
+\varPhi=\pi L\cdot\mathrm{d}S
+\end{equation}
+则有
+\begin{equation}
+M=\pi L
+\end{equation}
+由此可见，光亮度为常数的光源，其光出射度为光亮度的$\pi$倍。
+
+\section{光传播过程中光学量的变化规律}
+\subsection{光亮度在同一介质中传递}
+发光的面光源为$\mathrm{d}S_1$，接受光通量的面积为$\mathrm{d}S_2$，得元光管
+\begin{equation}
+\mathrm{d}\varPhi_1=L_1\mathrm{d}S_1\mathrm{d}\omega_1\cos i_1
+\end{equation}
+光沿直线传播，光路可逆，也可看成$\mathrm{d}S_2$发光，有
+\begin{equation}
+\mathrm{d}\varPhi_2=L_1\mathrm{d}S_2\mathrm{d}\omega_2\cos i_2
+\end{equation}
+所以，得到
+\begin{equation}
+\mathrm{d}\varPhi_1=\mathrm{d}\varPhi_2
+\end{equation}
+\begin{equation}
+L_1=L_2
+\end{equation}
+\begin{conclusion}
+光在同一介质中传播，忽略散射和吸收，则在传播过程中的任意截面上，光通量与亮度不变，光束的亮度就是光源的亮度。
+\end{conclusion}
+
+\subsection{光束经反射与折射后的亮度}
+入射光管的截面之一$\mathrm{d}S$在二介质的的界面上，通过光管入射的光通量$\mathrm{d}\varPhi$经界面时，被反射和折射的光通量分别为$\mathrm{d}\varPhi''$和$\mathrm{d}\varPhi'$，并分别构成反射光管和折射光管。若忽略介质的吸收和散射损失，有
+\begin{equation}
+\mathrm{d}\varPhi=\mathrm{d}\varPhi''+\mathrm{d}\varPhi'
+\end{equation}
+令入射光束、反射光束和折射光束的光亮度分别为$L$，$L''$和$L'$，则有
+\begin{equation}
+\begin{cases}
+\mathrm{d}\varPhi=L\cos i\cdot\mathrm{d}S\cdot\mathrm{d}\omega\\
+\mathrm{d}\varPhi''=L''\cos i''\cdot\mathrm{d}S\cdot\mathrm{d}\omega''\\
+\mathrm{d}\varPhi'=L'\cos i'\cdot\mathrm{d}S\cdot\mathrm{d}\omega'
+\end{cases}
+\end{equation}
+经反射定律和折射定律可导出
+\begin{equation}
+\begin{cases}
+\mathrm{d}\omega''=\mathrm{d}\omega\\
+n'^2\cos i'\mathrm{d}\omega'=n^2\cos i\mathrm{d}\omega 
+\end{cases}
+\end{equation}
+由上式可导出
+\begin{equation}
+\frac{L''}{L}=\frac{\mathrm{d}\varPhi''}{\mathrm{d}\varPhi}=\rho
+\end{equation}
+其中，$\rho$表示反射率。当入射角不大时，有
+\begin{equation}
+\rho=\bigg(\frac{n'-n}{n'+n}\bigg)^2
+\end{equation}
+则根据以上关系可推导出
+\begin{equation}
+\begin{cases}
+L''=\rho L\\
+L'=(1-\rho)L(\frac{n'}{n})^2\\
+\mathrm{d}\varPhi''=\rho\mathrm{d}\varPhi\\
+\mathrm{d}\varPhi'=(1-\rho)\mathrm{d}\varPhi
+\end{cases}
+\end{equation}
+
+\section{光学系统光能损失的计算}
+光能损失可分为反射损失（如光学零件与空气接触面、胶合面、漫反射、散射等），吸收损失（如空气中的吸收、光学零件中的吸收）和反射面不完全反射的损失（如镀膜反射面）。
+
+$\tau$为透过率，表示当光亮度为$1$时，经$10$mm传播后得到的光亮度。若传播$d\times10$mm，则有
+\begin{equation}
+L=L_0\tau^d
+\end{equation}
+据此，按面推到，可得光学系统中所通过的光亮度为
+\begin{equation}
+L'=\bigg(\frac{n'_k}{n_1}\bigg)^2L\rho^m_r\prod^k_{i=1}(1-\rho_i)\prod^{k-1}_{j=1}\tau^{d_j}_{j}=KL\bigg(\frac{n'_k}{n_1}\bigg)^2
+\end{equation}
+其中，$k$为系统的总面数，$K$为系统的总透过率，$m$为镀膜反射面数，$d$为近似取得的各光学零件的沿轴厚度。
+
+\section{成像光学系统像面的照度}
+\subsection{通过光学系统的光通量}
+物面上$\mathrm{d}S$，在$u$方向$\mathrm{d}\omega$立体角内的光通量为
+\begin{equation}
+\begin{aligned}
+\mathrm{d}\varPhi&=L\cos u\cdot\mathrm{d}S\cdot\mathrm{d}\omega\\
+&=L\cos u\cdot\mathrm{d}S\cdot\mathrm{d}\varphi
+\end{aligned}
+\end{equation}
+所以，$\mathrm{d}S$发出的能进入系统的总光通量为
+\begin{equation}
+\begin{aligned}
+\varPhi&=\int^{2\pi}_0\mathrm{d}\varPhi\int^U_0L\sin u\cdot\cos u\cdot\mathrm{d}u\cdot\mathrm{d}S\\
+&=2\pi L\int^U_0\sin u\cdot\cos u\cdot\mathrm{d}u\cdot\mathrm{d}S\\
+&=\pi L\cdot\sin^2U\cdot\mathrm{d}S
+\end{aligned}
+\end{equation}
+如果系统的能量透过率为$K$，则由出瞳出射的光通量为
+\begin{equation}
+\varPhi'=K\pi L\cdot\sin^2U\cdot\mathrm{d}S
+\end{equation}
+从像面$\mathrm{d}S'$考虑，可得出瞳出射的光通量为
+\begin{equation}
+\varPhi'=\pi L'\cdot\sin^2U'\cdot\mathrm{d}S'
+\end{equation}
+
+\subsection{轴上像点的光照度}
+$\mathrm{d}S'$上有$\varPhi'$的光通量，有
+\begin{equation}
+E'=\frac{\varPhi'}{\mathrm{d}S'}=K\pi L\sin^2U\frac{\mathrm{d}S}{\mathrm{d}S'}=\frac{1}{\beta^2}K\pi L\sin^2U
+\end{equation}
+根据
+\begin{equation}
+L'=KL\bigg(\frac{n'}{n}\bigg)^2
+\end{equation}
+\begin{equation}
+E'=nKL\sin^2U'\bigg(\frac{n'}{n}\bigg)^2
+\end{equation}
+得到
+\begin{equation}
+\beta=\frac{n\sin U}{n'\sin U'}
+\end{equation}
+\begin{conclusion}
+根据上面的推导公式可以得出，光学系统的孔径越大，像面照度越大；系统放大倍率越小，像面照度越大。
+\end{conclusion}
+
+\subsection{轴外像点的光照度}
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture} 
+	\coordinate [label=below left:$P'$] (A) at (-3,0);
+	\coordinate [label=below right:$A'$] (B) at (3,0);
+	\coordinate [label=right:$M'$] (C) at (3,2);
+	\coordinate [label=above left:$P'_1$] (D) at (-3,1);
+	\coordinate [label=below left:$P'_2$] (E) at (-3,-1);
+	\draw[-] (-4,0) -- (4,0); 
+	\draw[-] (A) -- (C); 
+	\draw[-] (C) -- (3,-1); 
+	\draw[-] (D) -- (-3,1.5); 
+	\draw[-] (E) -- (-3,-1.5);
+	\draw[-] (D) -- (B);
+	\draw[-] (E) -- (B);
+	\pic["$U'$", draw=black, -, angle eccentricity=1.5, angle radius=1.2cm]{angle=D--B--A};
+	\pic["$W'$", draw=black, -, angle eccentricity=1.5, angle radius=0.8cm]{angle=B--A--C};
+	\draw[-] (C) -- (-3.33,0.95);
+	\draw[-,dashed] (-2.67,-0.95) -- (-3.33,0.95);
+	\draw[-] (-2.67,-0.95) -- (C);
+	\pic["$U'_m$", draw=black, -, angle eccentricity=1.5, angle radius=1.2cm]{angle=D--C--A};
+	\end{tikzpicture}
+	\caption{轴外像点的光照度}
+	\label{fig:illuminance}
+\end{figure}
+
+如\figref{fig:illuminance} 所示，当物面亮度均匀时，有
+\begin{equation}
+E'_m=K\pi L\sin^2U'_m\bigg(\frac{n'}{n}\bigg)^2
+\end{equation}
+由于
+\begin{equation}
+\sin U'_m\approx\frac{P'P'_1\cos W'}{P'M'},\quad\sin U'\approx\frac{P'P'_1}{P'A'}
+\end{equation}
+得到
+\begin{equation}
+\frac{\sin U'_m}{\sin U'}\approx\frac{P'A'\cos W'}{P'M'}=\cos^2 W'
+\end{equation}
+所以
+\begin{equation}
+E'_M=E'\cos^4 W'
+\end{equation}
+
 
 %\bibliography{reference}
 \appendix
