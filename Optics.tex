@@ -20,6 +20,9 @@
 %*********************
 \usetikzlibrary{quotes,angles}
 \usetikzlibrary{patterns}
+\tikzstyle{every picture}+=[remember picture]
+
+%\everymath{\displaystyle}
 
 \usepackage{tasks} %选择题宏包，tasks环境
 % texlive 2019
@@ -1365,11 +1368,11 @@ l'_H=l'_F-f',\quad l_H=l_F-f
 	\end{equation}
 	得到
 	\begin{equation}
-	f'=\frac{f'_1f'_2}{f'_1+\frac{n_2}{n_3}f'_2-d}\notag
+	f'=\frac{f'_1f'_2}{f'_1+\dfrac{n_2}{n_3}f'_2-d}\notag
 	\end{equation}
 	又有
 	\begin{equation}
-	\varphi=\frac{n_3}{f'}\quad\varphi_1=\frac{n_2}{f'_1}\quad\varphi_2=\frac{n_3}{f'_2}\notag
+	\varphi=\frac{n_3}{f'},\quad\varphi_1=\frac{n_2}{f'_1},\quad\varphi_2=\frac{n_3}{f'_2}\notag
 	\end{equation}
 	所以，光焦度的表达式为
 	\begin{equation}
@@ -1391,7 +1394,7 @@ l'_H=l'_F-f',\quad l_H=l_F-f
 	\label{fig:telescope-system}
 \end{figure}
 
-如\figref{fig:telescope-system} 所示，根据牛顿公式，并考虑过渡公式$\Delta=0$，可导出
+如\figref{fig:telescope-system} 所示，根据牛顿公式，并考虑过渡公式$\varDelta=0$，可导出
 \begin{equation}
 x'_2=\frac{f_2f'_2}{f_1f'_1}x_1
 \end{equation}
@@ -1463,7 +1466,7 @@ f'=\varGamma f'_2
 \end{equation}
 焦距为
 \begin{equation}
-f'=\frac{1}{(n-1)\big(\frac{1}{r_1}-\frac{1}{r_2}\big)}
+f'=\frac{1}{(n-1)\bigg(\dfrac{1}{r_1}-\dfrac{1}{r_2}\bigg)}
 \end{equation}
 并有$f=-f'$。其光焦度为
 \begin{equation}
@@ -1778,7 +1781,7 @@ p_1=\frac{2apf'}{2af'-pZ'},\quad p_2=\frac{2apf'}{2af'+pZ'}
 \end{equation}
 由此，远景和近景到对准平面的距离分别为
 \begin{equation}
-\varDelta_1=p1-p=\frac{p^2Z'}{2af'-pZ'},\quad \varDelta_2=p-p_2=\frac{p^2Z'}{2af'+pZ'}
+\varDelta_1=p_1-p=\frac{p^2Z'}{2af'-pZ'},\quad \varDelta_2=p-p_2=\frac{p^2Z'}{2af'+pZ'}
 \end{equation}
 $\varDelta_1$和$\varDelta_2$分别为远景深度和近景深度，二者之和为总的成像空间深度，即景深
 \begin{equation}
@@ -2039,7 +2042,7 @@ n'^2\cos i'\mathrm{d}\omega'=n^2\cos i\mathrm{d}\omega
 \begin{equation}
 \begin{cases}
 L''=\rho L\\
-L'=(1-\rho)L(\frac{n'}{n})^2\\
+L'=(1-\rho)L\bigg(\dfrac{n'}{n}\bigg)^2\\
 \mathrm{d}\varPhi''=\rho\mathrm{d}\varPhi\\
 \mathrm{d}\varPhi'=(1-\rho)\mathrm{d}\varPhi
 \end{cases}
@@ -2087,22 +2090,39 @@ L'=\bigg(\frac{n'_k}{n_1}\bigg)^2L\rho^m_r\prod^k_{i=1}(1-\rho_i)\prod^{k-1}_{j=
 \subsection{轴上像点的光照度}
 $\mathrm{d}S'$上有$\varPhi'$的光通量，有
 \begin{equation}
-E'=\frac{\varPhi'}{\mathrm{d}S'}=K\pi L\sin^2U\frac{\mathrm{d}S}{\mathrm{d}S'}=\frac{1}{\beta^2}K\pi L\sin^2U
+E'=\frac{\varPhi'}{\mathrm{d}S'}=K\pi L\sin^2U\frac{\mathrm{d}S}{\mathrm{d}S'}=
+\tikz[baseline]{
+	\node[fill=blue!20,anchor=base] (t1)
+	{$\dfrac{1}{\beta^2}$};
+}\cdot K\pi L\cdot
+\tikz[baseline]{
+	\node[fill=red!20,anchor=base] (t2)
+	{$\sin^2U$};
+}
 \end{equation}
-根据
+由此可以看出：
+\begin{enumerate}
+	\item 系统放大倍率越小，像面照度越大；
+		\tikz\node [fill=blue!20,draw,circle] (n1) {};
+	\item 光学系统的孔径越大，像面照度越大。
+		\tikz\node [fill=red!20,draw,circle] (n2) {};
+\end{enumerate}
+\begin{tikzpicture}[overlay]
+\path[->] (n1) edge [bend right] (t1);
+\path[->] (n2) edge [bend right] (t2);
+\end{tikzpicture}
+
+结合上式，再根据
 \begin{equation}
 L'=KL\bigg(\frac{n'}{n}\bigg)^2
 \end{equation}
 \begin{equation}
 E'=nKL\sin^2U'\bigg(\frac{n'}{n}\bigg)^2
 \end{equation}
-得到
+可以得到
 \begin{equation}
 \beta=\frac{n\sin U}{n'\sin U'}
 \end{equation}
-\begin{conclusion}
-根据上面的推导公式可以得出，光学系统的孔径越大，像面照度越大；系统放大倍率越小，像面照度越大。
-\end{conclusion}
 
 \subsection{轴外像点的光照度}
 
