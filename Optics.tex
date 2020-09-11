@@ -74,7 +74,7 @@
 \tableofcontents
 \mainmatter
 
-\part{几何光学}
+\part{应用光学}
 
 \chapter{几何光学基本概念与定律}
 
@@ -354,25 +354,25 @@ P=n'\cos I'-n\cos I=-2n\cos I=-2(\boldsymbol{N}\cdot\boldsymbol{A})
 	\draw[-] (C) -- (F); 
 	\draw[line width=0.8pt] (D) arc (180:220:2.5);
 	\draw[line width=0.8pt] (D) arc (180:140:2.5);
-	\pic["$-U$", draw=orange, -latex, angle eccentricity=1.6, angle radius=0.8cm]
+	\pic["$-U$", draw=black, -latex, angle eccentricity=1.6, angle radius=0.8cm]
 	{angle=D--A--E};%\alpha的位置由eccentricity决定。
-	\pic["$U'$", draw=orange, latex-, angle eccentricity=1.2, angle radius=1.5cm]
+	\pic["$U'$", draw=black, latex-, angle eccentricity=1.3, angle radius=1cm]
 	{angle=E--B--D};
-	\pic["$\varphi$", draw=orange, -, angle eccentricity=1.3, angle radius=0.5cm]
+	\pic["$\varphi$", draw=black, -, angle eccentricity=1.3, angle radius=0.5cm]
 	{angle=E--C--D};
-	\pic["$I'$", draw=orange, latex-, angle eccentricity=1.6, angle radius=0.8cm]
+	\pic["$I'$", draw=black, latex-, angle eccentricity=1.6, angle radius=0.8cm]
 	{angle=C--E--B};
-	\pic["$I$", draw=orange, latex-, angle eccentricity=1.6, angle radius=0.5cm]
+	\pic["$I$", draw=black, latex-, angle eccentricity=1.6, angle radius=0.5cm]
 	{angle=F--E--A};
-	\draw[blue,latex-latex] (E) -- ($(A)!(E)!(C)$)node[black,midway,xshift=0.2cm]{$h$};
+	\draw[latex-latex] (E) -- ($(A)!(E)!(C)$)node[black,midway,xshift=0.2cm]{$h$};
 	\coordinate [label=below:$n$] (m) at (-2,-1);
 	\coordinate [label=below:$n'$] (n) at (0,-1);
 	\coordinate [label=below:$r$] (r) at (-0.5,-0.1);
 	\draw (-4,-2) -- ($(A)!(-4,-2)!(C)$);
 	\draw (-1.3,-2) -- ($(A)!(-1.3,-2)!(C)$);
 	\draw (3.8,-2) -- ($(A)!(3.8,-2)!(C)$);
-	\draw[blue,latex-latex](-4,-1.8) -- (-1.3,-1.8) node[black,below,midway](line){$-L$};
-	\draw[blue,latex-latex](3.8,-1.8) -- (-1.3,-1.8) node[black,below,midway](line){$L'$};
+	\draw[latex-latex](-4,-1.8) -- (-1.3,-1.8) node[black,below,midway](line){$-L$};
+	\draw[latex-latex](3.8,-1.8) -- (-1.3,-1.8) node[black,below,midway](line){$L'$};
 	\end{tikzpicture}
 	\caption{光线经球面折射的光路}
 	\label{fig:spherical-system}
@@ -460,6 +460,30 @@ f'+f=r
 \end{equation}
 
 \begin{problem}
+	有一直径为$100$mm、折射率为$1.5$的抛光玻璃球，在视线方向可见球内有两个气泡，一个位于球心，另一个位于球心与前表面间的一半处。求两个气泡在球内的实际位置。
+\end{problem}
+\begin{solution}
+	单折射面在近轴区域的物像关系公式为
+	\begin{equation}
+	\frac{n'}{l'}-\frac{n}{l}=\frac{n'-n}{r}
+	\end{equation}
+	球心的像，即有$l'=r$，所以
+	\begin{equation}
+	\frac{n}{l_1}=\frac{n'}{r}-\frac{n'-n}{r}=\frac{n}{r}
+	\end{equation}
+	即$l_1=r$，仍在球心，物像重合。
+	
+	另一个像，有$l'=r/2$，所以
+	\begin{equation}
+	\frac{n}{l_2}=\frac{n'}{r/2}-\frac{n'-n}{r}=\frac{n'+n}{r}
+	\end{equation}
+	\begin{equation}
+	l_2=\frac{nr}{n'+n}=\frac{nD}{2(n'+n)}=20
+	\end{equation}
+	即距离前表面$30$mm。
+\end{solution}
+
+\begin{problem}
 	一折射球面，其像方焦距和物方焦距分别为$144$mm和$-120$mm，物方介质为$n=4/3$的水，求球面的曲率半径$r$和像方介质折射率$n'$。
 	\begin{tasks}(2)
 		\task $r=24$mm，$n'=1.6$
@@ -469,7 +493,17 @@ f'+f=r
 	\end{tasks}
 \end{problem}
 \begin{solution}
-	选择a。
+	选择a。由已知可得，$f=-120$，$f'=144$，$n=4/3$。根据公式
+	\begin{equation}
+	\frac{f'}{n'}=-\frac{f}{n}
+	\end{equation}
+	可得$n'=-\dfrac{f'\cdot n}{f}=-\dfrac{144\cdot 4/3}{-120}=1.6$
+	
+	由公式
+	\begin{equation}
+	f'+f=r
+	\end{equation}
+	得到半径为$r=f'+f=180-150=30$mm
 \end{solution}
 
 \section{物平面细光束经折射球面成像}
@@ -508,21 +542,21 @@ nyu=n'y'u'=J
 	\draw[red,-latex] (G) -- (H);
 	\draw[line width=0.8pt] (D) arc (180:220:2.5);
 	\draw[line width=0.8pt] (D) arc (180:140:2.5);
-	\pic["$-u$", draw=orange, -latex, angle eccentricity=1.6, angle radius=0.8cm]
+	\pic["$-u$", draw=black, -latex, angle eccentricity=1.6, angle radius=0.8cm]
 	{angle=D--A--E};
-	\pic["$u'$", draw=orange, latex-, angle eccentricity=1.2, angle radius=1.5cm]
+	\pic["$u'$", draw=black, latex-, angle eccentricity=1.3, angle radius=1cm]
 	{angle=E--B--D};
-	\draw[blue,latex-latex] (E) -- ($(A)!(E)!(C)$)node[black,midway,xshift=0.2cm]{$h$};
+	\draw[latex-latex] (E) -- ($(A)!(E)!(C)$)node[black,midway,xshift=0.2cm]{$h$};
 	\coordinate [label=below:$n$] (m) at (-2,-1);
 	\coordinate [label=below:$n'$] (n) at (0,-1);
 	\coordinate [label=below:$r$] (r) at (-0.5,-0.1);
 	\draw (-4,-2) -- ($(A)!(-4,-2)!(C)$);
 	\draw (-1.3,-2) -- ($(A)!(-1.3,-2)!(C)$);
 	\draw (3.8,-2) -- ($(A)!(3.8,-2)!(C)$);
-	\draw[blue,latex-latex](-4,-1.8) -- (-1.3,-1.8) node[black,below,midway](line){$-l$};
-	\draw[blue,latex-latex](3.8,-1.8) -- (-1.3,-1.8) node[black,below,midway](line){$l'$};
-	\draw[violet,-latex,line width=1.2pt](A) -- (G) node[black,right,midway](line){$y$};
-	\draw[violet,-latex,line width=1.2pt](B) -- (H) node[black,left,midway](line){$-y'$};
+	\draw[latex-latex](-4,-1.8) -- (-1.3,-1.8) node[black,below,midway](line){$-l$};
+	\draw[latex-latex](3.8,-1.8) -- (-1.3,-1.8) node[black,below,midway](line){$l'$};
+	\draw[red,-latex,line width=1.2pt](A) -- (G) node[black,right,midway](line){$y$};
+	\draw[red,-latex,line width=1.2pt](B) -- (H) node[black,left,midway](line){$-y'$};
 	\end{tikzpicture}
 	\caption{垂轴小物体$AB$球面成像的情况}
 	\label{fig:imaging-magnification}
@@ -554,6 +588,54 @@ f'=f=\frac{r}{2}
 \gamma=\frac{u'}{u}=-\frac{1}{\beta},\quad
 \alpha\gamma=\beta
 \end{equation}
+
+\begin{problem}
+	实物位于曲率半径为r的凹面镜前什么位置时，可得到
+	\begin{enumerate}
+		\item 放大到4倍的实像；
+		\item 放大到4倍的虚像；
+		\item 缩小到1/4倍的实像。
+	\end{enumerate}
+	是否可能得到缩小到1/4倍的虚像？
+\end{problem}
+\begin{solution}
+根据公式
+\begin{equation}
+\beta=\frac{y'}{y}=-\frac{l'}{l},\quad \frac{1}{l'}+\frac{1}{l}=\frac{2}{r} \nonumber
+\end{equation}
+成实像时，$\beta<0$，成虚像时，$\beta>0$，所以
+\begin{enumerate}
+	\item $\beta=-4$时，$l=5/8r$；
+	\item $\beta=4$时，$l=-3/8r$；
+	\item $\beta=-1/4$时，$l=5/2r$；
+\end{enumerate}
+若有缩小到1/4倍的虚像，则$\beta=1/4$，$l=-3/2r$.
+\end{solution}
+
+\begin{problem}
+	曲率半径为$200$mm的凹面镜前$1$m处，有一高度为$40$mm的物体，求像的位置和大小，并说明其正倒和虚实。
+\end{problem}
+\begin{solution}
+	由题意可知，$r=-200$mm，$l=-1000$mm，$y=40$mm。根据公式
+	\begin{equation}
+	\beta=\frac{y'}{y}=-\frac{l'}{l},\quad \frac{1}{l'}+\frac{1}{l}=\frac{2}{r} \nonumber
+	\end{equation}
+	得到$l'=-1000/9$mm，$\beta=-l'/l=-1/9$，$y'=\beta y=-40/9$mm。所以成倒立的实像。
+\end{solution}
+\begin{problem}
+	人眼的角膜可认为是一曲率半径$r=7.8$mm的折射球面，其后是$n=4/3$的液体。如果看起来瞳孔在角膜后$3.6$mm处，且直径为$4$mm，求瞳孔的实际位置和直径。
+\end{problem}
+\begin{solution}
+	由题意可知，$r=-7.8$mm，$n=4/3$mm，$l'=-3.6$mm，$y'=4$mm。有
+	\begin{equation}
+	\frac{n'}{l'}-\frac{n}{l}=\frac{n'-n}{r} \Rightarrow \frac{1}{-3.6}-\frac{4/3}{l}=\frac{1-4/3}{-7.8r} \Rightarrow l=-4.16 \nonumber
+	\end{equation}
+	又有
+	\begin{equation}
+	\beta=\frac{y'}{y}=\frac{nl'}{n'l} \Rightarrow 2y=\frac{n'l}{nl'}\cdot 2y'=\frac{1\times (-4.16)}{4/3\times (-3.6)}\times 4=3.47 \nonumber
+	\end{equation}
+	
+\end{solution}
 
 \chapter{平面与平面系统}
 
@@ -595,6 +677,20 @@ l'=-l,\quad\beta=1
 		\label{fig:two-mirror}
 	\end{minipage}
 \end{figure}
+
+\begin{problem}
+	夹角为$35$度的双平面镜系统，当光线以多大的入射角入射于一平面镜时，其反射光线再经另一平面镜反射后，将沿原光路反向射出？
+\end{problem}
+\begin{solution}
+	由\figref{fig:two-mirror} 所示的图像可以看出，若要使光线原路反射，需要垂直入射到第二个平面镜上。根据几何关系可知，入射角为$35$度。
+\end{solution}
+
+\begin{problem}
+	有一双平面镜系统，光线与其中的一个镜面平行入射，经两次反射后，出射光线与另一镜面平行，问二平面镜的夹角是多少？
+\end{problem}
+\begin{solution}
+	设双平面镜夹角为$\alpha$，由\figref{fig:two-mirror} 所示的图像可以看出，入射光与出射光的夹角为$\alpha$和$2\alpha$，则有$\alpha+2\alpha=180^{\circ}$，得$\alpha=60^{\circ}$。
+\end{solution}
 
 \section{平行平板}
 \label{sect:parallel-plate}
@@ -663,6 +759,18 @@ $\Delta l'$恒为正值，所以平行平板所成像总是由物沿光线前进
 \begin{note}
 	平行平板不可能以宽光束对物点成完善像，但细光束成像是完善的。近轴区光线的侧向位移量$\Delta t$与入射角$i_1$成线性关系。
 \end{note}
+
+\begin{problem}
+	有一物镜，其像面与之相距$150$mm，若在物镜后置一厚度$d=60$mm，折射率$n=1.5$的平行平板，求
+	\begin{enumerate}
+		\item 像面位置的变化数值和方向；
+		\item 若欲使光轴向上、向下各偏移$5$mm，平板应正、反转过多大角度？
+	\end{enumerate}
+\end{problem}
+\begin{solution}
+	对于第一小问，像面位置变化为$\Delta l'=-l+d-(-l')=d\bigg(1-\dfrac{1}{n}\bigg)=60\times\bigg(1-\dfrac{1}{1.5}\bigg)=20(\mathrm{mm})$，即向左移动$20$mm。对于第二小问，由$\Delta t'=d\bigg(1-\dfrac{1}{n}\bigg)i_1$，得到$i_1=0.25$rad，即平板应正、反转过$0.25$rad角度。
+\end{solution}
+
 
 \section{反射棱镜}
 \label{sect:reflecting-prism}
@@ -809,14 +917,14 @@ K=\frac{d}{D}
 	\draw[-] (J) -- (K);
 	\draw[-,dashed] (L) -- (D);
 	\draw[-latex,red] (D) -- (M);
-	\pic["$\alpha$", draw=blue, -, angle eccentricity=1.5, angle radius=0.5cm] {angle=A--B--C};
-	\pic[draw=blue, -, angle radius=0.8cm] {angle=D--G--H};
-	\pic["$\delta_2$", draw=blue, -, angle eccentricity=1.6, angle radius=0.5cm] {angle=L--D--G};
-	\pic["$\delta$", draw=blue, latex-, angle eccentricity=1.1, angle radius=2.5cm] {angle=M--L--H};
-	\pic["$I_1$", draw=blue, -, angle eccentricity=1.6, angle radius=0.3cm] {angle=J--G--I};
-	\pic["$I'_1$", draw=blue, -, angle eccentricity=1.6, angle radius=0.3cm] {angle=K--G--D};
-	\pic[draw=blue, -, angle radius=0.9cm] {angle=G--D--E};
-	\pic["$-I'_2$", draw=blue, -, angle eccentricity=1.6, angle radius=0.5cm] {angle=M--D--F};
+	\pic["$\alpha$", draw=black, -, angle eccentricity=1.4, angle radius=0.4cm] {angle=A--B--C};
+	\pic[draw=black, -, angle radius=0.8cm] {angle=D--G--H};
+	\pic["$\delta_2$", draw=black, -, angle eccentricity=1.6, angle radius=0.5cm] {angle=L--D--G};
+	\pic["$\delta$", draw=black, latex-, angle eccentricity=1.1, angle radius=2.5cm] {angle=M--L--H};
+	\pic["$I_1$", draw=black, -, angle eccentricity=1.6, angle radius=0.3cm] {angle=J--G--I};
+	\pic["$I'_1$", draw=black, -, angle eccentricity=1.6, angle radius=0.3cm] {angle=K--G--D};
+	\pic[draw=black, -, angle radius=0.9cm] {angle=G--D--E};
+	\pic["$-I'_2$", draw=black, -, angle eccentricity=1.6, angle radius=0.5cm] {angle=M--D--F};
 	\coordinate [label=above:$\delta_1$](delta-1) at (-1,1.1);
 	\coordinate [label=below:$-I_2$](i-2) at (0.4,1.4);
 	\coordinate [label=above:$n$](n) at (0,0.2);
@@ -865,6 +973,13 @@ K=\frac{d}{D}
 \delta=2(n-1)\alpha\cos\frac{\varphi}{2}
 \end{equation}
 
+\begin{problem}
+	有一等边折射三棱镜，其折射率为$1.65$，求光线经该棱镜的两个折射面折射后产生最小偏角时的入射角，并求出最小偏角值。
+\end{problem}
+\begin{solution}
+	由\figref{fig:refracting-prism} 可知，当$I_1=-I'_2$时，产生最小偏角。由公式$\alpha+\delta=I_1-I'_2$可得，$I_1=55.6^{\circ}$。由式 (\ref{eq:minimum-deviation-angle}) 可得，最小偏角$\delta_m=51.2^{\circ}$。
+\end{solution}
+
 \section{光的色散}
 以太阳光谱中的夫琅禾费谱线作为特征，单色谱线来表征光学介质的折射率，这些谱线的符号、颜色、波长以及产生谱线的元素如\tabref{tab:spectral-line} 所示。
 
@@ -904,9 +1019,15 @@ v_D=\frac{n_D-1}{n_F-n_C}
 		\task $1.50583$
 	\end{tasks}
 \end{problem}
-
 \begin{solution}
 	选择a。
+\end{solution}
+
+\begin{problem}
+	有一光楔，其材料为K9玻璃（$n_F=1.52196$，$n_C=1.51389$），白光经其折射后要发生色散。若要求出射的F光和C光间的夹角$\delta_{F,C}<1'$，求光楔的最大折射角应为多少。
+\end{problem}
+\begin{solution}
+	当光线垂直入射或入射角很小，有$\delta=\alpha(n-1)$。对于F光，出射光线的偏角为$\delta_F=\alpha(n_F-1)$；对于C光，出射光线的偏角为$\delta_C=\alpha(n_C-1)$。其夹角为$\delta_{FC}=\delta_F-\delta_C=\alpha(n_F-1)-\alpha(n_C-1)=0.00807\alpha$。要使$\delta_{FC}=0.00807\alpha<1'$，则有$\alpha=1'/0.00807=2^{\circ}4'4''$。即最大折射角为$2^{\circ}4'4''$。
 \end{solution}
 
 \chapter{理想光学系统}
@@ -988,11 +1109,11 @@ v_D=\frac{n_D-1}{n_F-n_C}
 		\draw[line width=0.8pt] (A) arc (180:160:5);
 		\draw[line width=0.8pt] (B) arc (180:200:-5);
 		\draw[line width=0.8pt] (B) arc (180:160:-5);
-		\pic["$-u_1$", draw=blue, -, angle eccentricity=1.6, angle radius=0.8cm] {angle=A--G--L};
-		\pic["$u'_k$", draw=blue, -, angle eccentricity=1.6, angle radius=0.8cm] {angle=K--H--B};
-		\draw[blue,latex-latex](-4,-0.8) -- (0.4,-0.8) node[black,below,midway](line){$-f$};
-		\draw[blue,latex-latex](4,-1.2) -- (-0.4,-1.2) node[black,below,midway](line){$f'$};
-		\draw[blue,latex-latex] (-4.5,1.3) -- ($(A)!(-4.5,1.3)!(B)$)node[black,midway,xshift=0.2cm]{$h_1$};
+		\pic["$-u_1$", draw=black, -, angle eccentricity=1.6, angle radius=0.8cm] {angle=A--G--L};
+		\pic["$u'_k$", draw=black, -, angle eccentricity=1.6, angle radius=0.8cm] {angle=K--H--B};
+		\draw[latex-latex](-4,-0.8) -- (0.4,-0.8) node[black,below,midway](line){$-f$};
+		\draw[latex-latex](4,-1.2) -- (-0.4,-1.2) node[black,below,midway](line){$f'$};
+		\draw[latex-latex] (-4.5,1.3) -- ($(A)!(-4.5,1.3)!(B)$)node[black,midway,xshift=0.2cm]{$h_1$};
 		\end{tikzpicture}
 		\caption{理想光学系统}
 		\label{fig:perfect-optical-system}
@@ -1068,14 +1189,14 @@ v_D=\frac{n_D-1}{n_F-n_C}
 	\draw[-] (1.95,0) -- (1.95,-2);
 	\draw[-latex,red,line width=1.2pt] (C) -- (G);
 	\draw[-latex,red,line width=1.2pt] (D) -- (H);
-	\draw[blue,latex-latex](-4,-1.8) -- (-2.455,-1.8) node[black,below,midway](line){$-x$};
-	\draw[blue,latex-latex](-0.4,-1.8) -- (-2.455,-1.8) node[black,below,midway](line){$-f$};
-	\draw[blue,latex-latex](4,-1.8) -- (1.95,-1.8) node[black,below,midway](line){$x'$};
-	\draw[blue,latex-latex](0.4,-1.8) -- (1.95,-1.8) node[black,below,midway](line){$f'$};
-	\draw[blue,latex-latex](-4,-2.3) -- (-0.4,-2.3) node[black,below,midway](line){$-l$};
-	\draw[blue,latex-latex](4,-2.3) -- (0.4,-2.3) node[black,below,midway](line){$l'$};
-	\pic["$-u$", draw=blue, -, angle eccentricity=1.4, angle radius=0.6cm] {angle=D--C--A};
-	\pic["$u'$", draw=blue, -, angle eccentricity=1.4, angle radius=0.6cm] {angle=B--D--C};
+	\draw[latex-latex](-4,-1.8) -- (-2.455,-1.8) node[black,below,midway](line){$-x$};
+	\draw[latex-latex](-0.4,-1.8) -- (-2.455,-1.8) node[black,below,midway](line){$-f$};
+	\draw[latex-latex](4,-1.8) -- (1.95,-1.8) node[black,below,midway](line){$x'$};
+	\draw[latex-latex](0.4,-1.8) -- (1.95,-1.8) node[black,below,midway](line){$f'$};
+	\draw[latex-latex](-4,-2.3) -- (-0.4,-2.3) node[black,below,midway](line){$-l$};
+	\draw[latex-latex](4,-2.3) -- (0.4,-2.3) node[black,below,midway](line){$l'$};
+	\pic["$-u$", draw=black, -, angle eccentricity=1.4, angle radius=0.6cm] {angle=D--C--A};
+	\pic["$u'$", draw=black, -, angle eccentricity=1.4, angle radius=0.6cm] {angle=B--D--C};
 	\end{tikzpicture}
 	\caption{物像位置}
 	\label{fig:newton-and-gauss}
@@ -1629,8 +1750,8 @@ f'=\frac{1}{(n-1)\bigg(\dfrac{1}{r_1}-\dfrac{1}{r_2}\bigg)}
 	\draw[-,line width=0.8pt] (-3,-2) -- (-3,-1.2);
 	\draw[-,line width=0.8pt] (-3.1,-1.2) -- (-2.9,-1.2);
 	\draw[-] (-1,2.4) -- (-1,2);
-	\draw[blue,latex-latex](-3,1.5) -- (-1,1.5) node[black,above,midway](line){$-q$};
-	\draw[blue,latex-latex](-6,2.2) -- (-1,2.2) node[black,above,midway](line){$-p$};
+	\draw[latex-latex](-3,1.5) -- (-1,1.5) node[black,above,midway](line){$-q$};
+	\draw[latex-latex](-6,2.2) -- (-1,2.2) node[black,above,midway](line){$-p$};
 	\draw (1.8,1.2) circle (1.2);
 	\coordinate [label=left:$A$] (G1) at (0.8,0);
 	\filldraw [fill=blue!20] (1.8,1.2) circle (0.8);
@@ -1960,6 +2081,7 @@ M=\frac{\varPhi}{S}
 光出射度与光照度的形式相同，其差别在于光照度中的$\varPhi$是表面接收的光通量，光出射度中的$\varPhi$是从表面发出的光通量。光出射度的单位为勒克斯（lx）。二次光源的光出射度与受照后的光照度和表面的反射率有关，可表示为
 \begin{equation}
 M=\rho E
+\label{eq:luminous-exitance}
 \end{equation}
 
 \subsection{光亮度}
@@ -1988,6 +2110,30 @@ I_i=I_N\cos i
 M=\pi L
 \end{equation}
 由此可见，光亮度为常数的光源，其光出射度为光亮度的$\pi$倍。
+
+对于不是本身发光的二次光源，其光亮度可按照上式和公式(\ref{eq:luminous-exitance})表示为
+\begin{equation}
+L=\frac{\rho E}{\pi}
+\end{equation}
+
+\tabref{tab:optical-energy-physical-quantity} 是上述诸物理量的单位及其换算关系。
+\begin{table}[htbp]
+	\centering
+	\caption{光能相关物理量的单位及其换算关系}
+	\begin{tabular}{ccc}
+		\toprule
+		物理量  & 单位  & 关系  \\
+		\midrule
+		发光强度 & 坎德拉 & 基本单位  \\
+		光通量  & 流明  & 1流明=1坎德拉$\cdot$球面度  \\
+		光照度  & 勒克斯 & 1勒克斯=1流明/平方米=1坎德拉$\cdot$球面度/平方米 \\
+		光出射度 & 勒克斯 & 1勒克斯=1流明/平方米=1坎德拉$\cdot$球面度/平方米 \\
+		光亮度  & 尼特  & 1尼特=1坎德拉/平方米 \\
+		\bottomrule
+	\end{tabular}
+    \label{tab:optical-energy-physical-quantity}
+\end{table}
+
 
 \section{光传播过程中光学量的变化规律}
 \subsection{光亮度在同一介质中传递}
@@ -2169,6 +2315,13 @@ E'_m=K\pi L\sin^2U'_m\bigg(\frac{n'}{n}\bigg)^2
 E'_M=E'\cos^4 W'
 \end{equation}
 
+\chapter{典型光学系统}
+
+\chapter{像差理论}
+
+
+
+\part{物理光学}
 
 %\bibliography{reference}
 \appendix
