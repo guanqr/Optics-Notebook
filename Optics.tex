@@ -18,6 +18,7 @@
 \setcounter{tocdepth}{2}
 
 %*********************
+\usetikzlibrary{intersections}
 \usetikzlibrary{quotes,angles}
 \usetikzlibrary{patterns}
 \tikzstyle{every picture}+=[remember picture]
@@ -94,9 +95,9 @@
 	\centering
 	\begin{tabular}{cccccccc}
 		\toprule
-		&\color{red}{红}&\color{orange}{橙}&\color{yellow}{黄}&\color{green}{绿}&\color{cyan}{青}&\color{blue}{蓝}&\color{violet}{紫}\\
+		&\color{red}{红色}&\color{orange}{橙色}&\color{yellow}{黄色}&\color{green}{绿色}&\color{cyan}{青色}&\color{blue}{蓝色}&\color{violet}{紫色}\\
 		\midrule
-		$\lambda$(nm)&\tabincell{c}{$780\sim$\\$620$}&\tabincell{c}{$620\sim$\\$590$}&\tabincell{c}{$590\sim$\\$570$}&\tabincell{c}{$570\sim$\\$495$}&\tabincell{c}{$495\sim$\\$476$}&\tabincell{c}{$476\sim$\\$450$}&\tabincell{c}{$450\sim$\\$380$}\\
+		$\lambda$(nm)&$780\sim620$&$620\sim590$&$590\sim570$&$570\sim495$&$495\sim476$&$476\sim450$&$450\sim380$\\
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -725,16 +726,58 @@ l'=-l,\quad\beta=1
 
 \begin{figure}[htbp]
 	\centering
-	\begin{minipage}[t]{0.45\textwidth}
+	\begin{minipage}[t]{0.48\textwidth}
 		\centering
-		\includegraphics[width=0.8\textwidth]{one-mirror.pdf}
+		\begin{tikzpicture}
+		\draw[-latex] (0:0) -- (5:2.5);
+		\draw[latex-] (0:0) -- (135:2.5);
+		\draw[-latex] (0:0) -- (45:2.5);
+		\draw[-] (0:0) -- (90:2.5);
+		\draw[-] (0:0) -- (70:2.5);
+		\draw[-] (180:2.5) -- (0:2.5);
+		\draw[-] (160:2.5) -- (-20:2.5);
+		\filldraw[pattern=north east lines] (180:2.5) -- (0:2.5) -- (-1:2.5) -- (181:2.5) -- (180:2.5);
+		\filldraw[pattern=north east lines] (160:2.5) -- (-20:2.5) -- (-21:2.5) -- (161:2.5) -- (160:2.5);
+		\draw[-latex] (-0.8,0) arc (180:160:0.8);
+		\draw[-latex] (0,0.8) arc (90:70:0.8);
+		\draw[-latex] (0.3535,0.3535) arc (45:5:0.5);
+		\node[] at (170:1.1) {$\alpha$};
+		\node[] at (80:1.1) {$\alpha$};
+		\node[] at (25:0.9) {$2\alpha$};
+		\node[] at (90:2.6) {$N$};
+		\end{tikzpicture}
 		\caption{单平面镜对光的变换}
 		\label{fig:one-mirror}
 	\end{minipage}
-	\qquad
-	\begin{minipage}[t]{0.45\textwidth}
+	\quad
+	\begin{minipage}[t]{0.48\textwidth}
 		\centering
-		\includegraphics[width=0.8\textwidth]{two-mirror.pdf}
+		\begin{tikzpicture} 
+		\coordinate (A) at (-1.299,3);
+		\coordinate (B) at (150:1.5);
+		\coordinate (C) at (90:1.5);
+		\coordinate (D) at (120:1.732);
+		\coordinate (E) at (-0.75,1.5);
+		\coordinate (F) at (-1.299,2.25);
+		\draw[-] (0:0) -- (90:3);
+		\draw[-] (0:0) -- (150:3);
+		\filldraw[pattern=north east lines] (0:0) -- (90:3) -- (89:3) -- (0:0.05) -- (0:0);
+		\filldraw[pattern=north east lines] (0:0) -- (150:3) -- (151:3) -- (240:0.05) -- (0:0);
+		\draw[latex-] (150:1.5) -- (-1.299,3);
+		\draw[-latex] (150:1.5) -- (90:1.5);
+		\draw[latex-] (-2.598,3) -- (90:1.5);
+		\draw[-] (180:1.732) -- (120:1.732);
+		\draw[-] (-0.75,1.5) -- (0.75,1.5);
+		\node[] at (150:3.3) {$M_1$};
+		\node[] at (90:3.2) {$M_2$};
+		\node[] at (180:2) {$N_1$};
+		\node[] at (1,1.5) {$N_2$};
+		\draw[-] (0,0.4) arc (90:150:0.4);
+		\node[] at (120:0.6) {$\alpha$};
+		\pic["$I_1$", draw=black, -, angle eccentricity=1.3, angle radius=0.5cm] {angle=D--B--A};
+		\pic["$I_2$", draw=black, -, angle eccentricity=1.3, angle radius=0.5cm] {angle=E--C--B};
+		\pic["$\beta$", draw=black, -, angle eccentricity=1.6, angle radius=0.3cm] {angle=C--F--A};
+		\end{tikzpicture}
 		\caption{双平面镜对光的变换}
 		\label{fig:two-mirror}
 	\end{minipage}
@@ -784,14 +827,72 @@ $\Delta l'$恒为正值，所以平行平板所成像总是由物沿光线前进
 	\centering
 	\begin{minipage}[t]{0.48\textwidth}
 		\centering
-		\includegraphics[width=1\textwidth]{parallel-plate-1.png}
+		\begin{tikzpicture}[scale=0.9] 
+		\draw[-] (-3.5,0) -- (3.5,0);
+		\draw[-,name path=pathA] (3,-2) -- (3,2);
+		\draw[-,name path=pathB] (2,-2) -- (2,2);
+		\draw[-,dashed,name path=pathC] (-3,0) -- (3,1.5);
+		\path [name intersections={of = pathB and pathC, by=B}];
+		\path [name intersections={of = pathA and pathC, by=C}];
+		\draw[-latex,red] (-0.5,0) -- (2,1.25);
+		\draw[-,dashed] (0,0) -- (3,1.5);
+		\draw[-latex,red] (B) -- (C);
+		\draw[-latex,red] (3,1.5) -- (3.5,1.75);
+		\node[] at (-0.8,-0.2) {$A$};
+		\node[] at (0.2,-0.2) {$A'$};
+		\node[] at (2.5,-1) {$n$};
+		\coordinate (A) at (0,0);
+		\coordinate (D) at (-0.5,0);
+		\pic["$-U$", draw=black, -, angle eccentricity=1.6, angle radius=0.6cm] {angle=A--D--B};
+		\draw[-] (-0.5,0) -- (-0.5,-2);
+		\draw[-] (0,0) -- (0,-1.5);
+		\draw[latex-latex](0,-1.2) -- (3,-1.2) node[black,above,midway](line){$-l'$};
+		\draw[-latex](-1,-1.2) -- (-0.5,-1.2);
+		\node[] at (-0.75,-0.9) {$\Delta l'$};
+		\draw[latex-latex](2,-1.7) -- (3,-1.7) node[black,above,midway](line){$d$};
+		\draw[latex-latex](2,-1.7) -- (-0.5,-1.7) node[black,above,midway](line){$-l$};
+		\end{tikzpicture}
 		\caption{平行平板成像(1)}
 		\label{fig:parallel-plate-1}
 	\end{minipage}
-	\qquad
-	\begin{minipage}[t]{0.45\textwidth}
+	\quad
+	\begin{minipage}[t]{0.48\textwidth}
 		\centering
-		\includegraphics[width=1\textwidth]{parallel-plate-2.png}
+		\begin{tikzpicture}[scale=0.9] 
+		\draw[-] (-3.5,0) -- (4,0);
+		\draw[-] (3,-2) -- (3,2);
+		\draw[-] (1,-2) -- (1,2);
+		\draw[-] (0,1) -- (3,1);
+		\draw[-] (2,1.25) -- (4,1.25);
+		\draw[-] (-3,0) -- (-3,-2);
+		\draw[-] (-2,0) -- (-2,-2);
+		\coordinate [label=above:$A$](A) at (-3,0);
+		\coordinate [label=above left:$D$](B) at (1,1);
+		\coordinate [label=below right:$A'$](C) at (-2,0);
+		\coordinate [label=below right :$E$](D) at (3,1.25);
+		\coordinate (E) at (4,1.5);
+		\coordinate (F) at (3,0);
+		\coordinate (G) at (0,1);
+		\coordinate (H) at (3,1);
+		\coordinate (I) at (2,1.25);
+		\coordinate (J) at (4,1.25);
+		\draw[-latex,red] (A) -- (B);
+		\draw[-,dashed] (C) -- (D);
+		\draw[-latex,red] (B) -- (D);
+		\draw[-latex,red] (D) -- (E);
+		\pic["$-U$", draw=black, -, angle eccentricity=1.6, angle radius=0.7cm] {angle=C--A--B};
+		\pic["$-U'$", draw=black, -, angle eccentricity=1.6, angle radius=0.7cm] {angle=F--C--D};
+		\pic["$I_1$", draw=black, -, angle eccentricity=1.6, angle radius=0.7cm] {angle=G--B--A};
+		\pic[draw=black, -, angle eccentricity=1.6, angle radius=0.7cm] {angle=H--B--D};
+		\node[] at (1.5,1.3) {$I'_1$};
+		\pic[draw=black, -, angle eccentricity=1.6, angle radius=0.7cm] {angle=I--D--C};
+		\node[] at (2.5,1.5) {$I_2$};
+		\pic[draw=black, -, angle eccentricity=1.6, angle radius=0.7cm] {angle=J--D--E};
+		\node[] at (3.5,1.6) {$I'_2$};
+		\node[] at (2,0.4) {$n$};
+		\draw[latex-latex](-3,-1.5) -- (-2,-1.5) node[black,above,midway](line){$\Delta L'$};
+		\draw[latex-latex](1,-1.5) -- (3,-1.5) node[black,above,midway](line){$d$};
+		\end{tikzpicture}
 		\caption{平行平板成像(2)}
 		\label{fig:parallel-plate-2}
 	\end{minipage}
@@ -1145,8 +1246,8 @@ v_D=\frac{n_D-1}{n_F-n_C}
 		\coordinate [label=above right:$O_k$] (B) at (1,0);
 		\coordinate [label=left:$A$] (C) at (-5,1.3);
 		\coordinate [label=right:$A'$] (D) at (5,1.3);
-		\coordinate [label=above:$Q'$] (E) at (-0.4,1.6);
-		\coordinate [label=above:$Q$] (F) at (0.4,1.6);
+		\coordinate [label=above:$Q'$] (E) at (-0.4,1.8);
+		\coordinate [label=above:$Q$] (F) at (0.4,1.8);
 		\coordinate [label=above:$F$] (G) at (-4,0);
 		\coordinate [label=above:$F'$] (H) at (4,0);
 		\coordinate [label=above left:$H'$] (I) at (-0.4,0);
@@ -1430,11 +1531,11 @@ ny\tan U=n'y'\tan U'
 		\draw[-] (-6.5,0) -- (6,0); 
 		\draw[<->,line width=0.8pt] (-1.5,2.5) -- (-1.5,-2.5); 
 		\draw[>-<,line width=0.8pt] (0,1.6) -- (0,-1.6); 
-		\draw[-,violet] (-3,2) -- (-3,-2);
-		\draw[-,violet] (0.3,2) -- (0.3,-2);
+		\draw[-,blue] (-3,2) -- (-3,-2);
+		\draw[-,blue] (0.3,2) -- (0.3,-2);
 		\draw[-latex,red] (0,1) -- (5,0);
 		\draw[-,dashed,blue] (0,1) -- (-3,1.6);
-		\draw[-,dashed,red] (0,1) -- (0.3,0.84);
+		\draw[-,dashed,blue] (0,1) -- (0.3,0.84);
 		\draw[-,blue] (0,0) -- (-3,1.6);
 		\draw[latex-,red] (0,1) -- (-1.5,1.8);
 		\draw[-,blue] (0.3,0.84) -- (-1.5,0.84);
@@ -1621,7 +1722,7 @@ x'_2=\alpha x_1
 由此可见，望远镜系统的各种放大率，仅由组成该系统的两个光组的焦距决定。
 
 供眼睛观察用的光学系统为目视光学系统，目视光学系统中最重要的参数为视觉放大率。
-\begin{definition}{望远镜系统的视觉放大率}{visual-magnification}
+\begin{definition}{视觉放大率}{visual-magnification}
 	望远镜系统的视觉放大率是远处物体经系统所成的像对眼睛张角$W'$的正切与该物体直接对眼睛张角$W$的正切之比，用$\varGamma$表示。望远镜系统的视觉放大率等于该系统的角放大率，即
 	\begin{equation}
 	\varGamma=\frac{\tan W'}{\tan W}=\gamma=-\frac{f'_1}{f'_2}=\frac{1}{\beta}
@@ -1818,8 +1919,43 @@ l'_H=\frac{-dr_2}{n(r_2-r_1)+(n-1)d},\quad l_H=\frac{-dr_1}{n(r_2-r_1)+(n-1)d}
 \end{enumerate}
 
 \section{焦距测量}
+焦距的测定有多种方法，这里主要介绍两种。
 
-待补充
+\textbf{方法一：}用一固定大小的物体经被测透镜或系统在两个位置成像，并量出在这两个共轭位置时的像的大小来计算焦距。如\figref{fig:calculate-focal-length-1} 所示，大小为$y$的物体位于$A_1$时，经被测系统成像于$A'_1$，放大率为$\beta_1$；当物体移动到另一位置$A_2$时，成像于$A'_2$，放大率为$\beta_2$。根据放大率公式$\beta=-f/x$，并令$x_2-x_1=\Delta x$，可导出
+\begin{equation}
+f=\frac{\Delta x}{\dfrac{1}{\beta_1}-\dfrac{1}{\beta_2}}
+\end{equation}
+式中，$\Delta x$为物体的移动距离，为已知值，所以只要量出两个位置的像的大小$y'_1$和$y'_2$，即可求知两个$\beta$，并按照上式计算出焦距。
+
+若应用公式$\beta=-x'/f'$，则可得出以像方焦距$f'$表示的相应公式：
+\begin{equation}
+f'=\frac{\Delta x'}{\beta_1-\beta_2}
+\end{equation}
+所以，只要量出两个像位置的间距$\Delta x'$和像的大小，即可求得像方焦距。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.4\textwidth]{calculate-focal-length-1.png}
+	\caption{焦距测量（一）}
+	\label{fig:calculate-focal-length-1}
+\end{figure}
+
+\textbf{方法二：}用平行光管测定焦距。如\figref{fig:calculate-focal-length-1} 所示，先看被测系统$O_2$本身的光路。一束与光轴成$W$角的入射平行光束经系统$O_2$以后，会聚于焦平面上的$B'$点。它就是距$O_2$为无限远的某轴外物点的像。$B'$点的高度$y'$可以由一对过节点的共轭光线来确定。通常光学系统位于空气中，主点与节点重合，因此，有图可得
+\begin{equation}
+y'=-f'\tan U'=-f'\tan W
+\end{equation}
+这里，给定倾角的平行光束是由平行光管$O_1$提供的，在平行光管$O_1$的前焦面上设置一刻有几对已知间隔线条的分划板，用以产生平行光束。平行光管物镜的焦距经精确测定而为定值，因此与每对刻线对应的平行光束的倾角$\tan W=-y/f_1$也是已知的。所以被测物镜的焦距为
+\begin{equation}
+f'_2=-\frac{y'}{\tan W}=\frac{f_1}{y}y'
+\end{equation}
+由此可见，整个测试工作仅在于测得被测物镜焦面上某对刻线的间隔。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\textwidth]{calculate-focal-length-2.png}
+	\caption{焦距测量（二）}
+	\label{fig:calculate-focal-length-2}
+\end{figure}
 
 \chapter{光学系统中光束的限制}
 
@@ -2124,11 +2260,11 @@ $\varDelta_1$和$\varDelta_2$分别为远景深度和近景深度，二者之和
 \begin{equation}
 W=\int_{\lambda} P_{\lambda}\cdot\mathrm{d}\lambda
 \end{equation}
-人眼对于波长为$555$nm的光最为敏感，如果在单位波长内$P_{\lambda}$W的辐射能通量相当于$\varPhi_{\lambda}$流明的光通量，其比值为
+人眼对于波长为$555\mathrm{nm}$的光最为敏感，如果在单位波长内$P_{\lambda}\mathrm{W}$的辐射能通量相当于$\varPhi_{\lambda}$流明的光通量，其比值为
 \begin{equation}
 K_{\lambda}=\frac{\varPhi_{\lambda}}{P_{\lambda}}
 \end{equation}
-可表示为$1$W单色辐射能通量所相当的流明数。$555$nm光的这一数值$K_{555}$为最大。任意其他波长的单色光的$K_{\lambda}$值与$K_{555}$之比表征了人眼对于该单色辐射的灵敏度，称为光谱光视效率或视见函数，以$V_{\lambda}$表示，即
+可表示为$1\mathrm{W}$单色辐射能通量所相当的流明数。$555\mathrm{nm}$光的这一数值$K_{555}$为最大。任意其他波长的单色光的$K_{\lambda}$值与$K_{555}$之比表征了人眼对于该单色辐射的灵敏度，称为光谱光视效率或视见函数，以$V_{\lambda}$表示，即
 \begin{equation}
 V_{\lambda}=\frac{K_{\lambda}}{K_{555}}
 \end{equation}
@@ -2789,10 +2925,37 @@ r-p=-0.001nf'^2\overline{A}
 \subsection{显微镜的照明系统}
 显微镜的照明系统主要有以下三类：
 \begin{enumerate}
-	\item 用透射光照明透明标本的照明系统（待补充……）
+	\item 用透射光照明透明标本的照明系统
 	\begin{enumerate}
 		\item 临界照明
+		
+		\begin{figure}[htbp]
+			\centering
+			\includegraphics[width=0.9\textwidth]{critical-illumination.pdf}
+			\caption{临界照明示意图}
+			\label{fig:critical-illumination}
+		\end{figure}
+		
+		光源通过照明系统或聚光镜成像于物面上，如\figref{fig:critical-illumination} 所示。其简化图如图所示（简化图待补充），图中的双点划线是从光源到物面再到像面的一对共轭关系，虚线是从光源光阑到物镜孔阑的另一对共轭关系。聚光镜的像方孔径角必须与物镜的物方孔径角相匹配，为此在聚光镜的物方焦面上或附近设置可变光阑。于是照明系统的出瞳正好与物镜的入瞳大致重合。
+		\begin{note}
+			临界照明的缺点是当光源的亮度不均匀或呈现明显的灯丝结构时，将会反映到物面上影响观察效果。
+		\end{note}
 		\item 柯拉照明
+		
+		\begin{figure}[htbp]
+			\centering
+			\includegraphics[width=0.9\textwidth]{kohler-illumination.pdf}
+			\caption{柯拉照明示意图}
+			\label{fig:kohler-illumination}
+		\end{figure}
+		
+		光源成像在物镜入瞳面上，如\figref{fig:kohler-illumination} 所示。图中$A$、$B$、$C$、$D$是一组共轭关系，$1$、$2$、$3$、$4$是一组共轭关系。其简化图如图所示（简化图待补充），图中的虚线是从光源到物镜孔阑的一对共轭关系，双点划线是从光源光阑$J_1$到物面再到像面的另一对共轭关系。光源发出的光先经过一个前置透镜$L$成像于聚光镜前的可变光阑$J_2$上，聚光镜再将此光源像成在物镜的入瞳面上。在前置透镜后紧靠透镜处设置另一可变光阑，它被照明后具有均匀的亮度，并被聚光镜成像于物面上，使物面也得到均匀照明。调节光阑$J_2$可以使照明系统与不同数值孔径的物镜相匹配。调节光阑$J_1$可改变物面上的照明范围。
+		\begin{note}
+			对比两种照明方式可以发现，柯拉照明可以是临界照明将光源换成光源加前置物镜和光源光阑$J_1$，将光源通过前置物镜成像到$J_2$，$J_1$位于原临界照明的光源位置。
+		\end{note}
+		\begin{property}
+			在照明系统和成像系统的合成系统中，成像系统的所有光都必然来自照明系统。这些光想要到达像面，必须通过照明系统和成像系统各自的瞳和窗。要使光传输的信息量不损失，任一光线都不能被照明系统或成像系统的任一光孔所拦截。那么只可能存在两种光瞳匹配关系，\uline{一种是照明系统的窗与成像系统的窗共轭，照明系统的瞳与成像系统的瞳共轭，这就是临界照明；另一种是照明系统的窗与成像系统的瞳共轭，照明系统的瞳与成像系统的窗共轭，这就是柯拉照明}。
+		\end{property}
 	\end{enumerate}
 	\item 非透明物体的照明系统
 	
