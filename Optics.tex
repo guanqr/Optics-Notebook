@@ -1,18 +1,33 @@
 \documentclass[cn,10pt,chinesefont=founder,math=newtx,cite=super,twoside]{elegantbook}
 
+% 自定义封面
+\makeatletter
+\renewcommand{\maketitle}{%
+	\pagenumbering{Alph}%
+	\thispagestyle{empty}%
+	\vspace*{5cm}%
+	\begin{center}
+		{\zihao{1}\heiti\@title}\\[28pt]
+		\@author
+	\end{center}
+}
+\makeatother
 \title{光学与光子学}
-\subtitle{专业课学习笔记}
+\author{\Large{关其锐\hspace{\ccwd}{\heiti 著}}}
 
-\author{Keiyui Kwan}
-\institute{Zhejiang University}
-\date{\today}
-\version{1.00}
+%\title{光学与光子学}
+%\subtitle{专业课学习笔记}
+
+%\author{Keiyui Kwan}
+%\institute{Zhejiang University}
+%\date{\today}
+%\version{1.00}
 %\bioinfo{自定义}{信息}
 
-\extrainfo{God said, "Let there be light", and there was light.}
+%\extrainfo{God said, "Let there be light", and there was light.}
 
-\logo{logo.png}
-\cover{cover.jpg}
+%\logo{logo.png}
+%\cover{cover.jpg}
 
 % 修改目录深度
 \setcounter{tocdepth}{2}
@@ -35,8 +50,10 @@
 %	\task 
 %\end{tasks}
 
+% 表格内分行
 \newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
 
+% 批注
 \definecolor{tcolor}{RGB}{255,127,  0} % default: 0,124,53
 \definecolor{lcolor}{RGB}{255,178,102} % default: 153,255,153
 \definecolor{pcolor}{RGB}{224,250,255} % default: 216,255,216
@@ -1520,7 +1537,30 @@ ny\tan U=n'y'\tan U'
 	\centering
 	\begin{minipage}[t]{0.3\textwidth}
 		\centering
-		\includegraphics[width=0.9\textwidth]{nodal-points.pdf}
+		\begin{tikzpicture} [scale=0.87 ] 
+		\coordinate (A) at (-1,0);
+		\coordinate (B) at (1,0);
+		\coordinate [label=above:$N$] (C) at (-0.5,0);
+		\coordinate [label=below:$N'$] (D) at (0.5,0);
+		\coordinate (E) at (-2,0);
+		\coordinate (F) at (2,0);
+		\coordinate (G) at (-2,-2);
+		\coordinate (H) at (2,2);
+		\draw[-,dashed] (E) -- (F);
+		\draw[-,dashed,red,name path=pathA] (G) -- (C);
+		\draw[-,dashed,red,name path=pathB] (H) -- (D);
+		\draw[line width=0.8pt,name path=pathC] (A) arc (180:200:5);
+		\draw[line width=0.8pt] (A) arc (180:160:5);
+		\draw[line width=0.8pt,name path=pathD] (B) arc (180:200:-5);
+		\draw[line width=0.8pt] (B) arc (180:160:-5);
+		\path [name intersections={of = pathA and pathC, by=I}];
+		\path [name intersections={of = pathB and pathD, by=J}];
+		\draw[-,red] (I) -- (J);
+		\draw[-latex,red] (G) -- (I);
+		\draw[-latex,red] (J) -- (H);
+		\pic["$\theta$", draw=black, -, angle eccentricity=1.2, angle radius=1cm] {angle=E--C--G};
+		\pic["$\theta$", draw=black, -, angle eccentricity=1.2, angle radius=1cm] {angle=F--D--H};
+		\end{tikzpicture}
 		\caption{厚透镜的节点}
 		\label{fig:nodal-points}
 	\end{minipage}
@@ -2889,9 +2929,9 @@ r-p=-0.001nf'^2\overline{A}
 \sigma=\frac{0.5\lambda}{n\sin U}
 \end{equation}
 通过上述讨论可知，对于一定波长的色光，显微镜的分辨率在像差校正良好的情况下，完全被物镜的数值孔径所决定。数值孔径越大，分辨率越高。
-\begin{note}
+\begin{property}
 	显微镜的倍率越高，物镜的数值孔径越大，景深越小，分辨率越高。
-\end{note}
+\end{property}
 
 \subsection{显微镜的放大率}
 分别取$2'$和$4'$为人眼分辨角的下限和上限，人眼在明视距离处能分辨开两点的间距即为$\sigma$被显微镜放大以后的像，有
@@ -2966,6 +3006,151 @@ r-p=-0.001nf'^2\overline{A}
 \end{enumerate}
 
 \section{望远镜系统}
+\subsection{望远镜的一般特性}
+望远镜系统是一种使入射的平行光束仍保持平行射出的光学系统。最简单的望远镜系统必须由两个光组组成。前一光组的像方焦点与后一光组的物方焦点重合，即光学间隔$\varDelta=0$。光组$L_1$朝向物体，为望远镜的物镜；光组$L_2$为目镜。具有正光焦度目镜的系统为\textbf{开普勒望远镜}，具有负光焦度目镜的系统为\textbf{伽利略望远镜}。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\textwidth]{kepler-telescope.png}
+	\caption{开普勒望远镜系统}
+	\label{fig:kepler-telescope}
+\end{figure}
+
+如\figref{fig:kepler-telescope} 所示为光束经开普勒望远镜系统的光路，物镜的通光孔径限制了轴上点的成像光束，是系统的孔径光阑和入瞳，出瞳是物镜的通光孔被目镜所成的像，应在目镜的像方焦点之外，能与观察者的眼瞳重合。
+
+\begin{definition}{望远镜的放大率}{magnification-of-telescope}
+	眼睛通过望远镜观察时，物体的像对眼睛张角的正切与眼睛直接看该物体时，物体对眼睛张角的正切之比，即为望远镜的放大率，以$\varGamma$表示。由于物方、像方都位于无穷远，此放大率即为系统本身的像方视场角与物方视场角的正切值比，有
+	\begin{equation}
+	\varGamma=\frac{\tan W'}{\tan W}=-\frac{f'_1}{f'_2}=\frac{D}{D'}
+	\label{eq:visual-magnification}
+	\end{equation}
+	所以，望远镜的放大率还可表示为物镜焦距与目镜焦距之比、入瞳直径与出瞳直径之比。由式(\ref{eq:visual-magnification})可知，开普勒望远镜成倒像，伽利略望远镜成正像。
+\end{definition}
+
+\begin{property}
+由视觉放大率公式(\ref{eq:visual-magnification})可知：
+\begin{enumerate}
+	\item 当物镜的焦距大于目镜的焦距时，望远镜有视觉放大作用；
+	\item 当目镜的焦距一定时，倍率越高，物镜的焦距越长，导致望远镜的长度越大；
+	\item 当像方视场角$W'$一定时，倍率越大，物方视场越小；
+	\item 当入瞳直径一定时，倍率越大，出瞳直径越小，当出瞳小于眼瞳时，视见像的光强度下降。
+\end{enumerate}
+\end{property}
+
+\begin{definition}{望远镜的正常放大率}{normal-magnification-of-telescope}
+	当望远镜的入瞳直径为$D$时，它能分辨的远处两点对入瞳中心的最小张角为$\varphi''=140/D$，为充分利用物镜的分辨率，望远镜应把此角度放大到能为眼睛所分辨的程度，因此要求$\varGamma\varphi''\geqslant60''\sim70''$，即
+	\begin{equation}
+	\varGamma\geqslant0.5D
+	\end{equation}
+	式中，$D$的单位为毫米。按照此式确定的放大率称为望远镜的正常放大率，对应的出瞳直径为$2\mathrm{mm}$，和白天光亮条件下眼瞳直径相当。
+\end{definition}
+较多情况下按仪器用途确定的放大率大于正常放大率。若通过望远镜瞄准，则瞄准误差应为
+\begin{equation}
+\Delta\alpha''=\frac{\alpha''}{\varGamma}
+\end{equation}
+式中$\alpha''$为肉眼瞄准误差，由此可见增大倍率可提高瞄准镜度。
+
+\subsection{望远镜的主观亮度}
+\begin{definition}{主观亮度}{subjective-luminance}
+	眼睛观物时，成在视网膜上的像对感光神经末梢的作用所引起的视觉刺激程度，称为主观亮度。眼睛直接观物时感知的像的明亮程度称为肉眼的主观亮度；通过望远镜观察时感知的像的明亮程度称为望远镜的主观亮度。
+\end{definition}
+
+\subsubsection{点物或点光源的像}
+	
+像的主观亮度仅决定于进入眼睛的光通量。当通过望远镜观察点光源时，能进入望远镜的光通量$\varPhi_T$被入瞳直径$D$决定，用人眼直接观察时，能进入眼瞳的光通量$\varPhi_e$由眼瞳的直径$D_e$决定。若眼瞳直径$D_e$大于望远镜的出瞳直径$D'$，所有射入望远镜的光通量全部都能进入眼睛，因此点像的主观亮度要比肉眼观察时大。其相对主观亮度，即两种情况下的光通量之比为：
+\begin{equation}
+\frac{\varPhi_T}{\varPhi_e}=k\frac{D^2}{D^2_e}
+\label{eq:relative-subjective-luminance-1}
+\end{equation}
+其中，$k$为望远镜的透射率。若望远镜的出瞳直径$D'$与眼瞳直径$D_e$相等，此时有$D=\varGamma D_e$，则相对主观亮度为
+\begin{equation}
+\frac{\varPhi_T}{\varPhi_e}=k\varGamma^2
+\label{eq:relative-subjective-luminance-2}
+\end{equation}
+若出瞳大于眼瞳，则进入望远镜的光通量不能全部进入眼瞳，眼睛便成为整个光学系统的出瞳，入瞳直径应为$\varGamma D_e$，此时同样可得公式(\ref{eq:relative-subjective-luminance-2})。
+\begin{property}
+	望远镜的物镜口径一定时，倍率越高，相对主观亮度越大，但倍率高到使出瞳不大于眼瞳时，即为定值。当望远镜的倍率和眼瞳直径一定时，物镜的直径越大，相对主观亮度也越大。
+\end{property}
+观察天空中微弱发光的星星时，应使用倍率高，物镜孔径大的天文望远镜。
+	
+\subsubsection{观察有限大小物体}
+	
+有限大小物体的像的主观亮度由网膜上的照度决定。通过望远镜观察的物体与人眼直接观察同一物体在视网膜上像面积之比为$\varGamma^2$，由$E=\varPhi/S$与式(\ref{eq:relative-subjective-luminance-1})可得观察有限大小物体的相对主观亮度为
+\begin{equation}
+\frac{E_T}{E_e}=k\bigg(\frac{D'}{D_e}\bigg)^2
+\end{equation}
+上式的值不可能大于$k$，因此用望远镜观察有限大小的物体时，主观亮度总比用肉眼观察时低。所以在黄昏或夜间使用的望远镜因眼瞳较大，应有较大的出瞳。望远镜的倍率越高，出瞳越小，当用于天文观察时，作为点光源的星星，其相对主观亮度很大，而作为背景的天空，相对主观亮度很小，因此在白天，利用高倍天文望远镜可以看见明亮天空中的星星。
+
+\subsection{望远镜的光束限制}
+
+伽利略望远镜和开普勒望远镜具有不同的光束限制。
+
+\figref{fig:galileo-telescope} 所示的是伽利略望远镜物方的入瞳和物镜、像方的出瞳和渐晕光阑的像。根据几何关系可以得出无渐晕、$50\%$渐晕的视场角，后者的正切为
+\begin{equation}
+\tan W=\frac{D}{2l}=\frac{D}{2\varGamma(f'_1+f'_2+\varGamma l'_p)}
+\end{equation}
+式中，$D$为物镜的直径，$l'_p$为出瞳距。由此可见，伽利略望远镜的倍率越高，视场越小，视场还随眼睛远离目镜而变小。
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\textwidth]{galileo-telescope.png}
+	\caption{伽利略望远镜系统}
+	\label{fig:galileo-telescope}
+\end{figure}
+\begin{note}
+	伽利略望远镜的优劣：伽利略望远镜的优点在于结构简单，筒长短，轻便，光能损失少，成正像。但伽利略望远镜没有中间的实像面，不能设置分划板作瞄准和定位。	
+\end{note}
+
+开普勒望远镜的目镜为正光焦度，在物镜和目镜之间具有中间实像平面，可以在其上设置视阑，安装分划板，作瞄准、定位和测量之用。分划板是在磨光的玻璃片上刻以分划标志的光学零件，其通光口径就是视阑的直径，有
+\begin{equation}
+D_F=2f'\tan W
+\end{equation}
+通过开普勒望远镜观察物体时，有明晰的视场边界。为了在大相对孔径和大视场的情况下不致使目镜的直径太大，并减少目镜斜光束像差的有害影响，可适当减小目镜的口径而允许轴外点存在$50\%$的渐晕。此时\figref{fig:kepler-telescope} 中主光线以上部分光束将被目镜限制而不能通过。
+\begin{note}
+	开普勒望远镜成倒像，只适用于天文观测或专设目标的瞄准和测量，为了便于观察可加入转像系统。结构上比伽利略望远镜复杂。	
+\end{note}
+
+\subsection{望远镜的物镜}
+望远镜物镜只需要对轴上点校正色差、球差和对近轴点校正彗差，轴外像差可不予考虑，其结构比较简单。
+\begin{enumerate}
+	\item 折射式望远镜物镜：双胶合物镜、双分离物镜、三分离物镜、内调焦物镜
+	\item 反射式望远镜物镜：卡塞格林系统、格利果里系统
+	\item 折反射式望远镜物镜：施密特物镜、马克苏托夫物镜、无光焦度的双透镜与球面卡氏系统的组合
+\end{enumerate}
+
+\subsection{望远镜的目镜}
+用于瞄准和测量的望远镜在其视阑平面上设置有分划板。为使屈光不正的观察者能看清分划板，目镜应能做视度调节。若要求视度的调节范围为$\pm N$个屈光度，目镜相对于分划板的调焦量$\Delta l$应为
+\begin{equation}
+\Delta l=\pm\frac{Nf'^2_2}{1000}(\mathrm{mm})
+\end{equation}
+式中，$f'_2$为目镜的焦距，以毫米计，一般仪器中，要求$N=\pm5$屈光度。目镜的工作距离应大于$\Delta l$。常用的目镜有：冉斯登目镜、凯涅尔目镜、对称式目镜、阿贝无畸变目镜、爱弗尔目镜。
+
+\subsection{转像系统与场镜}
+实际应用中使用的望远镜都是利用转像系统使倒像转成正像的开普勒望远镜。这种望远镜称为地上望远镜，转像系统为棱镜系统或透镜系统。
+\subsubsection{棱镜转像系统}
+用单块屋脊棱镜或由普通棱镜组合起来的棱镜系统，均能达到使像相对于物体在上下和左右两个方向都倒转过来的目的。详见第 \ref{sect:reflecting-prism} 节。
+
+\subsubsection{透镜转向系统}
+\begin{definition}{透镜转向系统}{lens-steering-system}
+	设在物镜的实像平面后面，使倒像再一次倒转成为正像的透镜系统称为透镜转像系统。
+\end{definition}
+透镜转向系统有两种形式，如\figref{fig:lens-steering-system-1} 和\figref{fig:lens-steering-system-2} 所示。
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\textwidth]{lens-steering-system-1.png}
+	\caption{透镜转向系统（单组）}
+	\label{fig:lens-steering-system-1}
+\end{figure}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\textwidth]{lens-steering-system-2.png}
+	\caption{透镜转向系统（双组）}
+	\label{fig:lens-steering-system-2}
+\end{figure}
+
+\subsubsection{场镜}
+如果只是简单地加入透镜转向系统，轴外点成像光束在转像镜组上的入射高度会大大增加，导致视场较大，绝大部分光线不能通过转像系统。为此，可以在中间实像平面上加一适当光焦度的透镜，使望远镜的光瞳与转像系统的光瞳共轭，使轴外光束折向转像镜组。这种加于中间相面上或附近的透镜称为场镜，它的光焦度对系统的总光焦度并无贡献，不影响轴上点光束和系统的放大率。
+
+根据像差理论可知，位于像面上的场镜除了产生匹兹凡和以及由此引起的畸变外，不产生其他像差。因此场镜都使用单透镜，并且在不需由它来改变畸变时，都采用平凹透镜。
 
 \section{摄影光学系统}
 
