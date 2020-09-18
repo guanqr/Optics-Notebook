@@ -2482,7 +2482,7 @@ L=\frac{\rho E}{\pi}
 \end{equation}
 光沿直线传播，光路可逆，也可看成$\mathrm{d}S_2$发光，有
 \begin{equation}
-\mathrm{d}\varPhi_2=L_1\mathrm{d}S_2\mathrm{d}\omega_2\cos i_2
+\mathrm{d}\varPhi_2=L_2\mathrm{d}S_2\mathrm{d}\omega_2\cos i_2
 \end{equation}
 所以，得到
 \begin{equation}
@@ -2887,24 +2887,30 @@ a'=250\frac{A}{M}
 \begin{equation}
 \frac{Z'}{2a'}=\frac{\mathrm{d}x'}{-x'+\mathrm{d}x'}
 \end{equation}
-若弥散圆对出瞳中心的张角不大于眼睛的极限分辨率$\varepsilon$，眼睛观察弥散圆即为点像。此时$2\mathrm{d}x'$即为像方能同时看清景象平面前后两像平面间的深度。因为有$|\mathrm{d}x'|\ll|x'|$，可以得到$2\mathrm{d}x'$的表达式。再利用轴向放大率$\alpha=n'\beta^2/n$，将此换算到物方，可得
+若弥散圆对出瞳中心的张角不大于眼睛的极限分辨率$\varepsilon$，眼睛观察弥散圆即为点像。此时$2\mathrm{d}x'$即为像方能同时看清景象平面前后两像平面间的深度。因为有$|\mathrm{d}x'|\ll|x'|$，可以得到$2\mathrm{d}x$的表达式。再利用轴向放大率$\alpha=n'\beta^2/n$，将此换算到物方，可得
 \begin{equation}
-2\mathrm{d}x'=\frac{nf'^2\varepsilon}{a'}
+2\mathrm{d}x=\frac{2\mathrm{d}x'}{\alpha}=\frac{nf'^2\varepsilon}{a'}
 \end{equation}
 再根据$a'=250A/M$以及$M=250/f'$，上式可表示为
 \begin{equation}
-2\mathrm{d}x'=\frac{250n\varepsilon}{MA}
+2\mathrm{d}x=\frac{250n\varepsilon}{MA}
 \end{equation}
-由此可见，显微镜的倍率越高，物镜的数值孔径越大，景深越小。
+\begin{property}
+由上式可知，显微镜的倍率越高，物镜的数值孔径越大，景深就越小。
+\end{property}
 
 由于眼睛能在近点和远点间自行调节，景深将有所扩大。若在像空间中，近点和远点到眼瞳所在的出瞳面的距离为$p'$和$r'$，根据出瞳与显微镜的像方焦面重合可导出与此对应的物空间距离$p$和$r$，两者之差即为眼睛通过显微镜观察时的调节范围，有
+\begin{equation}
+r=\frac{ff'}{r'}=-\frac{nf'^2}{r'},\quad p=-\frac{nf'^2}{p'}
+\end{equation}
 \begin{equation}
 r-p=-nf'^2\bigg(\frac{1}{r'}-\frac{1}{p'}\bigg)
 \end{equation}
 当$p'$和$r'$以米为单位时，括号内的值即为眼睛的调节范围$A$，单位为屈光度，即
 \begin{equation}
-r-p=-0.001nf'^2\overline{A}
+r-p=-0.001nf'^2\overline{A}=-0.001n\overline{A}\bigg(\frac{250}{M}\bigg)^2\Rightarrow r-p\propto\frac{1}{M^2}
 \end{equation}
+根据以上分析，可以得出显微镜的总景深为$2\mathrm{d}x+(r-p)$。
 
 \subsection{显微镜的分辨率}
 
@@ -2930,7 +2936,7 @@ r-p=-0.001nf'^2\overline{A}
 \end{equation}
 通过上述讨论可知，对于一定波长的色光，显微镜的分辨率在像差校正良好的情况下，完全被物镜的数值孔径所决定。数值孔径越大，分辨率越高。
 \begin{property}
-	显微镜的倍率越高，物镜的数值孔径越大，景深越小，分辨率越高。
+	显微镜的分辨本领随波长的减小而提高，随数值孔径的增大而提高。
 \end{property}
 
 \subsection{显微镜的放大率}
@@ -3116,62 +3122,176 @@ D_F=2f'\tan W
 	\item 反射式望远镜物镜：卡塞格林系统、格利果里系统
 	\item 折反射式望远镜物镜：施密特物镜、马克苏托夫物镜、无光焦度的双透镜与球面卡氏系统的组合
 \end{enumerate}
-
+\begin{note}
+	$D>60\mathrm{mm}$时不适于胶合。双分离物镜的$d_{\mathrm{air}}\approx0$。反射式物镜的$D$很大，对材料无严格要求，筒长较短，完全无色差，但对表面质量要求更高，且要用非球面。折反射式物镜以球面反射镜为基础，再加用于校正像差的折射元件而构成，可避免大型非球面加工。
+\end{note}
 \subsection{望远镜的目镜}
-用于瞄准和测量的望远镜在其视阑平面上设置有分划板。为使屈光不正的观察者能看清分划板，目镜应能做视度调节。若要求视度的调节范围为$\pm N$个屈光度，目镜相对于分划板的调焦量$\Delta l$应为
+用于瞄准和测量的望远镜在其视阑平面上设置有分划板。为使屈光不正的观察者能看清分划板，目镜应能做视度调节。设调节量为$\Delta l$，则
+\begin{equation}
+\Delta lx'=xx'=f_2f'_2
+\end{equation}
+其中，$x'$为远点距。若要求视度的调节范围为$\pm N$个屈光度，目镜相对于分划板的调焦量$\Delta l$应为
 \begin{equation}
 \Delta l=\pm\frac{Nf'^2_2}{1000}(\mathrm{mm})
 \end{equation}
 式中，$f'_2$为目镜的焦距，以毫米计，一般仪器中，要求$N=\pm5$屈光度。目镜的工作距离应大于$\Delta l$。常用的目镜有：冉斯登目镜、凯涅尔目镜、对称式目镜、阿贝无畸变目镜、爱弗尔目镜。
+\begin{note}
+	工作距离不等于焦距。
+\end{note}
+\tabref{tab:comparison-of-telescope-objective-and-eyepiece}所示的为望远镜物镜与目镜的参数比较。
+\begin{table}[htbp]
+	\caption{物镜与目镜参数比较}
+	\label{tab:comparison-of-telescope-objective-and-eyepiece}
+	\centering
+	\begin{tabular}{cccc}
+		\toprule
+		& $f'$ & $D/f'$ & $2W$ \\
+		\midrule
+		物镜 & 大 & 中等 & 小 \\
+		目镜 & 小 & 中等 & 大 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
 \subsection{转像系统与场镜}
 实际应用中使用的望远镜都是利用转像系统使倒像转成正像的开普勒望远镜。这种望远镜称为地上望远镜，转像系统为棱镜系统或透镜系统。
 \subsubsection{棱镜转像系统}
 用单块屋脊棱镜或由普通棱镜组合起来的棱镜系统，均能达到使像相对于物体在上下和左右两个方向都倒转过来的目的。详见第 \ref{sect:reflecting-prism} 节。
 
-\subsubsection{透镜转向系统}
-\begin{definition}{透镜转向系统}{lens-steering-system}
+\subsubsection{透镜转像系统}
+\begin{definition}{透镜转像系统}{lens-steering-system}
 	设在物镜的实像平面后面，使倒像再一次倒转成为正像的透镜系统称为透镜转像系统。
 \end{definition}
-透镜转向系统有两种形式，如\figref{fig:lens-steering-system-1} 和\figref{fig:lens-steering-system-2} 所示。
+透镜转像系统有两种形式，如\figref{fig:lens-steering-system-1} 和\figref{fig:lens-steering-system-2} 所示。
+
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.7\textwidth]{lens-steering-system-1.png}
-	\caption{透镜转向系统（单组）}
+	\begin{tikzpicture} 
+	\draw[-] (-5,0) -- (5,0);
+	\draw[latex-latex] (-4,1.2) -- (-4,-1.2);
+	\draw[-latex] (-1.75,0.8) -- (-1.75,-0.8);
+	\draw[latex-latex] (0.5,1.2) -- (0.5,-1.2);
+	\draw[latex-] (2.825,0.8) -- (2.825,-0.8);
+	\draw[latex-latex] (4,1) -- (4,-1);
+	\draw[-] (-5,1) -- (-4,1);
+	\draw[-] (-4,1) -- (0.5,-1);
+	\draw[-] (4,0.5) -- (0.5,-1);
+	\draw[-] (4,0.5) -- (5,0.5);
+	\draw[-] (-5,-1) -- (-4,-1);
+	\draw[-] (-4,-1) -- (0.5,1);
+	\draw[-] (4,-0.5) -- (0.5,1);
+	\draw[-] (4,-0.5) -- (5,-0.5);
+	\node[] at (-4,1.5) {物镜};
+	\node[] at (-1.75,1.1) {中间像};
+	\node[] at (0.5,1.5) {转像透镜};
+	\node[] at (2.825,1.1) {视阑};
+	\node[] at (4,1.3) {目镜};
+	\end{tikzpicture}
+	\caption{透镜转像系统（单组）}
 	\label{fig:lens-steering-system-1}
 \end{figure}
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.8\textwidth]{lens-steering-system-2.png}
-	\caption{透镜转向系统（双组）}
+	\begin{tikzpicture} 
+	\draw[-] (-5,0) -- (7,0);
+	\draw[latex-latex] (-4,1.2) -- (-4,-1.2);
+	\draw[-latex] (-1.75,0.8) -- (-1.75,-0.8);
+	\draw[latex-latex] (0.5,1.2) -- (0.5,-1.2);
+	\draw[latex-latex] (2.5,1.2) -- (2.5,-1.2);
+	\draw[latex-] (4.825,0.8) -- (4.825,-0.8);
+	\draw[latex-latex] (6,1) -- (6,-1);
+	\draw[-] (-5,1) -- (-4,1);
+	\draw[-] (-4,1) -- (0.5,-1);
+	\draw[-] (0.5,-1) -- (2.5,-1);
+	\draw[-] (6,0.5) -- (2.5,-1);
+	\draw[-] (6,0.5) -- (7,0.5);
+	\draw[-] (-5,-1) -- (-4,-1);
+	\draw[-] (-4,-1) -- (0.5,1);
+	\draw[-] (0.5,1) -- (2.5,1);
+	\draw[-] (6,-0.5) -- (2.5,1);
+	\draw[-] (6,-0.5) -- (7,-0.5);
+	\node[] at (-4,1.5) {物镜};
+	\node[] at (-1.75,1.1) {中间像};
+	\node[] at (1.5,1.5) {转像透镜};
+	\node[] at (4.825,1.1) {视阑};
+	\node[] at (6,1.3) {目镜};
+	\end{tikzpicture}
+	\caption{透镜转像系统（双组）}
 	\label{fig:lens-steering-system-2}
 \end{figure}
-
+单组透镜转像系统使筒长加长了$4$倍转像透镜焦距的长度，转像透镜的$\beta=-1$；
+双组透镜转像系统的镜筒加长
+\begin{equation}
+L=f'_a+d+f'_b\xrightarrow{f'_a=f'_b}2f'_a+d
+\end{equation}
+前后两块转像透镜取对称结构使转像组的垂轴像差为零。
 \subsubsection{场镜}
-如果只是简单地加入透镜转向系统，轴外点成像光束在转像镜组上的入射高度会大大增加，导致视场较大，绝大部分光线不能通过转像系统。为此，可以在中间实像平面上加一适当光焦度的透镜，使望远镜的光瞳与转像系统的光瞳共轭，使轴外光束折向转像镜组。这种加于中间相面上或附近的透镜称为场镜，它的光焦度对系统的总光焦度并无贡献，不影响轴上点光束和系统的放大率。
+\begin{definition}{场镜}{field-lens}
+	如果只是简单地加入透镜转像系统，轴外点成像光束在转像镜组上的入射高度会大大增加，导致视场较大，绝大部分光线不能通过转像系统。为此，可以在中间实像平面上加一适当光焦度的透镜，使望远镜的光瞳与转像系统的光瞳共轭，使轴外光束折向转像镜组。这种加于中间相面上或附近的透镜称为场镜。
+\end{definition}
+加入场镜后，总光焦度
+\begin{equation}
+\varphi=\frac{1}{h_1}\sum h\varphi
+\end{equation}
+保持不变，即场镜的光焦度对系统的总光焦度并无贡献，不影响轴上点光束和系统的放大率。
 
 根据像差理论可知，位于像面上的场镜除了产生匹兹凡和以及由此引起的畸变外，不产生其他像差。因此场镜都使用单透镜，并且在不需由它来改变畸变时，都采用平凹透镜。
 
-\section{摄影光学系统}
-
-\section{放映系统}
-
+\subsection{外形尺寸计算}
+\begin{problem}
+	\textbf{\color{red}{（重点）}}镜筒的长度为$250\mathrm{mm}$、放大率为$-24$、视场角为$1^{\circ}48'$的开普勒望远镜，设入瞳与物镜重合，计算其外形尺寸。
+\end{problem}
+\begin{solution}
+	镜筒长度为$250\mathrm{mm}$，放大率为$-24$，有
+	\begin{equation}
+	f'_1+f'_2=250\mathrm{mm},\quad \varGamma=-\frac{f'_1}{f'_2}=-24 \nonumber
+	\end{equation}
+	所以，$f'_1=240\mathrm{mm}$，$f'_2=10\mathrm{mm}$。由于正常放大率$\varGamma=0.5D$，则入瞳直径为$D=48\mathrm{mm}$，根据公式
+	\begin{equation}
+	\varGamma=\frac{D}{D'} \nonumber
+	\end{equation}
+	得到出瞳直径为$D'=2\mathrm{mm}$。根据公式
+	\begin{equation}
+	D_F=2f'_1\tan W \nonumber
+	\end{equation}
+	得到视阑直径为$D_F=7.54\mathrm{mm}$，取$D_F=7.6\mathrm{mm}$。由于视场角为$1^{\circ}48'$，根据公式
+	\begin{equation}
+	\varGamma=\frac{\tan W'}{\tan W} \nonumber
+	\end{equation}
+	得到目镜视场（即像方视场角）为$2W'=41.32^{\circ}$。根据公式
+	\begin{equation}
+	l'_p=x'_p+f'_2=\frac{f_2f'_2}{-f'_1}+f'_2=-\frac{L}{\varGamma} \nonumber
+	\end{equation}
+	得到出瞳距为$l'_p=10.42\mathrm{mm}$。目镜的通光口径与渐晕系数有关，无渐晕时，根据公式
+	\begin{equation}
+	\frac{D_e-D'}{2l'_p}=\tan W' \nonumber
+	\end{equation}
+	得到目镜直径为$D_e=9.86\mathrm{mm}$。若要求目镜的视度调节为$\pm5$屈光度，根据公式
+	\begin{equation}
+	\Delta l=\pm\frac{Nf'^2_2}{1000}(\mathrm{mm}) \nonumber
+	\end{equation}
+	得调节距离为$\Delta l=\pm0.5\mathrm{mm}$。
+\end{solution}
 
 \chapter{像差理论}
+像差是光学系统成像不完善程度的描述。像差可分为单色像差和色差。单色像差包括轴上像差——球差，以及轴外像差——彗差、像散、场曲、畸变。色差可分为位置色差和倍率色差。
+\section{轴上像差}
 
-
-
+\section{轴外像差}
+\subsection{彗差}
+\subsection{像散}
+\subsection{场曲}
+\subsection{畸变}
+\section{色差}
+\subsection{位置色差}
+\subsection{倍率色差}
+\section{初级像差}
 \part{物理光学}
 
 \part{光电子学}
 
 %\bibliography{reference}
 \appendix
-\chapter{几何光学习题解答}
-\begin{enumerate}[itemsep=1.5ex]
-
-	\item 备用附录
-	
-\end{enumerate}
+\chapter{备用}
 
 \end{document}
