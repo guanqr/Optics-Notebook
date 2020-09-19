@@ -1,38 +1,24 @@
 \documentclass[cn,10pt,chinesefont=founder,math=newtx,cite=super,twoside]{elegantbook}
 
-% 自定义封面
-\makeatletter
-\renewcommand{\maketitle}{%
-	\pagenumbering{Alph}%
-	\thispagestyle{empty}%
-	\vspace*{5cm}%
-	\begin{center}
-		{\zihao{1}\heiti\@title}\\[28pt]
-		\@author
-	\end{center}
-}
-\makeatother
 \title{光学与光子学}
-\author{\Large{关其锐\hspace{\ccwd}{\heiti 著}}}
+\subtitle{\huge{Optics and Photonics}}
 
-%\title{光学与光子学}
-%\subtitle{专业课学习笔记}
-
-%\author{Keiyui Kwan}
-%\institute{Zhejiang University}
-%\date{\today}
-%\version{1.00}
+\author{Keiyui Kwan}
+\institute{Zhejiang University}
+\date{\today}
+\version{1.00}
 %\bioinfo{自定义}{信息}
 
-%\extrainfo{God said, "Let there be light", and there was light.}
+\extrainfo{God said, "Let there be light", and there was light.}
 
-%\logo{logo.png}
-%\cover{cover.jpg}
+\logo{logo.png}
+\cover{cover.jpg}
 
 % 修改目录深度
 \setcounter{tocdepth}{2}
 
 %*********************
+\usepackage{pgfplots}
 \usetikzlibrary{intersections}
 \usetikzlibrary{quotes,angles}
 \usetikzlibrary{patterns}
@@ -82,12 +68,13 @@
 	
 \maketitle
 \frontmatter
-	
+
 \chapter*{前言}
 \markboth{前言}{introduction}
 欢迎您阅读本书。在2019年末，我顺利完成了本科光电专业必修理论知识的学习。为了方便查阅光学方面的各种基本概念，复习巩固光学基础知识，我便开始计划写下本书。本书进行书写时参考的资料主要为国内光电专业通用的课程教材：郁道银等编著的《工程光学（第四版）》和李晓彤等编著的《几何光学·像差·光学设计（第三版）》。我将本书看作是一本工具书，我对这本工具书的要求是，文字内容源于教材但要凝练，读者能够方便查阅相关概念，配图要精美，排版要美观。文字内容方面，因为本书的面向对象是光电专业的读者，因此对于一些简单的光学概念本书不再进行原理分析，本书重点突出了一些我认为需要重点掌握和易错的知识点。为了方便查阅，本书对光学概念分章节进行汇总，并设有目录，文中的图表、公式都设有标签可以进行跳转。配图方面，本书尽可能多地使用矢量图，这些矢量图来自维基百科和我自己的绘制。但因为我的时间有限，仍有较多图片使用了教材中的截图。对于本书的排版，我采用了\LaTeX 进行写作，模板采用的是Elegant\LaTeX 系列模板中的 \href{https://github.com/ElegantLaTeX/ElegantBook}{ElegantBook}。本书为免费共享书籍，请勿用于商业用途。
 
 \tableofcontents
+
 \mainmatter
 
 \part{应用光学}
@@ -869,7 +856,7 @@ $\Delta l'$恒为正值，所以平行平板所成像总是由物沿光线前进
 		\draw[latex-latex](2,-1.7) -- (3,-1.7) node[black,above,midway](line){$d$};
 		\draw[latex-latex](2,-1.7) -- (-0.5,-1.7) node[black,above,midway](line){$-l$};
 		\end{tikzpicture}
-		\caption{平行平板成像(1)}
+		\caption{平行平板成像（一）}
 		\label{fig:parallel-plate-1}
 	\end{minipage}
 	\quad
@@ -910,7 +897,7 @@ $\Delta l'$恒为正值，所以平行平板所成像总是由物沿光线前进
 		\draw[latex-latex](-3,-1.5) -- (-2,-1.5) node[black,above,midway](line){$\Delta L'$};
 		\draw[latex-latex](1,-1.5) -- (3,-1.5) node[black,above,midway](line){$d$};
 		\end{tikzpicture}
-		\caption{平行平板成像(2)}
+		\caption{平行平板成像（二）}
 		\label{fig:parallel-plate-2}
 	\end{minipage}
 \end{figure}
@@ -2656,10 +2643,15 @@ E'_M=E'\cos^4 W'
 
 \chapter{典型光学系统}
 
+\begin{introduction}
+	\item 眼睛（第 \ref{sec:eye} 节）
+	\item 放大镜（第 \ref{sec:magnifier} 节）
+	\item 显微镜系统（第 \ref{sec:microscope} 节）
+	\item 望远镜系统（第 \ref{sec:telescope} 节）
+\end{introduction}
+
 \section{眼睛}
-
-眼睛作为显微镜和望远镜等目视光学仪器的接收器，它的构造级有关特性应在设计这类仪器时予以考虑。
-
+\label{sec:eye}
 \subsection{眼睛的构造}
 
 \begin{figure}[htbp]
@@ -2773,7 +2765,7 @@ A=R-P
 \end{note}
 
 \section{放大镜}
-
+\label{sec:magnifier}
 对于目视光学仪器，其放大作用不能简单地以横向放大率来表征，而应代之以视觉放大率。
 \begin{definition}{放大镜的放大率}{magnifier-magnification}
 	通过放大镜看物体时，其像对眼睛张角的正切与直接看物体时，物体对眼睛张角的正切之比称为放大镜的放大率。
@@ -2825,6 +2817,7 @@ M=\frac{250}{f'}
 所以在放大镜的直径可眼瞳位置一定时，放大率越大，线视场越小。这就限制了放大镜的分辨率不能做得很大，一般不超过$15$倍。
 
 \section{显微镜系统}
+\label{sec:microscope}
 \subsection{显微镜概述}
 显微镜的主光学系统由物镜和目镜两部分组成。\figref{fig:microscope-1} 为显微镜的成像原理图。显微镜的总放大率为物镜放大率$M_o$和目镜放大率$M_e$的乘积。这里
 \begin{equation}
@@ -3012,6 +3005,7 @@ r-p=-0.001nf'^2\overline{A}=-0.001n\overline{A}\bigg(\frac{250}{M}\bigg)^2\Right
 \end{enumerate}
 
 \section{望远镜系统}
+\label{sec:telescope}
 \subsection{望远镜的一般特性}
 望远镜系统是一种使入射的平行光束仍保持平行射出的光学系统。最简单的望远镜系统必须由两个光组组成。前一光组的像方焦点与后一光组的物方焦点重合，即光学间隔$\varDelta=0$。光组$L_1$朝向物体，为望远镜的物镜；光组$L_2$为目镜。具有正光焦度目镜的系统为\textbf{开普勒望远镜}，具有负光焦度目镜的系统为\textbf{伽利略望远镜}。
 
@@ -3138,20 +3132,13 @@ D_F=2f'\tan W
 \begin{note}
 	工作距离不等于焦距。
 \end{note}
-\tabref{tab:comparison-of-telescope-objective-and-eyepiece}所示的为望远镜物镜与目镜的参数比较。
-\begin{table}[htbp]
-	\caption{物镜与目镜参数比较}
-	\label{tab:comparison-of-telescope-objective-and-eyepiece}
-	\centering
-	\begin{tabular}{cccc}
-		\toprule
-		& $f'$ & $D/f'$ & $2W$ \\
-		\midrule
-		物镜 & 大 & 中等 & 小 \\
-		目镜 & 小 & 中等 & 大 \\
-		\bottomrule
-	\end{tabular}
-\end{table}
+\begin{property}
+	望远镜物镜与目镜的参数比较：
+	\begin{itemize}
+		\item 物镜：$f'$大，$D/f'$中等，$2W$小；
+		\item 目镜：$f'$小，$D/f'$中等，$2W$大。
+	\end{itemize} 	
+\end{property}
 
 \subsection{转像系统与场镜}
 实际应用中使用的望远镜都是利用转像系统使倒像转成正像的开普勒望远镜。这种望远镜称为地上望远镜，转像系统为棱镜系统或透镜系统。
@@ -3276,6 +3263,135 @@ L=f'_a+d+f'_b\xrightarrow{f'_a=f'_b}2f'_a+d
 \chapter{像差理论}
 像差是光学系统成像不完善程度的描述。像差可分为单色像差和色差。单色像差包括轴上像差——球差，以及轴外像差——彗差、像散、场曲、畸变。色差可分为位置色差和倍率色差。
 \section{轴上像差}
+\subsection{球差}
+\begin{definition}{球差}{spherical-aberration}
+在第 \ref{sect:paraxial-ray} 章节中已知，由光轴上一点发出的光线经球面折射后所得的截距$L'$，随入射光线与光轴的夹角$U$或入射光线在球面上的入射点高度$h$而异。轴上点发出的同心光束经光学系统各个球面折射后，将不复为同心光束。不同倾角的光线交光轴于不同位置上，相对于理想像点的位置有不同的偏离。这是单色光的成像缺陷之一，称为球差。
+\end{definition}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.6\textwidth]{spherical-aberration.png}
+	\caption{球差示意图}
+	\label{fig:spherical-aberration}
+\end{figure}
+
+在\figref{fig:spherical-aberration} 中，轴上点$A$的理想像为$A'_0$，由$A$点发出的过入瞳边缘的光线$AP$（边缘光线）从系统出射后，交光轴于$A'$。由于球差，$A'$与$A'_0$不重合。若它们的像方截距分别为$L'$和$l'$，则
+\begin{equation}
+\delta L'=L'-l'
+\label{eq:spherical-aberration}
+\end{equation}
+为\textbf{轴向球差}。\figref{fig:spherical-aberration} 所示的是$\delta L'<0$的情况。若使某一孔径带$\delta L'=0$，称光学系统对这一环带光线校正球差。大部分光学系统只能对一环带光线校正球差，一半是对边缘光线校正。这种光学系统叫做\textbf{消球差系统}。
+
+球差对成像质量的危害，是它在理想像平面上引起半径为$\delta T'$的弥散圆。$\delta T'$为\textbf{垂轴球差}，它与轴向球差$\delta L'$之间有如下关系：
+\begin{equation}
+\delta T'=\delta L'\cdot\tan U'
+\label{eq:spherical-aberration-relationship}
+\end{equation}
+
+轴上点以单色光成像时只有球差，但轴上点以近轴细光束所成的像是理想的。由此可见，轴上点球差完全是由于光束的孔径角增大而引起的。所以，大孔径系统只允许有足够小的球差。同时可以看出，球差必然是$U_1$或$h_1$的函数。可以简单地把球差表示成$U_1$或$h_1$的幂级数。考虑到当$U_1$或$h_1$变号时球差不变，当$U_1$或$h_1$为零时球差为零，可以得出
+\begin{equation}
+\begin{cases}
+\delta L'=A_1h^2_1+A_2h^4_1+A_3h^6_1+\cdots\\
+\delta L'=a_1u^2_1+a_2u^4_1+a_3u^6_1+\cdots
+\end{cases}
+\end{equation}
+结合式(\ref{eq:spherical-aberration-relationship})可得垂轴像差为
+\begin{equation}
+\begin{cases}
+\delta T'=B_1h^2_1+B_2h^4_1+B_3h^6_1+\cdots\\
+\delta T'=b_1u^2_1+b_2u^4_1+b_3u^6_1+\cdots
+\end{cases}
+\end{equation}
+展开式中第一项为\textbf{初级球差}，此后各项分别为二级球差、三级球差等，二级以上的球差统称为\textbf{高级球差}。大部分光学系统二级以上的球差很小，可以忽略。
+\begin{property}
+	初级球差与孔径的平方成正比，二级球差与孔径的$4$次方成正比。当孔径较小时，主要存在初级球差；当孔径较大时，高级球差增大。	
+\end{property}
+
+球差的精确数值须对光线作光路计算后按照式(\ref{eq:spherical-aberration})求得。但对于仅有初级球差的系统，只需要计算一条光线，通常是边缘光线的球差，即可求得公式中的系数$A_1$或$a_1$，从而求知其他带的球差。同理，若同时有初级和二级球差，只要计算两条光线的求差值，即可确定各项系数，并求得其他各带的球差。大多数光学系统属于此类，对于这种系统，利用初级球差和二级球差的平衡，可以对一个孔径带校正球差，此时在其他带上必定具有\textbf{剩余球差}。
+
+以光线的相对高度表示展开式
+\begin{equation}
+\delta L'=A_1\bigg(\frac{h_1}{h_m}\bigg)^2+A_2\bigg(\frac{h_1}{h_m}\bigg)^4
+\end{equation}
+当对$h=h_m$的边光消球差时，有$A_1=-A_2$，为求得球差的极值，将上式对$h$微分，并令其为零，得
+\begin{equation}
+h_1=\frac{1}{\sqrt{2}}h_m=0.707h_m
+\end{equation}
+即当边光球差为零时，$h_1=0.707h_m$这一带光线，通常称带光，具有最大的剩余球差，其值为
+\begin{equation}
+\delta L'_{\mathrm{max}}=0.25A_1=-0.25A_2
+\end{equation}
+\begin{conclusion}
+对于可用展开式中前两项来描述球差的光学系统，当对边光校正了球差后，在$0.707$高度的带光具有最大的剩余球差。其值是边光为平衡高级球差所需的初级球差的$1/4$。若高级球差为正，带球差一定为负。光学系统的高级球差越大，带球差也越大；反之，已对边光消球差的系统，带球差大者，高级球差必大。
+\end{conclusion}
+\begin{note}
+	\begin{enumerate}
+		\item $h_1(u_1)$很小很小，$\delta L'=0$，近轴区。
+		\item $h_1(u_1)$很小，仅有初级量，赛得区。只需要确定一条边光确定系数$A_1(a_1)$。
+		\item $h_1(u_1)$有一定大小，$4$次项不可略，此时，需要按照上文分析得到最大剩余球差$\delta L'_{\mathrm{max}}=0.25A_1=-0.25A_2$。
+		\item $h_1(u_1)$大时，比如到三级，则须计算三条光线（边光、$0.707$带光、$0.85$带光），校正后，$0.85$带光有最大剩余球差。
+	\end{enumerate}
+\end{note}
+
+\subsection{球差曲线}
+以$\delta L'$为横坐标，$h/h_m$为纵坐标，可以画出如\figref{fig:spherical-aberration-curve-1} 所示的球差曲线，它能明晰地反映出系统的球差性质和球差校正情况。以$(h/h_m)^2$为纵坐标绘制的球差曲线如\figref{fig:spherical-aberration-curve-1} 所示，该图与波像差联系密切，且易于反映系统的球差性质。如果仅有初级球差，将得到一条直线；若不为直线，则在曲线上纵坐标为零处作的切线与曲线的偏离即为系统的高级球差。
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.48\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{spherical-aberration-curve-1.pdf}
+		\caption{球差曲线（$\delta L'\sim h/h_m$）}
+		\label{fig:spherical-aberration-curve-1}
+	\end{minipage}
+	\quad
+	\begin{minipage}[t]{0.48\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{spherical-aberration-curve-2.pdf}
+		\caption{球差曲线（$\delta L'\sim (h/h_m)^2$）}
+		\label{fig:spherical-aberration-curve-2}
+	\end{minipage}
+\end{figure}
+
+\subsection{单个折射球面的球差特征}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.6\textwidth]{spherical-aberration-of-the-object.png}
+	\caption{物方的球差}
+	\label{fig:spherical-aberration-of-the-object}
+\end{figure}
+
+假设某一面的物方已有球差，如\figref{fig:spherical-aberration-of-the-object} 所示，经推导可得
+\begin{equation}
+n'u'\sin U'\delta L'-nu\sin U\delta L=-(L'\sin U'-L\sin U)ni
+\end{equation}
+令$S\_=2(L'\sin U'-L\sin U)ni$，则
+\begin{equation}
+\delta L'=\frac{nu\sin U}{n'u'\sin U'}\delta L-\frac{1}{2n'u'\sin U'}S\_
+\end{equation}
+可见，某表面像空间的球差由两部分构成，即物方球差在像空间的贡献和表面本身所产生的球差。前者通过相当于轴向放大率的因子$nu\sin U/n'u'\sin U'$反映到像空间，后者由$S\_$决定。$S\_$称为表面的球差分布系数，表征该表面对最后球差的贡献量。利用公式
+\begin{equation}
+\frac{L'\sin U'}{\cos\bigg(\dfrac{I'-U'}{2}\bigg)}=\frac{L\sin U}{\cos\bigg(\dfrac{I-U}{2}\bigg)}
+\end{equation}
+$S\_$可化为
+\begin{equation}
+S\_=\frac{niL\sin U(\sin I'-\sin U)(\sin I-\sin I')}{\cos{\dfrac{I-U}{2}}\cos{\dfrac{I'+U}{2}}\cos{\dfrac{I+I'}{2}}}
+\end{equation}
+该式为表征球面产生球差的重要表达式。可见，单个球面在三种情况下不产生球差：
+\begin{enumerate}
+	\item $L=0$，此时$L'=0$，即不论$U$角多大，射向顶点的光线都从顶点折射而出，不产生球差。
+	\item $\sin I-\sin I'=0$，此时$I=I'=0$，即$L=r$，物点位于球心。此时物点发出的所有光线均无折射地通过球面，像点仍在球心，即$L'=r$。
+	\item $\sin I'-\sin U=0$或$I'=U$，易求出对应的物像点位置分别为
+	\begin{equation}
+	L=\frac{n+n'}{n}r,\quad L'=\frac{n+n'}{n'}r
+	\end{equation}
+	由此可见，这一对无球差的共轭点位于球心的一侧，且都在球心之外，只能是实物成虚像或虚物成实像。物像之间的关系满足
+	\begin{equation}
+	\frac{\sin U'}{\sin U}=\frac{\sin I}{\sin I'}=\frac{n'}{n}=\frac{L}{L'}
+	\end{equation}
+\end{enumerate}
+
 
 \section{轴外像差}
 \subsection{彗差}
