@@ -95,7 +95,7 @@
 
 \begin{table}[htbp]
 	\small
-	\caption{可见光不同颜色对应的波段参考范围\label{tab:visible-light}}
+	\caption{可见光不同颜色对应的波段参考范围}
 	\centering
 	\begin{tabular}{cccccccc}
 		\toprule
@@ -104,6 +104,7 @@
 		$\lambda$(nm)&$780\sim620$&$620\sim590$&$590\sim570$&$570\sim495$&$495\sim476$&$476\sim450$&$450\sim380$\\
 		\bottomrule
 	\end{tabular}
+	\label{tab:visible-light}
 \end{table}
 
 \subsection{基本定律}
@@ -3319,7 +3320,7 @@ h_1=\frac{1}{\sqrt{2}}h_m=0.707h_m
 \end{equation}
 即当边光球差为零时，$h_1=0.707h_m$这一带光线，通常称带光，具有最大的剩余球差，其值为
 \begin{equation}
-\delta L'_{\mathrm{max}}=0.25A_1=-0.25A_2
+\delta L'_{\max}=0.25A_1=-0.25A_2
 \end{equation}
 \begin{conclusion}
 对于可用展开式中前两项来描述球差的光学系统，当对边光校正了球差后，在$0.707$高度的带光具有最大的剩余球差。其值是边光为平衡高级球差所需的初级球差的$1/4$。若高级球差为正，带球差一定为负。光学系统的高级球差越大，带球差也越大；反之，已对边光消球差的系统，带球差大者，高级球差必大。
@@ -3355,13 +3356,6 @@ h_1=\frac{1}{\sqrt{2}}h_m=0.707h_m
 
 \subsection{单个折射球面的球差特征}
 
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.6\textwidth]{spherical-aberration-of-the-object.png}
-	\caption{物方的球差}
-	\label{fig:spherical-aberration-of-the-object}
-\end{figure}
-
 假设某一面的物方已有球差，如\figref{fig:spherical-aberration-of-the-object} 所示，经推导可得
 \begin{equation}
 n'u'\sin U'\delta L'-nu\sin U\delta L=-(L'\sin U'-L\sin U)ni
@@ -3377,6 +3371,7 @@ n'u'\sin U'\delta L'-nu\sin U\delta L=-(L'\sin U'-L\sin U)ni
 $S\_$可化为
 \begin{equation}
 S\_=\frac{niL\sin U(\sin I'-\sin U)(\sin I-\sin I')}{\cos{\dfrac{I-U}{2}}\cos{\dfrac{I'+U}{2}}\cos{\dfrac{I+I'}{2}}}
+\label{eq:spherical-aberration-distribution-coefficient}
 \end{equation}
 该式为表征球面产生球差的重要表达式。可见，单个球面在三种情况下不产生球差：
 \begin{enumerate}
@@ -3389,9 +3384,90 @@ S\_=\frac{niL\sin U(\sin I'-\sin U)(\sin I-\sin I')}{\cos{\dfrac{I-U}{2}}\cos{\d
 	由此可见，这一对无球差的共轭点位于球心的一侧，且都在球心之外，只能是实物成虚像或虚物成实像。物像之间的关系满足
 	\begin{equation}
 	\frac{\sin U'}{\sin U}=\frac{\sin I}{\sin I'}=\frac{n'}{n}=\frac{L}{L'}
+	\label{eq:aplanatic-point}
 	\end{equation}
 \end{enumerate}
 
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.6\textwidth]{spherical-aberration-of-the-object.png}
+	\caption{物方的球差}
+	\label{fig:spherical-aberration-of-the-object}
+\end{figure}
+
+\begin{definition}{齐明点}{aplanatic-point}
+	由式(\ref{eq:aplanatic-point})可知，不论孔径角多大，这对共轭点的$\sin U'/\sin U$和$L/L'$均为常数，都不产生球差。这一对共轭点能以任意宽的光束对轴上点成完善像，且过该点的垂轴平面上与之很靠近的点也能以任意宽的光束成完善像。故称这对共轭点为齐明点。
+\end{definition}
+
+根据单个折射球面的三个无球差的物点位置，可将整个物空间分成四个以这三个点为界的区域。由公式(\ref{eq:spherical-aberration-distribution-coefficient})可知，球差的正负是由$L\sin U$、$i$、$\sin I-\sin I'$和$\sin I'-\sin U$这四个因子的正负决定的：
+\begin{enumerate}
+	\item 第一因子$L\sin U=PA\cdot[\cos(I-U)/2]$总与$PA$\footnote{$PA$是顶点到光线与球面交点的距离，以顶点为基准上正下负。}同号。
+	\item 第二因子$i$与$\sin I$同号。
+	\item 第三因子$\sin I-\sin I'=\sin I\cdot(n'-n)/n'$，其正负根据$n$和$n'$的相对大小易于确定。
+	\item 第四因子$\sin I'-\sin U$可表示为$n\sin U\cdot[L/r-(n'+n)n]/n'$，其正负随不同区域而异。
+\end{enumerate}
+在$PA>0$的情况下分别对$r>0$和$r<0$的上述各因子进行正负判断分别得到如\tabref{tab:spherical-aberration-of-sphere-in-each-interval-1} 和\tabref{tab:spherical-aberration-of-sphere-in-each-interval-2} 所示结果。
+
+\begin{table}[htbp]
+	\small
+	\centering
+	\caption{$r>0$的球面在各区间内的球差正负}
+	\begin{tabular}{c|c|c|c|c|c|c|c|c}
+		\hline
+		\multirow{2}{*}{} & \multicolumn{2}{c|}{$-\infty\leqslant L<0$} & \multicolumn{2}{c|}{$0<L<r$} & \multicolumn{2}{c|}{$r<L<\dfrac{(n'+n)r}{n}$} & \multicolumn{2}{c}{$\dfrac{(n'+n)r}{n}<L\leqslant\infty$}\\
+		\cline{2-9} 
+		& $n'>n$ & $n'<n$ & $n'>n$ & $n'<n$ & $n'>n$ & $n'<n$ & $n'>n$ & $n'<n$\\
+		\hline
+		$L\sin U+$& $+$ & $+$ & $+$ & $+$ & $+$ & $+$ & $+$ & $+$\\
+		\hline
+		$i$或$\sin I+$& $+$ & $-$ & $-$ & $+$ & $+$ & $+$ & $+$ & $+$\\
+		\hline
+		$\sin I-\sin I'$& $+$会聚 & $-$发散 & $-$发散 & $+$会聚 & $+$会聚 & $-$发散 & $+$会聚 & $-$发散\\
+		\hline
+		$\sin I'-\sin U$& $+$ & $+$ & $-$ & $-$ & $-$ & $-$ & $+$ & $+$\\
+		\hline
+		$S\_$& $+$ & $-$ & $-$ & $+$ & $-$ & $+$ & $+$ & $-$\\
+		\hline
+		$\delta L'$& $-$ & $+$ & $+$ & $-$ & $+$ & $-$ & $-$ & $+$\\
+		\hline
+	\end{tabular}
+	\label{tab:spherical-aberration-of-sphere-in-each-interval-1}
+\end{table}
+
+\begin{table}[htbp]
+	\small
+	\centering
+	\caption{$r<0$的球面在各区间内的球差正负}
+	\resizebox{\textwidth}{!}{
+	\begin{tabular}{c|c|c|c|c|c|c|c|c}
+		\hline
+		\multirow{2}{*}{} & \multicolumn{2}{c|}{$-\infty\leqslant L<\dfrac{(n'+n)r}{n}$} & \multicolumn{2}{c|}{$\dfrac{(n'+n)r}{n}<L<r$} & \multicolumn{2}{c|}{$r<L<0$} & \multicolumn{2}{c}{$0<L\leqslant\infty$}\\
+		\cline{2-9} 
+		& $n'>n$ & $n'<n$ & $n'>n$ & $n'<n$ & $n'>n$ & $n'<n$ & $n'>n$ & $n'<n$\\
+		\hline
+		$\sin I-\sin I'$& $-$发散 & $+$会聚 & $-$发散 & $+$会聚 & $+$会聚 & $-$发散 & $-$发散 & $+$会聚\\
+		\hline
+		$\delta L'$& $+$正球差 & $-$负球差 & $-$负球差 & $+$正球差 & $-$负球差 & $+$正球差 & $+$正球差 & $-$负球差\\
+		\hline
+	\end{tabular}}
+	\label{tab:spherical-aberration-of-sphere-in-each-interval-2}
+\end{table}
+
+
+
+
+若$PA<0$，$\sin I$和$\sin U$同时变号，不影响球差的正负，所以单个折射球面产生的球差正负主要取决的光束的会聚和发散。
+
+\begin{conclusion}
+\begin{enumerate}
+	\item 折射球面对光束起会聚作用时，产生负球差；对光束起发散作用时，产生正球差；但对从球心到齐明点的区间有相反的结论。此区间称为折射球面的\textbf{反常区}。
+	\item 除反常区外，会聚球面对光束起会聚作用，产生负球差；发散球面对光束起发散作用，产生正球差。但从顶点到球心的区间例外。物点处于此区间时，会聚面反而对光束起发散作用，产生正球差；发散面对光束起会聚作用，产生负球差。此区间称为折射球面的\textbf{半反常区}。
+	\item 会聚球面除在反常区和半反常区产生正球差外，均产生负球差；发散球面除在反常区和半反常区产生负球差外，均产生正球差。
+\end{enumerate}
+\end{conclusion}
+\begin{note}
+反射球面无反常区和半反常区。
+\end{note}
 
 \section{轴外像差}
 \subsection{彗差}

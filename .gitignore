@@ -1,6 +1,8 @@
 *.txt
 *.aux
 *.log
+*.lof
+*.lot
 *.out
 Optics.pdf
 *.gz
