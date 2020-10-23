@@ -1,40 +1,30 @@
-\documentclass[cn,10pt,chinesefont=founder,math=newtx,cite=super,twoside]{elegantbook}
+\documentclass[cn,10pt,chinesefont=founder,math=mtpro2,cite=super,toc=onecol,twoside,openany]{elegantbook}
+%openany
 
+% 模板封面
 \title{光学与光子学}
 \subtitle{\huge{Optics and Photonics}}
-
 \author{Keiyui Kwan}
 \institute{Zhejiang University}
 \date{\today}
 \version{1.00}
 %\bioinfo{自定义}{信息}
-
 \extrainfo{God said, "Let there be light", and there was light.}
-
 \logo{logo.png}
 \cover{cover.jpg}
 
 % 修改目录深度
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{3}
 
-%*********************
+% tikz
 \usepackage{pgfplots}
 \usetikzlibrary{intersections}
 \usetikzlibrary{quotes,angles}
 \usetikzlibrary{patterns}
 \tikzstyle{every picture}+=[remember picture]
 
-%\everymath{\displaystyle}
-
-\usepackage{tasks} %选择题宏包，tasks环境
-
-% 选择题示例 
-%\begin{tasks}(4)
-%	\task 
-%	\task 
-%	\task 
-%	\task 
-%\end{tasks}
+% 选择题宏包，tasks环境
+\usepackage{tasks} 
 
 % 表格内分行
 \newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
@@ -43,7 +33,6 @@
 \definecolor{tcolor}{RGB}{255,127,  0} % default: 0,124,53
 \definecolor{lcolor}{RGB}{255,178,102} % default: 153,255,153
 \definecolor{pcolor}{RGB}{224,250,255} % default: 216,255,216
-
 \newcommand{\elegantpar}[2]{%
 	\textcolor{tcolor}{$\bm\langle{}\!{}$#1${}\!{}\bm\rangle$}%
 	\begin{tikzpicture}[remember picture, baseline=-0.75ex]%
@@ -62,16 +51,23 @@
 	-| (inNote.west);%
 	\end{tikzpicture}%
 }
-%*********************
 
 \begin{document}
 	
 \maketitle
 \frontmatter
 
-\chapter*{前言}
-\markboth{前言}{introduction}
-欢迎您阅读本书。在2019年末，我顺利完成了本科光电专业必修理论知识的学习。为了方便查阅光学方面的各种基本概念，复习巩固光学基础知识，我便开始计划写下本书。本书进行书写时参考的资料主要为国内光电专业通用的课程教材：郁道银等编著的《工程光学（第四版）》和李晓彤等编著的《几何光学·像差·光学设计（第三版）》。我将本书看作是一本工具书，我对这本工具书的要求是，文字内容源于教材但要凝练，读者能够方便查阅相关概念，配图要精美，排版要美观。文字内容方面，因为本书的面向对象是光电专业的读者，因此对于一些简单的光学概念本书不再进行原理分析，本书重点突出了一些我认为需要重点掌握和易错的知识点。为了方便查阅，本书对光学概念分章节进行汇总，并设有目录，文中的图表、公式都设有标签可以进行跳转。配图方面，本书尽可能多地使用矢量图，这些矢量图来自维基百科和我自己的绘制。但因为我的时间有限，仍有较多图片使用了教材中的截图。对于本书的排版，我采用了\LaTeX 进行写作，模板采用的是Elegant\LaTeX 系列模板中的 \href{https://github.com/ElegantLaTeX/ElegantBook}{ElegantBook}。本书为免费共享书籍，请勿用于商业用途。
+\chapter*{前\hspace{1em}言}
+\markboth{前言}{前言}
+
+时光荏苒，本科四年的生活即将结束。当年那个风华正茂的少年初次来到求是园时，就毫不犹豫地选择了光电专业。我热爱光学，想要在未来投身科研事业。四年过去，一路坎坷。岁月带走了我心中曾有过的激情，留下的只有那份看淡一切的平静。光电专业本身属于偏科研的专业，本科学到的只是浅层的知识，如果想要掌握真正的专业技能，必须读研深造。然而当今的国际局势风云变幻，许多原本打算出国留学的学生选择保研，各个专业都开始内卷化，让我们这些水平普普通通的学生的读研道路难上加难。经过深思熟虑后，那天晚上，我下定决心离开求是园，回到熟悉的北方求学。
+
+这本书诞生于我为考研奋战的过程中。浙江大学光电学院的本科专业核心课程主要有三门，分别是应用光学、物理光学和光电子学。在2019年末，我顺利完成了本科光电专业必修理论知识的学习。为了方便查阅光学方面的各种基本概念，复习巩固光学基础知识，我便开始计划写下本书。本书进行书写时参考的资料主要为国内光电专业通用的课程教材：郁道银等编著的《工程光学（第四版）》和李晓彤等编著的《几何光学·像差·光学设计（第三版）》。我将本书看作是一本工具书，我对这本工具书的要求是，文字内容源于教材但要凝练，读者能够方便查阅相关概念，配图要精美，排版要美观。文字内容方面，因为本书的面向对象是光电专业的读者，因此对于一些简单的光学概念本书不再进行原理分析，本书重点突出了一些我认为需要重点掌握和易错的知识点。为了方便查阅，本书对光学概念分章节进行汇总，并设有目录，文中的图表、公式都设有标签可以进行跳转。配图方面，本书尽可能多地使用矢量图，这些矢量图来自维基百科和我自己的绘制。但因为我的时间有限，仍有较多图片使用了教材中的截图。对于本书的排版，我采用了\LaTeX 进行写作，模板采用的是Elegant\LaTeX 系列模板中的 \href{https://github.com/ElegantLaTeX/ElegantBook}{ElegantBook}。本书为免费共享书籍，请勿用于商业用途。
+
+\begin{flushright}
+	关其锐
+	\par 2021年6月15日于求是园
+\end{flushright}
 
 \tableofcontents
 
@@ -111,13 +107,13 @@
 \label{subsect:basic-law}
 光线传播遵循以下四个基本定律：
 \begin{enumerate}
-	\item 直线传播定律：在各向同性的均匀介质中，光在两点之间沿直线传播，即在这种介质中，光线都是直线。
-	\item 独立传播定律：以不同途径传播的光同时在空间某点通过时，彼此互不影响，各路光独立传播，在各光路相遇处，其光强度是简单地相加，总是增强的。
-	\item 反射定律：反射光线与入射光线和法线在同一平面内，入射光线和反射光线分别位于法线的两侧，与法线的夹角相同，即
+	\item \textbf{直线传播定律：}在各向同性的均匀介质中，光在两点之间沿直线传播，即在这种介质中，光线都是直线。
+	\item \textbf{独立传播定律：}以不同途径传播的光同时在空间某点通过时，彼此互不影响，各路光独立传播，在各光路相遇处，其光强度是简单地相加，总是增强的。
+	\item \textbf{反射定律：}反射光线与入射光线和法线在同一平面内，入射光线和反射光线分别位于法线的两侧，与法线的夹角相同，即
 	\begin{equation}
 	I''=-I
 	\end{equation}
-	\item 折射定律：折射光线与入射光线和法线在同一平面内，折射角与入射角的正弦之比与入射角的大小无关，仅由两介质的性质决定。即有
+	\item \textbf{折射定律：}折射光线与入射光线和法线在同一平面内，折射角与入射角的正弦之比与入射角的大小无关，仅由两介质的性质决定。即有
 	\begin{equation}
 	n'\sin I'=n\sin I
 	\end{equation}
@@ -183,12 +179,8 @@
 
 \begin{problem}
 	若水面下$200\mathrm{mm}$处有一发光点，水的折射率为$4/3$，求在水面上能看到被该发光点照亮的范围有多大？
-	\begin{tasks}(4)
-		\task $453.56\mathrm{mm}$
-		\task $226.79\mathrm{mm}$
-		\task $352.77\mathrm{mm}$
-		\task $176.38\mathrm{mm}$
-	\end{tasks}
+	
+	(a)\ \ $453.56\mathrm{mm}$\qquad\qquad (b)\ \ $226.79\mathrm{mm}$\qquad\qquad (c)\ \ $352.77\mathrm{mm}$\qquad\qquad (d)\ \ $176.38\mathrm{mm}$
 \end{problem}
 \begin{solution}
 	选择a。由全反射的定义可知光从水中到空气中传播是临界角为
@@ -260,9 +252,9 @@
 	\centering
 	\begin{tikzpicture}[scale=0.8] 
 	\coordinate (A) at (-1.3,0);
-	\coordinate [label=right:$\boldsymbol{A}_0$] (B) at (0.5,1.8);
-	\coordinate [label=right:$\boldsymbol{A}'_0$] (C) at (3,1.8);
-	\coordinate [label=right:$\boldsymbol{N}$] (D) at (4,0);
+	\coordinate [label=right:$\vec{A}_0$] (B) at (0.5,1.8);
+	\coordinate [label=right:$\vec{A}'_0$] (C) at (3,1.8);
+	\coordinate [label=right:$\vec{N}$] (D) at (4,0);
 	\coordinate (E) at (-3,0);
 	\coordinate (F) at (-3,-1.7);
 	\draw[-] (-3,0) -- (4,0); 
@@ -278,54 +270,54 @@
 	\label{fig:vector-light}
 \end{figure}
 
-如\figref{fig:vector-light} 所示，$\boldsymbol{A}_0$和$\boldsymbol{A}'_0$分别是沿入射光线和折射光线的单位矢量，$\boldsymbol{N}$是沿法线的单位矢量。法线矢量的方向是从入射介质到折射介质。按此，光的折射定律公式可写为
+如\figref{fig:vector-light} 所示，$\vec{A}_0$和$\vec{A}'_0$分别是沿入射光线和折射光线的单位矢量，$\vec{N}$是沿法线的单位矢量。法线矢量的方向是从入射介质到折射介质。按此，光的折射定律公式可写为
 \begin{equation}
-n'(\boldsymbol{A}'_0\times\boldsymbol{N})=n(\boldsymbol{A}_0\times\boldsymbol{N}')
+n'(\vec{A}'_0\times\vec{N})=n(\vec{A}_0\times\vec{N}')
 \end{equation}
-展开上式，并将长度为$n'$的折射光线和长度为$n$的入射光线矢量分别记为$\boldsymbol{A}'$和$\boldsymbol{A}$，得
+展开上式，并将长度为$n'$的折射光线和长度为$n$的入射光线矢量分别记为$\vec{A}'$和$\vec{A}$，得
 \begin{equation}
-\boldsymbol{A}'\times\boldsymbol{N}=\boldsymbol{A}'\times\boldsymbol{N}
+\vec{A}'\times\vec{N}=\vec{A}'\times\vec{N}
 \end{equation}
 \begin{equation}
-(\boldsymbol{A}'-\boldsymbol{A})\times\boldsymbol{N}=0
+(\vec{A}'-\vec{A})\times\vec{N}=0
 \end{equation}
-$(\boldsymbol{A}'-\boldsymbol{A})$和$\boldsymbol{N}$都不可能为零，因此，两矢量必定是互相平行的，所以上式可表示为
+$(\vec{A}'-\vec{A})$和$\vec{N}$都不可能为零，因此，两矢量必定是互相平行的，所以上式可表示为
 \begin{equation}
-\boldsymbol{A}'-\boldsymbol{A}=P\boldsymbol{N}=0
+\vec{A}'-\vec{A}=P\vec{N}=0
 \end{equation}
-上式两边都与$\boldsymbol{N}$作标积，得
+上式两边都与$\vec{N}$作标积，得
 \begin{equation}
-P=\boldsymbol{N}\cdot\boldsymbol{A}'-\boldsymbol{N}\cdot\boldsymbol{A}=n'\cos I'-n\cos I
+P=\vec{N}\cdot\vec{A}'-\vec{N}\cdot\vec{A}=n'\cos I'-n\cos I
 \end{equation}
-当$n'>n$时，$P>0$，$(\boldsymbol{A}'-\boldsymbol{A})$与$\boldsymbol{N}$正向平行，反之，两矢量反向平行。一般情况下，在已知两介质折射率和光线入射角求折射角时，$P$可化为
+当$n'>n$时，$P>0$，$(\vec{A}'-\vec{A})$与$\vec{N}$正向平行，反之，两矢量反向平行。一般情况下，在已知两介质折射率和光线入射角求折射角时，$P$可化为
 \begin{equation}
 P=\sqrt{n'^2-n^2+n^2\cos^2 I}-n\cos I
 \end{equation}
 \begin{equation}
-\boldsymbol{A}'=\boldsymbol{A}+P\boldsymbol{N}
+\vec{A}'=\vec{A}+P\vec{N}
 \end{equation}
 上式即为矢量形式的折射定律。
 在$n'=-n$的情况下，有
 \begin{equation}
-P=n'\cos I'-n\cos I=-2n\cos I=-2(\boldsymbol{N}\cdot\boldsymbol{A})
+P=n'\cos I'-n\cos I=-2n\cos I=-2(\vec{N}\cdot\vec{A})
 \end{equation}
 得到
 \begin{equation}
-\boldsymbol{A}''=\boldsymbol{A}-2\boldsymbol{N}(\boldsymbol{N}\cdot\boldsymbol{A})
+\vec{A}''=\vec{A}-2\vec{N}(\vec{N}\cdot\vec{A})
 \end{equation}
 上式即为矢量形式的反射定律。
 
 \begin{problem}
-	有一光线$\boldsymbol{A}=\cos 60^{\circ}\boldsymbol{i}+\cos 30^{\circ}\boldsymbol{j}$入射于$n=1$和$n'=1.5$的平面分界面上，平面的法线为$\boldsymbol{N}=\cos 30^{\circ}\boldsymbol{i}+\cos 60^{\circ}\boldsymbol{j}$，求反射光线$\boldsymbol{A}''$和折射光线$\boldsymbol{A}'$。
+	有一光线$\vec{A}=\cos 60^{\circ}\vec{i}+\cos 30^{\circ}\vec{j}$入射于$n=1$和$n'=1.5$的平面分界面上，平面的法线为$\vec{N}=\cos 30^{\circ}\vec{i}+\cos 60^{\circ}\vec{j}$，求反射光线$\vec{A}''$和折射光线$\vec{A}'$。
 \end{problem}
 \begin{solution}
 	由
 	\begin{equation}
-	\boldsymbol{N}\cdot\boldsymbol{A}=n\cos I\notag
+	\vec{N}\cdot\vec{A}=n\cos I\notag
 	\end{equation}
 	得到
 	\begin{equation}
-	(\cos 60^{\circ}\boldsymbol{i}+\cos 30^{\circ}\boldsymbol{j})(\cos 30^{\circ}\boldsymbol{i}+\cos 60^{\circ}\boldsymbol{j})=\frac{\sqrt{3}}{2}=\cos I\notag
+	(\cos 60^{\circ}\vec{i}+\cos 30^{\circ}\vec{j})(\cos 30^{\circ}\vec{i}+\cos 60^{\circ}\vec{j})=\frac{\sqrt{3}}{2}=\cos I\notag
 	\end{equation}
 	所以有
 	\begin{equation}
@@ -338,17 +330,17 @@ P=n'\cos I'-n\cos I=-2n\cos I=-2(\boldsymbol{N}\cdot\boldsymbol{A})
 	所以由矢量形式的折射定律得
 	\begin{equation}
 	\begin{aligned}
-	\boldsymbol{A}'&=\boldsymbol{A}+P\boldsymbol{N}\\
-	&=(\cos 60^{\circ}\boldsymbol{i}+\cos 30^{\circ}\boldsymbol{j})+\bigg(\sqrt{2}-\frac{\sqrt{3}}{2}\bigg)(\cos 30^{\circ}\boldsymbol{i}+\cos 60^{\circ}\boldsymbol{j})\\
-	&=\bigg(\frac{2\sqrt{6}-1}{4}\bigg)\boldsymbol{i}+\bigg(\frac{2\sqrt{2}+\sqrt{3}}{4}\bigg)\boldsymbol{j}\notag
+	\vec{A}'&=\vec{A}+P\vec{N}\\
+	&=(\cos 60^{\circ}\vec{i}+\cos 30^{\circ}\vec{j})+\bigg(\sqrt{2}-\frac{\sqrt{3}}{2}\bigg)(\cos 30^{\circ}\vec{i}+\cos 60^{\circ}\vec{j})\\
+	&=\bigg(\frac{2\sqrt{6}-1}{4}\bigg)\vec{i}+\bigg(\frac{2\sqrt{2}+\sqrt{3}}{4}\bigg)\vec{j}\notag
 	\end{aligned}
 	\end{equation}
 	所以由矢量形式的反射定律得
 	\begin{equation}
 	\begin{aligned}
-	\boldsymbol{A}''&=\boldsymbol{A}-2\boldsymbol{N}(\boldsymbol{N}\cdot\boldsymbol{A})\\
-	&=(\cos 60^{\circ}\boldsymbol{i}+\cos 30^{\circ}\boldsymbol{j})-2(\cos 30^{\circ}\boldsymbol{i}+\cos 60^{\circ}\boldsymbol{j})[(\cos 60^{\circ}\boldsymbol{i}+\cos 30^{\circ}\boldsymbol{j})\cdot(\cos 30^{\circ}\boldsymbol{i}+\cos 60^{\circ}\boldsymbol{j})]\\
-	&=-\boldsymbol{i}\notag
+	\vec{A}''&=\vec{A}-2\vec{N}(\vec{N}\cdot\vec{A})\\
+	&=(\cos 60^{\circ}\vec{i}+\cos 30^{\circ}\vec{j})-2(\cos 30^{\circ}\vec{i}+\cos 60^{\circ}\vec{j})[(\cos 60^{\circ}\vec{i}+\cos 30^{\circ}\vec{j})\cdot(\cos 30^{\circ}\vec{i}+\cos 60^{\circ}\vec{j})]\\
+	&=-\vec{i}\notag
 	\end{aligned}
 	\end{equation}
 \end{solution}
@@ -397,8 +389,8 @@ P=n'\cos I'-n\cos I=-2n\cos I=-2(\boldsymbol{N}\cdot\boldsymbol{A})
 
 \begin{introduction}
 	\item 符号规则（第 \ref{sect:symbol-rules} 节）
-	\item 近轴光线光路（第 \ref{sect:paraxial-ray} 节）
-	\item 三种放大率（第 \ref{sect:three-magnification} 节）
+	\item 近轴光线光路（第 \ref{subsect:paraxial-ray} 节）
+	\item 三种放大率（第 \ref{subsect:three-magnification} 节）
 \end{introduction}
 
 \section{概念与符号规则}
@@ -446,15 +438,17 @@ P=n'\cos I'-n\cos I=-2n\cos I=-2(\boldsymbol{N}\cdot\boldsymbol{A})
 
 符号规则：
 \begin{enumerate}
-	\item 沿轴线段：如$L$、$L'$和$r$，以界面顶点为原点，如果由原点到光线与光轴的交点和到球心的方向与光线传播方向相同，其值为正，反之为负。光线传播方向规定自左向右。
-	\item 垂轴线段：如$h$，在光轴之上为正，之下为负。
-	\item 光线与光轴的夹角$U$和$U'$：以光轴为始边，从锐角方向转到光线，顺时针为正，逆时针为负。
-	\item 光线与法线的夹角$I$、$I'$和$I''$：以光线为始边，从锐角方向转到法线，顺时针为正，逆时针为负。
-	\item 表面间隔$d$：有前一面的顶点到后一面的顶点，其方向与光线方向相同者为正，反之为负，在纯折射系统中，$d$恒为正。
+	\item \textbf{沿轴线段：}如$L$、$L'$和$r$，以界面顶点为原点，如果由原点到光线与光轴的交点和到球心的方向与光线传播方向相同，其值为正，反之为负。光线传播方向规定自左向右。
+	\item \textbf{垂轴线段：}如$h$，在光轴之上为正，之下为负。
+	\item \textbf{光线与光轴的夹角$U$和$U'$：}以光轴为始边，从锐角方向转到光线，顺时针为正，逆时针为负。
+	\item \textbf{光线与法线的夹角$I$、$I'$和$I''$：}以光线为始边，从锐角方向转到法线，顺时针为正，逆时针为负。
+	\item \textbf{表面间隔$d$：}有前一面的顶点到后一面的顶点，其方向与光线方向相同者为正，反之为负，在纯折射系统中，$d$恒为正。
 \end{enumerate}
 
-\section{轴上物点经单个折射球面成像}
-\label{sect:paraxial-ray}
+\section{折射球面}
+\subsection{轴上物点成像}
+\label{subsect:paraxial-ray}
+
 由\figref{fig:spherical-system} 可得
 \begin{equation}
 \varphi=U+I=U'+I'
@@ -553,12 +547,10 @@ f'+f=r
 
 \begin{problem}
 	一折射球面，其像方焦距和物方焦距分别为$144\mathrm{mm}$和$-120\mathrm{mm}$，物方介质为$n=4/3$的水，求球面的曲率半径$r$和像方介质折射率$n'$。
-	\begin{tasks}(2)
-		\task $r=24\mathrm{mm}$，$n'=1.6$
-		\task $r=-24\mathrm{mm}$，$n'=1.6$
-		\task $r=24\mathrm{mm}$，$n'=1.11$
-		\task $r=-24\mathrm{mm}$，$n'=1.11$
-	\end{tasks}
+	
+	(a)\ \ $r=24\mathrm{mm}$，$n'=1.6$\ \ \qquad\qquad\qquad\qquad\qquad (b)\ \ $r=-24\mathrm{mm}$，$n'=1.6$
+	
+	(c)\ \ $r=24\mathrm{mm}$，$n'=1.11$\qquad\qquad\qquad\qquad\qquad (d)\ \ $r=-24\mathrm{mm}$，$n'=1.11$
 \end{problem}
 \begin{solution}
 	选择a。由已知可得，$f=-120$，$f'=144$，$n=4/3$。根据公式
@@ -571,11 +563,12 @@ f'+f=r
 	\begin{equation}
 	f'+f=r
 	\end{equation}
-	得到半径为$r=f'+f=180-150=30\mathrm{mm}$。
+	得到半径为$r=f'+f=144-120=24\mathrm{mm}$。
 \end{solution}
 
-\section{物平面细光束经折射球面成像}
-\label{sect:three-magnification}
+\subsection{物平面细光束成像}
+\label{subsect:three-magnification}
+
 由\figref{fig:imaging-magnification} 可得，横向放大率为
 \begin{equation}
 \beta=\frac{y'}{y}=\frac{l'-r}{l-r}=\frac{nl'}{n'l}
@@ -675,7 +668,7 @@ f'=f=\frac{r}{2}
 \begin{enumerate}
 	\item $\beta=-4$时，$l=5/8r$；
 	\item $\beta=4$时，$l=-3/8r$；
-	\item $\beta=-1/4$时，$l=5/2r$；
+	\item $\beta=-1/4$时，$l=5/2r$。
 \end{enumerate}
 若有缩小到1/4倍的虚像，则$\beta=1/4$，$l=-3/2r$.
 \end{solution}
@@ -974,7 +967,7 @@ K=\frac{d}{D}
 \subsection{简单棱镜}
 
 \begin{enumerate}
-	\item 一次反射棱镜：具有一个反射面，与单个平面镜对应，使物体成镜像。
+	\item \textbf{一次反射棱镜：}具有一个反射面，与单个平面镜对应，使物体成镜像。
 	\begin{enumerate}
 		\item 等腰直角棱镜
 		\item 达夫棱镜（如\figref{fig:dove-prism} 所示）
@@ -985,7 +978,7 @@ K=\frac{d}{D}
 			\label{fig:dove-prism}
 		\end{figure}
 	\end{enumerate}
-	\item 二次反射棱镜：有两个反射面，相当于一个双面镜。夹角为$\alpha$的二次反射棱镜使光轴转过$2\alpha$角。
+	\item \textbf{二次反射棱镜：}有两个反射面，相当于一个双面镜。夹角为$\alpha$的二次反射棱镜使光轴转过$2\alpha$角。
 	\begin{enumerate}
 		\item 五角棱镜
 		\item 半五角棱镜
@@ -993,7 +986,7 @@ K=\frac{d}{D}
 		\item $30^{\circ}$直角棱镜
 		\item 斜方棱镜
 	\end{enumerate}
-	\item 三次反射棱镜：施密特棱镜，出射光轴相对于入射光轴改变了$45^{\circ}$方向。
+	\item \textbf{三次反射棱镜：}施密特棱镜，出射光轴相对于入射光轴改变了$45^{\circ}$方向。
 \end{enumerate}
 
 \subsection{屋脊棱镜}
@@ -1116,7 +1109,7 @@ K=\frac{d}{D}
 \end{equation}
 综合上述公式得到
 \begin{equation}
-\sin\bigg(\frac{\alpha+\delta}{2}\bigg)=n\sin\frac{\alpha}{2}\cdot\frac{\cos\frac{I'_1+I_2}{2}}{\cos\frac{I_1+I'_2}{2}}
+\sin\bigg(\frac{\alpha+\delta}{2}\bigg)=n\sin\frac{\alpha}{2}\cdot\frac{\cos\dfrac{I'_1+I_2}{2}}{\cos\dfrac{I_1+I'_2}{2}}
 \end{equation}
 当$\alpha$和$n$一定时，$\delta$仅随$I_1$而变。最小偏角与$\alpha$和$n$的关系为
 \begin{equation}
@@ -1233,14 +1226,14 @@ v_D=\frac{n_D-1}{n_F-n_C}
 \label{subsect:infty-object}
 
 \begin{enumerate}	
-	\item 无限远轴上物点发出的光线：
+	\item \textbf{无限远轴上物点发出的光线：}
 	
 	设$h$为轴上物点$A$发出的一条入射光线的投射高度，由三角关系近似有
 	\begin{equation}
 		\tan U=\frac{h}{L}
 	\end{equation}
 	式中，$U$为孔径角，$L$为物方截距。当$L$趋于无穷大时，物点$A$向无限远处左移，$U$趋于$0$，即无穷远轴上物点发出的光线都与光轴平行。
-	\item 像方焦点、焦平面；像方主点、主平面：
+	\item \textbf{像方焦点、焦平面；像方主点、主平面：}
 	
 	如\figref{fig:perfect-optical-system} 所示，平行于光轴的入射光线$AE_1$通过理想光学系统后，出射光线$G'F'$交光轴于$F'$。$F'$为无限远轴上物点的像点，称为像方焦点。过$F'$作垂直于光轴的平面，称为像方焦平面。像方焦平面与无限远处垂直于光轴的物平面共轭。
 
@@ -1292,7 +1285,7 @@ v_D=\frac{n_D-1}{n_F-n_C}
 		f'=\frac{h}{\tan U'}
 	\end{equation}
 	
-	\item 无限远轴外物点发出的光线：
+	\item \textbf{无限远轴外物点发出的光线：}
 	
 	进入光学系统的光线总是相互平行的，且与光轴有一定夹角$\omega$。这一束光线经过系统后，一定交于像方焦平面的某一点，这一点为无限远轴外物点的共轭像点。	
 \end{enumerate}
@@ -1939,11 +1932,11 @@ l'_H=\frac{-dr_2}{n(r_2-r_1)+(n-1)d},\quad l_H=\frac{-dr_1}{n(r_2-r_1)+(n-1)d}
 	\label{fig:thick-lenses}
 \end{figure}
 \begin{enumerate}
-	\item 双凸透镜：保持两面的半径不变，随着厚度$d$的不同，其焦距可正可负。当$d<|n(r_2-r_2)/(n-1)|=M$时，$f'$为正，光线会聚，两个主面总位于透镜内部；当$d=M$时，$f'=\infty$；当$d>M$时，$f'$为负，主面在透镜外。
-	\item 双凹透镜：$f'$恒为负，发散透镜，两主面位于透镜内部。
-	\item 平凸透镜：$f'$恒为正，其值与透镜厚度无关，两主面上的一个相切于球面的顶点，另一个位于透镜内部。
-	\item 平凹透镜：$f'$恒为负，其值与透镜厚度无关，两主面上的一个相切于球面的顶点，另一个位于透镜内部。
-	\item 弯月形凸透镜：$f'$恒为正，若凸面朝向物方，则物方主面在凸面之前，像方主面在凹面之前，二者都在透镜外。
+	\item \textbf{双凸透镜：}保持两面的半径不变，随着厚度$d$的不同，其焦距可正可负。当$d<|n(r_2-r_2)/(n-1)|=M$时，$f'$为正，光线会聚，两个主面总位于透镜内部；当$d=M$时，$f'=\infty$；当$d>M$时，$f'$为负，主面在透镜外。
+	\item \textbf{双凹透镜：}$f'$恒为负，发散透镜，两主面位于透镜内部。
+	\item \textbf{平凸透镜：}$f'$恒为正，其值与透镜厚度无关，两主面上的一个相切于球面的顶点，另一个位于透镜内部。
+	\item \textbf{平凹透镜：}$f'$恒为负，其值与透镜厚度无关，两主面上的一个相切于球面的顶点，另一个位于透镜内部。
+	\item \textbf{弯月形凸透镜：}$f'$恒为正，若凸面朝向物方，则物方主面在凸面之前，像方主面在凹面之前，二者都在透镜外。
 \end{enumerate}
 
 \section{焦距测量}
@@ -2965,9 +2958,9 @@ r-p=-0.001nf'^2\overline{A}=-0.001n\overline{A}\bigg(\frac{250}{M}\bigg)^2\Right
 \subsection{显微镜的照明系统}
 显微镜的照明系统主要有以下三类：
 \begin{enumerate}
-	\item 用透射光照明透明标本的照明系统
+	\item \textbf{用透射光照明透明标本的照明系统：}
 	\begin{enumerate}
-		\item 临界照明
+		\item \textbf{临界照明：}
 		
 		\begin{figure}[htbp]
 			\centering
@@ -2980,7 +2973,7 @@ r-p=-0.001nf'^2\overline{A}=-0.001n\overline{A}\bigg(\frac{250}{M}\bigg)^2\Right
 		\begin{note}
 			临界照明的缺点是当光源的亮度不均匀或呈现明显的灯丝结构时，将会反映到物面上影响观察效果。
 		\end{note}
-		\item 柯拉照明
+		\item \textbf{柯拉照明：}
 		
 		\begin{figure}[htbp]
 			\centering
@@ -2997,10 +2990,10 @@ r-p=-0.001nf'^2\overline{A}=-0.001n\overline{A}\bigg(\frac{250}{M}\bigg)^2\Right
 			在照明系统和成像系统的合成系统中，成像系统的所有光都必然来自照明系统。这些光想要到达像面，必须通过照明系统和成像系统各自的瞳和窗。要使光传输的信息量不损失，任一光线都不能被照明系统或成像系统的任一光孔所拦截。那么只可能存在两种光瞳匹配关系，\uline{一种是照明系统的窗与成像系统的窗共轭，照明系统的瞳与成像系统的瞳共轭，这就是临界照明；另一种是照明系统的窗与成像系统的瞳共轭，照明系统的瞳与成像系统的窗共轭，这就是柯拉照明}。
 		\end{property}
 	\end{enumerate}
-	\item 非透明物体的照明系统
+	\item \textbf{非透明物体的照明系统：}
 	
 	光必须从侧面或者正面照明。
-	\item 用暗视场观察微小质点的照明方法
+	\item \textbf{用暗视场观察微小质点的照明方法：}
 	
 	用暗视场方法可以观察到超显微质点，即小于显微镜分辨极限的质点。
 \end{enumerate}
@@ -3266,7 +3259,7 @@ L=f'_a+d+f'_b\xrightarrow{f'_a=f'_b}2f'_a+d
 \section{轴上像差}
 \subsection{球差}
 \begin{definition}{球差}{spherical-aberration}
-在第 \ref{sect:paraxial-ray} 章节中已知，由光轴上一点发出的光线经球面折射后所得的截距$L'$，随入射光线与光轴的夹角$U$或入射光线在球面上的入射点高度$h$而异。轴上点发出的同心光束经光学系统各个球面折射后，将不复为同心光束。不同倾角的光线交光轴于不同位置上，相对于理想像点的位置有不同的偏离。这是单色光的成像缺陷之一，称为球差。
+在第 \ref{subsect:paraxial-ray} 章节中已知，由光轴上一点发出的光线经球面折射后所得的截距$L'$，随入射光线与光轴的夹角$U$或入射光线在球面上的入射点高度$h$而异。轴上点发出的同心光束经光学系统各个球面折射后，将不复为同心光束。不同倾角的光线交光轴于不同位置上，相对于理想像点的位置有不同的偏离。这是单色光的成像缺陷之一，称为球差。
 \end{definition}
 
 \begin{figure}[htbp]
@@ -3339,38 +3332,39 @@ h_1=\frac{1}{\sqrt{2}}h_m=0.707h_m
 
 \begin{figure}[htbp]
 	\centering
-	\begin{minipage}[t]{0.48\textwidth}
+	\begin{minipage}[t]{0.45\textwidth}
 		\centering
-		\includegraphics[width=1\textwidth]{spherical-aberration-curve-1.pdf}
+		\includegraphics[width=0.8\textwidth]{spherical-aberration-curve-1.pdf}
 		\caption{球差曲线（$\delta L'\sim h/h_m$）}
 		\label{fig:spherical-aberration-curve-1}
 	\end{minipage}
-	\quad
-	\begin{minipage}[t]{0.48\textwidth}
+	\ 
+	\begin{minipage}[t]{0.45\textwidth}
 		\centering
-		\includegraphics[width=1\textwidth]{spherical-aberration-curve-2.pdf}
+		\includegraphics[width=0.8\textwidth]{spherical-aberration-curve-2.pdf}
 		\caption{球差曲线（$\delta L'\sim (h/h_m)^2$）}
 		\label{fig:spherical-aberration-curve-2}
 	\end{minipage}
 \end{figure}
 
 \subsection{单个折射球面的球差特征}
+\label{subsec:aplanatic-point}
 
 假设某一面的物方已有球差，如\figref{fig:spherical-aberration-of-the-object} 所示，经推导可得
 \begin{equation}
 n'u'\sin U'\delta L'-nu\sin U\delta L=-(L'\sin U'-L\sin U)ni
 \end{equation}
-令$S\_=2(L'\sin U'-L\sin U)ni$，则
+令$S_{-}=2(L'\sin U'-L\sin U)ni$，则
 \begin{equation}
-\delta L'=\frac{nu\sin U}{n'u'\sin U'}\delta L-\frac{1}{2n'u'\sin U'}S\_
+\delta L'=\frac{nu\sin U}{n'u'\sin U'}\delta L-\frac{1}{2n'u'\sin U'}S_{-}
 \end{equation}
-可见，某表面像空间的球差由两部分构成，即物方球差在像空间的贡献和表面本身所产生的球差。前者通过相当于轴向放大率的因子$nu\sin U/n'u'\sin U'$反映到像空间，后者由$S\_$决定。$S\_$称为表面的球差分布系数，表征该表面对最后球差的贡献量。利用公式
+可见，某表面像空间的球差由两部分构成，即物方球差在像空间的贡献和表面本身所产生的球差。前者通过相当于轴向放大率的因子$(nu\sin U)/(n'u'\sin U')$反映到像空间，后者由$S_{-}$决定。$S_{-}$称为表面的球差分布系数，表征该表面对最后球差的贡献量。利用公式
 \begin{equation}
 \frac{L'\sin U'}{\cos\bigg(\dfrac{I'-U'}{2}\bigg)}=\frac{L\sin U}{\cos\bigg(\dfrac{I-U}{2}\bigg)}
 \end{equation}
-$S\_$可化为
+$S_{-}$可化为
 \begin{equation}
-S\_=\frac{niL\sin U(\sin I'-\sin U)(\sin I-\sin I')}{\cos{\dfrac{I-U}{2}}\cos{\dfrac{I'+U}{2}}\cos{\dfrac{I+I'}{2}}}
+S_{-}=\frac{niL\sin U(\sin I'-\sin U)(\sin I-\sin I')}{\cos{\dfrac{I-U}{2}}\cos{\dfrac{I'+U}{2}}\cos{\dfrac{I+I'}{2}}}
 \label{eq:spherical-aberration-distribution-coefficient}
 \end{equation}
 该式为表征球面产生球差的重要表达式。可见，单个球面在三种情况下不产生球差：
@@ -3409,12 +3403,12 @@ S\_=\frac{niL\sin U(\sin I'-\sin U)(\sin I-\sin I')}{\cos{\dfrac{I-U}{2}}\cos{\d
 在$PA>0$的情况下分别对$r>0$和$r<0$的上述各因子进行正负判断分别得到如\tabref{tab:spherical-aberration-of-sphere-in-each-interval-1} 和\tabref{tab:spherical-aberration-of-sphere-in-each-interval-2} 所示结果。
 
 \begin{table}[htbp]
-	\small
 	\centering
 	\caption{$r>0$的球面在各区间内的球差正负}
+	\resizebox{\textwidth}{!}{
 	\begin{tabular}{c|c|c|c|c|c|c|c|c}
 		\hline
-		\multirow{2}{*}{} & \multicolumn{2}{c|}{$-\infty\leqslant L<0$} & \multicolumn{2}{c|}{$0<L<r$} & \multicolumn{2}{c|}{$r<L<\dfrac{(n'+n)r}{n}$} & \multicolumn{2}{c}{$\dfrac{(n'+n)r}{n}<L\leqslant\infty$}\\
+		\multirow{2}{*}{} & \multicolumn{2}{c|}{$-\infty\leqslant L<0$} & \multicolumn{2}{c|}{$0<L<r$} & \multicolumn{2}{c|}{$r<L<(n'+n)r/n$} & \multicolumn{2}{c}{$(n'+n)r/n<L\leqslant\infty$}\\
 		\cline{2-9} 
 		& $n'>n$ & $n'<n$ & $n'>n$ & $n'<n$ & $n'>n$ & $n'<n$ & $n'>n$ & $n'<n$\\
 		\hline
@@ -3430,31 +3424,27 @@ S\_=\frac{niL\sin U(\sin I'-\sin U)(\sin I-\sin I')}{\cos{\dfrac{I-U}{2}}\cos{\d
 		\hline
 		$\delta L'$& $-$ & $+$ & $+$ & $-$ & $+$ & $-$ & $-$ & $+$\\
 		\hline
-	\end{tabular}
+	\end{tabular}}
 	\label{tab:spherical-aberration-of-sphere-in-each-interval-1}
 \end{table}
 
 \begin{table}[htbp]
-	\small
 	\centering
 	\caption{$r<0$的球面在各区间内的球差正负}
 	\resizebox{\textwidth}{!}{
 	\begin{tabular}{c|c|c|c|c|c|c|c|c}
 		\hline
-		\multirow{2}{*}{} & \multicolumn{2}{c|}{$-\infty\leqslant L<\dfrac{(n'+n)r}{n}$} & \multicolumn{2}{c|}{$\dfrac{(n'+n)r}{n}<L<r$} & \multicolumn{2}{c|}{$r<L<0$} & \multicolumn{2}{c}{$0<L\leqslant\infty$}\\
+		\multirow{2}{*}{} & \multicolumn{2}{c|}{$-\infty\leqslant L<(n'+n)r/n$} & \multicolumn{2}{c|}{$(n'+n)r/n<L<r$} & \multicolumn{2}{c|}{$r<L<0$} & \multicolumn{2}{c}{$0<L\leqslant\infty$}\\
 		\cline{2-9} 
 		& $n'>n$ & $n'<n$ & $n'>n$ & $n'<n$ & $n'>n$ & $n'<n$ & $n'>n$ & $n'<n$\\
 		\hline
 		$\sin I-\sin I'$& $-$发散 & $+$会聚 & $-$发散 & $+$会聚 & $+$会聚 & $-$发散 & $-$发散 & $+$会聚\\
 		\hline
-		$\delta L'$& $+$正球差 & $-$负球差 & $-$负球差 & $+$正球差 & $-$负球差 & $+$正球差 & $+$正球差 & $-$负球差\\
+		$\delta L'$& $+$ & $-$ & $-$ & $+$ & $-$ & $+$ & $+$ & $-$\\
 		\hline
 	\end{tabular}}
 	\label{tab:spherical-aberration-of-sphere-in-each-interval-2}
 \end{table}
-
-
-
 
 若$PA<0$，$\sin I$和$\sin U$同时变号，不影响球差的正负，所以单个折射球面产生的球差正负主要取决的光束的会聚和发散。
 
@@ -3470,6 +3460,42 @@ S\_=\frac{niL\sin U(\sin I'-\sin U)(\sin I-\sin I')}{\cos{\dfrac{I-U}{2}}\cos{\d
 \end{note}
 
 \section{轴外像差}
+
+\subsection{轴外像差概述}
+对单个折射球面进行讨论：轴上点发出的通过入瞳边缘的近轴光线是\textbf{第一近轴光线}，轴外某视场点发出的通过入瞳中心的近轴光线称为\textbf{第二近轴光线}，轴外某视场点发出的通过入瞳中心的实际光线称为该视场点发出的\textbf{主光线}；包含物点和光轴的平面称为\textbf{子午平面}，该面内的光线称为\textbf{子午光线}；包含主光线并与子午平面垂直的面称为\textbf{弧矢面}，该面内的光线称为\textbf{弧矢光线}；轴外点和球心的连线称为该折射球面的\textbf{辅轴}；轴外点发出通过某孔径带上边缘的光线称为某孔径带的\textbf{上光线}；轴外点发出通过某孔径带下边缘的光线称为某孔径带的\textbf{下光线}；轴外点发出通过某孔径带前边缘的光线称为某孔径带的\textbf{前光线}；轴外点发出通过某孔径带后边缘的光线称为某孔径带的\textbf{后光线}。
+\begin{conclusion}
+	轴外点以单色光被球面成像时，可从其光束结构中分离出不同性质的五种像差，即球差、彗差、像散、场曲、畸变。其中，球差和彗差属于宽光束像差，像散、场曲和畸变属于细光束像差。
+\end{conclusion}
+\subsection{正弦条件}
+如果视场较小，其边缘点可认为与轴上点很近，这种近轴物点的像差性质要比远轴点简单。
+
+\begin{definition}{正弦条件}{sine-condition}
+	当光学系统对轴上点成完善像时，使在垂轴方向上与之无限靠近的物点也成完善像的充分必要条件称为正弦条件。其公式为
+	\begin{equation}
+	n'y'\sin U'=nu\sin U
+	\end{equation}
+\end{definition}
+
+正弦条件是光学系统对垂轴小面积成完善像所需满足的条件。当轴上点能以宽光束成完善像时，若满足此条件，过该点的垂轴小面积上的其他点也能以宽光束成完善像。该公式又可化为
+\begin{equation}
+\frac{n\sin U}{n'\sin U'}=\beta
+\end{equation}
+
+当物体位于无穷远时，$\sin U=0$，正弦条件须表示成另一种形式。以$-(l-f)/f$代替$\beta$，并有$l\sin U=h$，可导出
+\begin{equation}
+\frac{h}{\sin U'}=f'
+\end{equation}
+仅由轴上点光线的光路计算结果就能方便地判断光学系统是否满足正弦条件。
+
+光轴上校正了球差并满足正弦条件的一对共轭点为齐明点或不晕点。由第 \ref{subsec:aplanatic-point} 可知，单个折射球面存在三对无球差的共轭点。其中$l=l'=0$和$l=l'=r$两对显然满足条件，而$l'=(n+n')r/n'$和$l=(n+n')r/n$，有
+\begin{equation}
+\frac{n\sin U}{n'\sin U'}=\beta=\frac{n^2}{n'^2}
+\end{equation}
+所以以上三对共轭点都是满足正弦条件的齐明点。
+
+\subsection{等晕条件}
+
+
 \subsection{彗差}
 \subsection{像散}
 \subsection{场曲}
@@ -3480,7 +3506,385 @@ S\_=\frac{niL\sin U(\sin I'-\sin U)(\sin I-\sin I')}{\cos{\dfrac{I-U}{2}}\cos{\d
 \section{初级像差}
 \part{物理光学}
 
-\part{光电子学}
+\chapter{光在各向同性介质中的传播规律}
+\section{光波的特性}
+\subsection{平面光波的横波特性}
+\subsection{平面光波的偏振特性}
+\subsubsection{光波的偏振态}
+根据空间任一点光电场$\vec E$的矢量末端在不同时刻的轨迹不同，可将其偏振状态分为线偏振、圆偏振和椭圆偏振。
+\subsubsection{偏振态的表示法}
+两个振动方向相互垂直的线偏振光叠加时，通常形成椭圆偏振光，其电场矢端轨迹的椭圆长、短轴之比及空间去向，随二线偏振光的振幅比$E_{0y}/E_{0x}$及其相位差$\varphi$变化，他们决定了该光的偏振态。
+\begin{enumerate}
+	\item \textbf{三角函数表示法：}
+	
+	两个振动方向相互垂直的线偏振光$E_x$和$E_y$叠加后，一般情况下将形成椭圆偏振光：
+	\begin{equation}
+	\bigg(\frac{E_x}{E_{0x}}\bigg)^2+\bigg(\frac{E_y}{E_{0y}}\bigg)^2-2\bigg(\frac{E_x}{E_{0x}}\bigg)\bigg(\frac{E_y}{E_{0y}}\bigg)\cos\varphi=\sin^2\varphi
+	\end{equation}
+\end{enumerate}
+
+\chapter{光的干涉}
+\section{产生干涉的基本条件}
+\subsection{两束光的干涉现象}
+光的干涉是指两束或多束光在空间相遇时，在重叠区内形成稳定的强弱强度分布的现象。例如，有两列单色平面线偏振光
+\begin{equation}
+\vec{E}_1=\vec{E}_{01}\cos(\omega_1t-\vec{k}_1\cdot\vec{r}+\varphi_{01})
+\end{equation}
+\begin{equation}
+\vec{E}_2=\vec{E}_{02}\cos(\omega_2t-\vec{k}_2\cdot\vec{r}+\varphi_{02})
+\end{equation}
+在空间P点相遇，他们的振动方向间的夹角为$\theta$，则在$P$点处的总光强为
+\begin{equation}
+I=I_1+I_2+2\sqrt{I_1I_2}\cos\theta\cos\varphi=I_1+I_2+2I_{12}
+\label{eq:two-light-intensity-distribution}
+\end{equation}
+式中，$I_1$、$I_2$是二光束的光强，$\varphi$是二光束的相位差，且有
+\begin{equation}
+\begin{cases}
+\varphi=\vec{k}_2\cdot\vec{r}-\vec{k}_1\cdot\vec{r}+\varphi_{01}-\varphi_{02}+\Delta\omega t\\
+\Delta\omega=\omega_1-\omega_2\\
+I_{12}=\sqrt{I_1I_2}\cos\theta\cos\varphi
+\end{cases}
+\end{equation}
+由此可见，二光束叠加后的总强度并不等于两列波的强度之和，多了一项交叉项$I_{12}$，它反映了这两束光的干涉效应，通常称为干涉项，干涉现象就是指这两束光在重叠区域内形成的稳定的光强分布。
+
+在能观察到稳定的光强分布的情况下，满足
+\begin{equation}
+\varphi=2m\pi\quad m=0,\ \pm1,\ \pm2,\ \cdots
+\end{equation}
+的空间位置为强光极大值处，且光强极大值$I_M$为
+\begin{equation}
+I_M=I_1+I_2+2\sqrt{I_1I_2}\cos\theta
+\end{equation}
+满足
+\begin{equation}
+\varphi=(2m+1)\pi\quad m=0,\ \pm1,\ \pm2,\ \cdots
+\end{equation}
+的空间位置为光强极小值处，且光强极小值$I_m$为
+\begin{equation}
+I_m=I_1+I_2-2\sqrt{I_1I_2}\cos\theta
+\end{equation}
+当两束光强相等，即$I_1=I_2=I_0$时，相应的极大值和极小值分别为
+\begin{equation}
+I_M=2I_0(1+\cos\theta)
+\label{eq:two-light-intensity-distribution-max}
+\end{equation}
+\begin{equation}
+I_m=2I_0(1-\cos\theta)
+\label{eq:two-light-intensity-distribution-min}
+\end{equation}
+
+\subsection{产生干涉的条件}
+引入一个表征干涉效应程度的参量——干涉条纹可见度，由此深入分析干涉的条件。
+\begin{enumerate}
+	\item \textbf{干涉条纹可见度：}
+	
+	干涉条纹可见度定义为
+	\begin{equation}
+	V\overset{\text{d}}{=}\frac{I_M-I_m}{I_M+I_m}
+	\end{equation}
+	当干涉光强的极小值$I_m=0$时，$V=1$，二光束完全相干，条纹最清晰；当$I_M=I_m$时，$V=0$，二光束完全不相干，无干涉条纹；当$I_M\neq I_m\neq0$时，$0<V<1$，二光束部分相干，条纹清晰度介于上面两种情况之间。
+	
+	
+	\item \textbf{产生干涉的条件：}
+	
+	由上述二光束叠加的光强分布关系 \eqref{eq:two-light-intensity-distribution} 式可知，影响光强条纹稳定分布的主要因素是：二光束频率、二光束振动方向夹角、二光束的相位差。
+	\begin{enumerate}
+		\item \textbf{对干涉光束的频率要求：}
+		
+		由二干涉光束相位差的关系式可以看出，当二光束频率相等，$\Delta\omega=0$时，干涉光强不随时间变化，可以得到稳定的干涉条纹分布。当二光束频率不相等，$\Delta\omega\neq0$时，干涉条纹随着时间产生移动，且$\Delta\omega$越大，条纹移动速度越快，当$\Delta\omega$大到一定程度时，肉眼或探测仪器将观测不到稳定的条纹分布。因此为产生干涉现象，要求二干涉光束频率尽量相等。
+		\item \textbf{对干涉光束振动方向的要求：}
+		
+		由 \eqref{eq:two-light-intensity-distribution-max} 式和 \eqref{eq:two-light-intensity-distribution-min} 式可知，当二光束光强相等时，有
+		\begin{equation}
+		V=\cos\theta
+		\end{equation}
+		因此，当$\theta=0$、二光束的振动方向相同时，$V=1$，干涉条纹最清晰；当$\theta=\pi/2$、二光束正交振动时，$V=0$，不发生干涉；当$0<\theta<\pi/2$时，$0<V<1$，干涉条纹清晰度介于上面两种情况之间。所以为了产生明显的干涉现象，要求二光束的振动方向相同。
+		\item \textbf{对干涉光束相位差的要求：}
+		
+		由 \eqref{eq:two-light-intensity-distribution-max} 式可见，为获取稳定的干涉图形，二干涉光束的相位差必须固定不变，即要求二等频单色光波的初相位差恒定。
+	\end{enumerate}
+	\begin{conclusion}
+	两束光波发生干涉的必要条件（相干条件）：两束光波的频率相同；两束光波在相遇处的振动方向相同；两束光波在相遇处有固定不变的相位差。
+	\end{conclusion}
+\end{enumerate}
+
+\section{分波面法双光束干涉}
+……
+
+\section{分振幅法双光束干涉}
+\subsection{等倾干涉}
+……
+\subsubsection{等倾干涉的强度分布}
+……
+\subsubsection{等倾干涉条纹的特性}
+……
+\subsubsection{透射光的等倾干涉条纹}
+……
+
+\subsection{等厚干涉}
+等厚干涉是楔形平板产生的干涉。扩展光源中某点$S_0$发出一束光，经楔形板两表面反射的两光束相交于$P$点，产生干涉，其光程差为
+\begin{equation}
+\varDelta=n(AB+BC)-n_0(AP-CP)
+\end{equation}
+实际应用中的干涉系统，板的厚度通常很小，楔角很小，因此可以近似地利用平行平板的计算公式替代，即
+\begin{equation}
+\varDelta=2nh\cos\theta_2
+\end{equation}
+式中，$h$是楔形板在$B$点的厚度，$\theta_2$是入射光在$A$点的折射角。考虑到光束在楔形板表面产生半波损失，两表面反射光的光程差应为
+\begin{equation}
+\varDelta=2nh\cos\theta_2+\frac{\lambda}{2}
+\end{equation}
+当光源距平板较远，或观察干涉条纹用的仪器孔径很小时，在整个视场内可视入射角为常数。此时光程差只依赖于反射光处的平板厚度$h$，所以干涉条纹与楔形板的厚度一一对应。因此，通常将这种干涉称为等厚干涉。
+
+\subsubsection{等厚干涉条纹图样}
+……
+\subsubsection{劈尖的等厚干涉条纹}
+当光垂直照射劈尖时，会在上表面产生平行于棱线的等间距干涉条纹。相应亮线位置的厚度$h$满足
+\begin{equation}
+2nh+\frac{\lambda}{2}=m\lambda\quad m=1,\ 2,\ \cdots
+\end{equation}
+相应暗线位置的厚度$h$满足
+\begin{equation}
+2nh+\frac{\lambda}{2}=\bigg(m+\frac{1}{2}\bigg)\lambda\quad m=0,\ 1,\ 2,\ \cdots
+\end{equation}
+棱线总处于暗条纹的位置。考虑到光在上表面或下表面会产生半波损失，在棱线处，上下表面的反射光总是抵消，则在棱线位置上总为光强极小值。
+
+若劈尖上表面共有$N$个条纹，则对应的总厚度为
+\begin{equation}
+d=N\frac{\lambda}{2n}
+\end{equation}
+式中，$N$可以是整数或者小数。相邻亮条纹或暗条纹间的距离，即条纹间距为
+\begin{equation}
+\Delta L=\frac{\lambda}{2n\sin\alpha}
+\end{equation}
+\begin{conclusion}
+由上式可见，劈角$\alpha$越小，条纹间距越大；劈尖$\alpha$越大，条纹间距越小。因此，当劈尖上表面绕棱线旋转时，随着$\alpha$增大，条纹间距变小，条纹将向棱线方向移动。
+\end{conclusion}
+
+\subsubsection{牛顿环}
+
+在一块平面玻璃上放置一曲率半径$R$很大的平凸透镜，在透镜凸表面和玻璃板的平面之间形成一厚度由零逐渐增大的空气薄层。当以单色光垂直照射时，在空气层上会形成一组以接触点$O$为中心的\textbf{中央疏、边缘密}的圆环条纹，称为牛顿环。它的形状与等倾圆条纹相同，但牛顿环内圈的干涉级次小，外圈的干涉级次大，恰与等倾圆条纹相反。
+
+若由中心向外数第$N$个暗纹的半径为$r$，则有
+\begin{equation}
+r^2=R^2-(R-h)^2=2Rh-h^2
+\end{equation}
+由于透镜凸表面的曲率半径$R$远大于暗环对应的空气层厚度，所以上式可改写为
+\begin{equation}
+h=\frac{r^2}{2R}
+\end{equation}
+因第$N$个暗环的干涉级次为$(N+1/2)$，所以可由暗环满足的光程差条件写出
+\begin{equation}
+2h+\frac{\lambda}{2}=\bigg(N+\frac{1}{2}\bigg)\lambda
+\end{equation}
+由此可得
+\begin{equation}
+h=N\frac{\lambda}{2}
+\end{equation}
+\begin{equation}
+R=\frac{r^2}{N\lambda}
+\end{equation}
+由上式可知，测量出第$N$个暗环的半径$r$，在已知所用单色光波长的情况下，即可算出透镜的曲率半径。
+
+
+\section{平行平板的多光束干涉}
+
+\subsection{多光束干涉的强度分布}
+在透镜焦平面上产生平行平板多光束干涉，假设$E_{0i}$为入射光电矢量的复振幅，与$P$点对应的多光束的出射角为$\theta_0$，他们在平板内的入射角为$\theta$，则相邻两反射光或透射光之间的光程差为
+\begin{equation}
+\varDelta=2nh\cos\theta
+\end{equation}
+相应的相位差为
+\begin{equation}
+\varphi=k\varDelta=\frac{4\pi}{\lambda}nh\cos\theta
+\label{eq:phase-difference-between-two-beams}
+\end{equation}
+若光从周围介质射入平板时的反射系数为$r$，透射系数为$t$，光从平板射出时的反射系数为$r'$，透射系数为$t'$，则从平板反射出的各个光束的复振幅为
+\begin{equation}
+\begin{aligned}
+E_{01\mathrm{r}}&=rE_{0\mathrm{i}}\\
+E_{02\mathrm{r}}&=r'tt'E_{0\mathrm{i}}\mathrm{e}^{\mathrm{i}\varphi}\\
+&\quad\vdots\\
+E_{0l\mathrm{r}}&=tt'r'^{(2l-3)}E_{0\mathrm{i}}\mathrm{e}^{\mathrm{i}(l-1)\varphi}\\
+&\quad\vdots
+\end{aligned}
+\end{equation}
+所有反射光在$P$点叠加，其合成复振幅为
+\begin{equation}
+\begin{aligned}
+E_{0\mathrm{r}}&=E_{01\mathrm{r}}+\sum_{l=2}^{\infty}E_{0l\mathrm{r}}\\
+&=E_{01\mathrm{r}}+\sum_{l=2}^{\infty}tt'r'^{(2l-3)}E_{0\mathrm{i}}\mathrm{e}^{\mathrm{i}(l-1)\varphi}\\
+&=E_{01\mathrm{r}}+tt'r'E_{0\mathrm{i}}\mathrm{e}^{\mathrm{i}\varphi}\sum_{n=0}^{\infty}r'^{2n}\mathrm{e}^{\mathrm{i}n\varphi}
+\end{aligned}
+\end{equation}
+根据菲涅尔公式，可以证明
+\begin{equation}
+r=-r'
+\end{equation}
+\begin{equation}
+tt'=1-r^2
+\end{equation}
+由平板表面反射系数、透射系数与反射率、透射率的关系
+\begin{equation}
+r^2=r'^2=R
+\end{equation}
+\begin{equation}
+tt'=1-R=T
+\end{equation}
+并利用
+\begin{equation}
+\sum_{n=0}^{\infty}x^n=\frac{1}{1-x}
+\end{equation}
+可得
+\begin{equation}
+E_{0\mathrm{r}}=\frac{(1-\mathrm{e}^{\mathrm{i}\varphi})\sqrt{R}}{1-R\mathrm{e}^{\mathrm{i}\varphi}}E_{0\mathrm{i}}
+\end{equation}
+再由$I=E\cdot E^*$，可得到反射光强与入射光强的关系为
+\begin{equation}
+I_{\mathrm{r}}=\frac{F\sin^2\dfrac{\varphi}{2}}{1+F\sin^2\dfrac{\varphi}{2}}I_{\mathrm{i}}
+\label{eq:airy-formula-1}
+\end{equation}
+式中的参量$F$定义为
+\begin{equation}
+F\overset{\text{d}}{=}\frac{4R}{(1-R)^2}
+\end{equation}
+类似地，也可得到透射光强与入射光强的关系式为
+\begin{equation}
+I_{\mathrm{t}}=\frac{1}{1+F\sin^2\dfrac{\varphi}{2}}I_{\mathrm{i}}
+\label{eq:airy-formula-2}
+\end{equation}
+\eqref{eq:airy-formula-1} 式和 \eqref{eq:airy-formula-2} 式即为反射光干涉场合透射光干涉场的强度分布公式，通常称为艾里公式。
+
+\subsection{多光束干涉图样的特点}
+根据艾里公式，可以看出多光束干涉的干涉图样有如下特点：
+\begin{enumerate}
+	\item \textbf{互补性：}
+	
+	由 \eqref{eq:airy-formula-1} 式和 \eqref{eq:airy-formula-2} 式可以得到
+	\begin{equation}
+	I_{\mathrm{r}}+I_{\mathrm{t}}=I_{\mathrm{i}}
+	\end{equation}
+	在不考虑吸收和其他损耗的情况下，反射光强与透射光强之和等于入射光强。若反射光因干涉加强，则透射光必因干涉而减弱，反之亦然。即有，反射光强分布和透射光强分布互补。
+	\item \textbf{等倾性：}
+	
+	由艾里公式可以看出，干涉光强随着$R$和$\varphi$变化，在特定$R$条件下，干涉光强仅随$\varphi$变化，根据 \eqref{eq:phase-difference-between-two-beams} 式，可知干涉光强只与光束倾角有关，这正是等倾干涉条纹的特性。因此，平行平板在透镜焦平面上产生的多光束干涉条纹是等倾干涉条纹。当实验装置中的透镜光轴垂直于平板时，所观察到的等倾干涉条纹是一组同心环。
+	\item \textbf{光强分布的极值条件：}
+	
+	由艾里公式可以看出，在反射光方向上，当
+	\begin{equation}
+	\varphi=(2m+1)\pi\quad m=0,\ 1,\ 2,\ \cdots
+	\end{equation}
+	时，形成亮条纹，其反射光强为
+	\begin{equation}
+	I_{\mathrm{rM}}=\frac{F}{1+F}I_{\mathrm{i}}
+	\end{equation}
+	当
+	\begin{equation}
+	\varphi=2m\pi\quad m=0,\ 1,\ 2,\ \cdots
+	\end{equation}
+	时，形成暗条纹，其反射光强为
+	\begin{equation}
+	I_{\mathrm{rm}}=0
+	\end{equation}
+	
+	对于透射光，形成亮条纹和暗条纹的条件分别为
+	\begin{equation}
+	\varphi=2m\pi\quad m=0,\ 1,\ 2,\ \cdots
+	\end{equation}
+	和
+	\begin{equation}
+	\varphi=(2m+1)\pi\quad m=0,\ 1,\ 2,\ \cdots
+	\end{equation}
+	其相应的光强分别为
+	\begin{equation}
+	I_{\mathrm{tM}}=I_{\mathrm{i}}
+	\end{equation}
+	和
+	\begin{equation}
+	I_{\mathrm{tm}}=\frac{1}{1+F}I_{\mathrm{i}}
+	\end{equation}
+\end{enumerate}
+
+\subsection{透射光的特点}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=1\textwidth]{distribution-curve-of-transmitted-light-intensity.pdf}
+	\caption{多光束干涉的透射光强分布曲线}
+	\label{fig:distribution-curve-of-transmitted-light-intensity}
+\end{figure}
+在不同表面反射率$R$的情况下，透射光强的分布如\figref{fig:distribution-curve-of-transmitted-light-intensity} 所示，图中横坐标是相邻两透射光束间的相位差$\varphi$，纵坐标为相对光强。由透射光强分布曲线可以得到如下规律：
+\begin{enumerate}
+	\item \textbf{光强分布与反射率$R$有关：}$R$很小时，干涉光强的变化不大，即条纹干涉的可见度很低。$R$增大时，透射光暗条纹的强度降低，条纹可见度提高。控制$R$的大小，可以改变光强的分布。
+	\item \textbf{条纹锐度与反射率$R$有关：}随着$R$增大，极小值下降，亮条纹宽度变窄。但因为相对透射光强的极大值与$R$无关，所以在$R$很大的时候，透射光的干涉条纹是在暗背景上的细亮条纹，反射光的干涉条纹则是在亮背景上的细暗条纹。能够产生极明锐的透射光干涉条纹，是多光束干涉最显著和最重要的特点。在$I_{\mathrm{t}}/I_{\mathrm{i}}\sim\varphi$曲线上，若用条纹的半峰值全宽度$\varepsilon=\Delta\varphi$表征干涉条纹的锐度，则在$\varphi=2m\pi\pm\Delta\varphi/2$时，有
+	\begin{equation}
+	\frac{I_{\mathrm{t}}}{I_{\mathrm{i}}}=\frac{1}{2}=\frac{1}{1+F\sin^2\bigg(m\pi\pm\dfrac{\Delta\varphi}{4}\bigg)}
+	\end{equation}
+	从而有
+	\begin{equation}
+	F\sin^2\frac{\Delta\varphi}{4}=F\sin^2\frac{\varepsilon}{4}=1
+	\end{equation}
+	若$F$很大，即$R$较大，$\varepsilon$必定很小，有
+	\begin{equation}
+	\sin\frac{\varepsilon}{4}\approx\frac{\varepsilon}{4},\quad F\bigg(\frac{\varepsilon}{4}\bigg)^2=1
+	\end{equation}
+	因而可得
+	\begin{equation}
+	\varepsilon=\frac{4}{\sqrt{R}}=\frac{2(1-R)}{\sqrt{R}}
+	\label{eq:relationship-between-half-width-and-reflectivity}
+	\end{equation}
+	显然，$R$越大，$\varepsilon$越小，条纹越尖锐。条纹锐度除了可以用$\varepsilon$表示外，还常用相邻两条纹间的相位差($2\pi$)与条纹半宽度($\varepsilon$)之比$N$来表征：
+	\begin{equation}
+	N=\frac{2\pi}{\varepsilon}=\frac{\pi\sqrt{R}}{1-R}=\frac{\pi\sqrt{F}}{2}
+	\end{equation}
+	该比值称为条纹精细度。$R$越大，亮条纹越细，$N$值越大。当$R\rightarrow1$时，$N\rightarrow\infty$，这对于利用这种条纹进行测量的应用十分有利。
+	\begin{note}
+		上述$\varepsilon$是在单色光照射下产生的多光束干涉条纹的半宽度，它不同于准单色光的谱线宽度，故又称为仪器宽度。
+	\end{note}
+	\item \textbf{频率特性：}由$I_{\mathrm{t}}/I_{\mathrm{i}}\sim\varphi$曲线可知，只有相邻透射光相位差处在半宽度$\Delta\varphi$内的光才能透过平行平板。而有 \eqref{eq:phase-difference-between-two-beams} 式，在平行板的结构($n$，$h$)确定，入射光方向一定的情况下，相位差$\varphi$只与光波长有关。只有使$\varphi=2m\pi$的光波长才能最大地透过该平行平板。所以，平行平板具有滤波特性。若将$\varphi$改写为
+	\begin{equation}
+	\varphi=\frac{4\pi}{c}nh\nu\cos\theta
+	\end{equation}
+	并以$\nu$为横坐标，可绘制出$I_{\mathrm{t}}/I_{\mathrm{i}}\sim\nu$曲线，其滤波特性显而易见。通常将相应于条纹半宽度$\Delta\varphi$的频率范围$\Delta\nu_{1/2}$称为滤波带宽，且
+	\begin{equation}
+	\Delta\nu_{1/2}=\frac{\Delta\varphi}{\dfrac{4\pi}{c}nh\cos\theta}
+	\end{equation}
+	利用 \eqref{eq:relationship-between-half-width-and-reflectivity} 式，可以改写为
+	\begin{equation}
+	\Delta\nu_{1/2}=\frac{c(1-R)}{2\pi nh\sqrt{R}\cos\theta}
+	\end{equation}
+	由$\nu_m=c/\lambda_m$，有
+	\begin{equation}
+	|\Delta\nu_m|=\frac{c}{\lambda^2_m}\Delta\lambda_m
+	\end{equation}
+	相应于$\varphi=2m\pi$的光波长为
+	\begin{equation}
+	\lambda_m=\frac{2nh\cos\theta}{m}
+	\end{equation}
+	所以透射带宽可用波长表示：
+	\begin{equation}
+	(\Delta\lambda_m)_{1/2}=\frac{2(1-R)nh\cos\theta}{m^2\pi\sqrt{R}}=\frac{\varDelta}{m^2N}=\frac{\lambda_m}{mN}
+	\end{equation}
+	通常称$(\Delta\lambda_m)_{1/2}$为透射带的波长宽度。显然，$R$越大，$N$越大，相应的$(\Delta\lambda_m)_{1/2}$越小。
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 %\bibliography{reference}
 \appendix

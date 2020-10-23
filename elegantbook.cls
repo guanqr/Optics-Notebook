@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%
+%\label{key}%%%%%%%%%%%%%%%%%%%%%
 %% start of file `elegantbook.cls'.
 %% Copyright 2013-2020 ElegantLaTeX (elegantlatex2e@gmail.com)
 %%
@@ -334,7 +334,7 @@
 
 %%中文结构名字
 \ifdefstring{\ELEGANT@lang}{cn}{
-  \renewcommand{\contentsname}{目录}
+  \renewcommand{\contentsname}{目\hspace{1em}录}
   \renewcommand{\figurename}{图}
   \renewcommand{\tablename}{表}
   \renewcommand{\partname}{\color{structurecolor}}
