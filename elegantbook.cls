@@ -1,4 +1,4 @@
-%\label{key}%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
 %% start of file `elegantbook.cls'.
 %% Copyright 2013-2020 ElegantLaTeX (elegantlatex2e@gmail.com)
 %%

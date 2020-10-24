@@ -1609,7 +1609,7 @@ x'_F=-\frac{f_2f'_2}{\varDelta}
 \begin{equation}
 x_F=\frac{f_1f'_1}{\varDelta}
 \end{equation}
-根据相似三角形$\triangle Q'H'F'$与$\triangle N'_2H'_2F'_2$、$\triangle Q'_1H'_1F'_1$与$\triangle E_2F_2F'_1$，可导出
+根据相似三角形$\triangle Q'H'F'\sim\triangle N'_2H'_2F'_2$、$\triangle Q'_1H'_1F'_1\sim\triangle E_2F_2F'_1$，可导出
 \begin{equation}
 f'=-\frac{f'_1f'_2}{\varDelta}
 \label{eq:combination-of-optical-systems-focal-length}
@@ -2311,7 +2311,7 @@ V_{\lambda}=\frac{K_{\lambda}}{K_{555}}
 
 \subsection{光通量}
 \begin{definition}{光通量}{luminous-flux}
-标度可见光对人眼的视觉刺激程度的量。单位为流明（$\mathrm{lm}$）。
+标度可见光对人眼的视觉刺激程度的量。单位为流明($\mathrm{lm}$)。
 \end{definition}
 上一节已详细说明其具体内容。
 
@@ -2325,7 +2325,7 @@ I=\frac{\mathrm{d}\varPhi}{\mathrm{d}\omega}
 \begin{equation}
 I_0=\frac{\varPhi}{\omega}
 \end{equation}
-发光强度的单位是坎德拉（$\mathrm{cd}$）。
+发光强度的单位是坎德拉($\mathrm{cd}$)。
 \end{definition}
 点光源周围空间的总立体角为$4\pi$，所以这种点光源向四周发出的总光通量为
 \begin{equation}
@@ -2356,7 +2356,7 @@ E=\frac{\mathrm{d}\varPhi}{\mathrm{d}S}
 \begin{equation}
 E=\frac{\varPhi}{S}
 \end{equation}
-光照度的单位是勒克斯（$\mathrm{lx}$），有
+光照度的单位是勒克斯($\mathrm{lx}$)，有
 \begin{equation}
 1\mathrm{lx}=1\mathrm{lm/m^2}=1\mathrm{cd\cdot sr/m^2}
 \end{equation}
@@ -2398,7 +2398,7 @@ M=\frac{\mathrm{d}\varPhi}{\mathrm{d}S}
 M=\frac{\varPhi}{S}
 \end{equation}
 \end{definition}
-光出射度与光照度的形式相同，其差别在于光照度中的$\varPhi$是表面接收的光通量，光出射度中的$\varPhi$是从表面发出的光通量。光出射度的单位为勒克斯（$\mathrm{lx}$）。二次光源的光出射度与受照后的光照度和表面的反射率有关，可表示为
+光出射度与光照度的形式相同，其差别在于光照度中的$\varPhi$是表面接收的光通量，光出射度中的$\varPhi$是从表面发出的光通量。光出射度的单位为勒克斯($\mathrm{lx}$)。二次光源的光出射度与受照后的光照度和表面的反射率有关，可表示为
 \begin{equation}
 M=\rho E
 \label{eq:luminous-exitance}
@@ -2410,7 +2410,7 @@ M=\rho E
 	\begin{equation}
 	\mathrm{d}\varPhi=L_i\cos i\cdot\mathrm{d}S\cdot\mathrm{d}\omega
 	\end{equation}
-	光照度的单位为尼特（nt），有
+	光照度的单位为尼特($\mathrm{nt}$)，有
 	\begin{equation}
 	1\mathrm{nt}=1\mathrm{cd/m^2}
 	\end{equation}
@@ -3868,12 +3868,47 @@ I_{\mathrm{t}}=\frac{1}{1+F\sin^2\dfrac{\varphi}{2}}I_{\mathrm{i}}
 	通常称$(\Delta\lambda_m)_{1/2}$为透射带的波长宽度。显然，$R$越大，$N$越大，相应的$(\Delta\lambda_m)_{1/2}$越小。
 \end{enumerate}
 
+\section{光学薄膜}
+\subsection{光学薄膜的反射特性}
+\subsubsection{单层膜}
+在玻璃基片的光滑表面上镀一层折射率和厚度都均匀的透明介质薄膜，当光束入射到薄膜上时，将在膜内产生多次反射，并且在薄膜的两表面上有一系列互相平行的光束射出。假设薄膜的厚度为$h$，折射率为$n_1$，基片折射率为$n_2$，光由折射率为$n_0$的介质入射到薄膜上，采用类似于平行平板多光束干涉的处理方法，可以得到单层膜的反射系数为
+\begin{equation}
+r=\frac{E_{\mathrm{0r}}}{E_{\mathrm{0i}}}=\frac{r_1+r_2\mathrm{e}^{\mathrm{i}\varphi}}{1+r_1r_2\mathrm{e}^{\mathrm{i}\varphi}}=|r|\mathrm{e}^{\mathrm{i}\varphi_{\mathrm{r}}}
+\end{equation}
+式中，$r_1$是薄膜上表面的反射系数，$r_2$是薄膜下表面的反射系数，$\varphi$是相邻两个出射光束间的相位差，且有
+\begin{equation}
+\varphi=\frac{4\pi}{\lambda}n_1h\cos\theta_1
+\end{equation}
+$\varphi_{\mathrm{r}}$是单层膜反射系数的相位因子，由下式决定：
+\begin{equation}
+\tan\varphi_{\mathrm{r}}=\frac{r_2(1-r^2_1)\sin\varphi}{r_1(1+r^2_2)+r_2(1+r^2_1)\cos\varphi}
+\end{equation}
+由此可得到单层膜的反射率$R$为
+\begin{equation}
+R=\bigg|\frac{E_{0\mathrm{r}}}{E_{0\mathrm{i}}}\bigg|^2=\frac{r^2_1+r^2_2+2r_1r_2\cos\varphi}{1+r^2_1r^2_2+2r_1r_2\cos\varphi}
+\end{equation}
+
+当光束正入射到薄膜上时，薄膜两表面的反射系数为
+\begin{equation}
+r_1=\frac{n_0-n_1}{n_0+n_1},\quad r_2=\frac{n_1-n_2}{n_1+n_2}
+\end{equation}
+将其带入上式，即可得到正入射时单层膜的反射率公式：
+\begin{equation}
+R=\frac{(n_0-n_2)^2\cos^2\dfrac{\varphi}{2}+\bigg(\dfrac{n_0n_2}{n_1}-n_1\bigg)^2\sin^2\dfrac{\varphi}{2}}{(n_0+n_2)^2\cos^2\dfrac{\varphi}{2}+\bigg(\dfrac{n_0n_2}{n_1}+n_1\bigg)^2\sin^2\dfrac{\varphi}{2}}
+\end{equation}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=1\textwidth]{variation-of-reflectivity-of-dielectric-film-with-thickness.pdf}
+	\caption{介质膜反射率随光学厚度的变化}
+	\label{fig:variation-of-reflectivity-of-dielectric-film-with-thickness}
+\end{figure}
 
 
+\subsubsection{多层膜}
 
 
-
-
+\subsubsection{多层高反射膜}
 
 
 
