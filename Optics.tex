@@ -14,7 +14,7 @@
 \cover{cover.jpg}
 
 % 修改目录深度
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{2}
 
 % tikz
 \usepackage{pgfplots}
@@ -22,6 +22,10 @@
 \usetikzlibrary{quotes,angles}
 \usetikzlibrary{patterns}
 \tikzstyle{every picture}+=[remember picture]
+
+% 草稿水印
+\usepackage{draftwatermark}
+\SetWatermarkScale{1}%设置水印的显示大小
 
 % 选择题宏包，tasks环境
 \usepackage{tasks} 
@@ -52,6 +56,12 @@
 	\end{tikzpicture}%
 }
 
+% 定义小章节标题颜色
+\titleformat{\paragraph}[hang]{\bfseries}{
+	\large\bfseries\color{structurecolor}\theparagraph\enspace}{1pt}{%
+	\color{structurecolor}\large\bfseries\filright}
+
+
 \begin{document}
 	
 \maketitle
@@ -65,7 +75,7 @@
 这本书诞生于我为考研奋战的过程中。浙江大学光电学院的本科专业核心课程主要有三门，分别是应用光学、物理光学和光电子学。在2019年末，我顺利完成了本科光电专业必修理论知识的学习。为了方便查阅光学方面的各种基本概念，复习巩固光学基础知识，我便开始计划写下本书。本书进行书写时参考的资料主要为国内光电专业通用的课程教材：郁道银等编著的《工程光学（第四版）》和李晓彤等编著的《几何光学·像差·光学设计（第三版）》。我将本书看作是一本工具书，我对这本工具书的要求是，文字内容源于教材但要凝练，读者能够方便查阅相关概念，配图要精美，排版要美观。文字内容方面，因为本书的面向对象是光电专业的读者，因此对于一些简单的光学概念本书不再进行原理分析，本书重点突出了一些我认为需要重点掌握和易错的知识点。为了方便查阅，本书对光学概念分章节进行汇总，并设有目录，文中的图表、公式都设有标签可以进行跳转。配图方面，本书尽可能多地使用矢量图，这些矢量图来自维基百科和我自己的绘制。但因为我的时间有限，仍有较多图片使用了教材中的截图。对于本书的排版，我采用了\LaTeX 进行写作，模板采用的是Elegant\LaTeX 系列模板中的 \href{https://github.com/ElegantLaTeX/ElegantBook}{ElegantBook}。本书为免费共享书籍，请勿用于商业用途。
 
 \begin{flushright}
-	关其锐
+	{\kaishu{关其锐\qquad\qquad\ }}
 	\par 2021年6月15日于求是园
 \end{flushright}
 
@@ -386,6 +396,7 @@ P=n'\cos I'-n\cos I=-2n\cos I=-2(\vec{N}\cdot\vec{A})
 完善成像条件：物点与像点之间任意两条的光路光程相等。
 
 \chapter{球面与球面系统}
+\label{chap:spherical-system}
 
 \begin{introduction}
 	\item 符号规则（第 \ref{sect:symbol-rules} 节）
@@ -464,9 +475,9 @@ P=n'\cos I'-n\cos I=-2n\cos I=-2(\vec{N}\cdot\vec{A})
 U'=U+I-I'
 \end{equation}
 \begin{equation}
-L'=r+r\frac{\sin I'}{\sin U'}
+L'=r+\frac{\sin I'}{\sin U'}r
 \end{equation}
-如果入射光线与光轴的夹角很小，则称之为近轴光线。近轴光线的有关量用小写字母表示，则有
+如果入射光线与光轴的夹角很小，则称之为\textbf{近轴光线}。近轴光线的有关量用小写字母表示，则有
 \begin{equation}
 i=\frac{l-r}{r}u
 \end{equation}
@@ -477,9 +488,9 @@ i'=\frac{n}{n'}i
 u'=u+i-i'
 \end{equation}
 \begin{equation}
-l'=r+r\frac{i'}{u'}
+l'=r+\frac{i'}{u'}r
 \end{equation}
-近轴光线所成的像称为高斯像，讨论近轴区成像性质和规律的光学称为高斯光学。\index{高斯光学}
+近轴光线所成的像称为\textbf{高斯像}，讨论近轴区成像性质和规律的光学称为\textbf{高斯光学}。\index{高斯光学}
 
 在以上公式中消去$i$和$i'$，并引入对近轴光线成立的简单关系
 \begin{equation}
@@ -3259,17 +3270,27 @@ L=f'_a+d+f'_b\xrightarrow{f'_a=f'_b}2f'_a+d
 \section{轴上像差}
 \subsection{球差}
 \begin{definition}{球差}{spherical-aberration}
-在第 \ref{subsect:paraxial-ray} 章节中已知，由光轴上一点发出的光线经球面折射后所得的截距$L'$，随入射光线与光轴的夹角$U$或入射光线在球面上的入射点高度$h$而异。轴上点发出的同心光束经光学系统各个球面折射后，将不复为同心光束。不同倾角的光线交光轴于不同位置上，相对于理想像点的位置有不同的偏离。这是单色光的成像缺陷之一，称为球差。
+在第 \ref{subsect:paraxial-ray} 章节中已知，由光轴上一点发出的光线经球面折射后所得的截距$L'$，随入射光线与光轴的夹角$U$或入射光线在球面上的入射点高度$h$而异。轴上点发出的同心光束经光学系统各个球面折射后，将不复为同心光束（如\figref{fig:spherical-aberration-1} 所示）。不同倾角的光线交光轴于不同位置上，相对于理想像点的位置有不同的偏离。这是单色光的成像缺陷之一，称为球差。
 \end{definition}
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.6\textwidth]{spherical-aberration.png}
-	\caption{球差示意图}
-	\label{fig:spherical-aberration}
+	\begin{minipage}[t]{0.3\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{spherical-aberration-1.pdf}
+		\caption{球差示意图}
+		\label{fig:spherical-aberration-1}
+	\end{minipage}
+	\quad
+	\begin{minipage}[t]{0.65\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{spherical-aberration-2.png}
+		\caption{球差详解图}
+		\label{fig:spherical-aberration-2}
+	\end{minipage}
 \end{figure}
 
-在\figref{fig:spherical-aberration} 中，轴上点$A$的理想像为$A'_0$，由$A$点发出的过入瞳边缘的光线$AP$（边缘光线）从系统出射后，交光轴于$A'$。由于球差，$A'$与$A'_0$不重合。若它们的像方截距分别为$L'$和$l'$，则
+在\figref{fig:spherical-aberration-2} 中，轴上点$A$的理想像为$A'_0$，由$A$点发出的过入瞳边缘的光线$AP$（边缘光线）从系统出射后，交光轴于$A'$。由于球差，$A'$与$A'_0$不重合。若它们的像方截距分别为$L'$和$l'$，则
 \begin{equation}
 \delta L'=L'-l'
 \label{eq:spherical-aberration}
@@ -3347,7 +3368,7 @@ h_1=\frac{1}{\sqrt{2}}h_m=0.707h_m
 	\end{minipage}
 \end{figure}
 
-\subsection{单个折射球面的球差特征}
+\subsection{单折射球面的球差}
 \label{subsec:aplanatic-point}
 
 假设某一面的物方已有球差，如\figref{fig:spherical-aberration-of-the-object} 所示，经推导可得
@@ -3485,7 +3506,16 @@ S_{-}=\frac{niL\sin U(\sin I'-\sin U)(\sin I-\sin I')}{\cos{\dfrac{I-U}{2}}\cos{
 \begin{equation}
 \frac{h}{\sin U'}=f'
 \end{equation}
-仅由轴上点光线的光路计算结果就能方便地判断光学系统是否满足正弦条件。
+仅由轴上点光线的光路计算结果就能方便地判断光学系统是否满足正弦条件。例如边缘光线，若已对其校正了球差，并根据其光路计算结果求取比值$n\sin U/n'\sin U'$或$h/sin U'$，它们与按近轴光线所算得的放大率$\beta=nu/n'u'$或焦距$f'=h/u'$之差为
+\begin{equation}
+\delta\beta=\frac{n\sin U}{n'\sin U'}-\beta
+\label{eq:delta-beta}
+\end{equation}
+\begin{equation}
+\delta f'=\frac{h}{\sin U'}-f'
+\label{eq:delta-f}
+\end{equation}
+即表示系统偏离正弦条件的程度。
 
 光轴上校正了球差并满足正弦条件的一对共轭点为齐明点或不晕点。由第 \ref{subsec:aplanatic-point} 可知，单个折射球面存在三对无球差的共轭点。其中$l=l'=0$和$l=l'=r$两对显然满足条件，而$l'=(n+n')r/n'$和$l=(n+n')r/n$，有
 \begin{equation}
@@ -3494,34 +3524,201 @@ S_{-}=\frac{niL\sin U(\sin I'-\sin U)(\sin I-\sin I')}{\cos{\dfrac{I-U}{2}}\cos{
 所以以上三对共轭点都是满足正弦条件的齐明点。
 
 \subsection{等晕条件}
+正弦条件以轴上点完善成像为前提。但实际上光学系统仅能对物点发出的光束中的一个带或两个带的光线校正球差，因此，即使是轴上点也不可能真正的成完善像。此外，轴上点球差校正不佳或不能校正时，成像也不完善。此时，轴外近轴点也不可能完善成像，充其量只能要求它的像质与轴上点一致，即具有相同程度的成像缺陷，可称之为\textbf{等晕成像}。
 
+\begin{definition}{等晕条件}{aplanatic-condition}
+	轴上点成像时只有球差，根据等晕成像的要求，在垂轴平面上与之无限靠近的轴外点也只有球差。并且对应孔径角球差相等，二者具有相同的光束结构。此时所要满足的条件称为等晕条件，即
+	\begin{equation}
+	\mathrm{OSC}=\frac{n\sin U}{\beta n'\sin U'}\cdot\frac{l'-l'_p}{L'-L'_p}-1
+	\end{equation}
+	或
+	\begin{equation}
+	\mathrm{OSC}=\frac{\sin U}{\sin U'}\cdot\frac{u'}{u}\cdot\frac{l'-l'_p}{L'-L'_p}-1
+	\label{eq:aplanatic-condition}
+	\end{equation}
+\end{definition}
+若$\mathrm{OSC}=0$，表示系统满足等晕条件，$\mathrm{OSC}$称为正弦差。当轴上点由于球差而不完善成像时，满足此条件可以使垂轴小面积等晕成像。由以上公式可见，为计算正弦差以判断近轴点的像质，只需利用轴上点的光线计算结果，外加一条第二近轴光线的计算即可达到目的。为使正弦差的公式表示得更明确、简洁和便于计算，将$l'=L'-\delta L'$带入，并且一般总取$u=\sin U$，忽略高次小量（即取$\sin U'=u'$，$L'=l'$）后，公式 \eqref{eq:aplanatic-condition} 可化为
+\begin{equation}
+\mathrm{OSC}=\frac{\delta\beta}{\beta}-\frac{\delta L'}{l'-l'_p}
+\end{equation}
+当物体位于无穷远时，按照公式$h/\sin U'=f'$的来源，可将上式表示成
+\begin{equation}
+\mathrm{OSC}=\frac{\delta f'}{f'}-\frac{\delta L'}{l'-l'_p}
+\end{equation}
+以上二式中的$\delta\beta$和$\delta f'$分别由公式 \eqref{eq:delta-beta} 和 \eqref{eq:delta-f} 决定。
+上述计算正弦差的公式中，都包含有出瞳位置因子$l'_p$，它随孔阑位置而变。因此，当系统的球差已定而不满足等晕条件时，一定可以找到一个光阑位置使系统的正弦差为零。
 
 \subsection{彗差}
+\begin{definition}{彗差}{coma}
+当光学系统不满足等晕条件时，轴外点成像将会产生彗差。彗差是一种描述轴外点光束关于主光线失对称的像差，应分别对子午光束和弧矢光束求取。
+\end{definition}
+
+对于单个球面，彗差一方面是球差引起的，球差越大，彗差也会越大；另一方面，折射球面产生的彗差还与光阑位置，即主光线的入射角$i_p$有关。如果光阑位于球心，相当于主光线与辅轴重合，即$i_p=0$，则不论球差如何，都不会产生彗差。
+
+实际上，光学系统的各种像差总是同时存在，所以计算彗差时，并非像定义那样，真正求出一对对称光线的交点相对于主光线的偏离，而是以这对光线与高斯像面交点高度的平均值与主光线交点高度之差来表征的。如\figref{fig:coma} 所示，对于子午彗差，可表示为
+\begin{equation}
+K'_t=\frac{1}{2}(y'_a+y'_b)-y'_p
+\end{equation}
+对于弧矢彗差，因一对对称的弧矢光线与高斯像面的交点在$y$方向的坐标必相等，所以有
+\begin{equation}
+K'_s=y'_s-y'_p
+\end{equation}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.6\textwidth]{coma.png}
+	\caption{彗差示意图}
+	\label{fig:coma}
+\end{figure}
+
+\underline{彗差是轴外点成像是产生的一种宽光束像差，是与视场和孔径有关的}。为全面了解光学系统对彗差的校正情况，需要设置多个特征视场和特征孔径计算彗差。对于子午光束，孔径取点系数为$K_{\eta}$要正负都取；对于弧矢光束，只对单向的光线计算即可，即$K_{\eta}$只取正值。
+
+因为当光学系统不满足等晕条件，近轴轴外点就会产生彗差，所以彗差与等晕条件存在关系。可以把近轴点的弧矢彗差归结为光学系统不满足等晕条件所导致的结果。由于视场很小时主光线与高斯像面的交点高度十分接近理想高，可以证明此时有
+\begin{equation}
+K'_{\eta}=y'_0\cdot\mathrm{OSC}
+\end{equation}
+
+当光学系统仅由彗差时\footnote{讨论任何一种像差现象都必须把这种像差分离出来单独讨论，即认为光学系统仅存在这一种像差。}，对于由出瞳出射的某一孔径带光线，其上下光线的交点在子午平面，但不在主光线上；前后光线相当于比主光线略高的一对光线但没有上下光线那么高，它们的交点在辅轴上，但不再主光线上。这个孔径带上其他任何一对光线又相当于比前后光线孔径更大，但比上下光线孔径小的光线，它们的交点应该在前后光线的交点与上下光线的交点之间。但由于它们并不关于子午面对称，所以它们的交点不在子午面内。因此，由出瞳上各个直径方向的对应点出射的各对光线在像空间相交，把这些交点连起来后将形成一个光环，光环最上方是这个光环的交点，最下方是弧矢光线的交点，其余各点对应其他的交点。孔径越大，像空间的光环也越大，相应的交点离主光线越远，于是形成了彗星状的弥散斑，如\figref{fig:lens-coma} 所示。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.6\textwidth]{lens-coma.pdf}
+	\caption{彗差形成的弥散斑}
+	\label{fig:lens-coma}
+\end{figure}
+
+对于单个折射球面，当主光线通过球心时满足等晕条件，不会产生彗差。这说明彗差与孔阑位置有关。因此，如果一个光学系统存在残余球差，仍可找到某一个孔阑位置使系统能够校正彗差。
+
 \subsection{像散}
+轴外点发出的光束，其主光线不与光学系统各个表面的对称轴重合，使出射光束失去对称。上面所述的彗差，只能表征光束失去对称的一种像差，并且是对宽光束而言的。此外，还有一种描述光束失去对称的像差。
+
+\begin{definition}{像散}{astigmatism}
+随着视场的增大，远离光轴的物点，即使在沿主光线周围的细光束范围内，也会明显地表现出失对称性质。与此细光束对应的波面也非旋转对称，而是在不同方向上有不同的曲率。数学上可以证明，一个微小的非轴对称曲面元，其曲率是随方向的变化而渐变的，但存在两条曲率分别为最大和最小的相互垂直的主截线。在光学系统中，这两条主截线正好与子午方向和弧矢方向相对应。这样，使得子午细光束和弧矢细光束，虽然因很细而能各自会聚于主光线上，但前者的会聚点$B'_t$（子午像点$T_1$）和后者的会聚点$B'_s$（弧矢像点$S_1$）并不重合，如\figref{fig:astigmatism} 所示。子午光束的会聚度大时，子午像点$B'_t$比弧矢像点$B'_s$更靠近系统，反之，$B'_s$更靠近系统。描述子午细光束和弧矢细光束会聚点之间位置差异的像差称为像散，以$B'_t$与$B'_s$之间的沿轴距离度量之，属于细光束像差。
+\end{definition}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.6\textwidth]{astigmatism.pdf}
+	\caption{像散示意图}
+	\label{fig:astigmatism}
+\end{figure}
+
+\figref{fig:astigmatism} 所示为整个非对称细光束的聚焦情况。设子午光束会聚度大，即负像散。此时，在子午像点$B'_t$处聚焦成一条垂直于子午平面的短线，称为\textbf{子午焦线}；在弧矢像点$B'_s$处聚焦成一条位于子午平面上的铅锤短线，称\textbf{弧矢焦线}，且两个焦线互相垂直。在两条短线之间，光束的截面表现为子午焦线$\rightarrow$长轴与子午面垂直的椭圆$\rightarrow$圆$\rightarrow$长轴在子午面上的椭圆$\rightarrow$弧矢焦线。上述这种能在两个位置聚焦的非对称细光束称为像散光束。
+
 \subsection{场曲}
+\begin{definition}{场曲}{field-curvature}
+	子午像点$B'_t$和弧矢像点$B'_s$的位置及像散的大小是随视场而异的，由这些点构成的子午像面和弧矢像面成为两个同时相切于高斯像面中心点的曲面，这就是像面弯曲，简称场曲。场曲以子午像点和弧矢像点相对于高斯像面的轴向偏离$x'_t$和$x'_s$来度量，$x'_t$称为子午场曲，$x'_t$称为弧矢场曲。二者之差，以$\Delta x$表示，即$\Delta x=x'_t-x'_s$就是同一视场的像散。
+\end{definition}
+
+为表征光学系统的像散和像面弯曲的校正情况，通常以物方视场角为纵坐标，以场曲为横坐标作曲线。为此，须对多个视场计算出场曲值。必须指出，场曲不仅仅是有像散引起的，即使像散为零，像面仍然可以是弯曲的。这就是由于第 \ref{chap:spherical-system} 章所讲的球面成像固有性质所致，这种特性被所谓匹兹凡和所决定，下文会进行讨论。为得到平的像面，必须对光学系统同时矫正像散和匹兹凡和。
+
+无论是宽光束还是细光束，都存在子午光线的交点和弧矢光线的交点之间有沿轴距离的现象，并且这两个交点通常不在高斯像面上。所以宽光束和细光束都存在像散和场曲。实际上细光束像散和场曲是后文要讲的初级像散和场曲，一般不特别指出，像散和场曲都是指细光束的。
+
 \subsection{畸变}
+……
+
 \section{色差}
 \subsection{位置色差}
+……
+
 \subsection{倍率色差}
+……
+
 \section{初级像差}
+……
+
+
+
 \part{物理光学}
 
 \chapter{光在各向同性介质中的传播规律}
 \section{光波的特性}
 \subsection{平面光波的横波特性}
+……
 \subsection{平面光波的偏振特性}
+……
 \subsubsection{光波的偏振态}
 根据空间任一点光电场$\vec E$的矢量末端在不同时刻的轨迹不同，可将其偏振状态分为线偏振、圆偏振和椭圆偏振。
 \subsubsection{偏振态的表示法}
 两个振动方向相互垂直的线偏振光叠加时，通常形成椭圆偏振光，其电场矢端轨迹的椭圆长、短轴之比及空间去向，随二线偏振光的振幅比$E_{0y}/E_{0x}$及其相位差$\varphi$变化，他们决定了该光的偏振态。
 \begin{enumerate}
 	\item \textbf{三角函数表示法：}
-	
+
 	两个振动方向相互垂直的线偏振光$E_x$和$E_y$叠加后，一般情况下将形成椭圆偏振光：
 	\begin{equation}
 	\bigg(\frac{E_x}{E_{0x}}\bigg)^2+\bigg(\frac{E_y}{E_{0y}}\bigg)^2-2\bigg(\frac{E_x}{E_{0x}}\bigg)\bigg(\frac{E_y}{E_{0y}}\bigg)\cos\varphi=\sin^2\varphi
 	\end{equation}
 \end{enumerate}
+
+\begin{problem}
+	设一频率为$\nu=10^{14}\mathrm{Hz}$、振幅为$1$的单色平面光波，$t=0$时刻在$xOy$平面($z=0$)上的相位分布如图所示：等相位线与$x$轴垂直，$\varphi=0$的等相位线坐标为$x=-5\mu\mathrm{m}$，$\varphi$随着$x$线性增加，$x$每增加$4\mu\mathrm{m}$，相位增加$2\pi$。求此光波场的三维空间表达式、波矢、空间频率。
+\end{problem}
+\begin{solution}
+	该单色平面光波的波数为
+	\begin{equation}
+	k=\frac{2\pi\nu}{c}=2.094\times10^3\mathrm{mm}^{-1}
+	\end{equation}
+	由于$x$每增加$4\mu\mathrm{m}$，相位增加$2\pi$，所以$k_z$（沿$x$方向每增加单位长度，相位增加量）为
+	\begin{equation}
+	k_x=\frac{2\pi}{4\mu\mathrm{m}}=1.571\times10^3\mathrm{mm}^{-1}
+	\end{equation}
+	因为沿$y$轴的相位不变化，所以$k_y=0$，所以$k_z$为
+	\begin{equation}
+	k_z=\sqrt{k^2-k^2_x-k^2_y}=1.385\times10^3\mathrm{mm}^{-1}
+	\end{equation}
+	该单色平面波的波矢为
+	\begin{equation}
+	\begin{aligned}
+	\vec{k}&=k\vec{k}_0\\
+	&=2.094\times10^3\vec{k}_0\\
+	&=k_x\vec{i}+k_j\vec{j}+k_z\vec{k}\\
+	&=1.571\times10^3\vec{i}+1.385\times10^3\vec{k}\mathrm{mm}^{-1}
+	\end{aligned}
+	\end{equation}
+	可见，波法线在$xOy$平面内，波法线方向与$z$轴的夹角$\alpha$为
+	\begin{equation}
+	\alpha=\arctan\frac{k_x}{k_z}=48^{\circ}36'
+	\end{equation}
+	由于$k_y=0$，所以在$z=0$面上、$t=0$时刻的相位为
+	\begin{equation}
+	\varphi=k_xx+\varphi_0
+	\end{equation}
+	又由于在$x=-5\mu\mathrm{m}$处，$\varphi=0$，因而可求得
+	\begin{equation}
+	\varphi_0=2.5\pi
+	\end{equation}
+	因此，光波电场的三维空间表示式为
+	\begin{equation}
+	E(x,y,z)=e^{\mathrm{i}(k_xx+k_yy+k_zz+\varphi_0)}=e^{\mathrm{i}(1.571\times10^3+1.571\times10^3z+2.5\pi)}
+	\end{equation}
+	该单色平面光波的空间频率为
+	\begin{itemize}
+		\item $\vec{k}$方向：$f=1/\lambda=k/(2\pi)=333\mathrm{mm}^{-1}$
+		\item $x$方向：$f_x=1/\lambda_x=k_x/(2\pi)=250\mathrm{mm}^{-1}$
+		\item $y$方向：$f_y=1/\lambda_y=k_y/(2\pi)=0$
+		\item $z$方向：$f_z=1/\lambda_z=k_z/(2\pi)=220\mathrm{mm}^{-1}$
+	\end{itemize}
+\end{solution}
+
+\begin{problem}
+	光线穿过平行平板，由$n_1$进入$n_2$界面的振幅反射系数为$r$，透射系数为$t$，由$n_2$进入$n_1$界面的振幅反射系数为$r'$，透射系数为$t'$。证明：相应于平行和垂直于图面振动的光分量有：
+	\begin{enumerate}
+		\item $r_{\perp}=-r'_{\perp}$；
+		\item $r_{\parallel}=-r'_{\parallel}$；
+		\item $t_{\perp}\cdot t'_{\perp}+r^2_{\perp}=1$；
+		\item $t_{\parallel}\cdot t'_{\parallel}+r^2_{\parallel}=1$；
+		\item $1+r_{\parallel}\cdot r'_{\parallel}=t_{\parallel}\cdot t'_{\parallel}$。
+	\end{enumerate}
+\end{problem}
+\begin{solution}
+由菲涅耳公式：
+\begin{equation}
+\begin{aligned}
+r_s&=\frac{E_{\mathrm{r0s}}}{E_{\mathrm{i0s}}}=-\frac{\sin(\theta_1-\theta_2)}{\sin(\theta_1+\theta_2)}\\ r_p&=\frac{E_{\mathrm{r0p}}}{E_{\mathrm{i0p}}}=\frac{\tan(\theta_1-\theta_2)}{\tan(\theta_1+\theta_2)}\\
+t_s&=\frac{E_{\mathrm{t0s}}}{E_{\mathrm{i0s}}}=\frac{2\cos\theta_1\sin\theta_2}{\sin(\theta_1+\theta_2)}\\ t_p&=\frac{E_{\mathrm{t0p}}}{E_{\mathrm{i0p}}}=\frac{2\cos\theta_1\sin\theta_2}{\sin(\theta_1+\theta_2)\cos(\theta_1-\theta_2)}
+\end{aligned}
+\end{equation}
+\end{solution}
 
 \chapter{光的干涉}
 \section{产生干涉的基本条件}
@@ -3869,8 +4066,7 @@ I_{\mathrm{t}}=\frac{1}{1+F\sin^2\dfrac{\varphi}{2}}I_{\mathrm{i}}
 \end{enumerate}
 
 \section{光学薄膜}
-\subsection{光学薄膜的反射特性}
-\subsubsection{单层膜}
+\subsection{单层膜的反射特性}
 在玻璃基片的光滑表面上镀一层折射率和厚度都均匀的透明介质薄膜，当光束入射到薄膜上时，将在膜内产生多次反射，并且在薄膜的两表面上有一系列互相平行的光束射出。假设薄膜的厚度为$h$，折射率为$n_1$，基片折射率为$n_2$，光由折射率为$n_0$的介质入射到薄膜上，采用类似于平行平板多光束干涉的处理方法，可以得到单层膜的反射系数为
 \begin{equation}
 r=\frac{E_{\mathrm{0r}}}{E_{\mathrm{0i}}}=\frac{r_1+r_2\mathrm{e}^{\mathrm{i}\varphi}}{1+r_1r_2\mathrm{e}^{\mathrm{i}\varphi}}=|r|\mathrm{e}^{\mathrm{i}\varphi_{\mathrm{r}}}
@@ -3895,7 +4091,10 @@ r_1=\frac{n_0-n_1}{n_0+n_1},\quad r_2=\frac{n_1-n_2}{n_1+n_2}
 将其带入上式，即可得到正入射时单层膜的反射率公式：
 \begin{equation}
 R=\frac{(n_0-n_2)^2\cos^2\dfrac{\varphi}{2}+\bigg(\dfrac{n_0n_2}{n_1}-n_1\bigg)^2\sin^2\dfrac{\varphi}{2}}{(n_0+n_2)^2\cos^2\dfrac{\varphi}{2}+\bigg(\dfrac{n_0n_2}{n_1}+n_1\bigg)^2\sin^2\dfrac{\varphi}{2}}
+\label{eq:reflectivity-of-monolayer}
 \end{equation}
+
+对于一定的基片和介质膜，$n_0$、$n_2$为常数，可由上式得到$R$随$\varphi$即随$n_1h$的变化规律。\figref{fig:variation-of-reflectivity-of-dielectric-film-with-thickness} 给出了$n_0=1$，$n_2=1.5$，对给定波长$\lambda_0$和不同折射率的介质膜，按照上式计算出的单层膜反射率$R$随膜层光学厚度$n_1h$的变化曲线。
 
 \begin{figure}[htbp]
 	\centering
@@ -3904,11 +4103,538 @@ R=\frac{(n_0-n_2)^2\cos^2\dfrac{\varphi}{2}+\bigg(\dfrac{n_0n_2}{n_1}-n_1\bigg)^
 	\label{fig:variation-of-reflectivity-of-dielectric-film-with-thickness}
 \end{figure}
 
+由此曲线可以得到如下结论：
+\begin{enumerate}
+	\item $n_1=n_0$或$n_1=n_2$时，$R$和未镀膜时的反射率$R_0$一样。
+	\item $n_1<n_2$时，$R<R_0$，该单层膜的反射率较之未镀膜时减小，透射率增大，即该膜具有增透作用，称为增透膜。进一步考察\figref{fig:variation-of-reflectivity-of-dielectric-film-with-thickness} 的变化曲线可以看出，当$n_1<n_2$，且$n_1h=\lambda_0/4$时，反射率最小，$R=R_\mathrm{m}$，有最好的增透效果。这个最小反射率为
+	\begin{equation}
+	R_\mathrm{m}=\bigg(\frac{n_0n_2-n^2_1}{n_0n_2+n^2_1}\bigg)^2=\bigg(\frac{n_0-n^2_1/n_2}{n_0+n^2_1/n_2}\bigg)^2
+	\end{equation}
+	由上式可以看出，当镀膜材料的折射率$n_1=\sqrt{n_0n_2}$时，$R_\mathrm{m}=0$，此时达到完全增透的效果。上式表示的反射率是在光束正入射时针对给定波长$\lambda_0$得到的，亦及对一个给定的单层增透膜，仅对某一波长$\lambda_0$才为$R_\mathrm{m}$，对于其他波长，由于该膜层光学厚度不是他们的$1/4$或其奇数倍，增透效果要差一些。此时只能按照式 \eqref{eq:reflectivity-of-monolayer} 对这些波长的反射率进行计算。此外，上式是在光束正入射的情况下推导出来的，如果我们赋予式中$n_0$、$n_1$、$n_2$不同的意义，上式可适用于光束斜入射的情况。根据菲涅耳公式，在折射率不同的两个介质界面上，光束斜入射时的反射系数为
+	\begin{equation}
+	r_{1\mathrm{s}}=-\frac{n_1\cos\theta_1-n_0\cos\theta_0}{n_1\cos\theta_1+n_0\cos\theta_0}
+	\end{equation}
+	\begin{equation}
+	r_{1\mathrm{p}}=\frac{\dfrac{n_1}{\cos\theta_1}-\dfrac{n_0}{\cos\theta_0}}{\dfrac{n_1}{\cos\theta_1}+\dfrac{n_0}{\cos\theta_0}}
+	\end{equation}
+	若对$s$分量以$\bar{n}$代替$n\cos\theta$，对$p$分量以$\bar{n}$代替$n/\cos\theta$，则上面两式在形式上与正入射时的表达式相同，$\bar{n}$称为有效折射率。
+	\item ……
+	\item ……
+\end{enumerate}
 
-\subsubsection{多层膜}
+\subsection{多层膜的反射特性}
+
+单层膜的功能有限，通常只用于增透、分束，实际上更多情况下采用的是多层膜系。多层膜有两种常用的处理方法：等效界面法和矩阵法。
+
+\subsubsection{等效界面法}
+……
+
+\subsubsection{矩阵法}
+……
+
+\subsection{多层高反射膜的反射特性}
+……
 
 
-\subsubsection{多层高反射膜}
+\subsection{薄膜波导的基本原理}
+……
+
+\subsection{薄膜波导的模式特性}
+……
+
+\subsection{薄膜波导的光耦合}
+……
+
+\section{典型干涉仪}
+
+\subsection{迈克尔逊干涉仪}
+……
+
+\subsection{法布里-珀罗干涉仪}
+……
+
+\chapter{光的衍射}
+
+\section{衍射的基本理论}
+
+\subsection{光的衍射现象}
+
+\subsection{惠更斯-菲涅尔原理}
+
+\subsection{基尔霍夫衍射公式}
+
+\subsection{巴比涅原理}
+
+\section{夫琅禾费衍射}
+
+\section{菲涅尔衍射}
+
+\section{衍射光栅}
+
+\section{波带片}
+
+\chapter{傅里叶光学}
+
+\section{平面波的复振幅分布与空间频率}
+
+\subsection{光场中任一平面的复振幅分布}
+
+\subsection{复振幅分布的空间频率}
+
+\section{复杂复振幅分布及其分解}
+
+\subsection{单色波场中的复杂复振幅分布}
+
+下面是几种常用的振幅型衍射屏，在单位振幅的平面波正入射的情况下衍射屏后的光波复振幅分布。
+\begin{enumerate}
+	\item 缝宽为$a$的单缝：
+		\begin{equation}
+		\tilde{E}(x,y)=t(x,y)=\mathrm{rect}\bigg(\frac{x}{a}\bigg)=
+		\begin{cases}
+		1\quad |x|\leqslant a/2\\
+		0\quad \text{其他}
+		\end{cases}
+		\end{equation}
+	\item 边长分别为$a$和$b$的方孔：
+		\begin{equation}
+		\tilde{E}(x,y)=t(x,y)=\mathrm{rect}\bigg(\frac{x}{a}\bigg)\mathrm{rect}\bigg(\frac{y}{b}\bigg)=
+		\begin{cases}
+		1\quad |x|\leqslant a/2,\ |y|\leqslant b/2\\
+		0\quad \text{其他}
+		\end{cases}
+		\end{equation}
+	\item 半径为$a$的圆孔：
+		\begin{equation}
+		\tilde{E}(x,y)=t(x,y)=\mathrm{circ}\bigg(\frac{r}{a}\bigg)=\mathrm{rect}\Bigg(\frac{\sqrt{x^2+y^2}}{a}\Bigg)=
+		\begin{cases}
+		1\quad \sqrt{x^2+y^2}\leqslant a\\
+		0\quad \text{其他}
+		\end{cases}
+		\end{equation}
+	\item 矩形振幅光栅，缝宽为$a$、光栅常数为$d$、缝数为$N$（奇数）：
+		\begin{equation}
+		\tilde{E}(x,y)=t(x,y)=\sum_{n=-(N-1)/2}^{(N-1)/2}\mathrm{rect}\bigg(\frac{x+nd}{a}\bigg)
+		\end{equation}
+	\item 正弦振幅光栅，总宽度为$w$、振幅调制度为$m$、透射系数的变化率为$u_0$：
+		\begin{equation}
+		\tilde{E}(x,y)=t(x,y)=\bigg[\frac{1}{2}+\frac{m}{2}\cos(2\pi u_0x)\bigg]\mathrm{rect}\bigg(\frac{x}{w}\bigg)
+		\end{equation}
+\end{enumerate}
+
+\subsection{复杂复振幅分布的分解}
+
+单色光波通过衍射屏引起的复杂复振幅分布，可以利用傅里叶积分进行分解。假设在$x$，$y$平面上的复杂复振幅分布为$\tilde{E}(x,y)$，根据傅里叶积分定理，$\tilde{E}(x,y)$可以分解成无数个形式为$\exp[\mathrm{i}2\pi(ux+vy)]$的基元函数的线性组合：
+\begin{equation}
+\tilde{E}(x,y)=\iint_{-\infty}^{\infty}\tilde{E}(u,v)\exp[\mathrm{i}2\pi(ux+vy)]\mathrm{d}u\mathrm{d}v
+\end{equation}
+其中
+\begin{equation}
+\tilde{E}(u,v)=\iint_{-\infty}^{\infty}\tilde{E}(x,y)\exp[-\mathrm{i}2\pi(ux+vy)]\mathrm{d}x\mathrm{d}y
+\end{equation}
+是函数$\tilde{E}(x,y)$的二维傅里叶变换，通常简记为$\tilde{E}(u,v)=\mathscr{F}(\tilde{E}(x,y))$。而$\tilde{E}(x,y)$是$\tilde{E}(u,v)$的二维傅里叶逆变换，简记为$\tilde{E}(x,y)=\mathscr{F}^{-1}(\tilde{E}(u,v))$。
+
+\section{光波衍射的傅里叶分析方法}
+
+\subsection{夫琅禾费衍射与傅里叶变换的关系}
+
+\subsection{夫琅禾费衍射图样的特点}
+夫琅禾费衍射具有以下特点：
+\begin{enumerate}
+	\item \textbf{衍射现象扩散程度与孔径大小成反比：}
+	\item \textbf{孔径（衍射屏）在自身平面内平移不改变衍射图样的位置和形状：}
+	\item \textbf{倾斜平面波照明孔径使衍射图样产生平移：}
+\end{enumerate}
+
+\subsection{矩孔衍射的傅里叶变换}
+
+长和宽分别为$a$和$b$的矩孔的复振幅透射系数为
+\begin{equation}
+t(x_1,y_1)=\mathrm{rect}\bigg(\frac{x_1}{a}\bigg)\mathrm{rect}\bigg(\frac{y_1}{b}\bigg)=
+\begin{cases}
+1\quad x_1\leqslant a,\ y_1\leqslant b\\
+0\quad x_1>a,\ y_1>b
+\end{cases}
+\end{equation}
+根据衍射场与衍射屏的傅里叶变换关系式，在单位振幅的单色平面波垂直照明下，在观察面上光场的复振幅分布为
+\begin{equation}
+\tilde{E}(x,y)=C'\mathscr{F}[t(x_1,y_1)]=C'ab\mathrm{sinc}(au)\mathrm{sinc}(bv)
+\end{equation}
+设$C'ab=\tilde{E}_0$为常数，且$u=x/(\lambda f)$，$v=y/(\lambda f)$，则相应的光强分布为
+\begin{equation}
+I(x,y)=|\tilde{E}(x,y)|^2=I_0\left[\frac{\sin\pi\bigg(\dfrac{ax}{\lambda f}\bigg)}{\pi\bigg(\dfrac{ax}{\lambda f}\bigg)}\right]^2\left[\frac{\sin\pi\bigg(\dfrac{bx}{\lambda f}\bigg)}{\pi\bigg(\dfrac{bx}{\lambda f}\bigg)}\right]^2
+\end{equation}
+式中，$I_0=|\tilde{E}_0|^2$，进一步简化为
+\begin{equation}
+I(x,y)=I_0\bigg(\frac{\sin\alpha}{\alpha}\bigg)^2\bigg(\frac{\sin\beta}{\beta}\bigg)^2
+\label{eq:intensity-distribution-of-rectangular-aperture-diffraction}
+\end{equation}
+式中，$\alpha=(\pi ax)/(\lambda f)=kal/2$，$\beta=(\pi by)/(\lambda f)=kbw/2$。
+
+\subsection{单缝衍射的傅里叶变换}
+在矩孔衍射中，如果$b\gg a$，矩孔就成了平行于$y_1$轴的狭缝。此时，式 \eqref{eq:intensity-distribution-of-rectangular-aperture-diffraction} 中的因子$\mathrm{sinc}(bv)$在$x$轴之外实际上为$0$，衍射将集中在$x$轴，即衍射光只沿着垂直于单缝的方向扩展。因此，对于单缝衍射有
+\begin{equation}
+\tilde{E}(x)=C'\mathscr{F}[t(x_1)]=C'a\mathrm{sinc}(au),\quad I(x,y)=I_0\bigg(\frac{\sin\alpha}{\alpha}\bigg)^2
+\end{equation}
+中央亮斑的半宽度为$\Delta x=\lambda f/a$，对应的频谱宽度为$\Delta u=\Delta x/(\lambda f)=1/a$。
+
+对于单色平面波垂直照明的情况，入射光场的频率$u=v=0$，所以，从频率域来看衍射现象，衍射孔径的作用是使入射光场的频谱增宽，其宽度与衍射孔径的大小成反比。孔径宽度减为原来的$1/n$，频谱增宽$n$倍。这一结果可以看出是傅里叶变换相似定理（缩放定理）的物理解释。
+
+\subsection{圆孔衍射的傅里叶变换}
+
+在单位振幅的单色平面波垂直照明半径为$a$的圆孔时，在透过圆孔的平面上光场的复振幅分布为
+\begin{equation}
+\tilde{E}(x_1,y_1)=t(x_1,y_1)=\mathrm{rect}\left(\frac{\sqrt{x_1^2+y_1^2}}{a}\right)=\mathrm{circ}\bigg(\frac{r_1}{a}\bigg)
+\end{equation}
+利用圆域函数的傅里叶变换结果和相似定理，得到
+\begin{equation}
+\mathscr{F}[\tilde{E}(x_1,y_1)]=\mathscr{F}[\tilde{E}(r_1)]=\mathscr{F}\bigg[\mathrm{circ}\bigg(\frac{r_1}{a}\bigg)\bigg]=\pi a^2\bigg[\frac{J_1(2\pi a\rho)}{2\pi a\rho}\bigg]
+\end{equation}
+其中，$J_1$为一阶第一类贝塞尔函数，$r$是观察面（$xy$平面）的径向坐标，$\rho$是沿径向的空间频率，它与坐标$r$的关系为$\rho=r/(\lambda f)$。圆孔夫琅禾费衍射的强度分布为
+\begin{equation}
+I(r)=\bigg\{\mathscr{F}\bigg[\mathrm{circ}\bigg(\frac{r_1}{a}\bigg)\bigg]\bigg\}^2=(\pi a^2)^2\left[\frac{2J_1\bigg(\dfrac{2\pi ar}{\lambda z_1}\bigg)}{\dfrac{2\pi ar}{\lambda z_1}}\right]^2
+\end{equation}
+令$Z=(2\pi ar)/(\lambda z_1)$，并由于$J_1(Z)/Z=1/2$，所以观察平面上轴上点$P_0$的强度$I(0)=(\pi a_2)^2$，因此，圆孔夫琅禾费衍射的强度分布为
+\begin{equation}
+I(Z)=I(0)\left[\frac{2J_1(Z)}{Z}\right]^2
+\end{equation}
+
+\subsection{双缝与多缝衍射的傅里叶变换}
+
+光强分布为
+\begin{equation}
+I(x)=I(0)\mathrm{sinc}^2\bigg(\frac{ax}{\lambda z_1}\bigg)\left[\frac{\sin N\bigg(\dfrac{\pi xd}{\lambda z_1}\bigg)}{\sin\bigg(\dfrac{\pi xd}{\lambda z_1}\bigg)}\right]^2
+\end{equation}
+
+\subsection{正弦振幅光栅衍射的傅里叶变换}
+
+光强分布为
+\begin{equation}
+I(x)=|\tilde{E}(x)|^2=\frac{L^2}{4}\bigg[\mathrm{sinc}^2\bigg(\frac{xL}{\lambda z_1}\bigg)+\frac{m}{4}\mathrm{sinc}^2\bigg(\frac{xL}{\lambda z_1}+u_0L\bigg)+\frac{m}{4}\mathrm{sinc}^2\bigg(\frac{xL}{\lambda z_1}-u_0L\bigg)\bigg]
+\end{equation}
+
+\subsection{正弦相位光栅衍射的傅里叶变换}
+
+光强分布为
+\begin{equation}
+I=\sum_{q=-\infty}^{\infty}L^2J_q^2\bigg(\frac{A}{2}\bigg)\left[\frac{\sin\dfrac{\pi}{\lambda}L\bigg(\sin\theta-q\dfrac{\lambda}{d}\bigg)}{\dfrac{\pi}{\lambda}L\bigg(\sin\theta-q\dfrac{\lambda}{d}\bigg)}\right]^2
+\end{equation}
+
+\section{透镜的傅里叶变换性质与成像性质}
+\subsection{透镜的透射函数}
+
+\subsection{透镜的傅里叶变换性质}
+
+\subsection{透镜的成像性质}
+
+\section{相干成像系统分析与相干传递函数}
+
+\section{非相干成像系统分析与光学传递函数}
+
+\section{阿贝成像理论与波特实验}
+
+\section{光学信息处理}
+
+\section{全息术}
+
+\chapter{光的偏振与晶体光学基础}
+
+\section{偏振光概述}
+
+\subsection{偏振光与自然光}
+
+\subsection{产生线偏振光的方法}
+
+\section{光在晶体中的传播}
+
+\subsection{晶体的双折射现象}
+
+\subsection{晶体的各向异性与介电张量}
+
+\section{晶体光学性质的几何表示}
+
+\subsection{折射率椭球}
+
+\subsection{法线面、光线面与波矢面}
+
+\subsection{单轴晶体光学性质的几何表示}
+
+\section{光波在晶体表面的折射与反射}
+
+\subsection{光在晶体表面的折射定律与反射定律}
+
+\subsection{光在单轴晶体中传播方向的确定}
+
+\section{晶体偏振器件}
+
+\subsection{偏振棱镜}
+
+\subsection{波片}
+
+\subsection{补偿器}
+
+\subsection{退偏器}
+
+\section{偏振的矩阵表示}
+
+\subsection{偏振光的琼斯矢量表示}
+
+\subsection{正交偏振}
+
+\subsection{偏振器件的琼斯矩阵表示}
+
+\begin{table}[htbp]
+	\centering
+	\caption{一些典型偏振器件的琼斯矩阵}
+		\begin{tabular}{c|c|c}
+			\hline
+			偏振器件& 方向 & 琼斯矩阵\\
+			\hline
+			\multirow{9}{*}{线偏振器}& 透光轴沿$x$轴 & $\begin{pmatrix} 1&0\\ 0&0 \end{pmatrix}$\\
+			\cline{2-3}
+			& 透光轴沿$y$轴 & $\begin{pmatrix} 0&0\\ 0&1 \end{pmatrix}$\\
+			\cline{2-3}
+			& 透光轴与$x$轴成$45^{\circ}$角 & $\dfrac{1}{2}\begin{pmatrix} 1&\pm1\\ \pm1&1 \end{pmatrix}$\\
+			\cline{2-3}
+			& 透光轴与$x$轴成$\theta$角 & $\begin{pmatrix} \cos^2\theta&\dfrac{1}{2}\sin2\theta\\ \dfrac{1}{2}\sin2\theta&\sin^2\theta \end{pmatrix}$\\
+			\hline
+			\multirow{5}{*}{$\dfrac{1}{4}$波片}& 快轴沿$x$轴 & $\begin{pmatrix} 1&0\\ 0&\mathrm{i} \end{pmatrix}$\\
+			\cline{2-3}
+			& 快轴沿$y$轴 & $\begin{pmatrix} 1&0\\ 0&-\mathrm{i} \end{pmatrix}$\\
+			\cline{2-3}
+			& 快轴与$x$轴成$\pm45^{\circ}$角 & $\dfrac{1}{\sqrt{2}}\begin{pmatrix} 1&\mp \mathrm{i}\\ \mp \mathrm{i}&1 \end{pmatrix}$\\
+			\hline
+			\multirow{3}{*}{$\dfrac{1}{2}$波片}& 快轴沿$x$轴或$y$轴 & $\begin{pmatrix} 1&0\\ 0&-1 \end{pmatrix}$\\
+			\cline{2-3}
+			& 快轴与$x$轴成$\pm45^{\circ}$角 & $\begin{pmatrix} 0&1\\ 1&0 \end{pmatrix}$\\
+			\hline
+			\multirow{7}{*}{一般波片（相位延迟角为$\delta$）}& 快轴沿$x$轴 & $\begin{pmatrix} 1&0\\ 0&\mathrm{e}^{\mathrm{i}\delta} \end{pmatrix}$\\
+			\cline{2-3}
+			& 快轴沿$y$轴 & $\begin{pmatrix} 1&0\\ 0&-\mathrm{e}^{\mathrm{i}\delta} \end{pmatrix}$\\
+			\cline{2-3}
+			& 快轴与$x$轴成$\pm45^{\circ}$角 & $\cos\dfrac{\delta}{2}\begin{pmatrix} 1&\mp\mathrm{i}\tan\dfrac{\delta}{2}\\ \mp\mathrm{i}\tan\dfrac{\delta}{2}&1 \end{pmatrix}$\\
+			\hline
+			各向同性移项器（产生相移$\varphi$）& —— & $\begin{pmatrix} \mathrm{e}^{\mathrm{i}\varphi}&0\\ 0&\mathrm{e}^{\mathrm{i}\varphi} \end{pmatrix}$\\
+			\hline
+			旋光元件（偏振态旋转$\theta$角）& —— & $\begin{pmatrix} \cos\theta&-\sin\theta\\ \sin\theta&\cos\theta \end{pmatrix}$\\
+			\hline
+			反射元件& —— & $\begin{pmatrix} -r_{\mathrm{p}}&0\\ 0&r_{\mathrm{s}} \end{pmatrix}$\\
+			\hline
+			\multirow{3}{*}{圆起偏振器}& 右旋 & $\dfrac{1}{2}\begin{pmatrix} 1&1\\ -\mathrm{i}&-\mathrm{i} \end{pmatrix}$\\
+			\cline{2-3}
+			& 左旋 & $\dfrac{1}{2}\begin{pmatrix} 1&1\\ \mathrm{i}&\mathrm{i} \end{pmatrix}$\\
+			\hline
+		\end{tabular}
+	\label{tab:jones-matrix-of-typical-polarizers}
+\end{table}
+
+\chapter{晶体的感应双折射\footnote{本章节在郁道银的《工程光学》中并未进行详细讲解，但在石顺祥的《物理光学与应用光学》中为单独的章节，在国科大的考研大纲中是需要掌握的内容。}}
+
+\section{电光效应}
+
+\subsection{电光效应的描述}
+
+\begin{definition}{电光效应}{electro-optical-effect}
+	当加到介质上的电场较大，足以将原子内场($\approx3\times10^8\mathrm{V/cm}$)扰动到有效程度，就可以使原来光学各向同性的介质变为各向异性，原来是光学各向异性介质的双折射特性发生变化。这种因外加电场使介质光学性质发生变化的效应，称为电光效应。
+\end{definition}
+
+\subsection{晶体的线性电光效应}
+
+在主轴坐标系中，无外加电场晶体的折射率椭球为
+\begin{equation}
+B^0_1x^2_1+B^0_2x^2_2+B^0_3x^2_3=1
+\label{eq:refractive-index-ellipse-equation-of-crystals-without-external-electric-field}
+\end{equation}
+外加电场后，由于线性电光效应，折射率椭球发生了变化，它应表示为一般折射率椭球的形式：
+\begin{equation}
+B_{11}x^2_1+B_{12}x_1x_2+B_{13}x_1x_3+B_{21}x_2x_1+B_{22}x^2_2+B_{23}x_2x_3+B_{31}x_3x_1+B_{32}x_3x_2+B_{33}x^2_3=1
+\end{equation}
+根据前面的讨论，折射率椭球的系数$B_{ij}$实际上是晶体的相对介电常数$\epsilon_{ij}$的逆张量，所以$B_{ij}$也是二阶对称张量，有$B_{ij}=B_{ji}$。因而$B_{ij}$只有六个独立分量，上式可以化简为
+\begin{equation}
+B_{11}x^2_1+B_{22}x^2_2+B_{33}x^2_3+B_{23}x_2x_3+B_{31}x_3x_1+B_{12}x_1x_2=1
+\label{eq:refractive-index-ellipse-equation-of-crystals-without-external-electric-field-simplified}
+\end{equation}
+将式 \eqref{eq:refractive-index-ellipse-equation-of-crystals-without-external-electric-field} 和式 \eqref{eq:refractive-index-ellipse-equation-of-crystals-without-external-electric-field-simplified} 进行比较可见，外加电场后，晶体折射率椭球系数$B_{ij}$的变化为
+\begin{equation}
+\begin{cases}
+\Delta B_{11}=B_{11}-B^0_1\\
+\Delta B_{22}=B_{22}-B^0_2\\
+\Delta B_{33}=B_{33}-B^0_3\\
+\Delta B_{23}=B_{23}\\
+\Delta B_{31}=B_{31}\\
+\Delta B_{12}=B_{12}
+\end{cases}
+\end{equation}
+考虑到$B_{ij}$是二阶对称张量，将其下标$i$和$j$交换其值不变，所以可将它的二重下标化简为单个下标，其对应关系为
+\begin{equation}
+B_{11}\sim B_1\quad B_{22}\sim B_2\quad B_{33}\sim B_3\quad B_{23}\sim B_4\quad B_{31}\sim B_5\quad B_{12}\sim B_6
+\end{equation}
+相应的$\Delta B_{ij}$也可化简为有六个分量的矩阵：
+\begin{equation}
+\begin{pmatrix}
+\Delta B_1\\
+\Delta B_2\\
+\Delta B_3\\
+\Delta B_4\\
+\Delta B_5\\
+\Delta B_6
+\end{pmatrix}=
+\begin{pmatrix}
+\Delta B_{11}\\
+\Delta B_{22}\\
+\Delta B_{33}\\
+\Delta B_{23}\\
+\Delta B_{31}\\
+\Delta B_{12}
+\end{pmatrix}
+\end{equation}
+对于线性电光系数$\gamma_{ijk}$，因其前面两个下标$i$、$j$互换对$B_{ij}$没有影响，所以也可将这两个下标简化为单个下标。经过这些简化后，只记线性电光效应的公式，可以写成如下形式：
+\begin{equation}
+\Delta B_i=\gamma_{ij}E_{j}\qquad i=1,2,\cdots,6;\quad j=1,2,3
+\end{equation}
+相应的矩阵形式为
+\begin{equation}
+\begin{pmatrix}
+\Delta B_1\\
+\Delta B_2\\
+\Delta B_3\\
+\Delta B_4\\
+\Delta B_5\\
+\Delta B_6
+\end{pmatrix}=
+\begin{pmatrix}
+\gamma_{11}&\gamma_{12}&\gamma_{13}\\
+\gamma_{21}&\gamma_{22}&\gamma_{23}\\
+\gamma_{31}&\gamma_{32}&\gamma_{33}\\
+\gamma_{41}&\gamma_{42}&\gamma_{43}\\
+\gamma_{51}&\gamma_{52}&\gamma_{53}\\
+\gamma_{61}&\gamma_{62}&\gamma_{63}
+\end{pmatrix}
+\begin{pmatrix}
+E_1\\
+E_2\\
+E_3
+\end{pmatrix}
+\end{equation}
+式中的$(6\times3)\gamma$矩阵就是线性电光系数矩阵，它可以描述外加电场对晶体光学特性影响的线性效应。
+
+\subsection{晶体的二次电光效应}
+
+\begin{equation}
+\begin{pmatrix}
+\Delta B_1\\
+\Delta B_2\\
+\Delta B_3\\
+\Delta B_4\\
+\Delta B_5\\
+\Delta B_6
+\end{pmatrix}=
+\begin{pmatrix}
+g_{11}&g_{12}&g_{12}&0&0&0\\
+g_{12}&g_{11}&g_{12}&0&0&0\\
+g_{12}&g_{12}&g_{11}&0&0&0\\
+0&0&0&g_{44}&0&0\\
+0&0&0&0&g_{44}&0\\
+0&0&0&0&0&g_{44}\\
+\end{pmatrix}
+\begin{pmatrix}
+P^2_1\\
+P^2_2\\
+P^2_3\\
+P^2_4\\
+P^2_5\\
+P^2_6
+\end{pmatrix}
+\end{equation}
+
+\subsection{晶体电光效应的应用}
+
+\section{声光效应}
+
+\subsection{弹光效应}
+
+\begin{definition}{电光效应}{elasto-optical-effect}
+	介质中存在弹性应力或应变时，介质的光学性质（折射率）将发生变化，这就是弹光效应。当超声波在介质中传播时，由于超声波是一种弹性波，将引起介质疏密交替变化，即引起弹性形变，由于弹光效应，将导致介质光学性质发生变化，从而影响光在其中的传播特性。通常，我们称超声波引起的弹光效应为声光效应。
+\end{definition}
+
+弹光效应可以按照电光效应的方法进行处理，即应力或应变对介质光学性质的影响，可以通过介质折射率椭球的形状和取向的改变来描述。
+
+假设介质未受到外力作用时的折射率椭球为
+\begin{equation}
+B^0_{ij}x_ix_j=1\qquad i,j=1,2,3
+\end{equation}
+介质受到应力$\sigma$作用后的折射率椭球变为
+\begin{equation}
+B_{ij}x_ix_j=1\qquad i,j=1,2,3
+\end{equation}
+或
+\begin{equation}
+(B^0_{ij}+\Delta B_{ij})x_ix_j=1\qquad i,j=1,2,3
+\end{equation}
+式中，$\Delta B_{ij}$为介质受到应力作用后的折射率椭球方程各系数的变化量，它是应力的函数，$\Delta B_{ij}=f(\sigma)$。
+
+若考虑线性弹光效应，略去所有的高次项，$\Delta B_{ij}$可以表示为
+\begin{equation}
+\Delta B_{ij}=\varPi_{ijkl}\sigma_{kl}\qquad i,j,k,l=1,2,3
+\end{equation}
+在此，考虑了介质光学性质的各向异性，认为应力$\sigma_{kl}$和折射率椭球的系数增量$\Delta B_{ij}$都是二阶张量；$\varPi_{ijkl}$是压光系数，它是一个四阶张量，有$81$个分量。
+
+根据虎克定律，应力和应变有如下关系：
+\begin{equation}
+\sigma_{kl}=C_{klrs}s_{rs}\qquad k,l,r,s=1,2,3
+\end{equation}
+式中，$s_{rs}$是弹性应变；$C_{klrs}$是倔强系数。将上一式带入上二式，$\Delta B_{ij}$可用应变参量描述：
+\begin{equation}
+\Delta B_{ij}=\varPi_{ijkl}C_{klrs}s_{rs}=P_{ijrs}s_{rs}\qquad i,j,k,l,r,s=1,2,3
+\end{equation}
+式中，$P_{ijrs}=\varPi_{ijkl}C_{klrs}$为弹光系数，他也是四阶张量，有$81$个分量。
+
+\subsection{声光衍射}
+
+\section{旋光效应}
+
+\section{法拉第效应}
+
+\chapter{光的吸收、色散和散射}
+
+\section{光与介质相互作用的经典理论}
+
+\subsection{经典理论的基本方程}
+
+\subsection{介质的光学特性}
+
+电极化率是复数，可表示为$\chi=\chi'+\mathrm{i}\chi''$，其实部和虚部分别为
+\begin{equation}
+\chi'=\frac{Ne^2}{\varepsilon_0m}\frac{\omega^2_0-\omega^2}{(\omega^2_0-\omega^2)^2+\gamma^2\omega^2}
+\end{equation}
+\begin{equation}
+\chi''=\frac{Ne^2}{\varepsilon_0m}\frac{\gamma\omega}{(\omega^2_0-\omega^2)^2+\gamma^2\omega^2}
+\end{equation}
+
+\section{光的吸收}
+
+\subsection{光的吸收定律}
+
+\subsection{吸收光谱}
+
+\section{光的色散}
+
+\subsection{色散率}
+
+\subsection{正常色散}
+
+\subsection{反常色散}
+
+\section{光的散射}
+
+\subsection{散射现象}
+
+\subsection{瑞利散射}
+
+\subsection{米氏散射}
+
+\subsection{分子散射}
+
+\subsection{拉曼散射}
 
 
 
