@@ -1,0 +1,381 @@
+\chapter{光能及其计算}
+
+\begin{introduction}
+	\item 辐射能通量（定义 \ref{def:radiant-flux}）
+	\item 光通量（定义 \ref{def:luminous-flux}）
+	\item 发光强度（定义 \ref{def:luminous-intensity}）
+	\item 光照度（定义 \ref{def:illuminance}）
+	\item 光出射度（定义 \ref{def:luminous-exitance}）
+	\item 光亮度（定义 \ref{def:brightness}）
+\end{introduction}
+
+\section{辐射能通量与光通量}
+
+\begin{definition}{辐射能通量}{radiant-flux}
+	某一瞬间通过某一面积的全部辐射能与通过时间的 比值称为辐射能通量，单位为瓦，即
+	\begin{equation}
+	W=\frac{\mathrm{d}E}{\mathrm{d}t}(\mathrm{W})
+	\end{equation}
+\end{definition}
+
+设$P_\lambda$是某一波长附近单位波长间隔内所具有的功率，称辐射能通量随波长的分布函数，则在某一微小波长范围$\mathrm{d}\lambda$内所包含的辐射能通量为
+\begin{equation}
+\mathrm{d}W_{\lambda,\lambda+\mathrm{d}\lambda}=P_{\lambda}\cdot\mathrm{d}\lambda
+\end{equation}
+辐射体的总辐射能通量为
+\begin{equation}
+W=\int_{\lambda} P_{\lambda}\cdot\mathrm{d}\lambda
+\end{equation}
+人眼对于波长为$555\mathrm{nm}$的光最为敏感，如果在单位波长内$P_{\lambda}\mathrm{W}$的辐射能通量相当于$\varPhi_{\lambda}$流明的光通量，其比值为
+\begin{equation}
+K_{\lambda}=\frac{\varPhi_{\lambda}}{P_{\lambda}}
+\end{equation}
+可表示为$1\mathrm{W}$单色辐射能通量所相当的流明数。$555\mathrm{nm}$光的这一数值$K_{555}$为最大。任意其他波长的单色光的$K_{\lambda}$值与$K_{555}$之比表征了人眼对于该单色辐射的灵敏度，称为光谱光视效率或视见函数，以$V_{\lambda}$表示，即
+\begin{equation}
+V_{\lambda}=\frac{K_{\lambda}}{K_{555}}
+\end{equation}
+在极小的波长间隔内，有
+\begin{equation}
+\mathrm{d}\varPhi=V_{\lambda}P_{\lambda}\cdot\mathrm{d}\lambda
+\end{equation}
+则总光通量为
+\begin{equation}
+\varPhi=\int_{\lambda}V_{\lambda}P_{\lambda}\cdot\mathrm{d}\lambda
+\end{equation}
+此式给出的光通量单位为瓦，若将其表示成流明，应有
+\begin{equation}
+\varPhi=K_{555}\int_{\lambda}V_{\lambda}P_{\lambda}\cdot\mathrm{d}\lambda
+\end{equation}
+一个辐射体或光源发出的总光通量与总辐射能通量之比$\eta$称为光源的发光效率，即
+\begin{equation}
+\eta=\frac{\varPhi}{W}
+\end{equation}
+其表示为每瓦辐射能通量所产生的的光通量。
+
+\section{五种光学量的含义}
+
+\subsection{光通量}
+\begin{definition}{光通量}{luminous-flux}
+标度可见光对人眼的视觉刺激程度的量。单位为流明($\mathrm{lm}$)。
+\end{definition}
+上一节已详细说明其具体内容。
+
+\subsection{发光强度}
+\begin{definition}{发光强度}{luminous-intensity}
+点光源向各个方向发出光能，在某一方向上，立体角$\mathrm{d}\omega$内发出的光通量$\mathrm{d}\varPhi$与该立体角的比值为点光源在该方向上的发光强度，即
+\begin{equation}
+I=\frac{\mathrm{d}\varPhi}{\mathrm{d}\omega}
+\end{equation}
+对于均匀发光的光源，其$I=I_0$为常数，此时有
+\begin{equation}
+I_0=\frac{\varPhi}{\omega}
+\end{equation}
+发光强度的单位是坎德拉($\mathrm{cd}$)。
+\end{definition}
+点光源周围空间的总立体角为$4\pi$，所以这种点光源向四周发出的总光通量为
+\begin{equation}
+\varPhi=4\pi I_0
+\end{equation}
+对于发光强度随方向变化的光源，其在各个方向的光通量不相同，因此$\varPhi/4\pi$仅为平均发光强度。将位于原点的点光源在由$i$和$\varphi$角所决定的方向上的发光强度表示为$I(\varphi,i)$，立体角的微分表达式为
+\begin{equation}
+\mathrm{d}\omega=\sin i\cdot\mathrm{d}i\cdot\mathrm{d}\varphi
+\end{equation}
+则对$\mathrm{d}\varPhi$在整个空间积分即可求出总光通量，有
+\begin{equation}
+1\mathrm{lm}=1\mathrm{cd}\cdot\mathrm{sr}
+\end{equation}
+\begin{note}
+	实际中常常需要求出各项均匀发光的点光源在锥角为$\alpha$的锥体内发出的光通量，若锥体与$y$轴重合，且点光源位于光学系统的光轴上，则其对于入瞳张角为$2U$的光通量为
+	\begin{equation}
+	\varPhi=4\pi I_0\sin^2\frac{U}{2}
+	\end{equation}
+\end{note}
+
+\subsection{光照度}
+\begin{definition}{光照度}{illuminance}
+在某一微小面积$\mathrm{d}S$上投射的光通量$\mathrm{d}\varPhi$与该面积的比值$E$称为该面积上的光照度，即
+\begin{equation}
+E=\frac{\mathrm{d}\varPhi}{\mathrm{d}S}
+\end{equation}
+如果光通量是均匀射入受照表面的，则有
+\begin{equation}
+E=\frac{\varPhi}{S}
+\end{equation}
+光照度的单位是勒克斯($\mathrm{lx}$)，有
+\begin{equation}
+1\mathrm{lx}=1\mathrm{lm/m^2}=1\mathrm{cd\cdot sr/m^2}
+\end{equation}
+\end{definition}
+\begin{note}
+	发光强度为$I$的点光源$C$照明相距$R$处的面积为$\mathrm{d}S$时，该面积对点光源所张的立体角是
+	\begin{equation}
+	\mathrm{d}\omega=\frac{\mathrm{d}S_n}{R^2}=\frac{\mathrm{d}S\cdot\cos i}{R^2}
+	\end{equation}
+	点光源在此立体角内发出的光通量为$\mathrm{d}\varPhi=I\mathrm{d}\omega$，得$\mathrm{d}S$上的光照度为
+	\begin{equation}
+	E=\frac{I\cdot\cos i}{R^2}
+	\end{equation}
+	由此可见，由点光源直接照射到某一面积所产生的的光照度与光源的发光强度成正比，与受照面积的距离平方成反比，且与照射方向有关，垂直照射时光照度最大。
+\end{note}
+
+\begin{problem}
+	一房间为$4.8\times6.4$平方米，中间安装了一个发光强度为$200$坎德拉的均匀发光灯泡，灯离地板的高度为$3$米，求房间角落地面上的照度。  
+	\begin{tasks}(5)
+		\task $6.4$勒克斯
+		\task $4.8$勒克斯
+		\task $3.6$勒克斯
+		\task $0.96$勒克斯
+		\task $2.89$勒克斯
+	\end{tasks}
+\end{problem}
+\begin{solution}
+	选择b。
+\end{solution}
+
+\subsection{光出射度}
+\begin{definition}{光出射度}{luminous-exitance}
+某一发光表面上微小面积范围内所发出的光通量与该面积之比称为该面积上的光出射度，即
+\begin{equation}
+M=\frac{\mathrm{d}\varPhi}{\mathrm{d}S}
+\end{equation}
+若为均匀发光表面，且在$2\pi$立体角内发出的光通量为$\varPhi$，则
+\begin{equation}
+M=\frac{\varPhi}{S}
+\end{equation}
+\end{definition}
+光出射度与光照度的形式相同，其差别在于光照度中的$\varPhi$是表面接收的光通量，光出射度中的$\varPhi$是从表面发出的光通量。光出射度的单位为勒克斯($\mathrm{lx}$)。二次光源的光出射度与受照后的光照度和表面的反射率有关，可表示为
+\begin{equation}
+M=\rho E
+\label{eq:luminous-exitance}
+\end{equation}
+
+\subsection{光亮度}
+\begin{definition}{光亮度}{brightness}
+	在光源表面划出一元面积$\mathrm{d}S$，在与法线$N$成$i$角的方向上，由元面积$\mathrm{d}S$和受照小面积所限定的范围内，从该元面积所发出的光通量应与立体角$\mathrm{d}\omega$和元面积在垂直于光束轴线的平面上的投影$\mathrm{d}S_n$成正比，用$L_i$表示比例系数，则称此比例系数为光源在与法线成$i$角方向上的光亮度。即
+	\begin{equation}
+	\mathrm{d}\varPhi=L_i\cos i\cdot\mathrm{d}S\cdot\mathrm{d}\omega
+	\end{equation}
+	光照度的单位为尼特($\mathrm{nt}$)，有
+	\begin{equation}
+	1\mathrm{nt}=1\mathrm{cd/m^2}
+	\end{equation}
+\end{definition}
+某些光源$L$不随方向变，此时$I$随方向变，可推得
+\begin{equation}
+I_i=I_N\cos i
+\end{equation}
+这种光源称为余弦辐射体。
+
+光源的光亮度与光出射度之间有一定关系。设光源为余弦辐射体，则光源在$2\pi$立体角范围内发出的总光通量为
+\begin{equation}
+\varPhi=\pi L\cdot\mathrm{d}S
+\end{equation}
+则有
+\begin{equation}
+M=\pi L
+\end{equation}
+由此可见，光亮度为常数的光源，其光出射度为光亮度的$\pi$倍。
+
+对于不是本身发光的二次光源，其光亮度可按照上式和公式(\ref{eq:luminous-exitance})表示为
+\begin{equation}
+L=\frac{\rho E}{\pi}
+\end{equation}
+
+\tabref{tab:optical-energy-physical-quantity} 是上述诸物理量的单位及其换算关系。
+\begin{table}[htbp]
+	\centering
+	\caption{光能相关物理量的单位及其换算关系}
+	\begin{tabular}{ccc}
+		\toprule
+		物理量  & 单位  & 关系  \\
+		\midrule
+		发光强度 & 坎德拉 & 基本单位  \\
+		光通量  & 流明  & 1流明=1坎德拉$\cdot$球面度  \\
+		光照度  & 勒克斯 & 1勒克斯=1流明/平方米=1坎德拉$\cdot$球面度/平方米 \\
+		光出射度 & 勒克斯 & 1勒克斯=1流明/平方米=1坎德拉$\cdot$球面度/平方米 \\
+		光亮度  & 尼特  & 1尼特=1坎德拉/平方米 \\
+		\bottomrule
+	\end{tabular}
+    \label{tab:optical-energy-physical-quantity}
+\end{table}
+
+
+\section{光传播过程中光学量的变化规律}
+\subsection{光亮度在同一介质中传递}
+发光的面光源为$\mathrm{d}S_1$，接受光通量的面积为$\mathrm{d}S_2$，得元光管
+\begin{equation}
+\mathrm{d}\varPhi_1=L_1\mathrm{d}S_1\mathrm{d}\omega_1\cos i_1
+\end{equation}
+光沿直线传播，光路可逆，也可看成$\mathrm{d}S_2$发光，有
+\begin{equation}
+\mathrm{d}\varPhi_2=L_2\mathrm{d}S_2\mathrm{d}\omega_2\cos i_2
+\end{equation}
+所以，得到
+\begin{equation}
+\mathrm{d}\varPhi_1=\mathrm{d}\varPhi_2
+\end{equation}
+\begin{equation}
+L_1=L_2
+\end{equation}
+\begin{conclusion}
+光在同一介质中传播，忽略散射和吸收，则在传播过程中的任意截面上，光通量与亮度不变，光束的亮度就是光源的亮度。
+\end{conclusion}
+
+\subsection{光束经反射折射后的亮度}
+入射光管的截面之一$\mathrm{d}S$在二介质的的界面上，通过光管入射的光通量$\mathrm{d}\varPhi$经界面时，被反射和折射的光通量分别为$\mathrm{d}\varPhi''$和$\mathrm{d}\varPhi'$，并分别构成反射光管和折射光管。若忽略介质的吸收和散射损失，有
+\begin{equation}
+\mathrm{d}\varPhi=\mathrm{d}\varPhi''+\mathrm{d}\varPhi'
+\end{equation}
+令入射光束、反射光束和折射光束的光亮度分别为$L$，$L''$和$L'$，则有
+\begin{equation}
+\begin{cases}
+\mathrm{d}\varPhi=L\cos i\cdot\mathrm{d}S\cdot\mathrm{d}\omega\\
+\mathrm{d}\varPhi''=L''\cos i''\cdot\mathrm{d}S\cdot\mathrm{d}\omega''\\
+\mathrm{d}\varPhi'=L'\cos i'\cdot\mathrm{d}S\cdot\mathrm{d}\omega'
+\end{cases}
+\end{equation}
+经反射定律和折射定律可导出
+\begin{equation}
+\begin{cases}
+\mathrm{d}\omega''=\mathrm{d}\omega\\
+n'^2\cos i'\mathrm{d}\omega'=n^2\cos i\mathrm{d}\omega 
+\end{cases}
+\end{equation}
+由上式可导出
+\begin{equation}
+\frac{L''}{L}=\frac{\mathrm{d}\varPhi''}{\mathrm{d}\varPhi}=\rho
+\end{equation}
+其中，$\rho$表示反射率。当入射角不大时，有
+\begin{equation}
+\rho=\bigg(\frac{n'-n}{n'+n}\bigg)^2
+\end{equation}
+则根据以上关系可推导出
+\begin{equation}
+\begin{cases}
+L''=\rho L\\
+L'=(1-\rho)L\bigg(\dfrac{n'}{n}\bigg)^2\\
+\mathrm{d}\varPhi''=\rho\mathrm{d}\varPhi\\
+\mathrm{d}\varPhi'=(1-\rho)\mathrm{d}\varPhi
+\end{cases}
+\end{equation}
+
+\section{光学系统光能损失的计算}
+光能损失可分为反射损失（如光学零件与空气接触面、胶合面、漫反射、散射等），吸收损失（如空气中的吸收、光学零件中的吸收）和反射面不完全反射的损失（如镀膜反射面）。
+
+$\tau$为透过率，表示当光亮度为$1$时，经$10\mathrm{mm}$传播后得到的光亮度。若传播$d\times10\mathrm{mm}$，则有
+\begin{equation}
+L=L_0\tau^d
+\end{equation}
+据此，按面推到，可得光学系统中所通过的光亮度为
+\begin{equation}
+L'=\bigg(\frac{n'_k}{n_1}\bigg)^2L\rho^m_r\prod^k_{i=1}(1-\rho_i)\prod^{k-1}_{j=1}\tau^{d_j}_{j}=KL\bigg(\frac{n'_k}{n_1}\bigg)^2
+\end{equation}
+其中，$k$为系统的总面数，$K$为系统的总透过率，$m$为镀膜反射面数，$d$为近似取得的各光学零件的沿轴厚度。
+
+\section{成像光学系统像面的照度}
+\subsection{通过光学系统的光通量}
+物面上$\mathrm{d}S$，在$u$方向$\mathrm{d}\omega$立体角内的光通量为
+\begin{equation}
+\begin{aligned}
+\mathrm{d}\varPhi&=L\cos u\cdot\mathrm{d}S\cdot\mathrm{d}\omega\\
+&=L\cos u\cdot\mathrm{d}S\cdot\mathrm{d}\varphi
+\end{aligned}
+\end{equation}
+所以，$\mathrm{d}S$发出的能进入系统的总光通量为
+\begin{equation}
+\begin{aligned}
+\varPhi&=\int^{2\pi}_0\mathrm{d}\varPhi\int^U_0L\sin u\cdot\cos u\cdot\mathrm{d}u\cdot\mathrm{d}S\\
+&=2\pi L\int^U_0\sin u\cdot\cos u\cdot\mathrm{d}u\cdot\mathrm{d}S\\
+&=\pi L\cdot\sin^2U\cdot\mathrm{d}S
+\end{aligned}
+\end{equation}
+如果系统的能量透过率为$K$，则由出瞳出射的光通量为
+\begin{equation}
+\varPhi'=K\pi L\cdot\sin^2U\cdot\mathrm{d}S
+\end{equation}
+从像面$\mathrm{d}S'$考虑，可得出瞳出射的光通量为
+\begin{equation}
+\varPhi'=\pi L'\cdot\sin^2U'\cdot\mathrm{d}S'
+\end{equation}
+
+\subsection{轴上像点的光照度}
+$\mathrm{d}S'$上有$\varPhi'$的光通量，有
+\begin{equation}
+E'=\frac{\varPhi'}{\mathrm{d}S'}=K\pi L\sin^2U\frac{\mathrm{d}S}{\mathrm{d}S'}=
+\tikz[baseline]{
+	\node[fill=blue!20,anchor=base] (t1)
+	{$\dfrac{1}{\beta^2}$};
+}\cdot K\pi L\cdot
+\tikz[baseline]{
+	\node[fill=red!20,anchor=base] (t2)
+	{$\sin^2U$};
+}
+\end{equation}
+由此可以看出：
+\begin{enumerate}
+	\item 系统放大倍率越小，像面照度越大；
+		\tikz\node [fill=blue!20,draw,circle] (n1) {};
+	\item 光学系统的孔径越大，像面照度越大。
+		\tikz\node [fill=red!20,draw,circle] (n2) {};
+\end{enumerate}
+\begin{tikzpicture}[overlay]
+\path[->] (n1) edge [bend right] (t1);
+\path[->] (n2) edge [bend right] (t2);
+\end{tikzpicture}
+
+结合上式，再根据
+\begin{equation}
+L'=KL\bigg(\frac{n'}{n}\bigg)^2
+\end{equation}
+\begin{equation}
+E'=nKL\sin^2U'\bigg(\frac{n'}{n}\bigg)^2
+\end{equation}
+可以得到
+\begin{equation}
+\beta=\frac{n\sin U}{n'\sin U'}
+\end{equation}
+
+\subsection{轴外像点的光照度}
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture} 
+	\coordinate [label=below left:$P'$] (A) at (-3,0);
+	\coordinate [label=below right:$A'$] (B) at (3,0);
+	\coordinate [label=right:$M'$] (C) at (3,2);
+	\coordinate [label=above left:$P'_1$] (D) at (-3,1);
+	\coordinate [label=below left:$P'_2$] (E) at (-3,-1);
+	\draw[-] (-4,0) -- (4,0); 
+	\draw[-] (A) -- (C); 
+	\draw[-] (C) -- (3,-1); 
+	\draw[-] (D) -- (-3,1.5); 
+	\draw[-] (E) -- (-3,-1.5);
+	\draw[-] (D) -- (B);
+	\draw[-] (E) -- (B);
+	\pic["$U'$", draw=black, -, angle eccentricity=1.5, angle radius=1.2cm]{angle=D--B--A};
+	\pic["$W'$", draw=black, -, angle eccentricity=1.5, angle radius=0.8cm]{angle=B--A--C};
+	\draw[-] (C) -- (-3.33,0.95);
+	\draw[-,dashed] (-2.67,-0.95) -- (-3.33,0.95);
+	\draw[-] (-2.67,-0.95) -- (C);
+	\pic["$U'_m$", draw=black, -, angle eccentricity=1.5, angle radius=1.2cm]{angle=D--C--A};
+	\end{tikzpicture}
+	\caption{轴外像点的光照度}
+	\label{fig:illuminance}
+\end{figure}
+
+如\figref{fig:illuminance} 所示，当物面亮度均匀时，有
+\begin{equation}
+E'_m=K\pi L\sin^2U'_m\bigg(\frac{n'}{n}\bigg)^2
+\end{equation}
+由于
+\begin{equation}
+\sin U'_m\approx\frac{P'P'_1\cos W'}{P'M'},\quad\sin U'\approx\frac{P'P'_1}{P'A'}
+\end{equation}
+得到
+\begin{equation}
+\frac{\sin U'_m}{\sin U'}\approx\frac{P'A'\cos W'}{P'M'}=\cos^2 W'
+\end{equation}
+所以
+\begin{equation}
+E'_M=E'\cos^4 W'
+\end{equation}

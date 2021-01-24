@@ -1,0 +1,44 @@
+\chapter{初级像差}。
+
+\section{初级像差及其与孔径、视场的关系}
+
+上一章中的实际相差均需要通过严格的光路计算得出。球差可以表示为孔径的级数关系，其他的像差也可以用级数展开表示，表示时孔径和视场都是归一化的，即最大孔径和最大视场都认为是$1$，其他孔径和视场均$<1$。因此当孔径或视场较小时，初级像差接近实际像差。
+
+对于球差，将整个系统的每一面的公式 \eqref{eq:single-spherical-aberration} 相加得到
+\begin{equation}
+n'_ku'_k\sin U'_k\delta L'_k-n_1u_1\sin U_1\delta L_1=-0.5\sum S_{-}
+\end{equation}
+或
+\begin{equation}
+\delta L'_k=\frac{n_1u_1\sin U_1}{n'_ku'_k\sin U'_k}\delta L_1-\frac{1}{2n'_ku'_k\sin U'_k}\sum S_{-}
+\end{equation}
+当物方无球差时，即为实物点时，$\delta L_1=0$，上式成为
+\begin{equation}
+\delta L'_k=-\frac{1}{2n'_ku'_k\sin U'_k}\sum S_{-}
+\end{equation}
+这些公式称为\textbf{Kerber球差分布公式}。其中各面产生的$\sum S_{-}$为该面的球差分布值，表征该面对系统球差贡献的大小。
+
+在球差展开式
+\begin{equation}
+\begin{cases}
+\delta L'=A_1h^2_1+A_2h^4_1+A_3h^6_1+\cdots\\
+\delta L'=a_1u^2_1+a_2u^4_1+a_3u^6_1+\cdots
+\end{cases}
+\end{equation}
+中，略去高次项可得初级球差。
+
+\section{薄透镜与薄系统的初级球差}
+
+\section{薄透镜与薄系统的初级彗差}
+
+\section{薄透镜与薄系统的初级色差}
+
+\section{二级光谱}
+
+\section{光学系统消像差谱线的选择}
+
+\section{平行平板的初级球差}
+
+\section{平行平板的初级色差}
+
+\section{匹兹凡和及其校正方法}

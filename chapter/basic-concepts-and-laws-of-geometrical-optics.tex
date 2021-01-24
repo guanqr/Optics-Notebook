@@ -1,0 +1,309 @@
+\chapter{几何光学基本概念与定律}
+
+\begin{introduction}
+	\item 可见光波长（表 \ref{tab:visible-light}）
+	\item 四个基本定律（第 \ref{subsect:basic-law} 节）
+	\item 全反射（定义 \ref{def:total-internal-reflection}）
+	\item 费马原理（命题 \ref{pro:fermats-principle}）
+\end{introduction}
+
+\section{基本定律和原理}
+
+\subsection{光波与光线}
+光波波长的范围大致为$1\mathrm{mm}$至$10\mathrm{nm}$，其中可见光波段为$380\mathrm{nm}$至$780\mathrm{nm}$之间,不同颜色对应的波段参考范围如\tabref{tab:visible-light} 所示。光波在真空中的传播速度为$c\approx 2.9979\times 10^8\mathrm{m/s}$。
+
+\begin{table}[htbp]
+	\small
+	\caption{可见光不同颜色对应的波段参考范围}
+	\centering
+	\begin{tabular}{cccccccc}
+		\toprule
+		&\color{red}{红色}&\color{orange}{橙色}&\color{yellow}{黄色}&\color{green}{绿色}&\color{cyan}{青色}&\color{blue}{蓝色}&\color{violet}{紫色}\\
+		\midrule
+		$\lambda$(nm)&$780\sim620$&$620\sim590$&$590\sim570$&$570\sim495$&$495\sim476$&$476\sim450$&$450\sim380$\\
+		\bottomrule
+	\end{tabular}
+	\label{tab:visible-light}
+\end{table}
+
+\subsection{基本定律}
+\label{subsect:basic-law}
+光线传播遵循以下四个基本定律：
+\begin{enumerate}
+	\item \textbf{直线传播定律：}在各向同性的均匀介质中，光在两点之间沿直线传播，即在这种介质中，光线都是直线。
+	\item \textbf{独立传播定律：}以不同途径传播的光同时在空间某点通过时，彼此互不影响，各路光独立传播，在各光路相遇处，其光强度是简单地相加，总是增强的。
+	\item \textbf{反射定律：}反射光线与入射光线和法线在同一平面内，入射光线和反射光线分别位于法线的两侧，与法线的夹角相同，即
+	\begin{equation}
+	I''=-I
+	\end{equation}
+	\item \textbf{折射定律：}折射光线与入射光线和法线在同一平面内，折射角与入射角的正弦之比与入射角的大小无关，仅由两介质的性质决定。即有
+	\begin{equation}
+	n'\sin I'=n\sin I
+	\end{equation}
+\end{enumerate}
+
+\begin{note}
+	光的直线传播定律和独立传播定律只有在不考虑光的波动性质时才是正确的。反射定律可以认为是折射定律在$n'=-n$时的特殊情况。
+\end{note}
+
+\begin{definition}{全反射}{total-internal-reflection}
+	如\figref{fig:total-internal-reflection} 所示，当光线由光密介质向光疏介质传播时，因$n'<n$，则折射角$I'$小于入射角$I$，折射光线远离法线。逐渐增大入射角$I$至某一个值，折射角$I'$达到$90^{\circ}$，折射光线沿界面掠出。若入射角继续增大，则无出射光线存在，全部返回原介质内，达到全反射。其中，临界角$I_m$有
+	\begin{equation}
+	\sin I_m=\frac{n'}{n}
+	\end{equation}
+\end{definition}
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}
+	% define coordinates
+	\coordinate (A) at (-3,-3);
+	\coordinate (B) at (-1.5,0);
+	\coordinate (C) at (-1.5,-1.5);
+	\coordinate (D) at (-1.5,1.5);
+	\coordinate (E) at (0,1.8);
+	\coordinate (F) at (0,0);
+	\coordinate (G) at (0,-1.5);
+	\coordinate (H) at (1.5,0);
+	% media
+	\fill[blue!25!,opacity=.3] (-4,0) rectangle (4,2);
+	\fill[blue!60!,opacity=.3] (-4,0) rectangle (4,-3.5);
+	\node[left] at (-3,-3) {光源};
+	\node[above] at (-3.5,0) {$n_2$};
+	\node[below] at (-3.5,0) {$n_1$};
+	\node[above left] at (3,0) {全反射};
+	% axis
+	\draw[dash pattern=on5pt off3pt,red] (-1.5,-1.5) -- (-1.5,1.5);
+	\draw[dash pattern=on5pt off3pt,red] (0,-1.5) -- (0,1.5);
+	\draw[dash pattern=on5pt off3pt,red] (3,-1.5) -- (3,1.5);
+	% rays
+	\draw[blue,-latex] (-3,-3) -- (-3,0);
+	\draw[blue,-latex] (-3,0) -- (-3,1.8);
+	
+	\draw[blue,-latex] (-3,-3) -- (-1.5,0);
+	\draw[blue,-latex] (-1.5,0) -- (0,1.8);
+	\draw[cyan,-latex] (-1.5,0) -- (0,-3);
+	
+	\draw[blue,-latex] (-3,-3) -- (0,0);
+	\draw[blue,-latex] (0,0) -- (1.5,0);
+	\draw[cyan,-latex] (0,0) -- (3,-3);
+	
+	\draw[blue,-latex] (-3,-3) -- (3,0);
+	\draw[blue,-latex] (3,0) -- (3.5,-0.25);
+	% angles
+	\pic["$\theta_1$", draw=black, -, angle eccentricity=1.6, angle radius=0.5cm]{angle=A--B--C};
+	\pic["$\theta_2$", draw=black, -, angle eccentricity=1.6, angle radius=0.5cm]{angle=E--B--D};
+	\pic["$\theta_c$", draw=black, -, angle eccentricity=1.6, angle radius=0.5cm]{angle=A--F--G};
+	\pic["$90^{\circ}$", draw=black, -, angle eccentricity=1.8, angle radius=0.4cm]{angle=H--F--E};
+	\end{tikzpicture}
+	\caption{全反射示意图}
+	\label{fig:total-internal-reflection}
+\end{figure}
+
+\begin{problem}
+	若水面下$200\mathrm{mm}$处有一发光点，水的折射率为$4/3$，求在水面上能看到被该发光点照亮的范围有多大？
+	
+	(a)\ \ $453.56\mathrm{mm}$\qquad\qquad (b)\ \ $226.79\mathrm{mm}$\qquad\qquad (c)\ \ $352.77\mathrm{mm}$\qquad\qquad (d)\ \ $176.38\mathrm{mm}$
+\end{problem}
+\begin{solution}
+	选择a。由全反射的定义可知光从水中到空气中传播是临界角为
+	\begin{equation}
+	\sin I_m=\frac{n'}{n}=\frac{1}{4/3}=0.75\notag
+	\end{equation}
+	可得$I_m=48.59^{\circ}$，$\tan I_m=1.13389$，由几何关系可得被该发光点照亮的范围是
+	\begin{equation}
+	2\times200\times1.13389=453.6(\mathrm{mm})\notag
+	\end{equation}
+\end{solution}
+
+\begin{problem}
+	已知光在真空中的传播速度为$3\times10^8\mathrm{m/s}$，求光在折射率为$1.333$的水中和$1.65$的玻璃中的传播速度。
+\end{problem}
+\begin{solution}
+	由$n=c/v$可得，光在水中的传播速度为
+	\begin{equation}
+	v_{\mathrm{water}}=\frac{c}{n_{\mathrm{water}}}=\frac{3\times10^8}{1.333}=2.25(\mathrm{m/s})\notag
+	\end{equation}
+	光在玻璃中的传播速度为
+	\begin{equation}
+	v_{\mathrm{glass}}=\frac{c}{n_{\mathrm{glass}}}=\frac{3\times10^8}{1.65}=1.818(\mathrm{m/s})\notag
+	\end{equation}
+\end{solution}
+
+\begin{problem}
+	以高度为$1.7\mathrm{m}$的人立于离高度为$5$米的路灯$1.5\mathrm{m}$处，求其影子的长度。
+\end{problem}
+\begin{solution}
+	根据光的直线传播定律，设其影子长为$x$，则有
+	\begin{equation}
+	\frac{1.7}{5}=\frac{x}{1.5+x}\notag
+	\end{equation}
+	可得$x=0.773\mathrm{m}$。
+\end{solution}
+
+\begin{problem}
+	一针孔照相机对一物体于屏上形成一$60\mathrm{mm}$高的像，若将屏拉远$50\mathrm{mm}$，则像的高度为$70\mathrm{mm}$。试求针孔到屏间的原始距离。
+\end{problem}
+\begin{solution}
+	根据光的直线传播定律，设针孔到屏间的原始距离为$x$，则有
+	\begin{equation}
+	\frac{70}{50+x}=\frac{60}{x}\notag
+	\end{equation}
+	可得$x=300\mathrm{mm}$。
+\end{solution}
+
+\begin{problem}
+	有一光线以$60^{\circ}$的入射角入射于$n=\sqrt{3}$的磨光玻璃球上的任一点，其折射光线继续传播到球表面的另一点上，求在该点反射和折射的光线间夹角。
+\end{problem}
+\begin{solution}
+	根据光的反射定律
+	\begin{equation}
+	I''=-I\notag
+	\end{equation}
+	得到反射角为$I''=60^{\circ}$，由折射定律
+	\begin{equation}
+	n'\sin I'=n\sin I\notag
+	\end{equation}
+	得到折射角$I'=30^{\circ}$，由几何关系可得该点反射和折射光线的夹角为$90^{\circ}$。
+\end{solution}
+
+\begin{remark}
+折射定律和反射定律可用矢量形式进行计算。
+\end{remark}
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[scale=0.8] 
+	\coordinate (A) at (-1.3,0);
+	\coordinate [label=right:$\vec{A}_0$] (B) at (0.5,1.8);
+	\coordinate [label=right:$\vec{A}'_0$] (C) at (3,1.8);
+	\coordinate [label=right:$\vec{N}$] (D) at (4,0);
+	\coordinate (E) at (-3,0);
+	\coordinate (F) at (-3,-1.7);
+	\draw[-] (-3,0) -- (4,0); 
+	\draw[-latex] (-3,-1.7) -- (A); 
+	\draw[-latex] (A) -- (B);
+	\draw[-latex] (A) -- (3,1.8);
+	\draw[line width=0.8pt] (A) arc (180:220:2.5);
+	\draw[line width=0.8pt] (A) arc (180:140:2.5);
+	\pic["$I$", draw=black, -, angle eccentricity=1.6, angle radius=0.5cm]{angle=E--A--F};
+	\pic["$I'$", draw=black, -, angle eccentricity=1.6, angle radius=0.5cm]{angle=D--A--C};
+	\end{tikzpicture}
+	\caption{光线的矢量形式}
+	\label{fig:vector-light}
+\end{figure}
+
+如\figref{fig:vector-light} 所示，$\vec{A}_0$和$\vec{A}'_0$分别是沿入射光线和折射光线的单位矢量，$\vec{N}$是沿法线的单位矢量。法线矢量的方向是从入射介质到折射介质。按此，光的折射定律公式可写为
+\begin{equation}
+n'(\vec{A}'_0\times\vec{N})=n(\vec{A}_0\times\vec{N}')
+\end{equation}
+展开上式，并将长度为$n'$的折射光线和长度为$n$的入射光线矢量分别记为$\vec{A}'$和$\vec{A}$，得
+\begin{equation}
+\vec{A}'\times\vec{N}=\vec{A}'\times\vec{N}
+\end{equation}
+\begin{equation}
+(\vec{A}'-\vec{A})\times\vec{N}=0
+\end{equation}
+$(\vec{A}'-\vec{A})$和$\vec{N}$都不可能为零，因此，两矢量必定是互相平行的，所以上式可表示为
+\begin{equation}
+\vec{A}'-\vec{A}=P\vec{N}=0
+\end{equation}
+上式两边都与$\vec{N}$作标积，得
+\begin{equation}
+P=\vec{N}\cdot\vec{A}'-\vec{N}\cdot\vec{A}=n'\cos I'-n\cos I
+\end{equation}
+当$n'>n$时，$P>0$，$(\vec{A}'-\vec{A})$与$\vec{N}$正向平行，反之，两矢量反向平行。一般情况下，在已知两介质折射率和光线入射角求折射角时，$P$可化为
+\begin{equation}
+P=\sqrt{n'^2-n^2+n^2\cos^2 I}-n\cos I
+\end{equation}
+\begin{equation}
+\vec{A}'=\vec{A}+P\vec{N}
+\end{equation}
+上式即为矢量形式的折射定律。
+在$n'=-n$的情况下，有
+\begin{equation}
+P=n'\cos I'-n\cos I=-2n\cos I=-2(\vec{N}\cdot\vec{A})
+\end{equation}
+得到
+\begin{equation}
+\vec{A}''=\vec{A}-2\vec{N}(\vec{N}\cdot\vec{A})
+\end{equation}
+上式即为矢量形式的反射定律。
+
+\begin{problem}
+	有一光线$\vec{A}=\cos 60^{\circ}\vec{i}+\cos 30^{\circ}\vec{j}$入射于$n=1$和$n'=1.5$的平面分界面上，平面的法线为$\vec{N}=\cos 30^{\circ}\vec{i}+\cos 60^{\circ}\vec{j}$，求反射光线$\vec{A}''$和折射光线$\vec{A}'$。
+\end{problem}
+\begin{solution}
+	由
+	\begin{equation}
+	\vec{N}\cdot\vec{A}=n\cos I\notag
+	\end{equation}
+	得到
+	\begin{equation}
+	(\cos 60^{\circ}\vec{i}+\cos 30^{\circ}\vec{j})(\cos 30^{\circ}\vec{i}+\cos 60^{\circ}\vec{j})=\frac{\sqrt{3}}{2}=\cos I\notag
+	\end{equation}
+	所以有
+	\begin{equation}
+	\begin{aligned}
+	P&=\sqrt{n'^2-n^2+n^2\cos^2 I}-n\cos I\\
+	&=\sqrt{1.5^2-1+\bigg(\frac{\sqrt{3}}{2}\bigg)^2}-1\times\frac{\sqrt{3}}{2}\\
+	&=\sqrt{2}-\frac{\sqrt{3}}{2}\notag
+	\end{aligned}
+	\end{equation}
+	所以由矢量形式的折射定律得
+	\begin{equation}
+	\begin{aligned}
+	\vec{A}'&=\vec{A}+P\vec{N}\\
+	&=(\cos 60^{\circ}\vec{i}+\cos 30^{\circ}\vec{j})+\bigg(\sqrt{2}-\frac{\sqrt{3}}{2}\bigg)(\cos 30^{\circ}\vec{i}+\cos 60^{\circ}\vec{j})\\
+	&=\bigg(\frac{2\sqrt{6}-1}{4}\bigg)\vec{i}+\bigg(\frac{2\sqrt{2}+\sqrt{3}}{4}\bigg)\vec{j}\notag
+	\end{aligned}
+	\end{equation}
+	所以由矢量形式的反射定律得
+	\begin{equation}
+	\begin{aligned}
+	\vec{A}''&=\vec{A}-2\vec{N}(\vec{N}\cdot\vec{A})\\
+	&=(\cos 60^{\circ}\vec{i}+\cos 30^{\circ}\vec{j})-2(\cos 30^{\circ}\vec{i}+\cos 60^{\circ}\vec{j})[(\cos 60^{\circ}\vec{i}+\cos 30^{\circ}\vec{j})\cdot(\cos 30^{\circ}\vec{i}+\cos 60^{\circ}\vec{j})]\\
+	&=-\vec{i}\notag
+	\end{aligned}
+	\end{equation}
+\end{solution}
+
+\subsection{费马原理}
+
+\begin{proposition}{费马原理}{fermats-principle}
+	光从一点到另一点是沿光程为极值的路径传播的。即光沿光程为极小、极大或常量的路径传播，又称为极端光路定律。
+\end{proposition}
+
+如\figref{fig:fermats-principle} 所示，光从空气射入水中，从$A$点到$B$点，途径$P$点，其光路$APB$为光传播时间最短的路径。 
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[scale=0.6] 
+	% define coordinates
+	\coordinate [label=below left:$P$] (O) at (0,0);
+	\coordinate (A) at (0,4);
+	\coordinate (B) at (0,-4);
+	\coordinate [label=below left:$A$] (C) at (-3.2,4);
+	\coordinate [label=above left:$B$] (D) at (2.2,-4);
+	% media
+	\fill[blue!25!,opacity=.3] (-4,0) rectangle (4,4);
+	\fill[blue!60!,opacity=.3] (-4,0) rectangle (4,-4);
+	\node[right] at (2,2) {空气};
+	\node[left] at (-2,-2) {水};
+	% axis
+	\draw[dash pattern=on5pt off3pt] (A) -- (B);
+	% rays
+	\draw[red,latex-] (O) -- (130:5.2);
+	\draw[blue,-latex] (O) -- (-70:4.24);
+	% angles
+	\draw (0,1) arc (90:130:1);
+	\draw (0,-1.4) arc (270:290:1.4);
+	\node[] at (280:1.8)  {$\theta_{2}$};
+	\node[] at (110:1.4)  {$\theta_{1}$};
+	\end{tikzpicture}
+	\caption{费马原理演示}
+	\label{fig:fermats-principle}
+\end{figure}
+
+\section{完善成像}
+完善成像条件：物点与像点之间任意两条的光路光程相等。

@@ -1,0 +1,313 @@
+\chapter{球面与球面系统}
+\label{chap:spherical-system}
+
+\begin{introduction}
+	\item 符号规则（第 \ref{sect:symbol-rules} 节）
+	\item 近轴光线光路（第 \ref{subsect:paraxial-ray} 节）
+	\item 三种放大率（第 \ref{subsect:three-magnification} 节）
+\end{introduction}
+
+\section{概念与符号规则}
+\label{sect:symbol-rules}
+\figref{fig:spherical-system} 所示的是光线经球面折射的光路。对于单个球面，凡过球心的直线就是其光轴，包含光轴的平面为子午平面，光轴与球面的交点称为顶点。$L$为物方截距，$U$为物方倾斜角；。$L'$为像方截距，$U'$为像方倾斜角。
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture} 
+	\coordinate [label=below left:$A$] (A) at (-4,0);
+	\coordinate [label=below right:$A'$] (B) at (3.8,0);
+	\coordinate [label=below:$C$] (C) at (0.8,0);
+	\coordinate [label=below left:$O$] (D) at (-1.3,0);
+	\coordinate [label=above:$E$] (E) at (-1,1.2);
+	\coordinate (F) at (-9/5,26/15);
+	\draw[-] (-5,0) -- (5,0); 
+	\draw[red,-latex] (A) -- (E);
+	\draw[red,-latex] (E) -- (B); 
+	\draw[-] (C) -- (F); 
+	\draw[line width=0.8pt] (D) arc (180:220:2.5);
+	\draw[line width=0.8pt] (D) arc (180:140:2.5);
+	\pic["$-U$", draw=black, -latex, angle eccentricity=1.6, angle radius=0.8cm]
+	{angle=D--A--E};%\alpha的位置由eccentricity决定。
+	\pic["$U'$", draw=black, latex-, angle eccentricity=1.3, angle radius=1cm]
+	{angle=E--B--D};
+	\pic["$\varphi$", draw=black, -, angle eccentricity=1.3, angle radius=0.5cm]
+	{angle=E--C--D};
+	\pic["$I'$", draw=black, latex-, angle eccentricity=1.6, angle radius=0.8cm]
+	{angle=C--E--B};
+	\pic["$I$", draw=black, latex-, angle eccentricity=1.6, angle radius=0.5cm]
+	{angle=F--E--A};
+	\draw[latex-latex] (E) -- ($(A)!(E)!(C)$)node[black,midway,xshift=0.2cm]{$h$};
+	\coordinate [label=below:$n$] (m) at (-2,-1);
+	\coordinate [label=below:$n'$] (n) at (0,-1);
+	\coordinate [label=below:$r$] (r) at (-0.5,-0.1);
+	\draw (-4,-2) -- ($(A)!(-4,-2)!(C)$);
+	\draw (-1.3,-2) -- ($(A)!(-1.3,-2)!(C)$);
+	\draw (3.8,-2) -- ($(A)!(3.8,-2)!(C)$);
+	\draw[latex-latex](-4,-1.8) -- (-1.3,-1.8) node[black,below,midway](line){$-L$};
+	\draw[latex-latex](3.8,-1.8) -- (-1.3,-1.8) node[black,below,midway](line){$L'$};
+	\end{tikzpicture}
+	\caption{光线经球面折射的光路}
+	\label{fig:spherical-system}
+\end{figure}
+
+符号规则：
+\begin{enumerate}
+	\item \textbf{沿轴线段：}如$L$、$L'$和$r$，以界面顶点为原点，如果由原点到光线与光轴的交点和到球心的方向与光线传播方向相同，其值为正，反之为负。光线传播方向规定自左向右。
+	\item \textbf{垂轴线段：}如$h$，在光轴之上为正，之下为负。
+	\item \textbf{光线与光轴的夹角$U$和$U'$：}以光轴为始边，从锐角方向转到光线，顺时针为正，逆时针为负。
+	\item \textbf{光线与法线的夹角$I$、$I'$和$I''$：}以光线为始边，从锐角方向转到法线，顺时针为正，逆时针为负。
+	\item \textbf{表面间隔$d$：}有前一面的顶点到后一面的顶点，其方向与光线方向相同者为正，反之为负，在纯折射系统中，$d$恒为正。
+\end{enumerate}
+
+\section{折射球面}
+\subsection{轴上物点成像}
+\label{subsect:paraxial-ray}
+
+由\figref{fig:spherical-system} 可得
+\begin{equation}
+\varphi=U+I=U'+I'
+\end{equation}
+结合折射定律，可导出
+\begin{equation}
+\sin I=\frac{L-r}{r}\sin U
+\end{equation}
+\begin{equation}
+\sin I'=\frac{n}{n'}\sin I
+\end{equation}
+\begin{equation}
+U'=U+I-I'
+\end{equation}
+\begin{equation}
+L'=r+\frac{\sin I'}{\sin U'}r
+\end{equation}
+如果入射光线与光轴的夹角很小，则称之为\textbf{近轴光线}。近轴光线的有关量用小写字母表示，则有
+\begin{equation}
+i=\frac{l-r}{r}u
+\end{equation}
+\begin{equation}
+i'=\frac{n}{n'}i
+\end{equation}
+\begin{equation}
+u'=u+i-i'
+\end{equation}
+\begin{equation}
+l'=r+\frac{i'}{u'}r
+\end{equation}
+近轴光线所成的像称为\textbf{高斯像}，讨论近轴区成像性质和规律的光学称为\textbf{高斯光学}。\index{高斯光学}
+
+在以上公式中消去$i$和$i'$，并引入对近轴光线成立的简单关系
+\begin{equation}
+h=lu=l'u'
+\end{equation}
+可得
+\begin{equation}
+n'\bigg(\frac{1}{r}-\frac{1}{l'}\bigg)=n\bigg(\frac{1}{r}-\frac{1}{l}\bigg)=Q
+\end{equation}
+\begin{equation}
+\frac{n'}{l'}-\frac{n}{l}=\frac{n'-n}{r}
+\label{eq:spherical-refraction}
+\end{equation}
+\begin{equation}
+n'u'-nu=\frac{n'-n}{r}h
+\end{equation}
+
+以上三式为同一公式的三种不同表示形式。$Q$为阿贝不变量。当物点位置一定时，一个球面的物空间和像空间的$Q$值相等。由式(\ref{eq:spherical-refraction})可见，对于给定物距$l$的物点，像的位置仅与$(n'-n)/r$有关，称之为折射球面的光焦度$\varphi$，有
+\begin{equation}
+\varphi=\frac{n'-n}{r}
+\end{equation}
+将$l=-\infty$和$l'=\infty$带入式(\ref{eq:spherical-refraction})，可得
+\begin{equation}
+f'=\frac{n'}{n'-n}r
+\label{eq:spherical-image-focal-length}
+\end{equation}
+\begin{equation}
+f=-\frac{n}{n'-n}r
+\label{eq:spherical-object-focal-length}
+\end{equation}
+根据以上三式，折射球面的光焦度和焦距之间有如下关系：
+\begin{equation}
+\varphi=\frac{n'}{f'}=-\frac{n}{f}
+\end{equation}
+\begin{equation}
+\frac{f'}{n'}=-\frac{f}{n}
+\end{equation}
+\begin{equation}
+f'+f=r
+\end{equation}
+
+\begin{problem}
+	有一直径为$100\mathrm{mm}$、折射率为$1.5$的抛光玻璃球，在视线方向可见球内有两个气泡，一个位于球心，另一个位于球心与前表面间的一半处。求两个气泡在球内的实际位置。
+\end{problem}
+\begin{solution}
+	单折射面在近轴区域的物像关系公式为
+	\begin{equation}
+	\frac{n'}{l'}-\frac{n}{l}=\frac{n'-n}{r}
+	\end{equation}
+	球心的像，即有$l'=r$，所以
+	\begin{equation}
+	\frac{n}{l_1}=\frac{n'}{r}-\frac{n'-n}{r}=\frac{n}{r}
+	\end{equation}
+	即$l_1=r$，仍在球心，物像重合。
+	
+	另一个像，有$l'=r/2$，所以
+	\begin{equation}
+	\frac{n}{l_2}=\frac{n'}{r/2}-\frac{n'-n}{r}=\frac{n'+n}{r}
+	\end{equation}
+	\begin{equation}
+	l_2=\frac{nr}{n'+n}=\frac{nD}{2(n'+n)}=20
+	\end{equation}
+	即距离前表面$30\mathrm{mm}$。
+\end{solution}
+
+\begin{problem}
+	一折射球面，其像方焦距和物方焦距分别为$144\mathrm{mm}$和$-120\mathrm{mm}$，物方介质为$n=4/3$的水，求球面的曲率半径$r$和像方介质折射率$n'$。
+	
+	(a)\ \ $r=24\mathrm{mm}$，$n'=1.6$\ \ \qquad\qquad\qquad\qquad\qquad (b)\ \ $r=-24\mathrm{mm}$，$n'=1.6$
+	
+	(c)\ \ $r=24\mathrm{mm}$，$n'=1.11$\qquad\qquad\qquad\qquad\qquad (d)\ \ $r=-24\mathrm{mm}$，$n'=1.11$
+\end{problem}
+\begin{solution}
+	选择a。由已知可得，$f=-120$，$f'=144$，$n=4/3$。根据公式
+	\begin{equation}
+	\frac{f'}{n'}=-\frac{f}{n}
+	\end{equation}
+	可得$n'=-\dfrac{f'\cdot n}{f}=-\dfrac{144\cdot 4/3}{-120}=1.6$
+	
+	由公式
+	\begin{equation}
+	f'+f=r
+	\end{equation}
+	得到半径为$r=f'+f=144-120=24\mathrm{mm}$。
+\end{solution}
+
+\subsection{物平面细光束成像}
+\label{subsect:three-magnification}
+
+由\figref{fig:imaging-magnification} 可得，横向放大率为
+\begin{equation}
+\beta=\frac{y'}{y}=\frac{l'-r}{l-r}=\frac{nl'}{n'l}
+\end{equation}
+轴向放大率为
+\begin{equation}
+\alpha=\frac{\mathrm{d}l'}{\mathrm{d}l}=\frac{nl'^2}{n'l^2}=\frac{n'}{n}\beta^2
+\end{equation}
+角放大率为
+\begin{equation}
+\gamma=\frac{u'}{u}=\frac{l}{l'}=\frac{n}{n'}\frac{1}{\beta}
+\end{equation}
+拉赫公式为
+\begin{equation}
+nyu=n'y'u'=J
+\end{equation}
+其中，$J$为拉赫不变量。
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture} 
+	\coordinate [label=below left:$A$] (A) at (-4,0);
+	\coordinate [label=below right:$A'$] (B) at (3.8,0);
+	\coordinate [label=below:$C$] (C) at (0.8,0);
+	\coordinate [label=below left:$O$] (D) at (-1.3,0);
+	\coordinate [label=above:$E$] (E) at (-1,1.2);
+	\coordinate [label=left:$B$] (G) at (-4,1.2);
+	\coordinate [label=right:$B'$] (H) at (3.8,-0.75);
+	\draw[-] (-5,0) -- (5,0); 
+	\draw[red,-latex] (A) -- (E);
+	\draw[red,-latex] (E) -- (B); 	
+	\draw[red,-latex] (G) -- (H);
+	\draw[line width=0.8pt] (D) arc (180:220:2.5);
+	\draw[line width=0.8pt] (D) arc (180:140:2.5);
+	\pic["$-u$", draw=black, -latex, angle eccentricity=1.6, angle radius=0.8cm]
+	{angle=D--A--E};
+	\pic["$u'$", draw=black, latex-, angle eccentricity=1.3, angle radius=1cm]
+	{angle=E--B--D};
+	\draw[latex-latex] (E) -- ($(A)!(E)!(C)$)node[black,midway,xshift=0.2cm]{$h$};
+	\coordinate [label=below:$n$] (m) at (-2,-1);
+	\coordinate [label=below:$n'$] (n) at (0,-1);
+	\coordinate [label=below:$r$] (r) at (-0.5,-0.1);
+	\draw (-4,-2) -- ($(A)!(-4,-2)!(C)$);
+	\draw (-1.3,-2) -- ($(A)!(-1.3,-2)!(C)$);
+	\draw (3.8,-2) -- ($(A)!(3.8,-2)!(C)$);
+	\draw[latex-latex](-4,-1.8) -- (-1.3,-1.8) node[black,below,midway](line){$-l$};
+	\draw[latex-latex](3.8,-1.8) -- (-1.3,-1.8) node[black,below,midway](line){$l'$};
+	\draw[red,-latex,line width=1.2pt](A) -- (G) node[black,right,midway](line){$y$};
+	\draw[red,-latex,line width=1.2pt](B) -- (H) node[black,left,midway](line){$-y'$};
+	\end{tikzpicture}
+	\caption{垂轴小物体$AB$球面成像的情况}
+	\label{fig:imaging-magnification}
+\end{figure}
+
+\begin{property}
+	以上三种放大率表征了折射球面的成像特性：
+	\begin{enumerate}
+		\item $\beta<0$时，$y'$与$y$、$l'$与$l$异号，成倒像，物与像位于球面两侧，虚实相同。$\beta>0$时，$y'$与$y$、$l'$与$l$同号，成正像，物像在球面同侧，虚实不一。当平面物成像时，像必相似于物体。
+		\item $\alpha$恒为正值，即$\mathrm{d}l'$和$\mathrm{d}l$同号。当物沿某一方向移动，像总沿同一方向移动。不能对立体物给出相似的立体像。
+		\item 以上三种放大率之间存在关系
+		\begin{equation}
+		\alpha\gamma=\beta
+		\end{equation}
+	\end{enumerate}
+\end{property}
+
+\section{反射球面}
+反射球面是折射定律在$n'=-n$的特殊情况。即有
+\begin{equation}
+\frac{1}{l'}+\frac{1}{l}=\frac{2}{r}
+\end{equation}
+\begin{equation}
+f'=f=\frac{r}{2}
+\end{equation}
+\begin{equation}
+\beta=\frac{y'}{y}=-\frac{l'}{l},\quad
+\alpha=\frac{\mathrm{d}l'}{\mathrm{d}l}=-\beta^2,\quad
+\gamma=\frac{u'}{u}=-\frac{1}{\beta},\quad
+\alpha\gamma=\beta
+\end{equation}
+
+\begin{problem}
+	实物位于曲率半径为r的凹面镜前什么位置时，可得到
+	\begin{enumerate}
+		\item 放大到4倍的实像；
+		\item 放大到4倍的虚像；
+		\item 缩小到1/4倍的实像。
+	\end{enumerate}
+	是否可能得到缩小到1/4倍的虚像？
+\end{problem}
+\begin{solution}
+根据公式
+\begin{equation}
+\beta=\frac{y'}{y}=-\frac{l'}{l},\quad \frac{1}{l'}+\frac{1}{l}=\frac{2}{r} \nonumber
+\end{equation}
+成实像时，$\beta<0$，成虚像时，$\beta>0$，所以
+\begin{enumerate}
+	\item $\beta=-4$时，$l=5/8r$；
+	\item $\beta=4$时，$l=-3/8r$；
+	\item $\beta=-1/4$时，$l=5/2r$。
+\end{enumerate}
+若有缩小到1/4倍的虚像，则$\beta=1/4$，$l=-3/2r$.
+\end{solution}
+
+\begin{problem}
+	曲率半径为$200\mathrm{mm}$的凹面镜前$1\mathrm{m}$处，有一高度为$40\mathrm{mm}$的物体，求像的位置和大小，并说明其正倒和虚实。
+\end{problem}
+\begin{solution}
+	由题意可知，$r=-200\mathrm{mm}$，$l=-1000\mathrm{mm}$，$y=40\mathrm{mm}$。根据公式
+	\begin{equation}
+	\beta=\frac{y'}{y}=-\frac{l'}{l},\quad \frac{1}{l'}+\frac{1}{l}=\frac{2}{r} \nonumber
+	\end{equation}
+	得到$l'=-1000/9\mathrm{mm}$，$\beta=-l'/l=-1/9$，$y'=\beta y=-40/9\mathrm{mm}$。所以成倒立的实像。
+\end{solution}
+\begin{problem}
+	人眼的角膜可认为是一曲率半径$r=7.8\mathrm{mm}$的折射球面，其后是$n=4/3$的液体。如果看起来瞳孔在角膜后$3.6\mathrm{mm}$处，且直径为$4\mathrm{mm}$，求瞳孔的实际位置和直径。
+\end{problem}
+\begin{solution}
+	由题意可知，$r=-7.8\mathrm{mm}$，$n=4/3\mathrm{mm}$，$l'=-3.6\mathrm{mm}$，$y'=4\mathrm{mm}$。有
+	\begin{equation}
+	\frac{n'}{l'}-\frac{n}{l}=\frac{n'-n}{r} \Rightarrow \frac{1}{-3.6}-\frac{4/3}{l}=\frac{1-4/3}{-7.8r} \Rightarrow l=-4.16 \nonumber
+	\end{equation}
+	又有
+	\begin{equation}
+	\beta=\frac{y'}{y}=\frac{nl'}{n'l} \Rightarrow 2y=\frac{n'l}{nl'}\cdot 2y'=\frac{1\times (-4.16)}{4/3\times (-3.6)}\times 4=3.47 \nonumber
+	\end{equation}
+	
+\end{solution}
