@@ -24,8 +24,8 @@
 \tikzstyle{every picture}+=[remember picture]
 
 % 草稿水印
-\usepackage{draftwatermark}
-\SetWatermarkScale{1}%设置水印的显示大小
+%\usepackage{draftwatermark}
+%\SetWatermarkScale{1}%设置水印的显示大小
 
 % 选择题宏包，tasks环境
 \usepackage{tasks} 
@@ -2649,14 +2649,14 @@ E'_M=E'\cos^4 W'
 \chapter{典型光学系统}
 
 \begin{introduction}
-	\item 眼睛（第 \ref{sec:eye} 节）
-	\item 放大镜（第 \ref{sec:magnifier} 节）
-	\item 显微镜系统（第 \ref{sec:microscope} 节）
-	\item 望远镜系统（第 \ref{sec:telescope} 节）
+	\item 眼睛（第 \ref{sect:eye} 节）
+	\item 放大镜（第 \ref{sect:magnifier} 节）
+	\item 显微镜系统（第 \ref{sect:microscope} 节）
+	\item 望远镜系统（第 \ref{sect:telescope} 节）
 \end{introduction}
 
 \section{眼睛}
-\label{sec:eye}
+\label{sect:eye}
 \subsection{眼睛的构造}
 
 \begin{figure}[htbp]
@@ -2770,7 +2770,7 @@ A=R-P
 \end{note}
 
 \section{放大镜}
-\label{sec:magnifier}
+\label{sect:magnifier}
 对于目视光学仪器，其放大作用不能简单地以横向放大率来表征，而应代之以视觉放大率。
 \begin{definition}{放大镜的放大率}{magnifier-magnification}
 	通过放大镜看物体时，其像对眼睛张角的正切与直接看物体时，物体对眼睛张角的正切之比称为放大镜的放大率。
@@ -2822,7 +2822,7 @@ M=\frac{250}{f'}
 所以在放大镜的直径可眼瞳位置一定时，放大率越大，线视场越小。这就限制了放大镜的分辨率不能做得很大，一般不超过$15$倍。
 
 \section{显微镜系统}
-\label{sec:microscope}
+\label{sect:microscope}
 \subsection{显微镜概述}
 显微镜的主光学系统由物镜和目镜两部分组成。\figref{fig:microscope-1} 为显微镜的成像原理图。显微镜的总放大率为物镜放大率$M_o$和目镜放大率$M_e$的乘积。这里
 \begin{equation}
@@ -3010,7 +3010,7 @@ r-p=-0.001nf'^2\overline{A}=-0.001n\overline{A}\bigg(\frac{250}{M}\bigg)^2\Right
 \end{enumerate}
 
 \section{望远镜系统}
-\label{sec:telescope}
+\label{sect:telescope}
 \subsection{望远镜的一般特性}
 望远镜系统是一种使入射的平行光束仍保持平行射出的光学系统。最简单的望远镜系统必须由两个光组组成。前一光组的像方焦点与后一光组的物方焦点重合，即光学间隔$\varDelta=0$。光组$L_1$朝向物体，为望远镜的物镜；光组$L_2$为目镜。具有正光焦度目镜的系统为\textbf{开普勒望远镜}，具有负光焦度目镜的系统为\textbf{伽利略望远镜}。
 
@@ -3265,10 +3265,21 @@ L=f'_a+d+f'_b\xrightarrow{f'_a=f'_b}2f'_a+d
 	得调节距离为$\Delta l=\pm0.5\mathrm{mm}$。
 \end{solution}
 
-\chapter{像差理论}
+\chapter{几何像差}
+
+\begin{introduction}
+	\item 球差（第 \ref{subsect:spherical-aberration} 节）
+	\item 彗差（第 \ref{subsect:coma} 节）
+	\item 像散（第 \ref{subsect:astigmatism} 节）
+	\item 场曲（第 \ref{subsect:field-curvature} 节）
+	\item 畸变（第 \ref{subsect:distortion} 节）
+	\item 色差（第 \ref{sect:chromatic-aberration} 节）
+\end{introduction}
+
 像差是光学系统成像不完善程度的描述。像差可分为单色像差和色差。单色像差包括轴上像差——球差，以及轴外像差——彗差、像散、场曲、畸变。色差可分为位置色差和倍率色差。
 \section{轴上像差}
 \subsection{球差}
+\label{subsect:spherical-aberration}
 \begin{definition}{球差}{spherical-aberration}
 在第 \ref{subsect:paraxial-ray} 章节中已知，由光轴上一点发出的光线经球面折射后所得的截距$L'$，随入射光线与光轴的夹角$U$或入射光线在球面上的入射点高度$h$而异。轴上点发出的同心光束经光学系统各个球面折射后，将不复为同心光束（如\figref{fig:spherical-aberration-1} 所示）。不同倾角的光线交光轴于不同位置上，相对于理想像点的位置有不同的偏离。这是单色光的成像缺陷之一，称为球差。
 \end{definition}
@@ -3369,11 +3380,12 @@ h_1=\frac{1}{\sqrt{2}}h_m=0.707h_m
 \end{figure}
 
 \subsection{单折射球面的球差}
-\label{subsec:aplanatic-point}
+\label{subsect:aplanatic-point}
 
 假设某一面的物方已有球差，如\figref{fig:spherical-aberration-of-the-object} 所示，经推导可得
 \begin{equation}
 n'u'\sin U'\delta L'-nu\sin U\delta L=-(L'\sin U'-L\sin U)ni
+\label{eq:single-spherical-aberration}
 \end{equation}
 令$S_{-}=2(L'\sin U'-L\sin U)ni$，则
 \begin{equation}
@@ -3517,7 +3529,7 @@ S_{-}=\frac{niL\sin U(\sin I'-\sin U)(\sin I-\sin I')}{\cos{\dfrac{I-U}{2}}\cos{
 \end{equation}
 即表示系统偏离正弦条件的程度。
 
-光轴上校正了球差并满足正弦条件的一对共轭点为齐明点或不晕点。由第 \ref{subsec:aplanatic-point} 可知，单个折射球面存在三对无球差的共轭点。其中$l=l'=0$和$l=l'=r$两对显然满足条件，而$l'=(n+n')r/n'$和$l=(n+n')r/n$，有
+光轴上校正了球差并满足正弦条件的一对共轭点为齐明点或不晕点。由第 \ref{subsect:aplanatic-point} 可知，单个折射球面存在三对无球差的共轭点。其中$l=l'=0$和$l=l'=r$两对显然满足条件，而$l'=(n+n')r/n'$和$l=(n+n')r/n$，有
 \begin{equation}
 \frac{n\sin U}{n'\sin U'}=\beta=\frac{n^2}{n'^2}
 \end{equation}
@@ -3549,6 +3561,7 @@ S_{-}=\frac{niL\sin U(\sin I'-\sin U)(\sin I-\sin I')}{\cos{\dfrac{I-U}{2}}\cos{
 上述计算正弦差的公式中，都包含有出瞳位置因子$l'_p$，它随孔阑位置而变。因此，当系统的球差已定而不满足等晕条件时，一定可以找到一个光阑位置使系统的正弦差为零。
 
 \subsection{彗差}
+\label{subsect:coma}
 \begin{definition}{彗差}{coma}
 当光学系统不满足等晕条件时，轴外点成像将会产生彗差。彗差是一种描述轴外点光束关于主光线失对称的像差，应分别对子午光束和弧矢光束求取。
 \end{definition}
@@ -3590,6 +3603,7 @@ K'_{\eta}=y'_0\cdot\mathrm{OSC}
 对于单个折射球面，当主光线通过球心时满足等晕条件，不会产生彗差。这说明彗差与孔阑位置有关。因此，如果一个光学系统存在残余球差，仍可找到某一个孔阑位置使系统能够校正彗差。
 
 \subsection{像散}
+\label{subsect:astigmatism}
 轴外点发出的光束，其主光线不与光学系统各个表面的对称轴重合，使出射光束失去对称。上面所述的彗差，只能表征光束失去对称的一种像差，并且是对宽光束而言的。此外，还有一种描述光束失去对称的像差。
 
 \begin{definition}{像散}{astigmatism}
@@ -3606,6 +3620,7 @@ K'_{\eta}=y'_0\cdot\mathrm{OSC}
 \figref{fig:astigmatism} 所示为整个非对称细光束的聚焦情况。设子午光束会聚度大，即负像散。此时，在子午像点$B'_t$处聚焦成一条垂直于子午平面的短线，称为\textbf{子午焦线}；在弧矢像点$B'_s$处聚焦成一条位于子午平面上的铅锤短线，称\textbf{弧矢焦线}，且两个焦线互相垂直。在两条短线之间，光束的截面表现为子午焦线$\rightarrow$长轴与子午面垂直的椭圆$\rightarrow$圆$\rightarrow$长轴在子午面上的椭圆$\rightarrow$弧矢焦线。上述这种能在两个位置聚焦的非对称细光束称为像散光束。
 
 \subsection{场曲}
+\label{subsect:field-curvature}
 \begin{definition}{场曲}{field-curvature}
 	子午像点$B'_t$和弧矢像点$B'_s$的位置及像散的大小是随视场而异的，由这些点构成的子午像面和弧矢像面成为两个同时相切于高斯像面中心点的曲面，这就是像面弯曲，简称场曲。场曲以子午像点和弧矢像点相对于高斯像面的轴向偏离$x'_t$和$x'_s$来度量，$x'_t$称为子午场曲，$x'_t$称为弧矢场曲。二者之差，以$\Delta x$表示，即$\Delta x=x'_t-x'_s$就是同一视场的像散。
 \end{definition}
@@ -3615,19 +3630,162 @@ K'_{\eta}=y'_0\cdot\mathrm{OSC}
 无论是宽光束还是细光束，都存在子午光线的交点和弧矢光线的交点之间有沿轴距离的现象，并且这两个交点通常不在高斯像面上。所以宽光束和细光束都存在像散和场曲。实际上细光束像散和场曲是后文要讲的初级像散和场曲，一般不特别指出，像散和场曲都是指细光束的。
 
 \subsection{畸变}
-……
+\label{subsect:distortion}
+\begin{definition}{畸变}{distortion}
+	对于理想光学系统，一对共轭平面上的放大率是常数。但对于实际光学系统，只当视场较小时具有这一性质，而当视场较大或很大时，像的放大率随视场而异，这样就会使像相对于物体失去相似性。这种使像形变的缺陷称为畸变。
+\end{definition}
+
+设某一视场的实际主光线与高斯像面的交点高度为$y'_p$，当无彗差时，主光线即为成像光束的中心光线，因而$y'_p$表征实际像高。它与理想像高$y'_0$之差称为\textbf{线畸变}，即
+\begin{equation}
+\delta y'=y'_p-y'_0
+\end{equation}
+常用$\delta y'$相对于理想像高的百分比来表示畸变，称相对畸变，即
+\begin{equation}
+\frac{\delta y'}{y'_0}=\frac{y'_p-y'_0}{y'_0}\times100\%
+\end{equation}
+如果将实际放大率$y'_p/y$记为$\overline{\beta}$，上式可化为
+\begin{equation}
+\frac{\delta y'}{y'_0}=\frac{\overline{\beta}-\beta}{\beta}\times100\%
+\end{equation}
+式中$\beta$为理想放大率。可见，实际放大率$\overline{\beta}$与理想放大率$\beta$之差与$\beta$之比即为该视场的相对畸变。
+
+有畸变或畸变很大的光学系统，若对等间距的同心圆物面成像，将得到非等间距的同心圆。由正畸变的光学系统所成的像呈枕型，如 \figref{fig:barrel-distortion} 所示。由负畸变光学系统所成的像呈桶型，如 \figref{fig:pincushion-distortion} 所示。
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.45\textwidth}
+		\centering
+		\includegraphics[width=0.6\textwidth]{barrel-distortion.pdf}
+		\caption{枕形畸变}
+		\label{fig:barrel-distortion}
+	\end{minipage}
+	\quad
+	\begin{minipage}[t]{0.45\textwidth}
+		\centering
+		\includegraphics[width=0.6\textwidth]{pincushion-distortion.pdf}
+		\caption{桶形畸变}
+		\label{fig:pincushion-distortion}
+	\end{minipage}
+\end{figure}
+
+可见，畸变仅由主光线的光路决定，它只引起像的形变，而对像的清晰度并无影响。因此，对于一般的光学系统，只要感觉不出它所成像的形变（$\delta y'/y'_0\leqslant 4\%$），这种像差就无妨碍。但对于某些要利用像来测定物体的大小和轮廓的光学系统\footnote{如计量仪器中的投影物镜、工具显微镜以及航空测量用的摄影物镜等。计量仪器中的物镜，畸变要求小于万分之几，但视场较小，矛盾并不突出。航空测量用的物镜视场达到$120^{\circ}$，畸变要求小于十万分之几，校正相当困难，导致镜头结构极度复杂。}，畸变就成为了主要的缺陷。它直接影响了测量的精度，必须严格校正。
+
+结构完全对称的光学系统以$-1$倍的倍率成像时，畸变能自然消除。这是因为实际放大率$\overline{\beta}$可写成
+\begin{equation}
+\overline{\beta}=\frac{y'_p}{y}=\frac{(L'_p-l')\tan U'_p}{(L_p-l)\tan U_p}
+\end{equation}
+不论$U_p$为何值，由于系统的结构对称于孔径光阑，$\overline{\beta}$恒等于$-1$而不会产生畸变。
+
+对于单个薄透镜或薄透镜组，当光阑与之重合时，主光线通过主点，沿理想方向射出，与高斯像面的交点接近，与理想像高相等，也不产生畸变。
+
 
 \section{色差}
+\label{sect:chromatic-aberration}
+\begin{definition}{色差}{chromatic-aberration}
+	当一定光谱范围内的光入射于任何形状的介质分界面时，只要入射角不为零，各种色光将因色散而有不同的传播途径，结果导致各种色光有不同的成像位置和不同的成像倍率。这种成像的色差差异称为色差。
+\end{definition}
+
+色差有两种。描述不同色光对轴上物点成像位置差异的色差称为\textbf{位置色差}或\textbf{轴向色差}。因不同色光成像倍率的不同而造成物体的像大小差异的色差称为\textbf{倍率色差}或\textbf{垂轴色差}。
+
 \subsection{位置色差}
-……
+
+如\figref{fig:longitudinal-chromatic-aberration} 所示，轴上一点发出一束近轴白光，经光学系统后，$F$光交光轴于$A'_F$点，$C$光交光轴于$A'_C$。这两点是蓝光与红光所成的高斯像点。它们相对于光学系统最后一面的距离之差（$l'_F-l'_C$）就是近轴光的\textbf{位置色差}$\delta l'_{ch}$，即
+\begin{equation}
+\delta l'_{ch}=l'_F-l'_C
+\end{equation}
+若两色像点重合，$l'_{ch}=0$，称光学系统对这两种色光\textbf{消色差}。通常所谓的消色差系统，即指对两种选定的色光消位置色差的系统，如\figref{fig:achromatism} 所示。
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.45\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{longitudinal-chromatic-aberration.pdf}
+		\caption{位置色差}
+		\label{fig:longitudinal-chromatic-aberration}
+	\end{minipage}
+	\quad
+	\begin{minipage}[t]{0.45\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{achromatism.pdf}
+		\caption{消色差系统}
+		\label{fig:achromatism}
+	\end{minipage}
+\end{figure}
+
+光学系统一般只能对光束中的某一带光线校正色差，通常是对$0.707$带光来校正。校正位置色差之后，在其他带上一定会有剩余色差。通常把计算得到的色差相对于光线的入射角$U$或入射高度$h$绘制成曲线，将上述两种色光的计算结果以球差曲线形式与主色光球差曲线画在一起，这样的曲线图不仅可以清楚地知道色差随孔径变化的情况，还可以了解到球差随色光变化的情况。这种球差的色变化称为\textbf{色球差}。
 
 \subsection{倍率色差}
-……
+校正了位置色差的光学系统，只能使两种色光的像点或像面重合在一起，但两种色光的焦距并不一定就此相等，使这两种色光可能具有不同的放大率，使同一物体的像大小不等，因而仍可能存在\textbf{倍率色差}。
 
-\section{初级像差}
-……
+光学系统的倍率色差，用两种色光的主光线与高斯像面的交点高度之差来度量，以符号$\delta y'_{ch}$来表示，若对$F$光和$C$光考虑色差，有
+\begin{equation}
+\delta y'_{ch}=y'_F-y'_C
+\end{equation}
+
+倍率色差的存在，使物体像的边缘呈现颜色，影响像的清晰度。所以，具有一定大小视场的光学系统必须校正倍率色差。
+
+\chapter{初级像差}。
+
+\section{初级像差及其与孔径、视场的关系}
+
+上一章中的实际相差均需要通过严格的光路计算得出。球差可以表示为孔径的级数关系，其他的像差也可以用级数展开表示，表示时孔径和视场都是归一化的，即最大孔径和最大视场都认为是$1$，其他孔径和视场均$<1$。因此当孔径或视场较小时，初级像差接近实际像差。
+
+对于球差，将整个系统的每一面的公式 \eqref{eq:single-spherical-aberration} 相加得到
+\begin{equation}
+n'_ku'_k\sin U'_k\delta L'_k-n_1u_1\sin U_1\delta L_1=-0.5\sum S_{-}
+\end{equation}
+或
+\begin{equation}
+\delta L'_k=\frac{n_1u_1\sin U_1}{n'_ku'_k\sin U'_k}\delta L_1-\frac{1}{2n'_ku'_k\sin U'_k}\sum S_{-}
+\end{equation}
+当物方无球差时，即为实物点时，$\delta L_1=0$，上式成为
+\begin{equation}
+\delta L'_k=-\frac{1}{2n'_ku'_k\sin U'_k}\sum S_{-}
+\end{equation}
+这些公式称为\textbf{Kerber球差分布公式}。其中各面产生的$\sum S_{-}$为该面的球差分布值，表征该面对系统球差贡献的大小。
+
+在球差展开式
+\begin{equation}
+\begin{cases}
+\delta L'=A_1h^2_1+A_2h^4_1+A_3h^6_1+\cdots\\
+\delta L'=a_1u^2_1+a_2u^4_1+a_3u^6_1+\cdots
+\end{cases}
+\end{equation}
+中，略去高次项可得初级球差。
+
+\section{薄透镜与薄系统的初级球差}
+
+\section{薄透镜与薄系统的初级彗差}
+
+\section{薄透镜与薄系统的初级色差}
+
+\section{二级光谱}
+
+\section{光学系统消像差谱线的选择}
+
+\section{平行平板的初级球差}
+
+\section{平行平板的初级色差}
+
+\section{匹兹凡和及其校正方法}
+
+\chapter{像差综述}
+
+\chapter{波像差}
+
+\chapter{光线追迹}
 
 
+
+
+
+
+
+%*******************************************************
+%*******************************************************
+%*******************************************************
+%*******************************************************
+%*******************************************************
 
 \part{物理光学}
 
